@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cited By prompts bulk import — upload a CSV, match columns, preview, and import prompts into AI Visibility.">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>Cited By — Prompts bulk import - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../../index.html" class="logo">
+                <img src="../../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../../index.html">Get Started</a>
+                <a href="../../setup-overview.html">Setup (Unify)</a>
+                <a href="../../analyze-signals.html">Analyze Signals</a>
+                <a href="../../take-action.html">Take Action</a>
+                <a href="../../api-reference.html">API Reference</a>
+                <a href="../../public/mcp/introduction.html">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <cited-by-sidebar base-path="../../"></cited-by-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../../public/cited-by/introduction.html">Cited By</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>Bulk import</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Cited By · Prompts</span>
+                    <h1 class="doc-page-title">Bulk import</h1>
+                    <p class="doc-page-description">
+                        Add many prompts at once from a CSV into your Cited By (AI Visibility) prompt library — including topics, column matching, preview, and plan limits.
+                    </p>
+                </header>
+
+                <section id="overview" class="content-section">
+                    <h2>Overview</h2>
+                    <p>
+                        Bulk import lets you upload a spreadsheet of prompts instead of adding them one by one.
+                        Each row becomes a prompt in your library; an optional topic column groups prompts into folders.
+                    </p>
+                    <p>The flow has four steps:</p>
+                    <ol>
+                        <li><strong>Open Bulk Upload</strong> and (optionally) download the template.</li>
+                        <li><strong>Upload</strong> your CSV (drag and drop or file picker).</li>
+                        <li><strong>Match columns</strong> — map headers to Prompt, Topic, or Don’t import.</li>
+                        <li><strong>Preview</strong> the rows, then <strong>Import</strong>.</li>
+                    </ol>
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        Bulk import only adds prompts to your <strong>active library</strong>. It does not create Suggested or Archived prompts.
+                    </blockquote>
+                </section>
+
+                <section id="open-bulk-upload" class="content-section">
+                    <h2>Open Bulk Upload</h2>
+                    <ol>
+                        <li>In ThriveStack, go to <strong>AI Visibility → Prompts</strong>.</li>
+                        <li>Click <strong>Add prompt</strong> (or the equivalent add action on the Prompts tab).</li>
+                        <li>In the modal, switch to the <strong>Bulk Upload</strong> tab.</li>
+                    </ol>
+
+                    <!-- SCREENSHOT: Add prompt modal with Bulk Upload tab selected -->
+                    <figure class="doc-screenshot">
+                        <img src="bulk-upload-tab.png" alt="Add Prompt modal on the Bulk Upload tab, showing Download Template and the CSV drop zone" class="doc-screenshot__img" loading="lazy">
+                        <figcaption>The Bulk Upload tab inside Add Prompt.</figcaption>
+                    </figure>
+                </section>
+
+                <section id="template" class="content-section">
+                    <h2>Download the template</h2>
+                    <p>
+                        On the Bulk Upload tab, download the CSV template. It includes a header row and example prompts so you can see the expected shape.
+                        You can also download the same file here:
+                    </p>
+                    <p>
+                        <a class="btn-primary" href="ai-visibility-prompts-bulk-import-template.csv" download="ai-visibility-prompts-bulk-import-template.csv" style="gap: 0.5rem; text-decoration: none;">
+                            <i class="fa-solid fa-download" aria-hidden="true"></i>
+                            Download CSV template
+                        </a>
+                    </p>
+                    <p>The template file is named <code>ai-visibility-prompts-bulk-import-template.csv</code> and uses these headers:</p>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 12px">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Column</th>
+                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Required?</th>
+                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);"><code>Prompt</code></td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Yes</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">The question or query sent to AI answer engines.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);"><code>Topic</code></td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">No</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Folder name in your prompt library. Leave blank to use <strong>No Topic</strong>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        Replace the example rows with your own prompts before importing. You can keep the same headers or use supported aliases (see below).
+                    </blockquote>
+
+                    <!-- SCREENSHOT: Download template control on Bulk Upload tab -->
+                    <figure class="doc-screenshot">
+                        <img src="bulk-download-template.png" alt="Download Template card for the prompts bulk-import CSV" class="doc-screenshot__img" loading="lazy">
+                        <figcaption>Download the CSV template from Bulk Upload.</figcaption>
+                    </figure>
+                </section>
+
+                <section id="csv-format" class="content-section">
+                    <h2>CSV format</h2>
+                    <h3>Delimiters</h3>
+                    <p>
+                        Both <strong>comma</strong> (<code>,</code>) and <strong>semicolon</strong> (<code>;</code>) separated files are supported.
+                        Quoted cells work as usual — for example, a prompt that contains a comma should be wrapped in double quotes.
+                    </p>
+
+                    <h3>Header aliases</h3>
+                    <p>
+                        If you already have a spreadsheet from another tool, you often don’t need to rename headers.
+                        On upload, Cited By auto-suggests mappings for these names (case-insensitive):
+                    </p>
+                    <ul>
+                        <li><strong>Prompt:</strong> <code>Prompt</code>, <code>Prompts</code>, <code>Query</code>, <code>Queries</code></li>
+                        <li><strong>Topic:</strong> <code>Topic</code>, <code>Topics</code></li>
+                    </ul>
+                    <p>
+                        Any other column (for example <code>Notes</code>, <code>Priority</code>, or <code>Owner</code>) defaults to
+                        <strong>Don’t import</strong>. You can still map it manually in the matcher if needed.
+                    </p>
+
+                    <h3>Example</h3>
+                    <pre><code>Prompt,Topic
+"What is the best CRM for startups?",Pricing
+"How does ThriveStack compare to HubSpot?",Competitors
+"AI visibility tools for B2B SaaS",
+Is Cited By free to try?,Pricing</code></pre>
+                    <p>
+                        In this example, the third row has an empty topic and lands in <strong>No Topic</strong>.
+                        Existing topic names reuse those folders; new names create new topics when you import.
+                    </p>
+                </section>
+
+                <section id="upload" class="content-section">
+                    <h2>Upload your file</h2>
+                    <ol>
+                        <li>On the Bulk Upload tab, drag a <code>.csv</code> file onto the drop zone, or click to choose a file.</li>
+                        <li>Cited By reads the headers and opens the <strong>Match the columns</strong> step.</li>
+                    </ol>
+                    <p>
+                        If the file can’t be parsed (empty file, missing header row, or invalid CSV), you’ll see an error and stay on the upload step.
+                        Fix the file and try again, or use <strong>Remove</strong> / change file to start over.
+                    </p>
+
+                    <!-- SCREENSHOT: Drag-and-drop upload zone -->
+                    <figure class="doc-screenshot">
+                        <img src="bulk-upload-dropzone.png" alt="Drag and drop zone for uploading a prompts CSV" class="doc-screenshot__img" loading="lazy">
+                        <figcaption>Upload zone on the Bulk Upload tab.</figcaption>
+                    </figure>
+                </section>
+
+                <section id="match-columns" class="content-section">
+                    <h2>Match the columns</h2>
+                    <p>
+                        After a successful upload, every CSV header appears in the matcher.
+                        For each column, choose one of:
+                    </p>
+                    <ul>
+                        <li><strong>Prompt</strong> — required. Exactly one column must be mapped to Prompt.</li>
+                        <li><strong>Topic</strong> — optional. At most one column may be mapped to Topic.</li>
+                        <li><strong>Don’t import</strong> — skip this column entirely.</li>
+                    </ul>
+                    <p>
+                        Known aliases are pre-selected for you. Review the mapping before continuing — especially if your headers are custom names
+                        (for example map <code>Question</code> → Prompt yourself; that name is <em>not</em> auto-detected).
+                    </p>
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                        You can’t continue until a <strong>Prompt</strong> column is selected. Mapping two columns to Prompt (or two to Topic) isn’t allowed — picking a field on one column clears it from the other.
+                    </blockquote>
+
+                    <!-- SCREENSHOT: Column matcher UI -->
+                    <figure class="doc-screenshot">
+                        <img src="bulk-column-matcher.png" alt="Match the columns step mapping CSV headers to Prompt, Topic, or Don't import" class="doc-screenshot__img" loading="lazy">
+                        <figcaption>Assign each CSV header to Prompt, Topic, or Don’t import.</figcaption>
+                    </figure>
+
+                    <p>When the mapping looks right, click <strong>Continue</strong> (or the equivalent primary action) to build the preview.</p>
+                </section>
+
+                <section id="preview-and-import" class="content-section">
+                    <h2>Preview and import</h2>
+                    <p>
+                        The preview lists the prompts that will be created (text + topic).
+                        From here you can go back to fix column mapping, clear the file and start over, or confirm the import.
+                    </p>
+
+                    <!-- SCREENSHOT: Preview list before import -->
+                    <figure class="doc-screenshot">
+                        <img src="bulk-preview.png" alt="Preview of prompts ready to import from the CSV" class="doc-screenshot__img" loading="lazy">
+                        <figcaption>Preview step showing prompts ready to import.</figcaption>
+                    </figure>
+
+                    <h3>What gets skipped</h3>
+                    <ul>
+                        <li><strong>Empty prompt text</strong> — rows with a blank Prompt cell are dropped.</li>
+                        <li><strong>Duplicates inside the CSV</strong> — later rows with the same prompt text (case-insensitive) are dropped.</li>
+                        <li><strong>Already in your library</strong> — prompts that already exist in the active library are skipped and do <em>not</em> consume entitlement slots. The UI shows how many were skipped.</li>
+                    </ul>
+                    <p>
+                        Click the import action (for example <strong>Import N prompts</strong>) to save.
+                        New topics are created as needed; blank topics go to <strong>No Topic</strong>.
+                    </p>
+                </section>
+
+                <section id="plan-limits" class="content-section">
+                    <h2>Plan limits</h2>
+                    <p>
+                        Prompts use your account’s prompt entitlement. You can only import as many <strong>new</strong> prompts as you have remaining slots.
+                    </p>
+                    <ul>
+                        <li>If the preview count is within remaining slots, import proceeds.</li>
+                        <li>If the CSV (after skipping duplicates already in the library) still has more rows than you have room for, import is <strong>blocked</strong>. You are not partially imported up to the limit.</li>
+                        <li>Use the limit dialog to upgrade your plan or buy a prompt add-on, then try again with a smaller file or more capacity.</li>
+                    </ul>
+
+                    <!-- SCREENSHOT: Over-limit modal -->
+                    <figure class="doc-screenshot">
+                        <img src="bulk-limit-modal.png" alt="Plan limit modal when the CSV has more prompts than remaining entitlement" class="doc-screenshot__img" loading="lazy">
+                        <figcaption>Shown when the file has more new prompts than remaining entitlement.</figcaption>
+                    </figure>
+                </section>
+
+                <section id="after-import" class="content-section">
+                    <h2>After import</h2>
+                    <p>
+                        Imported prompts appear under their topics on the Prompts tab, ready to track like any other library prompt.
+                        Check the entitlement gauge if you want to confirm how many slots were used.
+                    </p>
+                </section>
+
+                <section id="troubleshooting" class="content-section">
+                    <h2>Troubleshooting</h2>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 12px">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Issue</th>
+                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">What to try</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Can’t continue past Match columns</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Map exactly one column to <strong>Prompt</strong>.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Headers not auto-detected</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Use the matcher to assign fields, or rename headers to supported aliases / the template names.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Fewer prompts than CSV rows</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Empty cells, in-file duplicates, and prompts already in the library are skipped.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Import blocked by plan limit</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Reduce the file, remove prompts already tracked elsewhere, or upgrade / buy add-on capacity.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Topics look wrong</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Confirm the Topic column mapping, and that blank cells should go to <strong>No Topic</strong>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <div class="page-nav">
+                    <a href="../../public/cited-by/introduction.html" class="nav-card prev-card">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="nav-label">Previous</span>
+                        <span class="nav-title">Introduction</span>
+                    </a>
+                    <a href="../../public/mcp/introduction.html" class="nav-card next-card">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">MCP</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="prompts-bulk-import.html">Last updated: August 11, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#overview" class="toc-link active">Overview</a>
+                    <a href="#open-bulk-upload" class="toc-link">Open Bulk Upload</a>
+                    <a href="#template" class="toc-link">Download the template</a>
+                    <a href="#csv-format" class="toc-link">CSV format</a>
+                    <a href="#upload" class="toc-link">Upload your file</a>
+                    <a href="#match-columns" class="toc-link">Match the columns</a>
+                    <a href="#preview-and-import" class="toc-link">Preview and import</a>
+                    <a href="#plan-limits" class="toc-link">Plan limits</a>
+                    <a href="#after-import" class="toc-link">After import</a>
+                    <a href="#troubleshooting" class="toc-link">Troubleshooting</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+</html>

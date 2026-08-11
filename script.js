@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    mountDocsProductSwitcher();
+
     // Code tab switching (.tab-btn / .tab-pane pattern used in API reference pages)
     document.querySelectorAll('.code-tabs').forEach(function(tabGroup) {
         tabGroup.querySelectorAll('.tab-btn').forEach(function(btn) {
@@ -159,6 +161,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'MCP Tools',
                 url: 'public/mcp/tools.html#tools-core-analytics',
                 terms: 'thrivestack mcp tools catalog reference core analytics accounts gtm setup traffic acquisition activation revenue monetization usage engagement'
+            },
+            {
+                title: 'Cited By Introduction',
+                url: 'public/cited-by/introduction.html#overview',
+                terms: 'cited by ai visibility aeo geo brand mentions prompts citations competitors introduction bulk import mcp'
+            },
+            {
+                title: 'Cited By — What you can do',
+                url: 'public/cited-by/introduction.html#what-you-can-do',
+                terms: 'cited by track prompts citations competitors bulk import mcp agents'
+            },
+            {
+                title: 'Cited By — Get started',
+                url: 'public/cited-by/introduction.html#get-started',
+                terms: 'cited by get started ai visibility prompts bulk upload mcp personal access token'
+            },
+            {
+                title: 'Cited By MCP',
+                url: 'public/cited-by/mcp.html',
+                terms: 'cited by mcp agents claude cursor connect ai visibility'
+            },
+            {
+                title: 'Cited By Prompts Bulk Import',
+                url: 'public/cited-by/prompts-bulk-import.html#overview',
+                terms: 'cited by prompts bulk import csv upload template column mapping entitlement'
+            },
+            {
+                title: 'Bulk Import — Match Columns',
+                url: 'public/cited-by/prompts-bulk-import.html#match-columns',
+                terms: 'bulk import match columns mapper prompt topic dont import aliases query'
+            },
+            {
+                title: 'Bulk Import — Plan Limits',
+                url: 'public/cited-by/prompts-bulk-import.html#plan-limits',
+                terms: 'bulk import plan limit entitlement upgrade add-on remaining slots'
+            },
+            {
+                title: 'Bulk Import — Troubleshooting',
+                url: 'public/cited-by/prompts-bulk-import.html#troubleshooting',
+                terms: 'bulk import troubleshooting empty duplicate headers csv'
             },
             {
                 title: 'API Reference',
@@ -570,3 +612,159 @@ class SetupSidebar extends HTMLElement {
 }
 customElements.define('setup-sidebar', SetupSidebar);
 
+/** Unified Cited By left nav (includes MCP docs under the Cited By product). */
+class CitedBySidebar extends HTMLElement {
+    connectedCallback() {
+        const prefix = this.getAttribute('base-path') || '';
+        this.innerHTML = `
+            <div class="sidebar-section">
+                <h3>Cited By</h3>
+                <ul>
+                    <li><a href="${prefix}public/cited-by/introduction.html" class="nav-item" data-nav="cited-intro"><span>Introduction</span></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>MCP</h3>
+                <ul>
+                    <li><a href="${prefix}public/mcp/introduction.html" class="nav-item" data-nav="mcp-intro"><span>Introduction</span></a></li>
+                    <li><a href="${prefix}public/mcp/setup.html" class="nav-item" data-nav="mcp-setup"><span>Setup</span></a></li>
+                    <li><a href="${prefix}public/mcp/use-cases.html" class="nav-item" data-nav="mcp-use-cases"><span>Use Cases</span></a></li>
+                    <li><a href="${prefix}public/mcp/prompts.html" class="nav-item" data-nav="mcp-prompts"><span>Prompts</span></a></li>
+                    <li><a href="${prefix}public/mcp/tools.html" class="nav-item" data-nav="mcp-tools"><span>Tools</span></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Prompts</h3>
+                <ul>
+                    <li><a href="${prefix}public/cited-by/prompts-bulk-import.html" class="nav-item" data-nav="prompts-bulk"><span>Bulk import</span></a></li>
+                </ul>
+            </div>
+        `;
+
+        let currentPath = window.location.pathname || '';
+        if (currentPath.endsWith('/')) currentPath += 'index.html';
+        const file = currentPath.split('/').pop() || '';
+        const inCitedBy = currentPath.includes('/cited-by/');
+        const inMcp = currentPath.includes('/mcp/');
+
+        let active = '';
+        if (inCitedBy && file === 'introduction.html') active = 'cited-intro';
+        else if (inCitedBy && file === 'prompts-bulk-import.html') active = 'prompts-bulk';
+        else if (inCitedBy && file === 'mcp.html') active = 'mcp-intro';
+        else if (inMcp && file === 'introduction.html') active = 'mcp-intro';
+        else if (inMcp && file === 'setup.html') active = 'mcp-setup';
+        else if (inMcp && file === 'use-cases.html') active = 'mcp-use-cases';
+        else if (inMcp && file === 'prompts.html') active = 'mcp-prompts';
+        else if (inMcp && file === 'tools.html') active = 'mcp-tools';
+
+        if (active) {
+            const link = this.querySelector(`[data-nav="${active}"]`);
+            if (link) link.classList.add('active');
+        }
+    }
+}
+customElements.define('cited-by-sidebar', CitedBySidebar);
+
+/**
+ * Top-left docs product switcher (ThriveStack ↔ citedby), mirrors the plg-crm-ui account/product box.
+ * Replaces `.top-nav a.logo` on every page that loads this script.
+ */
+function mountDocsProductSwitcher() {
+    const logoLink = document.querySelector('.top-nav .nav-left > a.logo');
+    if (!logoLink || logoLink.dataset.productSwitcher === '1') return;
+
+    const logoImg = logoLink.querySelector('img');
+    const logoSrc = logoImg ? logoImg.getAttribute('src') : 'logo.png';
+    const slash = logoSrc.lastIndexOf('/');
+    const prefix = slash >= 0 ? logoSrc.slice(0, slash + 1) : '';
+
+    const path = window.location.pathname || '';
+    // MCP docs live under the Cited By product
+    const currentProduct = (path.includes('/cited-by/') || path.includes('/mcp/')) ? 'citedby' : 'thrivestack';
+
+    const homes = {
+        thrivestack: `${prefix}index.html`,
+        citedby: `${prefix}public/cited-by/introduction.html`,
+    };
+
+    const root = document.createElement('div');
+    root.className = 'docs-product-switcher';
+    root.dataset.product = currentProduct;
+    root.dataset.productSwitcher = '1';
+
+    // logo.png is the full ThriveStack wordmark — use it as the brand mark (no extra text).
+    const thrivestackBrandHtml = `
+        <span class="docs-product-switcher__brand docs-product-switcher__brand--ts" aria-label="ThriveStack">
+            <img src="${logoSrc}" alt="ThriveStack" class="docs-product-switcher__logo" draggable="false">
+        </span>`;
+
+    const citedbyBrandHtml = `
+        <span class="docs-product-switcher__brand docs-product-switcher__brand--citedby" aria-label="citedby">
+            <span class="docs-product-switcher__citedby">cited<span class="by">by</span></span>
+        </span>`;
+
+    const triggerBrand = currentProduct === 'citedby' ? citedbyBrandHtml : thrivestackBrandHtml;
+    const triggerAria = currentProduct === 'citedby' ? 'citedby documentation' : 'ThriveStack documentation';
+
+    root.innerHTML = `
+        <button type="button" class="docs-product-switcher__trigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Switch documentation product. Current: ${triggerAria}">
+            ${triggerBrand}
+            <i class="fa-solid fa-chevron-down docs-product-switcher__chevron" aria-hidden="true"></i>
+        </button>
+        <div class="docs-product-switcher__menu" role="listbox" hidden>
+            <button type="button" class="docs-product-switcher__option${currentProduct === 'thrivestack' ? ' is-active' : ''}" role="option" data-product="thrivestack" aria-selected="${currentProduct === 'thrivestack'}">
+                ${thrivestackBrandHtml}
+                <span class="docs-product-switcher__meta">Growth Intelligence</span>
+                <i class="fa-solid fa-check docs-product-switcher__check" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="docs-product-switcher__option${currentProduct === 'citedby' ? ' is-active' : ''}" role="option" data-product="citedby" aria-selected="${currentProduct === 'citedby'}">
+                ${citedbyBrandHtml}
+                <span class="docs-product-switcher__meta">AI Visibility</span>
+                <i class="fa-solid fa-check docs-product-switcher__check" aria-hidden="true"></i>
+            </button>
+        </div>
+    `;
+
+    logoLink.replaceWith(root);
+
+    const trigger = root.querySelector('.docs-product-switcher__trigger');
+    const menu = root.querySelector('.docs-product-switcher__menu');
+
+    const setOpen = (open) => {
+        menu.hidden = !open;
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        root.classList.toggle('is-open', open);
+    };
+
+    trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setOpen(menu.hidden);
+    });
+
+    root.querySelectorAll('.docs-product-switcher__option').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const product = btn.getAttribute('data-product');
+            if (!product || product === currentProduct) {
+                setOpen(false);
+                return;
+            }
+            try {
+                localStorage.setItem('docs_product', product);
+            } catch (_) { /* ignore */ }
+            window.location.href = homes[product];
+        });
+    });
+
+    document.addEventListener('mousedown', (e) => {
+        if (!root.contains(e.target)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+    });
+}

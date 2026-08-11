@@ -60,6 +60,7 @@ function inferSection(pageUrl) {
     if (page === "index.html") return "Getting Started";
     if (page === "api-reference.html" || page.startsWith("public/api/")) return "API";
     if (page.startsWith("public/mcp/")) return "MCP";
+    if (page.startsWith("public/cited-by/")) return "Cited By";
     if (page.startsWith("public/product/")) return "Product";
     if (page.startsWith("public/marketing/")) return "Marketing";
     if (page.startsWith("public/revenue/")) return "Revenue";

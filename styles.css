@@ -415,6 +415,165 @@ a:hover { color: var(--brand-primary-hover); }
     line-height: 1;
 }
 
+/* Top-left docs product switcher (ThriveStack ↔ citedby)
+   Trigger logo matches original .logo-img (32px) — dropdown sizing is independent. */
+.docs-product-switcher {
+    position: relative;
+    flex-shrink: 0;
+}
+.docs-product-switcher__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--nav-hover-bg);
+    color: var(--text-primary);
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+    box-sizing: border-box;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+[data-theme="dark"] .docs-product-switcher__trigger {
+    background: #05070c;
+    border-color: #3a4558;
+}
+[data-theme="dark"] .docs-product-switcher__trigger:hover,
+[data-theme="dark"] .docs-product-switcher.is-open .docs-product-switcher__trigger {
+    background: #02040a;
+    border-color: #4b5568;
+}
+.docs-product-switcher__trigger:hover,
+.docs-product-switcher.is-open .docs-product-switcher__trigger {
+    background: var(--card-hover-bg);
+}
+/* Brand mark: same 32px height as .logo-img; width follows the mark (no empty gap) */
+.docs-product-switcher__trigger .docs-product-switcher__brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 32px;
+    flex-shrink: 0;
+}
+.docs-product-switcher__trigger .docs-product-switcher__logo {
+    height: 32px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+.docs-product-switcher__trigger .docs-product-switcher__citedby {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    /* Match ThriveStack logo height (32px) — fills the box like the wordmark image */
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 32px;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+.docs-product-switcher__citedby .by {
+    font-weight: 500;
+    color: var(--text-muted);
+}
+.docs-product-switcher__chevron {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+}
+.docs-product-switcher.is-open .docs-product-switcher__chevron {
+    transform: rotate(180deg);
+}
+.docs-product-switcher__menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 60;
+    min-width: 240px;
+    padding: 0.35rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-md);
+}
+[data-theme="dark"] .docs-product-switcher__menu {
+    background: #05070c;
+    border-color: #3a4558;
+}
+.docs-product-switcher__option {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+    padding: 0.65rem 0.7rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    transition: background 0.12s ease;
+}
+.docs-product-switcher__option:hover {
+    background: var(--nav-hover-bg);
+}
+[data-theme="dark"] .docs-product-switcher__option:hover {
+    background: #121826;
+}
+.docs-product-switcher__option.is-active {
+    background: rgba(99, 102, 241, 0.12);
+}
+.docs-product-switcher__option .docs-product-switcher__brand {
+    grid-column: 1;
+    grid-row: 1;
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+}
+.docs-product-switcher__option .docs-product-switcher__meta {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    padding-left: 0.05rem;
+}
+.docs-product-switcher__option .docs-product-switcher__check {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    font-size: 0.75rem;
+    color: var(--brand-primary);
+    opacity: 0;
+}
+.docs-product-switcher__option.is-active .docs-product-switcher__check {
+    opacity: 1;
+}
+/* Dropdown marks stay compact — independent of top-left logo size */
+.docs-product-switcher__option .docs-product-switcher__logo {
+    height: 22px;
+    width: auto;
+    display: block;
+}
+.docs-product-switcher__option .docs-product-switcher__citedby {
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
 .resizer {
     width: 4px;
     background-color: transparent;
@@ -2104,6 +2263,68 @@ blockquote.note-callout {
 
 blockquote.note-callout i {
     color: var(--brand-primary);
+}
+
+/* Product screenshots in docs — display at CSS size; 2x PNGs stay sharp on retina */
+.doc-screenshot {
+    margin: 1rem 0 1.25rem;
+}
+.doc-screenshot__img {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+    image-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+.doc-screenshot figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Placeholder frame until product screenshots are added */
+.doc-screenshot-placeholder {
+    margin: 1rem 0 1.25rem;
+}
+.doc-screenshot-placeholder__frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 180px;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+    border: 1.5px dashed var(--border-color);
+    background: var(--nav-hover-bg);
+    color: var(--text-muted);
+    text-align: center;
+}
+.doc-screenshot-placeholder__frame strong {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+.doc-screenshot-placeholder__frame small {
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+.doc-screenshot-placeholder figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+[data-theme="dark"] .doc-screenshot-placeholder__frame {
+    background: rgba(17, 24, 39, 0.65);
+    border-color: #3a4558;
 }
 
 /* Implementation dropdown spacing (Amplitude-like accordions) */
