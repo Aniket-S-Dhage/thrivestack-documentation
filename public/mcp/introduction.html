@@ -76,26 +76,29 @@
                     <span class="doc-page-header-eyebrow">Cited By · MCP</span>
                     <h1 class="doc-page-title">Introduction</h1>
                     <p class="doc-page-description">
-                        Connect AI assistants like Claude, Cursor, and other MCP-compatible tools directly to your ThriveStack data. Ask questions in plain language and get answers from the same telemetry your dashboard shows.
+                        Connect AI assistants like Claude, Cursor, and other MCP-compatible tools to your ThriveStack AI Visibility data. Ask questions in plain language and get answers from the same data your dashboard shows.
                     </p>
                 </header>
 
                 <section id="overview" class="content-section">
                     <h2>MCP Server</h2>
                     <p>
-                        Ask your AI assistant about signups, revenue, activation, retention, accounts, and AI search visibility, and get answers straight from your ThriveStack data. This works with Claude, Claude Code, Cursor, VS Code (GitHub Copilot), Windsurf, Gemini CLI, and any other MCP-compatible client.
+                        Ask your AI assistant how AI search engines mention and cite your brand, how you compare with competitors, which pages and sources get cited, and what to publish next, with answers straight from your ThriveStack AI Visibility data. This works with Claude, Claude Code, Cursor, VS Code (GitHub Copilot), Windsurf, Gemini CLI, and any other MCP-compatible client.
                     </p>
                 </section>
 
                 <section id="what-you-can-do" class="content-section">
                     <h2>What you can do</h2>
                     <ul>
-                        <li>Check AI search visibility for a domain &mdash; citation gaps, competitor mentions, and content recommendations to close them, plus generate a content outline for any recommendation</li>
-                        <li>See what buyer questions AI engines are evaluating your domain on, grouped by topic</li>
+                        <li>See how AI engines mention and cite your brand, and how that compares with your competitors over time</li>
+                        <li>See which pages and sources AI answers retrieve and cite, and where your citations come from</li>
+                        <li>Review the buyer questions being tracked for your brand, and explore prompt research to find new ones</li>
+                        <li>Check your site&rsquo;s crawl and indexing health, including Google Search Console state and AI-crawler reach</li>
+                        <li>Get content, earned-media, technical and ChatGPT Ads recommendations, generate a content outline or ad creative brief for any of them, and save content recommendations to your brand</li>
                         <li>See which brands/products your ThriveStack account can access</li>
                         <li>Run the <code>ai_visibility_analyst</code> prompt for a structured, one-shot analysis instead of asking one question at a time</li>
                     </ul>
-                    <p>We&rsquo;re rolling out more tools incrementally &mdash; CRM accounts and leads, revenue attribution, account segments, custom SQL, and telemetry setup wizards all exist behind the scenes and are being enabled progressively. See <a href="../../public/mcp/tools.html">Tools</a> for exactly what&rsquo;s callable today.</p>
+                    <p>See <a href="../../public/mcp/tools.html">Tools</a> for the complete list of what&rsquo;s available today.</p>
                 </section>
 
                 <section id="how-it-works" class="content-section">
@@ -109,7 +112,7 @@
                         <div class="feature-card glass-panel">
                             <div class="card-icon purple"><i class="fa-solid fa-2"></i></div>
                             <h3>Authenticate</h3>
-                            <p>Sign in via OAuth (Claude / Claude Code) or attach a Personal Access Token (every other client). This only happens once.</p>
+                            <p>Sign in with OAuth (Claude, Claude Code, Cursor, VS Code and other clients that support it), or attach a Personal Access Token for clients that don&rsquo;t. This only happens once.</p>
                         </div>
                         <div class="feature-card glass-panel">
                             <div class="card-icon green"><i class="fa-solid fa-3"></i></div>
@@ -119,9 +122,9 @@
                     </div>
                     <p style="margin-top: 1rem;">Free-form questions:</p>
                     <ul>
-                        <li>&ldquo;Why is activation dropping this month?&rdquo;</li>
-                        <li>&ldquo;What&rsquo;s our MRR trend over the last 6 months?&rdquo;</li>
-                        <li>&ldquo;Which accounts churned last month, and why?&rdquo;</li>
+                        <li>&ldquo;How visible is ourdomain.com in AI search compared with our top competitors?&rdquo;</li>
+                        <li>&ldquo;Which buyer questions are we not being cited for, and who is cited instead?&rdquo;</li>
+                        <li>&ldquo;What content should we publish to close our biggest citation gaps?&rdquo;</li>
                     </ul>
                     <p>Or pick a ready-made example from <a href="../../public/mcp/prompts.html">Prompts</a> or <a href="../../public/mcp/use-cases.html">Use Cases</a> for a full analysis.</p>
                 </section>
@@ -147,7 +150,7 @@
                             </tr>
                             <tr>
                                 <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Authentication</td>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">OAuth 2.1 (Claude and Claude Code), or a Personal Access Token via <code>Authorization: Bearer</code> (any client)</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">OAuth 2.1 (Claude, Claude Code, Cursor, VS Code and other clients that support it), or a Personal Access Token via <code>Authorization: Bearer</code> (any client)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -157,15 +160,15 @@
                     <h2>Authentication</h2>
                     <p>Two options, depending on what your client supports:</p>
                     <ul>
-                        <li><strong>OAuth.</strong> Your AI assistant opens a ThriveStack consent page in your browser. Sign in and authorize access. The session persists across conversations. Available for <strong>Claude and Claude Code only</strong>.</li>
-                        <li><strong>Personal Access Token.</strong> Generate one from <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a> (AI Visibility &rarr; Settings &rarr; Personal Access Tokens) in the ThriveStack dashboard, then attach it as an <code>Authorization: Bearer</code> header on your client&rsquo;s MCP connection. This is the only option for Cursor, VS Code/Copilot, Windsurf, Gemini CLI, and any other client without OAuth support &mdash; not just an alternative for them.</li>
+                        <li><strong>OAuth.</strong> Your AI assistant opens a ThriveStack consent page in your browser. Sign in and authorize access. The session persists across conversations. Available in every client that supports MCP OAuth, including Claude, Claude Code, Cursor and VS Code.</li>
+                        <li><strong>Personal Access Token.</strong> Generate one from <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a> (AI Visibility &rarr; Settings &rarr; Personal Access Tokens) in the ThriveStack dashboard, then attach it as an <code>Authorization: Bearer</code> header on your client&rsquo;s MCP connection. Use this for clients without OAuth support (for example Windsurf and Gemini CLI) and for headless or CI setups.</li>
                     </ul>
                     <p>Either way, every call resolves your product and environment automatically and respects the same permissions as your dashboard session. See the <a href="../../public/mcp/setup.html">setup guide</a> for client-by-client examples.</p>
                 </section>
 
                 <section id="access" class="content-section">
                     <h2>Read and write access</h2>
-                    <p>Every tool currently live is read-only &mdash; <code>ask</code>, the AI-visibility tools, and brand lookup all pull existing data with no side effects. See <a href="../../public/mcp/tools.html">Tools</a> for the current list.</p>
+                    <p>All tools are read-only except one: <code>save_content_recommendations</code> saves content recommendations to your brand as <em>suggested</em> items for your team. It can only create new suggested items or refresh ones that are still suggested &mdash; it cannot approve, dismiss, assign or delete anything &mdash; and your AI client asks you to confirm before it runs. See <a href="../../public/mcp/tools.html">Tools</a> for the current list.</p>
                 </section>
 
                 <section id="supported-platforms" class="content-section">
@@ -211,7 +214,7 @@
                     </div>
                     <div class="footer-links">
                         <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
-                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="introduction.html">Last updated: August 3, 2026</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="introduction.html">Last updated: October 14, 2026</a>
                     </div>
                 </footer>
             </div>

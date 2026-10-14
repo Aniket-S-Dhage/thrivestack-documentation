@@ -82,54 +82,38 @@
                 </header>
 
                 <section id="overview" class="content-section">
-                    <p>The ThriveStack MCP Server currently exposes <strong>9 tools</strong>: a primary natural-language entry point (<code>ask</code>), AI Visibility &amp; content recommendation tools, brand/identity lookup, and a health check &mdash; plus one MCP resource, <code>analytics://schema</code>, describing the full ClickHouse schema for hand-written queries.</p>
-                    <p>We&rsquo;re rolling out access incrementally. More tool groups (CRM accounts, revenue attribution, custom analytics queries, segments, setup wizards, and others) exist behind the scenes and are being enabled progressively &mdash; this page always reflects what&rsquo;s actually callable today, not the roadmap.</p>
-                    <p>Every currently-live tool is read-only.</p>
+                    <p>The ThriveStack MCP Server currently exposes <strong>25 tools</strong> and one prompt. They cover your brands, AI-search visibility and citations, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, prompt research, and content and ad recommendations.</p>
+                    <p><strong>24 of the 25 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
                     <p>None of these tools take a <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="../../public/mcp/setup.html">Setup</a>.</p>
-                    <p>Your AI assistant calls these automatically based on your questions. For growth and analytics questions, it should reach for <a href="#tool-ask"><code>ask</code></a> first &mdash; that single tool routes internally to ClickHouse and covers signups, MRR, churn, activation, retention, feature usage, and more, without needing a separate tool per metric.</p>
+                    <p>Your AI assistant calls these automatically based on your questions. The server also provides one prompt, <code>ai_visibility_analyst</code>, a ready-made content-strategy analysis &mdash; see <a href="../../public/mcp/prompts.html">Prompts</a>. It does not expose any MCP resources.</p>
                 </section>
 
                 <section id="response-format" class="content-section">
                     <h2>Response format</h2>
-                    <p>There is no single universal response envelope &mdash; each tool returns the JSON shape natural to its own data source. <code>ask</code> returns a synthesized business-insight response (markdown tables and chart artifacts where useful); the AI Visibility tools return structured report/recommendation objects; <code>get_accessible_brands</code> and <code>ping</code> return small fixed objects.</p>
-                    <p>Tools whose description says &ldquo;returns a clear empty/no-run result&rdquo; or similar are explicitly designed to return an empty-but-valid result rather than an error when there&rsquo;s no data yet (e.g. a domain that hasn&rsquo;t been probed) &mdash; treat that as &ldquo;nothing here yet&rdquo;, not a failure.</p>
+                    <p>There is no single universal response envelope &mdash; each tool returns the JSON shape natural to its own data. The visibility and recommendation tools return structured report objects, and <code>check_connection</code> returns a small fixed object.</p>
+                    <p>Tools whose description says they return a &ldquo;clear empty&rdquo; or &ldquo;no-data&rdquo; result are designed to return an empty-but-valid result rather than an error when there&rsquo;s nothing yet (for example, a domain that hasn&rsquo;t been probed). Treat that as &ldquo;nothing here yet&rdquo;, not a failure. Large results are paged or capped; the tools that page accept <code>page</code> and <code>page_size</code> (or <code>limit</code> and <code>offset</code>).</p>
                 </section>
 
                 <section id="tool-catalog" class="content-section">
-                    <h2>Primary entry point</h2>
-                    <p>The <code>ask</code> tool is the primary interface for analytics and growth questions. Rather than mapping directly to a single backend call, it hands the question to an internal orchestrator that runs a Claude tool-use loop (up to 10 iterations) with a fixed set of ClickHouse-backed internal capabilities &mdash; schema discovery, signup/MRR/churn trends, activation status, feature usage, funnels, UTM/channel performance, abuse signals, and a constrained custom-SQL escape hatch. These are internal to the orchestrator, not separate callable MCP tools right now. Claude decides which internal capability to use, chains them when a question needs multiple data points, and synthesizes the results into a business insight grounded strictly in the returned data (never estimated or recalled from training data), including markdown tables and chart artifacts for trend/comparison data where appropriate.</p>
+                    <h2 id="brands">Brands &amp; Account</h2>
 
-                    <h3 id="tool-ask"><code>ask</code></h3>
-                    <p>PRIMARY TOOL &mdash; use this for ALL analytics and growth questions. Queries live ClickHouse data, picks the right internal tool automatically, and returns a business insight. Use for any question about: signups, MRR, ARR, churn, activation, retention, feature usage, accounts, users, revenue, expansion, contraction, cohorts, funnels, or trends. Do NOT answer analytics questions from memory &mdash; always call this tool. Examples: &lsquo;Why is activation dropping?&rsquo;, &lsquo;What is my MRR trend?&rsquo;, &lsquo;Which accounts churned this month?&rsquo;, &lsquo;How many signups last month?&rsquo;</p>
+                    <h3 id="tool-get-accessible-brands"><code>get_accessible_brands</code></h3>
+                    <p>Lists the brands (products) the signed-in ThriveStack account can access, with name and domain for each. These are the brands the account can switch between, and the domains the other tools accept. The result is the same whether you connect with OAuth or a personal access token.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-get-brand-information"><code>get_brand_information</code></h3>
+                    <p>Returns the saved brand profile for a domain, as captured during AI Visibility setup and any later edits: description, value offering, industry, HQ country, business model, products and services, brand identity, customer segments, target markets, tracked competitors, tracked topics, language, monitored AI engines, buyer-intent mix, and setup progress (last_completed_step, user_edited).</p>
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>question</code></td><td>string</td><td>Yes</td><td>Your analytics or growth question in plain English.</td></tr>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the brand profile for, e.g. acme.com</td></tr>
                         </tbody>
                     </table>
 
-                    <h2 id="ai-visibility">AI Visibility &amp; Content Recommendations</h2>
-
-                    <h3 id="tool-get-citation-probe-data"><code>get_citation_probe_data</code></h3>
-                    <p>Citation-gap evidence for a domain&rsquo;s most recent completed AI-visibility probe run: every tracked buyer question, our citation count vs. total, and which competitor brands appeared instead. Returns raw evidence only. Returns a clear empty/no-run result if the domain has no completed probe run yet &mdash; not an error.</p>
-                    <table class="params-table">
-                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-                        <tbody>
-                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch citation probe evidence for</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h3 id="tool-get-domain-prompts"><code>get_domain_prompts</code></h3>
-                    <p>The tracked buyer questions (prompts) generated for a domain, grouped by topic. The domain must be enriched first; if it isn&rsquo;t, the resulting error message is returned cleanly rather than crashing.</p>
-                    <table class="params-table">
-                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-                        <tbody>
-                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch generated prompts for</td></tr>
-                        </tbody>
-                    </table>
+                    <h2 id="visibility">Visibility &amp; Citations</h2>
 
                     <h3 id="tool-get-domain-report"><code>get_domain_report</code></h3>
-                    <p>Full visibility report for a domain&rsquo;s most recent completed AI-visibility probe run: overall visibility and average position, competitor/mentioned brands, broken down by topic and by individual tracked question, with per-AI-model detail underneath each. Scoped automatically to the latest completed probe run for the domain. Returns a clear empty/no-run result if the domain has no completed probe run yet &mdash; not an error. Does not include response text or citation URLs &mdash; use <code>get_citation_probe_data</code> for that evidence.</p>
+                    <p>Returns the visibility report for a brand's most recent completed AI-visibility probe run: overall visibility and average position, competitor and mentioned brands, broken down by topic and by tracked question, with per-AI-model detail. Use it to answer how visible a brand is and who appears alongside it.</p>
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
@@ -137,60 +121,266 @@
                         </tbody>
                     </table>
 
+                    <h3 id="tool-get-domain-prompts"><code>get_domain_prompts</code></h3>
+                    <p>Lists the tracked buyer questions (prompts) generated for a brand's domain, grouped by topic. Use it to see or review what is being tracked; it contains no visibility results (get_domain_report has those). The domain must have completed brand setup; otherwise the tool returns an explanatory error message.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch generated prompts for</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-citation-probe-data"><code>get_citation_probe_data</code></h3>
+                    <p>Returns the raw citation evidence from a brand's most recent completed AI-visibility probe run: every tracked buyer question, one record per question and AI engine.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch citation probe evidence for</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-competitor-visibility"><code>get_competitor_visibility</code></h3>
+                    <p>Weekly AI-search visibility % (and average rank, where available) for a domain's own brand alongside its tracked competitor brands, side by side &mdash; matching the product's AI Visibility &gt; Competitors page. If competitor_domains isn't provided, the domain's saved tracked-competitor list is used automatically.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch competitor visibility for</td></tr>
+                            <tr><td><code>competitor_domains</code></td><td>string[]</td><td>No</td><td>Optional list of competitor domains to compare against, overriding the domain's saved tracked-competitor list. The domain itself is always included automatically.</td></tr>
+                            <tr><td><code>weeks</code></td><td>number</td><td>No</td><td>Number of weeks of history to return (default 8, clamped 1-52)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-engine-visibility-trend"><code>get_engine_visibility_trend</code></h3>
+                    <p>Daily AI-search visibility % for a domain's own brand, split by AI engine (ChatGPT, Perplexity, Gemini, ...), with average rank per engine where available. Each point is one day: 'values' maps engine id to visibility %, 'avg_ranks' maps engine id to average position (lower is better). Days appear only when a probe ran, so gaps between dates are normal.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="sources">Sources &amp; Pages</h2>
+
+                    <h3 id="tool-get-url-report"><code>get_url_report</code></h3>
+                    <p>Per-URL retrieval and citation metrics across every source URL surfaced by a domain's most recent completed AI-visibility probe run &mdash; which specific pages are getting retrieved and cited, and how often.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the URL report for</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Page size (default 25, max 100)</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>Filter by substring match against URL, title, domain, URL type, or domain type</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-source-mix-summary"><code>get_source_mix_summary</code></h3>
+                    <p>Where AI answers about a domain's prompts get their information, summarised over a date window &mdash; matching the panels above the product's AI Visibility &gt; Domains and URLs tables.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>grain</code></td><td>string</td><td>No</td><td>Summarise cited domains (default) or individual cited URLs One of: domain, url.</td></tr>
+                            <tr><td><code>source_class</code></td><td>string</td><td>No</td><td>Only count sources of this class in movers and type_shares One of: owned, earned, other_cited.</td></tr>
+                            <tr><td><code>source_subtype</code></td><td>string</td><td>No</td><td>With source_class: only that domain type, using a subtype value exactly as returned in source_mix (e.g. Editorial)</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                            <tr><td><code>top</code></td><td>number</td><td>No</td><td>How many movers to return (default 20, max 100)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-source-trend"><code>get_source_trend</code></h3>
+                    <p>How often the most-used sources were retrieved by AI answers over time, for a domain's prompts &mdash; the product's 'Source retrievals over time' chart on AI Visibility &gt; Domains and URLs. Returns 'labels' (one per day, week or month) and 'series' (one per source, 'values' aligned to labels).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>grain</code></td><td>string</td><td>No</td><td>Trend cited domains (default) or individual cited URLs One of: domain, url.</td></tr>
+                            <tr><td><code>granularity</code></td><td>string</td><td>No</td><td>Bucket size (default day) One of: day, week, month.</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-competitor-source-mix"><code>get_competitor_source_mix</code></h3>
+                    <p>For the domain's brand and each competitor, the share of AI-answer source retrievals that come from the brand's own site (owned), from third-party pages mentioning it (earned) and from everything else (other), measured across the domain's tracked prompts. Values are whole-number percentages that sum to 100 per brand (all three 0 means no retrievals).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>competitor_domains</code></td><td>string[]</td><td>No</td><td>Competitor domains to compare, overriding the saved tracked-competitor list. The brand itself is always included.</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="site-health">Site &amp; Crawl Health</h2>
+
+                    <h3 id="tool-list-urls"><code>list_urls</code></h3>
+                    <p>Paged table of the brand's sitemap URLs (brand from your token), one row per URL combining three sources: Google indexing (index state, coverage detail, last Google crawl), AI-crawler reach (hit count and which bots fetched it) and the content audit (status, SEO score, entity score). Filters are ANDed; values inside one array filter are ORed.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>ai_crawled</code></td><td>string</td><td>No</td><td>yes = fetched by at least one AI crawler; no = never One of: yes, no.</td></tr>
+                            <tr><td><code>content_status</code></td><td>string[]</td><td>No</td><td>Only URLs in any of these content-audit states: not_configured (not in the content report), queued (in the report, not scored yet), complete (scored), failed</td></tr>
+                            <tr><td><code>google_crawled</code></td><td>string</td><td>No</td><td>yes = Google has a last crawl time for the URL; no = not crawled yet One of: yes, no.</td></tr>
+                            <tr><td><code>in_content_report</code></td><td>string</td><td>No</td><td>yes = the URL is in the content audit report One of: yes, no.</td></tr>
+                            <tr><td><code>index_state</code></td><td>string[]</td><td>No</td><td>Only URLs in any of these Google index states</td></tr>
+                            <tr><td><code>order</code></td><td>string</td><td>No</td><td>Sort order (default asc) One of: asc, desc.</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Page size (default 25, max 100)</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>Substring match on URL or coverage detail</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort column (default: server order). 'crawled' sorts by AI-crawler hit count. One of: url, indexState, crawled, googleCrawled, contentStatus, seoScore, entityScore, lastCrawlTime, updatedAt.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-url-details"><code>get_url_details</code></h3>
+                    <p>Details for one URL of the brand on your token. Today this is the Google Search Console view: index state, coverage detail, whether crawling is allowed, last Google crawl, plus the raw URL Inspection result under 'raw' (verdict, robots/canonical/mobile details as Google returned them).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>url</code></td><td>string</td><td>Yes</td><td>Full page URL exactly as listed by list_urls</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-url-funnel"><code>get_url_funnel</code></h3>
+                    <p>URL funnel for the brand on your token, as on the AI Visibility &gt; URLs page: sitemap URLs &rarr; crawled by Google &rarr; indexed by Google, plus an aiReach band (sitemap URLs an AI crawler actually fetched vs. not).</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-get-search-console-status"><code>get_search_console_status</code></h3>
+                    <p>Google Search Console connection and sync state for the brand on your token: whether it's connected, the selected property, the brand's configured domain and whether the property matches it, the connected Google account, last poll time, the sync schedule (last/next run, cadence, tier) and any in-flight sync run (queued | running | paused, with resumesAt when paused).</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-get-technical-recommendations"><code>get_technical_recommendations</code></h3>
+                    <p>Technical AI-crawlability and on-page/entity-signal recommendations for a domain's most recent completed audit &mdash; matching the product's AI Visibility &gt; Technical group (Crawl Insights, Content &amp; SEO, Entity Signals tabs). Distinct from get_owned_content_recommendations/get_earned_content_recommendations, which are citation-gap content ideas, not technical checks.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch technical recommendations for</td></tr>
+                            <tr><td><code>page_url</code></td><td>string</td><td>No</td><td>Scope page_recommendations to a single page URL. Omit to get every audited page's recommendations.</td></tr>
+                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Filter both sections to items with this status: PASS | WARN | FAIL</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="prompt-research">Prompt Research</h2>
+
+                    <h3 id="tool-list-prompt-research"><code>list_prompt_research</code></h3>
+                    <p>Lists a brand's prompt research sessions: each is a run that discovers the questions buyers ask AI about the brand's category, from which the user picks prompts to track.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain whose prompt research to list, e.g. acme.com</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-prompt-research"><code>get_prompt_research</code></h3>
+                    <p>Returns one prompt research session's researched prompts and personas. Each prompt has prompt_text, topic, persona, branding (branded or non-branded), intent (informational, commercial or transactional), country, language, recommended and tracked. Prompts are grouped either by topic or by persona. Get the id from list_prompt_research.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain the research belongs to, e.g. acme.com</td></tr>
+                            <tr><td><code>id</code></td><td>string</td><td>Yes</td><td>Research id from list_prompt_research</td></tr>
+                            <tr><td><code>group_by</code></td><td>string</td><td>No</td><td>How to group prompts: topic (default) or persona</td></tr>
+                            <tr><td><code>tracked_only</code></td><td>boolean</td><td>No</td><td>If true, return only prompts already tracked</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="recommendations">Recommendations</h2>
+
                     <h3 id="tool-get-owned-content-recommendations"><code>get_owned_content_recommendations</code></h3>
-                    <p>Content recommendations for the brand&rsquo;s own site &mdash; content to publish on your blog/site to close AI-citation gaps found during probing. Each item includes a severity tier, gap score, your citations vs. total citations, and which competitors are winning as evidence. Recommendations only exist after generation has been run for the domain &mdash; an empty list can mean generation hasn&rsquo;t run yet, not that there&rsquo;s nothing to recommend.</p>
+                    <p>Lists content recommendations for the brand's own site (channel_type onsite): content to publish on your blog or site to close the AI-citation gaps found in probing. Each item includes severity_tier, gap_score, our_citations and total_citations, and competitors_winning as evidence.</p>
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch owned content recommendations for</td></tr>
-                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>One of <code>suggested</code>, <code>todo</code>, <code>approved</code>, <code>dismissed</code> (default: all active statuses, dismissed excluded)</td></tr>
-                            <tr><td><code>priority</code></td><td>string</td><td>No</td><td>One of <code>HIGH</code>, <code>MED</code>, <code>LOW</code></td></tr>
                             <tr><td><code>channel</code></td><td>string</td><td>No</td><td>Filter by channel, e.g. Blog</td></tr>
-                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Max results per page (default 100)</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Max results per page (default 25, max 100)</td></tr>
                             <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Results to skip (default 0)</td></tr>
+                            <tr><td><code>priority</code></td><td>string</td><td>No</td><td>Filter by priority: HIGH | MED | LOW</td></tr>
+                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Filter by status: suggested | todo | approved | dismissed (default: all active statuses, dismissed excluded)</td></tr>
                         </tbody>
                     </table>
 
                     <h3 id="tool-get-earned-content-recommendations"><code>get_earned_content_recommendations</code></h3>
-                    <p>Content recommendations for earned/third-party media &mdash; ideas for getting cited on sites like Reddit, G2, or other reference/editorial domains. Each item&rsquo;s evidence type is either <code>citation_backed</code> (tied to a real probe gap) or <code>category_inferred</code> (inferred from category, no direct citation evidence) &mdash; check which one before treating a recommendation as citation-backed fact. Recommendations only exist after generation has been run for the domain.</p>
+                    <p>Lists content recommendations for earned, third-party media (channel_type earned): ideas for getting cited on sites such as Reddit, G2 or other reference and editorial domains.</p>
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch earned content recommendations for</td></tr>
-                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>One of <code>suggested</code>, <code>todo</code>, <code>approved</code>, <code>dismissed</code> (default: all active statuses, dismissed excluded)</td></tr>
-                            <tr><td><code>priority</code></td><td>string</td><td>No</td><td>One of <code>HIGH</code>, <code>MED</code>, <code>LOW</code></td></tr>
                             <tr><td><code>channel</code></td><td>string</td><td>No</td><td>Filter by channel, e.g. Reddit, G2</td></tr>
-                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Max results per page (default 100)</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Max results per page (default 25, max 100)</td></tr>
                             <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Results to skip (default 0)</td></tr>
+                            <tr><td><code>priority</code></td><td>string</td><td>No</td><td>Filter by priority: HIGH | MED | LOW</td></tr>
+                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Filter by status: suggested | todo | approved | dismissed (default: all active statuses, dismissed excluded)</td></tr>
                         </tbody>
                     </table>
 
+                    <h3 id="tool-get-ad-recommendations"><code>get_ad_recommendations</code></h3>
+                    <p>Lists ChatGPT Ads plays for a domain: auction-gap recommendations matching the AI Visibility Recommendations &gt; Ads tab in the product.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch ChatGPT Ads recommendations for</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Max results per page (default 25, max 100)</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Results to skip (default 0)</td></tr>
+                            <tr><td><code>play_type</code></td><td>string</td><td>No</td><td>Filter by play type: Defend brand | Enter auction | Expand coverage | Refresh creative | Topic entry</td></tr>
+                            <tr><td><code>priority</code></td><td>string</td><td>No</td><td>Filter by priority: HIGH | MED | LOW</td></tr>
+                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Filter by status: suggested | todo | approved | dismissed (default: all active statuses, dismissed excluded)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="drafting">Drafting &amp; Saving</h2>
+
                     <h3 id="tool-generate-content-outline"><code>generate_content_outline</code></h3>
-                    <p>Generates a content outline (structure only, not finished copy) for one owned-media content recommendation &mdash; headings, an answer-first opening summary, FAQ questions, and suggested schema markup types. Stateless and synchronous &mdash; nothing is persisted, calling it again just re-generates. Only owned-media content types are supported: Homepage, Domain, Product, Comparison, Article, Educational, Blog, Guide, How-to, Documentation, Listicle, Wiki. Earned-media content types (Social post, News, PR, User review, Research) get an outreach action instead &mdash; calling this with one returns an error.</p>
+                    <p>Generates a content outline (structure only, not finished copy) for one owned-media content recommendation: headings, an answer-first opening summary, FAQ questions, and suggested schema markup types. The outline is generated on request and nothing is saved; calling it again produces a new one.</p>
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>content_type</code></td><td>string</td><td>Yes</td><td>Owned-media content type &mdash; one of: Homepage, Domain, Product, Comparison, Article, Educational, Blog, Guide, How-to, Documentation, Listicle, Wiki</td></tr>
-                            <tr><td><code>title</code></td><td>string</td><td>Yes</td><td>The content recommendation&rsquo;s title to outline (e.g. from <code>get_owned_content_recommendations</code>)</td></tr>
+                            <tr><td><code>title</code></td><td>string</td><td>Yes</td><td>The content recommendation's title to outline (e.g. from get_owned_content_recommendations)</td></tr>
                         </tbody>
                     </table>
 
-                    <h2 id="identity-brands">Identity &amp; Brands</h2>
+                    <h3 id="tool-generate-ad-creative-outline"><code>generate_ad_creative_outline</code></h3>
+                    <p>Generates a ChatGPT Ads creative brief for one ads play: headlines, short body lines, calls to action, landing-page angle, differentiation from rivals, and related query themes. The brief is generated on request and nothing is saved; calling it again produces a new one.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>title</code></td><td>string</td><td>Yes</td><td>The ads play title to brief (e.g. from get_ad_recommendations)</td></tr>
+                            <tr><td><code>brand</code></td><td>string</td><td>No</td><td>Brand display name for the creative (optional)</td></tr>
+                            <tr><td><code>competitors_winning</code></td><td>string[]</td><td>No</td><td>Rivals currently winning the auction</td></tr>
+                            <tr><td><code>domain</code></td><td>string</td><td>No</td><td>Brand domain, e.g. acme.com. Optional; pass it when working across several brands so the brief is generated for the right one.</td></tr>
+                            <tr><td><code>organic_gap_linked</code></td><td>boolean</td><td>No</td><td>True if this prompt also has an organic citation gap</td></tr>
+                            <tr><td><code>our_ad_count</code></td><td>number</td><td>No</td><td>Our observed ChatGPT ad count on this prompt</td></tr>
+                            <tr><td><code>play_type</code></td><td>string</td><td>No</td><td>Play type: Defend brand | Enter auction | Expand coverage | Refresh creative | Topic entry</td></tr>
+                            <tr><td><code>rationale</code></td><td>string</td><td>No</td><td>Strategic rationale from the recommendation</td></tr>
+                            <tr><td><code>rival_ad_count</code></td><td>number</td><td>No</td><td>Rival observed ChatGPT ad count on this prompt</td></tr>
+                            <tr><td><code>topic</code></td><td>string</td><td>No</td><td>Topic cluster for the play</td></tr>
+                        </tbody>
+                    </table>
 
-                    <h3 id="tool-get-accessible-brands"><code>get_accessible_brands</code></h3>
-                    <p>Brands (products) the authenticated ThriveStack account can access &mdash; id, name, and domain for each. Reflects exactly the brands that account can switch between, whether authenticated via OAuth or a Personal Access Token.</p>
-                    <p>No input parameters required.</p>
+                    <h3 id="tool-save-content-recommendations"><code>save_content_recommendations</code></h3>
+                    <p>Saves content recommendations (owned and/or earned) to the brand's recommendations list as 'suggested' items for the team to act on. This is the only tool that writes data, and it is deliberately narrow: it creates new 'suggested' items or refreshes ones still 'suggested'.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain the recommendations are for</td></tr>
+                            <tr><td><code>recommendations</code></td><td>object[]</td><td>Yes</td><td>Recommendations to save (max 30)</td></tr>
+                            <tr><td><code>probe_run_id</code></td><td>string</td><td>No</td><td>The probe run the evidence came from (run_id from get_citation_probe_data). Omit to use the latest run with results.</td></tr>
+                        </tbody>
+                    </table>
 
                     <h2 id="diagnostics">Diagnostics</h2>
 
-                    <h3 id="tool-ping"><code>ping</code></h3>
-                    <p>Health check &mdash; confirms this response is coming directly from the thrivestack-mcp server, not from the assistant&rsquo;s training data or any other source.</p>
+                    <h3 id="tool-check-connection"><code>check_connection</code></h3>
+                    <p>Confirms the ThriveStack connection is working and your sign-in was accepted. Returns the server time.</p>
                     <p>No input parameters required.</p>
                 </section>
 
                 <section id="more-on-the-way" class="content-section">
-                    <h2>More on the way</h2>
-                    <p>Additional tool groups are being rolled out incrementally, covering CRM accounts and leads, revenue attribution, activation and engagement analytics, account segments, custom ClickHouse queries, and telemetry setup wizards. We&rsquo;ll update this page as each group goes live &mdash; there&rsquo;s no fixed timeline to share yet.</p>
+                    <h2>Changes over time</h2>
+                    <p>This page lists exactly what is callable today. New tools are added from time to time, and we update this page when they go live.</p>
                 </section>
 
                 <footer class="content-footer">
@@ -201,7 +391,7 @@
                     </div>
                     <div class="footer-links">
                         <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
-                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="tools.html">Last updated: August 4, 2026</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="tools.html">Last updated: October 14, 2026</a>
                     </div>
                 </footer>
             </div>
@@ -213,11 +403,15 @@
                 <nav id="toc" class="toc-nav">
                     <a href="#overview" class="toc-link active">Overview</a>
                     <a href="#response-format" class="toc-link">Response format</a>
-                    <a href="#tool-catalog" class="toc-link">Primary entry point</a>
-                    <a href="#ai-visibility" class="toc-link">AI Visibility &amp; Content</a>
-                    <a href="#identity-brands" class="toc-link">Identity &amp; Brands</a>
+                    <a href="#brands" class="toc-link">Brands &amp; Account</a>
+                    <a href="#visibility" class="toc-link">Visibility &amp; Citations</a>
+                    <a href="#sources" class="toc-link">Sources &amp; Pages</a>
+                    <a href="#site-health" class="toc-link">Site &amp; Crawl Health</a>
+                    <a href="#prompt-research" class="toc-link">Prompt Research</a>
+                    <a href="#recommendations" class="toc-link">Recommendations</a>
+                    <a href="#drafting" class="toc-link">Drafting &amp; Saving</a>
                     <a href="#diagnostics" class="toc-link">Diagnostics</a>
-                    <a href="#more-on-the-way" class="toc-link">More on the way</a>
+                    <a href="#more-on-the-way" class="toc-link">Changes over time</a>
                 </nav>
                 <ready-to-scale-promo></ready-to-scale-promo>
             </div>
