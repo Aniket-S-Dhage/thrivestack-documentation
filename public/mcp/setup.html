@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="mcp.css">
     <script
         src="https://cdn.app.thrivestack.ai/latest/script.js"
         api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
@@ -66,7 +67,7 @@
         <div class="resizer" id="sidebar-resizer"></div>
 
         <main class="main-content">
-            <div class="content-wrapper">
+            <div class="content-wrapper mcp-doc">
                 <div class="breadcrumbs">
                     <a href="../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
                     <a href="../../public/cited-by/introduction.html">Cited By</a> <i class="fa-solid fa-chevron-right"></i>
@@ -77,446 +78,351 @@
                     <span class="doc-page-header-eyebrow">Cited By · MCP</span>
                     <h1 class="doc-page-title">Setup Guide</h1>
                     <p class="doc-page-description">
-                        Step-by-step instructions for connecting the ThriveStack MCP server to Claude, Cursor, and other AI tools. Stuck? Email <a href="mailto:support@thrivestack.ai">support@thrivestack.ai</a>.
+                        Step-by-step instructions for connecting the ThriveStack MCP server to Claude, Cursor and other AI tools. Need help? Email <a href="mailto:support@thrivestack.ai">support@thrivestack.ai</a>.
                     </p>
                 </header>
 
                 <section id="server-url" class="content-section">
                     <h2>Server URL</h2>
-                    <p>All platforms use the same URL:</p>
-                    <table style="width: 100%; border-collapse: collapse; margin-top: 12px">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Endpoint</th>
-                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Primary endpoint</td>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);"><code>https://api.app.thrivestack.ai/mcp</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p>Available to existing ThriveStack customers.</p>
+                    <p>Every platform uses the same URL. The server is available to existing ThriveStack customers.</p>
+                    <div class="mcp-url-card">
+                        <div class="mcp-url-label">Server URL</div>
+                        <div class="mcp-url-row">
+                            <code>https://api.app.thrivestack.ai/mcp</code>
+                            <button type="button" class="mcp-btn" data-copy="https://api.app.thrivestack.ai/mcp"><i class="fa-regular fa-copy"></i> Copy</button>
+                        </div>
+                        <div class="mcp-chips">
+                            <span class="mcp-chip"><i class="fa-solid fa-bolt"></i> Streamable HTTP (Remote)</span>
+                            <span class="mcp-chip"><i class="fa-solid fa-shield-halved"></i> OAuth 2.1</span>
+                            <span class="mcp-chip"><i class="fa-solid fa-key"></i> Personal Access Token</span>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="authentication-options" class="content-section">
                     <h2>Authentication options</h2>
-                    <p>The server accepts two auth methods. Pick based on your client.</p>
-                    <ul>
-                        <li>
-                            <strong>OAuth (recommended).</strong> The first connection redirects you to ThriveStack to sign in and approve access. Your session persists across conversations. Available in every client that supports MCP OAuth, including Claude, Claude Code, Cursor and VS Code. The screenshots below show Claude.
-
-                            <div class="cards-grid" style="margin-top: 1rem;">
-                                <div class="feature-card glass-panel">
-                                    <a class="mcp-img-link" href="mcp-Oauth-step-1.png" aria-label="Open image">
-                                        <img src="mcp-Oauth-step-1.png" alt="Open the + menu in Claude, go to Connectors, then Add custom connector" class="mcp-img" loading="lazy">
-                                        <span class="mcp-open-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></span>
-                                    </a>
-                                    <p>1. In Claude, open the <strong>+</strong> menu &rarr; <strong>Connectors</strong> &rarr; <strong>Add custom connector</strong>.</p>
-                                </div>
-                                <div class="feature-card glass-panel">
-                                    <a class="mcp-img-link" href="mcp-Oauth-step-2.png" aria-label="Open image">
-                                        <img src="mcp-Oauth-step-2.png" alt="Enter a name and the ThriveStack MCP server URL in the Add custom connector dialog" class="mcp-img" loading="lazy">
-                                        <span class="mcp-open-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></span>
-                                    </a>
-                                    <p>2. Name it and enter <code>https://api.app.thrivestack.ai/mcp</code>, then click Add.</p>
-                                </div>
-                                <div class="feature-card glass-panel">
-                                    <a class="mcp-img-link" href="mcp-Oauth-step-3.png" aria-label="Open image">
-                                        <img src="mcp-Oauth-step-3.png" alt="ThriveStack OAuth consent screen with Agree and Allow Access button" class="mcp-img" loading="lazy">
-                                        <span class="mcp-open-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></span>
-                                    </a>
-                                    <p>3. Sign in and click <strong>Agree &amp; Allow Access</strong> on the ThriveStack consent screen.</p>
-                                </div>
-                                <div class="feature-card glass-panel">
-                                    <a class="mcp-img-link" href="mcp-Oauth-step-4.png" aria-label="Open image">
-                                        <img src="mcp-Oauth-step-4.png" alt="ThriveStack connector shown enabled in Claude's connector list" class="mcp-img" loading="lazy">
-                                        <span class="mcp-open-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></span>
-                                    </a>
-                                    <p>4. You&rsquo;re connected &mdash; ThriveStack tools are now available in Claude.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li><strong>Personal Access Token (PAT).</strong> A long-lived token tied to your ThriveStack account, sent as an <code>Authorization: Bearer</code> header. It acts as you across every brand your account can access. Use it for clients without OAuth support (for example Windsurf and Gemini CLI) and for headless or CI setups.</li>
-                    </ul>
-                </section>
-
-                <section id="create-pat" class="content-section">
-                    <h2>Create a Personal Access Token</h2>
-                    <div class="cards-grid">
-                        <div class="feature-card glass-panel">
-                            <div class="card-icon blue"><i class="fa-solid fa-1"></i></div>
-                            <h3>Open the tokens page</h3>
-                            <p>Sign in and go directly to <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a> (<strong>AI Visibility &rarr; Settings &rarr; Personal Access Tokens</strong>, or click &ldquo;Personal access tokens&rdquo; from the Connect via MCP page).</p>
+                    <p>The server supports two authentication methods. Choose based on what your client supports.</p>
+                    <div class="mcp-auth-grid">
+                        <div class="mcp-auth is-recommended">
+                            <div class="mcp-auth-head"><h3>OAuth</h3><span class="mcp-badge">Recommended</span></div>
+                            <p>The first connection sends you to ThriveStack to sign in and allow access. Your session persists across conversations.</p>
+                            <div class="best-for"><strong>Best for:</strong> Claude, Claude Code, Cursor, VS Code and other clients that support MCP OAuth.</div>
                         </div>
-                        <div class="feature-card glass-panel">
-                            <div class="card-icon purple"><i class="fa-solid fa-2"></i></div>
-                            <h3>Generate a token</h3>
-                            <p>Click <strong>Generate new token</strong>, give it a name (e.g. &ldquo;Claude Desktop&rdquo;, &ldquo;Cursor laptop&rdquo;) so you can tell your tokens apart later, and pick an expiry.</p>
-                        </div>
-                        <div class="feature-card glass-panel">
-                            <div class="card-icon green"><i class="fa-solid fa-3"></i></div>
-                            <h3>Copy the token</h3>
-                            <p>Copy it immediately &mdash; it&rsquo;s shown only once, as a value starting with <code>tsmcp_</code>. Treat it like a password: anyone with it can act as you across every brand your account can access.</p>
+                        <div class="mcp-auth">
+                            <div class="mcp-auth-head"><h3>Personal Access Token</h3><span class="mcp-badge muted">Alternative</span></div>
+                            <p>A long-lived token tied to your ThriveStack account, sent as an <code>Authorization: Bearer</code> header. It acts as you across every brand your account can access.</p>
+                            <div class="best-for"><strong>Best for:</strong> clients without OAuth support (such as Windsurf and Gemini CLI), headless setups and CI.</div>
                         </div>
                     </div>
-                    <p>A token acts on your account, so every call respects the same permissions as your dashboard session. Revoke a token any time from <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a>; clients using it lose access immediately.</p>
                 </section>
 
                 <section id="implementation" class="content-section">
-                    <h2>Implementation instructions</h2>
-                    <p>
-                        Configure your MCP client to connect to
-                        <code>https://api.app.thrivestack.ai/mcp</code>, then authenticate with OAuth (where your client supports it) or a Personal Access Token as described above.
-                    </p>
+                    <h2>Connect your client</h2>
+                    <p class="section-sub">Choose your AI tool. Each guide uses OAuth where your client supports it.</p>
+                    <div class="mcp-tabs">
+<div class="mcp-tablist" role="tablist" aria-label="Choose your AI client">
+<button type="button" class="mcp-tab" role="tab" id="tab-claude" aria-controls="client-claude" aria-selected="false" tabindex="-1"><span class="mcp-logo"><img src="clients/claude.png" alt="" width="26" height="26"></span><span>Claude</span></button>
+<button type="button" class="mcp-tab" role="tab" id="tab-claude-code" aria-controls="client-claude-code" aria-selected="false" tabindex="-1"><span class="mcp-logo"><img src="clients/claude.png" alt="" width="26" height="26"></span><span>Claude Code</span></button>
+<button type="button" class="mcp-tab" role="tab" id="tab-cursor" aria-controls="client-cursor" aria-selected="false" tabindex="-1"><span class="mcp-logo"><img src="clients/cursor.png" alt="" width="26" height="26"></span><span>Cursor</span></button>
+<button type="button" class="mcp-tab" role="tab" id="tab-vscode" aria-controls="client-vscode" aria-selected="false" tabindex="-1"><span class="mcp-logo"><img src="clients/vscode.png" alt="" width="26" height="26"></span><span>VS Code</span></button>
+<button type="button" class="mcp-tab" role="tab" id="tab-windsurf" aria-controls="client-windsurf" aria-selected="false" tabindex="-1"><span class="mcp-logo"><i class="fa-solid fa-wind"></i></span><span>Windsurf</span></button>
+<button type="button" class="mcp-tab" role="tab" id="tab-gemini-cli" aria-controls="client-gemini-cli" aria-selected="false" tabindex="-1"><span class="mcp-logo"><i class="fa-solid fa-terminal"></i></span><span>Gemini CLI</span></button>
+<button type="button" class="mcp-tab" role="tab" id="tab-other" aria-controls="client-other" aria-selected="false" tabindex="-1"><span class="mcp-logo"><i class="fa-solid fa-plug"></i></span><span>Other clients</span></button>
+</div>
+<div class="mcp-panel" role="tabpanel" id="client-claude" aria-labelledby="tab-claude" hidden>
 
-                    <details class="tools-dropdown">
-                        <summary class="tools-dropdown__summary">
-                            <span>Claude Desktop and Web (claude.ai)</span>
-                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
-                        </summary>
-                        <div class="tools-dropdown__content">
-                            <p class="mt-4">
-                                For general MCP connector setup, refer to
-                                <a href="https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop" target="_blank" rel="noopener noreferrer">Claude Desktop MCP servers documentation</a>.
-                            </p>
-
-                            <h4>Option A: OAuth (recommended)</h4>
-                            <p style="color: var(--text-secondary); font-size: 0.95rem;">The ThriveStack connector isn&rsquo;t published in Claude&rsquo;s connector directory yet, so you&rsquo;ll add it as a <strong>custom connector</strong>:</p>
-                            <div class="cards-grid">
-                                <div class="feature-card glass-panel">
-                                    <div class="card-icon blue"><i class="fa-solid fa-1"></i></div>
-                                    <h3>Open settings</h3>
-                                    <p>Open Claude Desktop (or <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>) and go to <strong>Settings</strong> or <strong>Customize</strong> (gear icon), then <strong>Connectors</strong>.</p>
-                                </div>
-                                <div class="feature-card glass-panel">
-                                    <div class="card-icon purple"><i class="fa-solid fa-2"></i></div>
-                                    <h3>Add a custom connector</h3>
-                                    <p>Click <strong>Add custom connector</strong> and enter a name and the server URL &mdash; there&rsquo;s no listing to search for yet:</p>
-                                    <ul style="margin-top: 0.5rem;">
-                                        <li><strong>Name</strong>: Thrivestack</li>
-                                        <li><strong>URL</strong>: <code>https://api.app.thrivestack.ai/mcp</code></li>
-                                    </ul>
-                                </div>
-                                <div class="feature-card glass-panel">
-                                    <div class="card-icon green"><i class="fa-solid fa-3"></i></div>
-                                    <h3>Authorize</h3>
-                                    <p>Click <strong>Connect</strong>. You&rsquo;ll be redirected to ThriveStack to sign in. Once authorized, return to Claude Desktop.</p>
-                                </div>
-                            </div>
-                            <blockquote class="note-callout">
-                                <i class="fa-solid fa-circle-info" style="margin-right: 4px;"></i>
-                                Only workspace admins in Claude can add a custom connector. If you&rsquo;re not able to, check with your admin.
-                            </blockquote>
-                            <p>Once connected, start asking questions &mdash; ThriveStack tools will be available in MCP mode.</p>
-
-                            <h4>Option B: Personal Access Token</h4>
-                            <p style="margin: 12px 0 10px; color: var(--text-secondary); font-size: 0.95rem;">
-                                Add this to
-                                <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>,
-                                replacing <code>YOUR_PAT_TOKEN</code> with a token from
-                                <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a>:
-                            </p>
-                            <div class="code-block-wrapper">
-                                <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                    <i class="fa-regular fa-copy"></i> Copy
-                                </button>
-                                <div class="code-block-label">JSON</div>
-                                <pre><code>{
-  "mcpServers": {
-    "thrivestack": {
-      "command": "npx",
-      "args": [
-        "-y", "mcp-remote", "https://api.app.thrivestack.ai/mcp",
-        "--header", "Authorization: Bearer YOUR_PAT_TOKEN"
+<p class="mcp-panel-intro">ThriveStack isn&rsquo;t in Claude&rsquo;s connector directory yet, so you add it as a <strong>custom connector</strong> using the server URL above. For more detail, see Claude&rsquo;s guide to <a href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener noreferrer">custom connectors</a>.</p>
+<h3 class="mcp-option-title">Connect with OAuth <span class="mcp-badge">Recommended</span></h3>
+<ol class="mcp-steps">
+<li class="mcp-step">
+<h3>Open the connector menu</h3>
+<p>In Claude (the desktop app or <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>), click <strong>+</strong> in the message box, then choose <strong>Add connector</strong> &rarr; <strong>Add custom connector</strong>. You can also manage connectors from <strong>Settings</strong> (or <strong>Customize</strong>) &rarr; <strong>Connectors</strong>.</p><figure class="mcp-shot">
+<a class="mcp-shot-link" href="img/claude-1-add-custom-connector.png" aria-label="Enlarge screenshot: Claude message box with the + menu open: Add connector, then Add custom connector">
+<div class="mcp-shot-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+<img src="img/claude-1-add-custom-connector.png" alt="Claude message box with the + menu open: Add connector, then Add custom connector" loading="lazy">
+<span class="mcp-shot-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i> Enlarge</span>
+</a>
+<figcaption>Click <strong>+</strong>, then <strong>Add connector</strong> &rarr; <strong>Add custom connector</strong>.</figcaption>
+</figure>
+</li>
+<li class="mcp-step">
+<h3>Enter the server details</h3>
+<p>Enter a name and the server URL, then click <strong>Continue</strong>:</p><ul><li><strong>Name</strong>: ThriveStack (or any name you like)</li><li><strong>MCP server URL</strong>: <code>https://api.app.thrivestack.ai/mcp</code></li></ul><figure class="mcp-shot is-narrow">
+<a class="mcp-shot-link" href="img/claude-2-connector-details.png" aria-label="Enlarge screenshot: Claude Add custom connector dialog with the name ThriveStack and the ThriveStack MCP server URL entered">
+<div class="mcp-shot-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+<img src="img/claude-2-connector-details.png" alt="Claude Add custom connector dialog with the name ThriveStack and the ThriveStack MCP server URL entered" loading="lazy">
+<span class="mcp-shot-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i> Enlarge</span>
+</a>
+<figcaption>The name is only a label in your connectors list.</figcaption>
+</figure>
+</li>
+<li class="mcp-step">
+<h3>Sign in and allow access</h3>
+<p>Claude opens ThriveStack in your browser. Sign in, review the permissions, and click <strong>Allow access</strong>. The consent screen shows which app is asking and what it can do.</p><figure class="mcp-shot is-narrow">
+<a class="mcp-shot-link" href="img/claude-3-consent.png" aria-label="Enlarge screenshot: ThriveStack consent screen: Claude wants to access your ThriveStack account, with Cancel and Allow access buttons">
+<div class="mcp-shot-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+<img src="img/claude-3-consent.png" alt="ThriveStack consent screen: Claude wants to access your ThriveStack account, with Cancel and Allow access buttons" loading="lazy">
+<span class="mcp-shot-zoom" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-plus"></i> Enlarge</span>
+</a>
+<figcaption>ThriveStack&rsquo;s consent screen.</figcaption>
+</figure>
+</li>
+<li class="mcp-step">
+<h3>Start asking questions</h3>
+<p>You&rsquo;re sent back to Claude and ThriveStack appears in your connectors. Try the question under <a href="#verify">Verify your connection</a>.</p>
+</li>
+</ol>
+<div class="mcp-callout warn"><i class="fa-solid fa-triangle-exclamation"></i><div class="mcp-callout-body"><p><strong>Using a Claude workspace?</strong> Only workspace admins can add custom connectors. If you can&rsquo;t, ask your admin.</p></div></div>
+<details class="mcp-more">
+<summary><i class="fa-solid fa-key"></i> Use a Personal Access Token instead <i class="fa-solid fa-chevron-down mcp-chevron"></i></summary>
+<div class="mcp-more-body">
+<p>Add this to <code>~/Library/Application Support/Claude/claude_desktop_config.json</code>, replacing <code>YOUR_PAT_TOKEN</code> with your token. <a href="#create-pat">Need a token?</a></p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">claude_desktop_config.json</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;thrivestack&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [
+        &quot;-y&quot;, &quot;mcp-remote&quot;, &quot;https://api.app.thrivestack.ai/mcp&quot;,
+        &quot;--header&quot;, &quot;Authorization: Bearer YOUR_PAT_TOKEN&quot;
       ]
     }
   }
 }</code></pre>
-                            </div>
-                        </div>
-                    </details>
+</div>
+</div>
+</details>
 
-                    <details class="tools-dropdown">
-                        <summary class="tools-dropdown__summary">
-                            <span>Claude Code (CLI)</span>
-                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
-                        </summary>
-                        <div class="tools-dropdown__content">
-                            <p class="mt-4">
-                                For general MCP setup, refer to
-                                <a href="https://docs.anthropic.com/en/docs/claude-code/mcp" target="_blank" rel="noopener noreferrer">Claude Code MCP documentation</a>.
-                            </p>
+</div>
+<div class="mcp-panel" role="tabpanel" id="client-claude-code" aria-labelledby="tab-claude-code" hidden>
 
-                            <h4>Option A: OAuth (recommended)</h4>
-                            <div class="code-block-wrapper">
-                                <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                    <i class="fa-regular fa-copy"></i> Copy
-                                </button>
-                                <div class="code-block-label">Shell</div>
-                                <pre><code>claude mcp add --transport http --scope user Thrivestack "https://api.app.thrivestack.ai/mcp"</code></pre>
-                            </div>
-                            <p>Run this once, then start <code>claude</code> and type <code>/mcp</code> to sign in.</p>
+<p class="mcp-panel-intro">For general MCP setup, see the <a href="https://docs.anthropic.com/en/docs/claude-code/mcp" target="_blank" rel="noopener noreferrer">Claude Code MCP documentation</a>.</p>
+<h3 class="mcp-option-title">Connect with OAuth <span class="mcp-badge">Recommended</span></h3>
+<ol class="mcp-steps">
+<li class="mcp-step">
+<h3>Add the server</h3>
+<p>Run this once:</p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">Shell</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>claude mcp add --transport http --scope user Thrivestack &quot;https://api.app.thrivestack.ai/mcp&quot;</code></pre>
+</div>
+</li>
+<li class="mcp-step">
+<h3>Sign in</h3>
+<p>Start <code>claude</code>, run <code>/mcp</code>, and select ThriveStack to sign in and allow access.</p>
+</li>
+</ol>
+<details class="mcp-more">
+<summary><i class="fa-solid fa-key"></i> Use a Personal Access Token instead <i class="fa-solid fa-chevron-down mcp-chevron"></i></summary>
+<div class="mcp-more-body">
+<p>Replace <code>YOUR_PAT_TOKEN</code> with your <a href="#create-pat">token</a>:</p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">Shell</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>claude mcp add --transport http --scope user Thrivestack &quot;https://api.app.thrivestack.ai/mcp&quot; --header &quot;Authorization: Bearer YOUR_PAT_TOKEN&quot;</code></pre>
+</div><p>Then start Claude Code:</p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">Shell</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>claude</code></pre>
+</div>
+</div>
+</details>
 
-                            <h4>Option B: Personal Access Token</h4>
-                            <p style="color: var(--text-secondary); font-size: 0.95rem;">Replace <code>YOUR_PAT_TOKEN</code> with a token from <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a>:</p>
-                            <div class="code-block-wrapper">
-                                <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                    <i class="fa-regular fa-copy"></i> Copy
-                                </button>
-                                <div class="code-block-label">Shell</div>
-                                <pre><code>claude mcp add --transport http --scope user Thrivestack "https://api.app.thrivestack.ai/mcp" --header "Authorization: Bearer YOUR_PAT_TOKEN"</code></pre>
-                            </div>
+</div>
+<div class="mcp-panel" role="tabpanel" id="client-cursor" aria-labelledby="tab-cursor" hidden>
 
-                            <p style="margin-top: 1rem;">Then start Claude Code:</p>
-                            <div class="code-block-wrapper">
-                                <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                    <i class="fa-regular fa-copy"></i> Copy
-                                </button>
-                                <div class="code-block-label">Shell</div>
-                                <pre><code>claude</code></pre>
-                            </div>
-                        </div>
-                    </details>
-
-                    <details class="tools-dropdown">
-                        <summary class="tools-dropdown__summary">
-                            <span>Cursor</span>
-                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
-                        </summary>
-                        <div class="tools-dropdown__content">
-                            <p class="mt-4">
-                                Cursor can connect with ThriveStack OAuth; a <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Token</a> is available as an alternative. For general MCP setup, refer to
-                                <a href="https://www.cursor.com/docs/context/mcp" target="_blank" rel="noopener noreferrer">Cursor&apos;s MCP documentation</a>.
-                            </p>
-
-                            <h4>Option A: OAuth (recommended)</h4>
-                            <ol>
-                                <li>Open Cursor Settings, then go to <strong>Tools &amp; Integrations</strong> &gt; <strong>MCP</strong>.</li>
-                                <li>
-                                    Click <strong>Add Custom MCP</strong> and add the ThriveStack MCP configuration:
-                                    <div class="code-block-wrapper">
-                                        <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                            <i class="fa-regular fa-copy"></i> Copy
-                                        </button>
-                                        <div class="code-block-label">JSON</div>
-                                        <pre><code>{
-  "mcpServers": {
-    "thrivestack": {
-      "url": "https://api.app.thrivestack.ai/mcp"
+<p class="mcp-panel-intro">For general MCP setup, see <a href="https://www.cursor.com/docs/context/mcp" target="_blank" rel="noopener noreferrer">Cursor&rsquo;s MCP documentation</a>.</p>
+<h3 class="mcp-option-title">Connect with OAuth <span class="mcp-badge">Recommended</span></h3>
+<ol class="mcp-steps">
+<li class="mcp-step">
+<h3>Open MCP settings</h3>
+<p>Go to <strong>Cursor Settings</strong> &rarr; <strong>Tools &amp; Integrations</strong> &rarr; <strong>MCP</strong>.</p>
+</li>
+<li class="mcp-step">
+<h3>Add the server</h3>
+<p>Click <strong>Add Custom MCP</strong> and paste this configuration:</p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">JSON</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;thrivestack&quot;: {
+      &quot;url&quot;: &quot;https://api.app.thrivestack.ai/mcp&quot;
     }
   }
 }</code></pre>
-                                    </div>
-                                </li>
-                                <li>When Cursor shows ThriveStack as needing login, click <strong>Connect</strong>, sign in to ThriveStack, and approve access on the consent screen.</li>
-                            </ol>
-
-                            <h4>Option B: Personal Access Token</h4>
-                            <ol>
-                                <li>Open Cursor Settings, then go to <strong>Tools &amp; Integrations</strong> &gt; <strong>MCP</strong>.</li>
-                                <li>
-                                    Click <strong>Add Custom MCP</strong> and add the ThriveStack MCP configuration, replacing <code>YOUR_PAT_TOKEN</code>:
-                                    <div class="code-block-wrapper">
-                                        <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                            <i class="fa-regular fa-copy"></i> Copy
-                                        </button>
-                                        <div class="code-block-label">JSON</div>
-                                        <pre><code>{
-  "mcpServers": {
-    "thrivestack": {
-      "url": "https://api.app.thrivestack.ai/mcp",
-      "headers": { "Authorization": "Bearer YOUR_PAT_TOKEN" }
+</div>
+</li>
+<li class="mcp-step">
+<h3>Sign in</h3>
+<p>When Cursor shows ThriveStack as needing login, click <strong>Connect</strong>, sign in to ThriveStack, and click <strong>Allow access</strong>.</p>
+</li>
+</ol>
+<details class="mcp-more">
+<summary><i class="fa-solid fa-key"></i> Use a Personal Access Token instead <i class="fa-solid fa-chevron-down mcp-chevron"></i></summary>
+<div class="mcp-more-body">
+<p>In the same MCP settings, click <strong>Add Custom MCP</strong> and paste this configuration, replacing <code>YOUR_PAT_TOKEN</code> with your <a href="#create-pat">token</a>:</p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">JSON</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;thrivestack&quot;: {
+      &quot;url&quot;: &quot;https://api.app.thrivestack.ai/mcp&quot;,
+      &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer YOUR_PAT_TOKEN&quot; }
     }
   }
 }</code></pre>
-                                    </div>
-                                </li>
-                                <li>Select <strong>Streamable HTTP</strong> as the transport type.</li>
-                            </ol>
-                        </div>
-                    </details>
+</div><p>Set the transport type to <strong>Streamable HTTP</strong>.</p>
+</div>
+</details>
 
-                    <details class="tools-dropdown">
-                        <summary class="tools-dropdown__summary">
-                            <span>VS Code (GitHub Copilot)</span>
-                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
-                        </summary>
-                        <div class="tools-dropdown__content">
-                            <p class="mt-4">
-                                VS Code can connect with ThriveStack OAuth; a <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Token</a> is available as an alternative.
-                            </p>
+</div>
+<div class="mcp-panel" role="tabpanel" id="client-vscode" aria-labelledby="tab-vscode" hidden>
 
-                            <h4>Option A: OAuth (recommended)</h4>
-                            <p>
-                                Create <code>.vscode/mcp.json</code> in your project (or open the user-level config via the <strong>MCP: Open User Configuration</strong> command):
-                            </p>
-                            <div class="code-block-wrapper">
-                                <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                    <i class="fa-regular fa-copy"></i> Copy
-                                </button>
-                                <div class="code-block-label">.vscode/mcp.json</div>
-                                <pre><code>{
-  "servers": {
-    "thrivestack": {
-      "type": "http",
-      "url": "https://api.app.thrivestack.ai/mcp"
+<h3 class="mcp-option-title">Connect with OAuth <span class="mcp-badge">Recommended</span></h3>
+<ol class="mcp-steps">
+<li class="mcp-step">
+<h3>Create the config file</h3>
+<p>Create <code>.vscode/mcp.json</code> in your project, or run <strong>MCP: Open User Configuration</strong> to edit your user-level config:</p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">.vscode/mcp.json</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>{
+  &quot;servers&quot;: {
+    &quot;thrivestack&quot;: {
+      &quot;type&quot;: &quot;http&quot;,
+      &quot;url&quot;: &quot;https://api.app.thrivestack.ai/mcp&quot;
     }
   }
 }</code></pre>
-                            </div>
-                            <p>Start the server from the editor. When prompted, sign in to ThriveStack and approve access on the consent screen.</p>
-
-                            <h4>Option B: Personal Access Token</h4>
-                            <p>
-                                Use the same file, adding your token and replacing <code>YOUR_PAT_TOKEN</code>:
-                            </p>
-                            <div class="code-block-wrapper">
-                                <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                    <i class="fa-regular fa-copy"></i> Copy
-                                </button>
-                                <div class="code-block-label">.vscode/mcp.json</div>
-                                <pre><code>{
-  "servers": {
-    "thrivestack": {
-      "type": "http",
-      "url": "https://api.app.thrivestack.ai/mcp",
-      "headers": { "Authorization": "Bearer YOUR_PAT_TOKEN" }
+</div>
+</li>
+<li class="mcp-step">
+<h3>Start the server and sign in</h3>
+<p>Start the server from the editor. When prompted, sign in to ThriveStack and click <strong>Allow access</strong>.</p>
+</li>
+</ol>
+<details class="mcp-more">
+<summary><i class="fa-solid fa-key"></i> Use a Personal Access Token instead <i class="fa-solid fa-chevron-down mcp-chevron"></i></summary>
+<div class="mcp-more-body">
+<p>Use the same file and add your token, replacing <code>YOUR_PAT_TOKEN</code>. <a href="#create-pat">Need a token?</a></p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">.vscode/mcp.json</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>{
+  &quot;servers&quot;: {
+    &quot;thrivestack&quot;: {
+      &quot;type&quot;: &quot;http&quot;,
+      &quot;url&quot;: &quot;https://api.app.thrivestack.ai/mcp&quot;,
+      &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer YOUR_PAT_TOKEN&quot; }
     }
   }
 }</code></pre>
-                            </div>
-                        </div>
-                    </details>
+</div>
+</div>
+</details>
 
-                    <details class="tools-dropdown">
-                        <summary class="tools-dropdown__summary">
-                            <span>Windsurf</span>
-                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
-                        </summary>
-                        <div class="tools-dropdown__content">
-                            <p class="mt-4">
-                                Connect Windsurf with a <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Token</a>.
-                            </p>
-                            <ol>
-                                <li>Open Windsurf Settings, then go to <strong>MCP</strong>.</li>
-                                <li>
-                                    Click <strong>Add Server</strong> and add the ThriveStack MCP configuration, using the same config as Cursor, replacing <code>YOUR_PAT_TOKEN</code>:
-                                    <div class="code-block-wrapper">
-                                        <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                            <i class="fa-regular fa-copy"></i> Copy
-                                        </button>
-                                        <div class="code-block-label">MCP config</div>
-                                        <pre><code>{
-  "mcpServers": {
-    "thrivestack": {
-      "url": "https://api.app.thrivestack.ai/mcp",
-      "headers": { "Authorization": "Bearer YOUR_PAT_TOKEN" }
+</div>
+<div class="mcp-panel" role="tabpanel" id="client-windsurf" aria-labelledby="tab-windsurf" hidden>
+
+<div class="mcp-callout "><i class="fa-solid fa-circle-info"></i><div class="mcp-callout-body"><p>Windsurf connects with a Personal Access Token. If you don&rsquo;t have one yet, <a href="#create-pat">create one first</a>.</p></div></div>
+<ol class="mcp-steps">
+<li class="mcp-step">
+<h3>Open MCP settings</h3>
+<p>Go to <strong>Windsurf Settings</strong> &rarr; <strong>MCP</strong>.</p>
+</li>
+<li class="mcp-step">
+<h3>Add the server</h3>
+<p>Click <strong>Add Server</strong> and paste this configuration (the same format as Cursor), replacing <code>YOUR_PAT_TOKEN</code> with your token:</p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">MCP config</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;thrivestack&quot;: {
+      &quot;url&quot;: &quot;https://api.app.thrivestack.ai/mcp&quot;,
+      &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer YOUR_PAT_TOKEN&quot; }
     }
   }
 }</code></pre>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </details>
+</div>
+</li>
+</ol>
 
-                    <details class="tools-dropdown">
-                        <summary class="tools-dropdown__summary">
-                            <span>Gemini CLI</span>
-                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
-                        </summary>
-                        <div class="tools-dropdown__content">
-                            <p class="mt-4">
-                                Connect Gemini CLI with a <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Token</a>. For general MCP setup, refer to
-                                <a href="https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html" target="_blank" rel="noopener noreferrer">Gemini CLI MCP server documentation</a>.
-                            </p>
+</div>
+<div class="mcp-panel" role="tabpanel" id="client-gemini-cli" aria-labelledby="tab-gemini-cli" hidden>
 
-                            <ol>
-                                <li>
-                                    Add this to your <code>~/.gemini/settings.json</code>, replacing <code>YOUR_PAT_TOKEN</code>:
-                                    <div class="code-block-wrapper">
-                                        <button class="copy-btn" onclick="copyCode(this)" type="button">
-                                            <i class="fa-regular fa-copy"></i> Copy
-                                        </button>
-                                        <div class="code-block-label">~/.gemini/settings.json</div>
-                                        <pre><code>{
-  "mcpServers": {
-    "thrivestack": {
-      "httpUrl": "https://api.app.thrivestack.ai/mcp",
-      "headers": { "Authorization": "Bearer YOUR_PAT_TOKEN" }
+<p class="mcp-panel-intro">Gemini CLI connects with a Personal Access Token. If you don&rsquo;t have one yet, <a href="#create-pat">create one first</a>. For general MCP setup, see the <a href="https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html" target="_blank" rel="noopener noreferrer">Gemini CLI documentation</a>.</p>
+<ol class="mcp-steps">
+<li class="mcp-step">
+<h3>Add the server</h3>
+<p>Add this to <code>~/.gemini/settings.json</code>, replacing <code>YOUR_PAT_TOKEN</code> with your token:</p><div class="mcp-code">
+<div class="mcp-code-head"><span class="mcp-code-lang">~/.gemini/settings.json</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+<pre><code>{
+  &quot;mcpServers&quot;: {
+    &quot;thrivestack&quot;: {
+      &quot;httpUrl&quot;: &quot;https://api.app.thrivestack.ai/mcp&quot;,
+      &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer YOUR_PAT_TOKEN&quot; }
     }
   }
 }</code></pre>
-                                    </div>
-                                </li>
-                                <li>Restart Gemini CLI to load the MCP server.</li>
-                            </ol>
-                        </div>
-                    </details>
+</div>
+</li>
+<li class="mcp-step">
+<h3>Restart Gemini CLI</h3>
+<p>Restart Gemini CLI so it loads the MCP server.</p>
+</li>
+</ol>
 
-                    <details class="tools-dropdown">
-                        <summary class="tools-dropdown__summary">
-                            <span>Other MCP clients</span>
-                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
-                        </summary>
-                        <div class="tools-dropdown__content">
-                            <p class="mt-4">
-                                The ThriveStack MCP server uses Streamable HTTP transport and works with any AI tool that supports the MCP standard. Configure the
-                                client to connect to
-                                <code>https://api.app.thrivestack.ai/mcp</code>. If the client doesn&rsquo;t support OAuth, attach
-                                a <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Token</a> as an
-                                <code>Authorization: Bearer YOUR_PAT_TOKEN</code> header.
-                            </p>
+</div>
+<div class="mcp-panel" role="tabpanel" id="client-other" aria-labelledby="tab-other" hidden>
 
-                            <ol>
-                                <li>Configure your client&apos;s MCP server URL to <code>https://api.app.thrivestack.ai/mcp</code>.</li>
-                                <li>Ensure your client supports custom HTTP headers and set <code>Authorization</code> to <code>Bearer YOUR_PAT_TOKEN</code>.</li>
-                                <li>Authenticate/connect when prompted (if your client asks for it).</li>
-                                <li>Start using ThriveStack tools in MCP mode.</li>
-                            </ol>
-                        </div>
-                    </details>
+<p class="mcp-panel-intro">The ThriveStack MCP server uses Streamable HTTP and works with any client that supports the MCP standard. If your client doesn&rsquo;t support OAuth, send a Personal Access Token as an <code>Authorization: Bearer YOUR_PAT_TOKEN</code> header.</p>
+<ol class="mcp-steps">
+<li class="mcp-step">
+<h3>Set the server URL</h3>
+<p>Configure your client&rsquo;s MCP server URL to <code>https://api.app.thrivestack.ai/mcp</code>.</p>
+</li>
+<li class="mcp-step">
+<h3>Authenticate</h3>
+<p>If your client supports OAuth, sign in when prompted. Otherwise, make sure it can send custom HTTP headers and set <code>Authorization</code> to <code>Bearer YOUR_PAT_TOKEN</code>, using a <a href="#create-pat">token</a> from your dashboard.</p>
+</li>
+<li class="mcp-step">
+<h3>Start asking questions</h3>
+<p>Connect if your client asks you to, then use the ThriveStack tools from your AI tool.</p>
+</li>
+</ol>
+
+</div>
+                    </div>
+                </section>
+
+                <section id="create-pat" class="content-section">
+                    <h2>Create a Personal Access Token</h2>
+                    <p class="section-sub">Needed for clients without OAuth support, and for headless or CI setups.</p>
+                    <ol class="mcp-steps">
+                        <li class="mcp-step"><h3>Open the tokens page</h3><p>Go to <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a> in ThriveStack (<strong>AI Visibility</strong> &rarr; <strong>Settings</strong> &rarr; <strong>Personal Access Tokens</strong>), or follow the link on the Connect via MCP page.</p></li>
+                        <li class="mcp-step"><h3>Generate a token</h3><p>Click <strong>Generate new token</strong>, give it a name you&rsquo;ll recognize later (for example &ldquo;Cursor laptop&rdquo;), and choose an expiry.</p></li>
+                        <li class="mcp-step"><h3>Copy the token</h3><p>Copy it right away. It&rsquo;s shown only once and starts with <code>tsmcp_</code>.</p></li>
+                    </ol>
+                    <div class="mcp-callout warn"><i class="fa-solid fa-triangle-exclamation"></i><div class="mcp-callout-body"><p><strong>Treat it like a password.</strong> Anyone with the token can act as you across every brand your account can access.</p></div></div>
+                    <p>A token acts as your user, so every request respects the same permissions as your dashboard session. You can revoke a token at any time from <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a>; clients using it lose access immediately.</p>
                 </section>
 
                 <section id="verify" class="content-section">
                     <h2>Verify your connection</h2>
                     <p>After setup, try asking your AI assistant:</p>
-                    <blockquote class="note-callout">&ldquo;How visible is ourdomain.com in AI search right now?&rdquo;</blockquote>
-                    <p>You should get a real visibility report back. If that works, you&rsquo;re all set. From here:</p>
-                    <ul>
-                        <li>Browse <a href="../../public/mcp/use-cases.html">Use Cases</a> for ready-made, multi-step examples.</li>
-                        <li>Or browse <a href="../../public/mcp/prompts.html">Prompts</a> for built-in analysis workflows.</li>
-                    </ul>
+                    <div class="mcp-prompts"><div class="mcp-prompt"><i class="fa-regular fa-comment"></i><span>&ldquo;How visible is yourdomain.com in AI search right now?&rdquo;</span></div></div>
+                    <div class="mcp-callout ok"><i class="fa-solid fa-circle-check"></i><div class="mcp-callout-body"><p>You should get a visibility report for your brand. If you do, you&rsquo;re all set.</p></div></div>
+                    <div class="mcp-next-grid">
+                        <a class="mcp-next" href="../../public/mcp/use-cases.html"><i class="fa-solid fa-compass"></i><strong>Use cases</strong><span>Ready-made, multi-step examples.</span></a>
+                        <a class="mcp-next" href="../../public/mcp/prompts.html"><i class="fa-solid fa-terminal"></i><strong>Prompts</strong><span>Built-in analysis workflows.</span></a>
+                        <a class="mcp-next" href="../../public/mcp/tools.html"><i class="fa-solid fa-toolbox"></i><strong>Tools</strong><span>Everything the server can do.</span></a>
+                    </div>
                 </section>
 
                 <section id="troubleshooting" class="content-section">
                     <h2>Troubleshooting</h2>
-                    <h3>&ldquo;Authorization failed&rdquo; or &ldquo;Unauthorized&rdquo;</h3>
-                    <ul>
-                        <li>Check that you signed in with the correct ThriveStack account.</li>
-                        <li>Try removing and re-adding the integration.</li>
-                        <li>Clear your browser cookies for <code>app.thrivestack.ai</code> and try again.</li>
-                        <li>Using a Personal Access Token? Confirm it hasn&rsquo;t been revoked under <strong>Personal Access Tokens</strong>, and that the <code>Authorization: Bearer</code> header is being sent.</li>
-                    </ul>
-                    <h3>Other issues</h3>
-                    <ul>
-                        <li><strong>Missing data</strong>: ensure your ThriveStack account has access to the target product/environment and the data actually exists.</li>
-                        <li><strong>Tool not found</strong>: tool availability depends on what your MCP server version exposes.</li>
-                        <li><strong>Queries timing out</strong>: try smaller questions or narrower date ranges.</li>
-                        <li><strong>Connection timeout</strong>: check your internet connection, and make sure the URL is exactly <code>https://api.app.thrivestack.ai/mcp</code>.</li>
-                    </ul>
-                    <p>Need help? Email <a href="mailto:support@thrivestack.ai">support@thrivestack.ai</a>.</p>
-                </section>
-
-                <section id="technical-specs" class="content-section">
-                    <h2>Technical specifications</h2>
-                    <ul>
-                        <li><strong>Transport Type:</strong> Streamable HTTP (Remote)</li>
-                        <li><strong>Authentication:</strong> OAuth 2.1 (in clients that support it) or a Personal Access Token via <code>Authorization: Bearer</code> header (any client)</li>
-                    </ul>
+                    <div class="mcp-faq">
+<details><summary>&ldquo;Authorization failed&rdquo; or &ldquo;Unauthorized&rdquo;<i class="fa-solid fa-chevron-down"></i></summary><div class="mcp-faq-body"><ul>
+<li>Make sure you signed in with the right ThriveStack account.</li>
+<li>Remove the connector and add it again.</li>
+<li>Clear your browser cookies for <code>app.thrivestack.ai</code> and try again.</li>
+<li>Using a token? Check that it hasn&rsquo;t expired or been revoked under <strong>Personal Access Tokens</strong>, and that your client sends the <code>Authorization: Bearer</code> header.</li>
+</ul></div></details>
+<details><summary>Missing data<i class="fa-solid fa-chevron-down"></i></summary><div class="mcp-faq-body"><ul><li>Check that your account has access to the product and environment you&rsquo;re asking about, and that the data exists.</li></ul></div></details>
+<details><summary>Tool not found<i class="fa-solid fa-chevron-down"></i></summary><div class="mcp-faq-body"><ul><li>Available tools depend on the server version. See <a href="../../public/mcp/tools.html">Tools</a> for the current list, then reconnect your client to refresh its tool list.</li></ul></div></details>
+<details><summary>Queries timing out<i class="fa-solid fa-chevron-down"></i></summary><div class="mcp-faq-body"><ul><li>Ask a narrower question or use a shorter date range.</li></ul></div></details>
+<details><summary>Connection timeout<i class="fa-solid fa-chevron-down"></i></summary><div class="mcp-faq-body"><ul><li>Check your internet connection.</li><li>Make sure the URL is exactly <code>https://api.app.thrivestack.ai/mcp</code>.</li></ul></div></details>
+</div>
+                    <p style="margin-top: 1rem;">Still stuck? Email <a href="mailto:support@thrivestack.ai">support@thrivestack.ai</a>.</p>
                 </section>
 
                 <div class="page-nav">
@@ -551,290 +457,17 @@
                 <nav id="toc" class="toc-nav">
                     <a href="#server-url" class="toc-link active">Server URL</a>
                     <a href="#authentication-options" class="toc-link">Authentication options</a>
+                    <a href="#implementation" class="toc-link">Connect your client</a>
                     <a href="#create-pat" class="toc-link">Create a Personal Access Token</a>
-                    <a href="#implementation" class="toc-link">Implementation</a>
                     <a href="#verify" class="toc-link">Verify your connection</a>
                     <a href="#troubleshooting" class="toc-link">Troubleshooting</a>
-                    <a href="#technical-specs" class="toc-link">Technical specs</a>
                 </nav>
                 <ready-to-scale-promo></ready-to-scale-promo>
             </div>
         </aside>
     </div>
 
-    <style>
-        /* Code blocks inside MCP setup dropdowns */
-        .code-block-wrapper {
-            position: relative;
-            margin: 14px 0 18px;
-        }
-
-        .code-block-wrapper pre {
-            margin: 0;
-            padding: 40px 16px 16px; /* room for label + copy button */
-            border-radius: 10px;
-            background: rgba(248, 250, 252, 0.95);
-            border: 1px solid rgba(148, 163, 184, 0.32);
-            overflow-x: auto;
-        }
-
-        [data-theme="dark"] .code-block-wrapper pre {
-            background: rgba(2, 6, 23, 0.55);
-            border: 1px solid rgba(148, 163, 184, 0.22);
-        }
-
-        .code-block-label {
-            position: absolute;
-            top: 8px;
-            left: 12px;
-            font-size: 12px;
-            color: rgba(71, 85, 105, 0.98);
-            background: rgba(255, 255, 255, 0.92);
-            border: 1px solid rgba(148, 163, 184, 0.38);
-            border-radius: 8px;
-            padding: 4px 8px;
-            pointer-events: none;
-        }
-
-        [data-theme="dark"] .code-block-label {
-            color: rgba(226, 232, 240, 0.95);
-            background: rgba(2, 6, 23, 0.55);
-            border: 1px solid rgba(148, 163, 184, 0.22);
-        }
-
-        .code-block-wrapper pre code {
-            background: transparent;
-            color: rgba(15, 23, 42, 0.95);
-            padding: 0;
-            font-size: 0.88rem;
-        }
-
-        [data-theme="dark"] .code-block-wrapper pre code {
-            color: rgba(229, 231, 235, 0.95);
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 6px;
-            right: 8px;
-            z-index: 1;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            font-size: 12px;
-            font-family: inherit;
-            cursor: pointer;
-            border-radius: 8px;
-            border: 1px solid rgba(55, 65, 81, 0.55);
-            background: rgba(55, 65, 81, 0.95);
-            color: rgba(255, 255, 255, 0.97);
-            transition: color 0.15s, border-color 0.15s;
-        }
-
-        .copy-btn:hover {
-            border-color: rgba(55, 65, 81, 0.9);
-        }
-
-        .copy-btn.copied {
-            color: #4ade80;
-            border-color: #4ade80;
-        }
-
-        /* OAuth step screenshots: click-to-enlarge lightbox */
-        .mcp-img-link {
-            display: block;
-            position: relative;
-            border-radius: 8px;
-            outline: none;
-            margin-bottom: 0.75rem;
-        }
-
-        .mcp-img {
-            width: 100%;
-            display: block;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        .mcp-img-link .mcp-open-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 28px;
-            height: 28px;
-            display: grid;
-            place-items: center;
-            border-radius: 999px;
-            background: rgba(0, 0, 0, 0.55);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            color: rgba(255, 255, 255, 0.9);
-            opacity: 0;
-            transform: translateY(-2px);
-            transition: opacity 120ms ease, transform 120ms ease;
-            pointer-events: none;
-        }
-
-        .mcp-img-link:hover .mcp-open-icon,
-        .mcp-img-link:focus-visible .mcp-open-icon {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mcp-img-link:hover .mcp-img,
-        .mcp-img-link:focus-visible .mcp-img {
-            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
-        }
-
-        .mcp-lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1000;
-            display: none;
-        }
-
-        .mcp-lightbox.is-open {
-            display: grid;
-            place-items: center;
-        }
-
-        .mcp-lightbox-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .mcp-lightbox-dialog {
-            position: relative;
-            width: min(1100px, calc(100vw - 40px));
-            max-height: calc(100vh - 40px);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(17, 17, 23, 0.65);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-            overflow: hidden;
-        }
-
-        .mcp-lightbox-media {
-            display: block;
-            width: 100%;
-            height: auto;
-            max-height: calc(100vh - 90px);
-            object-fit: contain;
-            background: rgba(0, 0, 0, 0.25);
-        }
-
-        .mcp-lightbox-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 36px;
-            height: 36px;
-            display: grid;
-            place-items: center;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            background: rgba(0, 0, 0, 0.55);
-            color: rgba(255, 255, 255, 0.92);
-            cursor: pointer;
-        }
-
-        .mcp-lightbox-close:focus-visible {
-            outline: 2px solid rgba(99, 102, 241, 0.5);
-            outline-offset: 2px;
-        }
-
-        body.mcp-lightbox-open {
-            overflow: hidden;
-        }
-    </style>
-
-    <script>
-        function copyCode(btn) {
-            var wrapper = btn.closest(".code-block-wrapper");
-            var codeEl = wrapper ? wrapper.querySelector("pre code") : null;
-            if (!codeEl) return;
-
-            var text = codeEl.innerText;
-            navigator.clipboard.writeText(text).then(function () {
-                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Copied';
-                btn.classList.add("copied");
-                setTimeout(function () {
-                    btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
-                    btn.classList.remove("copied");
-                }, 2000);
-            });
-        }
-    </script>
-
-    <div class="mcp-lightbox" id="mcp-lightbox" aria-hidden="true">
-        <div class="mcp-lightbox-backdrop" data-mcp-lightbox-close></div>
-        <div class="mcp-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Image preview">
-            <button type="button" class="mcp-lightbox-close" data-mcp-lightbox-close aria-label="Close preview">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <img class="mcp-lightbox-media" id="mcp-lightbox-img" alt="" />
-        </div>
-    </div>
-
     <script src="../../script.js"></script>
-    <script>
-        (function () {
-            var lightbox = document.getElementById('mcp-lightbox');
-            var lightboxImg = document.getElementById('mcp-lightbox-img');
-            if (!lightbox || !lightboxImg) return;
-
-            var lastActive = null;
-
-            function openLightbox(imgEl, href) {
-                lastActive = document.activeElement;
-                lightboxImg.src = href || imgEl.currentSrc || imgEl.src;
-                lightboxImg.alt = imgEl.alt || 'Image preview';
-                lightbox.classList.add('is-open');
-                lightbox.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('mcp-lightbox-open');
-                var closeBtn = lightbox.querySelector('[data-mcp-lightbox-close]');
-                if (closeBtn) closeBtn.focus();
-            }
-
-            function closeLightbox() {
-                lightbox.classList.remove('is-open');
-                lightbox.setAttribute('aria-hidden', 'true');
-                document.body.classList.remove('mcp-lightbox-open');
-                lightboxImg.removeAttribute('src');
-                if (lastActive && typeof lastActive.focus === 'function') lastActive.focus();
-                lastActive = null;
-            }
-
-            document.addEventListener('click', function (e) {
-                var link = e.target && e.target.closest ? e.target.closest('a.mcp-img-link') : null;
-                if (link) {
-                    var img = link.querySelector('img');
-                    if (!img) return;
-                    e.preventDefault();
-                    openLightbox(img, link.getAttribute('href'));
-                    return;
-                }
-
-                var closeEl = e.target && e.target.closest ? e.target.closest('[data-mcp-lightbox-close]') : null;
-                if (closeEl) closeLightbox();
-            });
-
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
-                    closeLightbox();
-                }
-            });
-
-            lightbox.addEventListener('click', function (e) {
-                if (e.target === lightbox) closeLightbox();
-            });
-        })();
-    </script>
+    <script src="mcp.js"></script>
 </body>
 </html>

@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="mcp.css">
     <script
         src="https://cdn.app.thrivestack.ai/latest/script.js"
         api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
@@ -66,7 +67,7 @@
         <div class="resizer" id="sidebar-resizer"></div>
 
         <main class="main-content">
-            <div class="content-wrapper">
+            <div class="content-wrapper mcp-doc">
                 <div class="breadcrumbs">
                     <a href="../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
                     <a href="../../public/cited-by/introduction.html">Cited By</a> <i class="fa-solid fa-chevron-right"></i>
@@ -74,128 +75,211 @@
                 </div>
                 <header class="doc-page-header">
                     <span class="doc-page-header-eyebrow">Cited By · MCP</span>
-                    <h1 class="doc-page-title">Introduction</h1>
+                    <h1 class="doc-page-title">MCP Server</h1>
                     <p class="doc-page-description">
-                        Connect AI assistants like Claude, Cursor, and other MCP-compatible tools to your ThriveStack AI Visibility data. Ask questions in plain language and get answers from the same data your dashboard shows.
+                        Connect Claude, Cursor and other MCP-compatible AI tools to your ThriveStack AI Visibility data. Ask questions in plain language and get answers from the same data your dashboard shows.
                     </p>
                 </header>
 
                 <section id="overview" class="content-section">
-                    <h2>MCP Server</h2>
-                    <p>
-                        Ask your AI assistant how AI search engines mention and cite your brand, how you compare with competitors, which pages and sources get cited, and what to publish next, with answers straight from your ThriveStack AI Visibility data. This works with Claude, Claude Code, Cursor, VS Code (GitHub Copilot), Windsurf, Gemini CLI, and any other MCP-compatible client.
+                    <h2>Overview</h2>
+                    <p class="lede">
+                        Add one URL to your AI tool, sign in once, and ask about your brand&rsquo;s AI search visibility. Your assistant answers from your live ThriveStack data: how AI engines mention and cite your brand, how you compare with competitors, and what to publish next.
                     </p>
+
+                    <div class="mcp-url-card">
+                        <div class="mcp-url-label">Server URL</div>
+                        <div class="mcp-url-row">
+                            <code>https://api.app.thrivestack.ai/mcp</code>
+                            <button type="button" class="mcp-btn" data-copy="https://api.app.thrivestack.ai/mcp"><i class="fa-regular fa-copy"></i> Copy</button>
+                        </div>
+                        <div class="mcp-chips">
+                            <span class="mcp-chip"><i class="fa-solid fa-bolt"></i> Streamable HTTP</span>
+                            <span class="mcp-chip"><i class="fa-solid fa-shield-halved"></i> OAuth 2.1</span>
+                            <span class="mcp-chip"><i class="fa-solid fa-key"></i> Personal Access Token</span>
+                        </div>
+                    </div>
+
+                    <div class="mcp-cta">
+                        <a class="mcp-btn primary" href="../../public/mcp/setup.html">Set up your client <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="mcp-btn" href="../../public/mcp/tools.html">Browse the tools</a>
+                    </div>
                 </section>
 
                 <section id="what-you-can-do" class="content-section">
                     <h2>What you can do</h2>
-                    <ul>
-                        <li>See how AI engines mention and cite your brand, and how that compares with your competitors over time</li>
-                        <li>See which pages and sources AI answers retrieve and cite, and where your citations come from</li>
-                        <li>Review the buyer questions being tracked for your brand, and explore prompt research to find new ones</li>
-                        <li>Check your site&rsquo;s crawl and indexing health, including Google Search Console state and AI-crawler reach</li>
-                        <li>Get content, earned-media, technical and ChatGPT Ads recommendations, generate a content outline or ad creative brief for any of them, and save content recommendations to your brand</li>
-                        <li>See which brands/products your ThriveStack account can access</li>
-                        <li>Run the <code>ai_visibility_analyst</code> prompt for a structured, one-shot analysis instead of asking one question at a time</li>
-                    </ul>
-                    <p>See <a href="../../public/mcp/tools.html">Tools</a> for the complete list of what&rsquo;s available today.</p>
+                    <p class="section-sub">Works with Claude, Claude Code, Cursor, VS Code, Windsurf, Gemini CLI and any other MCP-compatible tool.</p>
+                    <div class="mcp-feature-grid">
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                            <h3>Check brand visibility</h3>
+                            <p>See how AI engines mention and cite your brand, and how that compares with your competitors over time.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon purple"><i class="fa-solid fa-quote-right"></i></div>
+                            <h3>Analyze sources</h3>
+                            <p>See which pages and domains AI answers retrieve and cite, and where your own citations come from.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon green"><i class="fa-solid fa-magnifying-glass"></i></div>
+                            <h3>Explore buyer questions</h3>
+                            <p>Review the prompts tracked for your brand and research new buyer questions worth tracking.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon orange"><i class="fa-solid fa-stethoscope"></i></div>
+                            <h3>Audit site health</h3>
+                            <p>Check crawl and indexing health, including Google Search Console status and AI-crawler reach.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h3>Get recommended next steps</h3>
+                            <p>Content, earned-media, technical and ChatGPT Ads recommendations, with outlines and ad briefs you can generate for any of them.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon purple"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            <h3>Run a guided analysis</h3>
+                            <p>Use the built-in <code>ai_visibility_analyst</code> prompt to get a complete analysis in one step instead of one question at a time.</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1.25rem;">You can also save content recommendations to your brand and list the brands and products your account can access. See <a href="../../public/mcp/tools.html">Tools</a> for the full list.</p>
                 </section>
 
                 <section id="how-it-works" class="content-section">
                     <h2>How it works</h2>
-                    <div class="cards-grid">
-                        <div class="feature-card glass-panel">
-                            <div class="card-icon blue"><i class="fa-solid fa-1"></i></div>
+                    <ol class="mcp-steps">
+                        <li class="mcp-step">
                             <h3>Connect</h3>
-                            <p>Add the server URL to your AI tool. See our <a href="../../public/mcp/setup.html">setup guide</a> for your platform.</p>
-                        </div>
-                        <div class="feature-card glass-panel">
-                            <div class="card-icon purple"><i class="fa-solid fa-2"></i></div>
-                            <h3>Authenticate</h3>
-                            <p>Sign in with OAuth (Claude, Claude Code, Cursor, VS Code and other clients that support it), or attach a Personal Access Token for clients that don&rsquo;t. This only happens once.</p>
-                        </div>
-                        <div class="feature-card glass-panel">
-                            <div class="card-icon green"><i class="fa-solid fa-3"></i></div>
-                            <h3>Ask questions or run a prompt</h3>
-                            <p>Ask a free-form question, or invoke one of the built-in <a href="../../public/mcp/prompts.html">Prompts</a>, or pick an idea from <a href="../../public/mcp/use-cases.html">Use Cases</a>.</p>
-                        </div>
-                    </div>
-                    <p style="margin-top: 1rem;">Free-form questions:</p>
-                    <ul>
-                        <li>&ldquo;How visible is ourdomain.com in AI search compared with our top competitors?&rdquo;</li>
-                        <li>&ldquo;Which buyer questions are we not being cited for, and who is cited instead?&rdquo;</li>
-                        <li>&ldquo;What content should we publish to close our biggest citation gaps?&rdquo;</li>
-                    </ul>
-                    <p>Or pick a ready-made example from <a href="../../public/mcp/prompts.html">Prompts</a> or <a href="../../public/mcp/use-cases.html">Use Cases</a> for a full analysis.</p>
+                            <p>Add the server URL to your AI tool. The <a href="../../public/mcp/setup.html">setup guide</a> covers each platform.</p>
+                        </li>
+                        <li class="mcp-step">
+                            <h3>Sign in</h3>
+                            <p>Authorize with your ThriveStack account using OAuth. Clients without OAuth support use a Personal Access Token instead. You only do this once.</p>
+                        </li>
+                        <li class="mcp-step">
+                            <h3>Ask a question or run a prompt</h3>
+                            <p>Ask in plain language, or run a built-in prompt for a ready-made analysis. For example:</p>
+                            <div class="mcp-prompts">
+                                <div class="mcp-prompt"><i class="fa-regular fa-comment"></i><span>&ldquo;How visible is yourdomain.com in AI search compared with our top competitors?&rdquo;</span></div>
+                                <div class="mcp-prompt"><i class="fa-regular fa-comment"></i><span>&ldquo;Which buyer questions are we not being cited for, and who is cited instead?&rdquo;</span></div>
+                                <div class="mcp-prompt"><i class="fa-regular fa-comment"></i><span>&ldquo;What content should we publish to close our biggest citation gaps?&rdquo;</span></div>
+                            </div>
+                            <p style="margin-top: 0.9rem;">Browse <a href="../../public/mcp/prompts.html">Prompts</a> and <a href="../../public/mcp/use-cases.html">Use Cases</a> for more ideas.</p>
+                        </li>
+                    </ol>
                 </section>
 
                 <section id="connection-details" class="content-section">
                     <h2>Connection details</h2>
                     <p>Your tool may ask for these details:</p>
-                    <table style="width: 100%; border-collapse: collapse; margin-top: 12px">
-                        <thead>
-                            <tr>
-                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Property</th>
-                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Server URL</td>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);"><code>https://api.app.thrivestack.ai/mcp</code></td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Transport</td>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Streamable HTTP (Remote)</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Authentication</td>
-                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">OAuth 2.1 (Claude, Claude Code, Cursor, VS Code and other clients that support it), or a Personal Access Token via <code>Authorization: Bearer</code> (any client)</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="mcp-kv">
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Server URL</div>
+                            <div class="mcp-kv-val"><code>https://api.app.thrivestack.ai/mcp</code></div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Transport</div>
+                            <div class="mcp-kv-val">Streamable HTTP</div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Authentication</div>
+                            <div class="mcp-kv-val">OAuth 2.1, or a Personal Access Token sent as an <code>Authorization: Bearer</code> header</div>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="authentication" class="content-section">
                     <h2>Authentication</h2>
                     <p>Two options, depending on what your client supports:</p>
-                    <ul>
-                        <li><strong>OAuth.</strong> Your AI assistant opens a ThriveStack consent page in your browser. Sign in and authorize access. The session persists across conversations. Available in every client that supports MCP OAuth, including Claude, Claude Code, Cursor and VS Code.</li>
-                        <li><strong>Personal Access Token.</strong> Generate one from <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a> (AI Visibility &rarr; Settings &rarr; Personal Access Tokens) in the ThriveStack dashboard, then attach it as an <code>Authorization: Bearer</code> header on your client&rsquo;s MCP connection. Use this for clients without OAuth support (for example Windsurf and Gemini CLI) and for headless or CI setups.</li>
-                    </ul>
-                    <p>Either way, every call resolves your product and environment automatically and respects the same permissions as your dashboard session. See the <a href="../../public/mcp/setup.html">setup guide</a> for client-by-client examples.</p>
+                    <div class="mcp-auth-grid">
+                        <div class="mcp-auth is-recommended">
+                            <div class="mcp-auth-head">
+                                <h3>OAuth</h3>
+                                <span class="mcp-badge">Recommended</span>
+                            </div>
+                            <p>Your AI tool opens a ThriveStack consent page in your browser. Sign in and allow access. Your session persists across conversations.</p>
+                            <div class="best-for"><strong>Best for:</strong> Claude, Claude Code, Cursor, VS Code and other clients that support MCP OAuth.</div>
+                        </div>
+                        <div class="mcp-auth">
+                            <div class="mcp-auth-head">
+                                <h3>Personal Access Token</h3>
+                                <span class="mcp-badge muted">Alternative</span>
+                            </div>
+                            <p>Create a token under <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a> in the ThriveStack dashboard (AI Visibility &rarr; Settings), then send it as an <code>Authorization: Bearer</code> header.</p>
+                            <div class="best-for"><strong>Best for:</strong> clients without OAuth support (such as Windsurf and Gemini CLI), headless setups and CI.</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1.1rem;">With either method, requests respect the same permissions as your dashboard session, and your product and environment are resolved automatically. See the <a href="../../public/mcp/setup.html">setup guide</a> for client-specific steps.</p>
                 </section>
 
                 <section id="access" class="content-section">
                     <h2>Read and write access</h2>
-                    <p>All tools are read-only except one: <code>save_content_recommendations</code> saves content recommendations to your brand as <em>suggested</em> items for your team. It can only create new suggested items or refresh ones that are still suggested &mdash; it cannot approve, dismiss, assign or delete anything &mdash; and your AI client asks you to confirm before it runs. See <a href="../../public/mcp/tools.html">Tools</a> for the current list.</p>
+                    <div class="mcp-callout ok">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="mcp-callout-body"><p><strong>Read-only by default.</strong> Every tool only reads your data, with one exception.</p></div>
+                    </div>
+                    <div class="mcp-callout">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <div class="mcp-callout-body">
+                            <p><strong>One tool can write: <code>save_content_recommendations</code>.</strong> It saves content recommendations to your brand as <em>suggested</em> items for your team to review.</p>
+                            <p>It can only create new suggested items or refresh ones that are still suggested. It can&rsquo;t approve, dismiss, assign or delete anything, and your AI tool asks you to confirm before it runs.</p>
+                        </div>
+                    </div>
+                    <p>See <a href="../../public/mcp/tools.html">Tools</a> for the full list.</p>
                 </section>
 
                 <section id="supported-platforms" class="content-section">
                     <h2>Supported platforms</h2>
-                    <p>The ThriveStack MCP works with any tool that supports MCP (Model Context Protocol). Setup guides:</p>
-                    <ul>
-                        <li>Claude (Desktop &amp; Web)</li>
-                        <li>Claude Code (CLI)</li>
-                        <li>Cursor</li>
-                        <li>VS Code (GitHub Copilot)</li>
-                        <li>Windsurf</li>
-                        <li>Gemini CLI</li>
-                    </ul>
-                    <p>OAuth is only implemented for Claude and Claude Code today &mdash; every other client connects with a Personal Access Token. See the <a href="../../public/mcp/setup.html">setup guide</a>.</p>
+                    <p>The ThriveStack MCP server works with any client that supports the Model Context Protocol. Choose your tool for step-by-step setup.</p>
+                    <div class="mcp-client-grid">
+                        <a class="mcp-client" href="../../public/mcp/setup.html#client-claude">
+                            <span class="mcp-logo"><img src="clients/claude.png" alt="" width="38" height="38" loading="lazy"></span>
+                            <span><span class="mcp-client-name">Claude</span><span class="mcp-client-meta">Desktop and web &middot; OAuth</span></span>
+                        </a>
+                        <a class="mcp-client" href="../../public/mcp/setup.html#client-claude-code">
+                            <span class="mcp-logo"><img src="clients/claude.png" alt="" width="38" height="38" loading="lazy"></span>
+                            <span><span class="mcp-client-name">Claude Code</span><span class="mcp-client-meta">CLI &middot; OAuth or token</span></span>
+                        </a>
+                        <a class="mcp-client" href="../../public/mcp/setup.html#client-cursor">
+                            <span class="mcp-logo"><img src="clients/cursor.png" alt="" width="38" height="38" loading="lazy"></span>
+                            <span><span class="mcp-client-name">Cursor</span><span class="mcp-client-meta">OAuth or token</span></span>
+                        </a>
+                        <a class="mcp-client" href="../../public/mcp/setup.html#client-vscode">
+                            <span class="mcp-logo"><img src="clients/vscode.png" alt="" width="38" height="38" loading="lazy"></span>
+                            <span><span class="mcp-client-name">VS Code</span><span class="mcp-client-meta">GitHub Copilot &middot; OAuth or token</span></span>
+                        </a>
+                        <a class="mcp-client" href="../../public/mcp/setup.html#client-windsurf">
+                            <span class="mcp-logo"><i class="fa-solid fa-wind"></i></span>
+                            <span><span class="mcp-client-name">Windsurf</span><span class="mcp-client-meta">Personal Access Token</span></span>
+                        </a>
+                        <a class="mcp-client" href="../../public/mcp/setup.html#client-gemini-cli">
+                            <span class="mcp-logo"><i class="fa-solid fa-terminal"></i></span>
+                            <span><span class="mcp-client-name">Gemini CLI</span><span class="mcp-client-meta">Personal Access Token</span></span>
+                        </a>
+                    </div>
                 </section>
 
                 <section id="requirements" class="content-section">
                     <h2>Requirements</h2>
-                    <ul>
-                        <li>A ThriveStack account with API access</li>
-                        <li>A supported AI tool</li>
-                    </ul>
+                    <div class="mcp-kv">
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Account</div>
+                            <div class="mcp-kv-val">A ThriveStack account with API access</div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">AI tool</div>
+                            <div class="mcp-kv-val">An MCP-compatible AI tool</div>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="support" class="content-section">
                     <h2>Support</h2>
-                    <p>Stuck? Email <a href="mailto:support@thrivestack.ai">support@thrivestack.ai</a>.</p>
+                    <p>Questions, or stuck? Email <a href="mailto:support@thrivestack.ai">support@thrivestack.ai</a>.</p>
+                    <div class="mcp-next-grid">
+                        <a class="mcp-next" href="../../public/mcp/tools.html"><i class="fa-solid fa-toolbox"></i><strong>Tools</strong><span>Everything the server can do today.</span></a>
+                        <a class="mcp-next" href="../../public/mcp/prompts.html"><i class="fa-solid fa-terminal"></i><strong>Prompts</strong><span>Built-in analysis workflows, one command.</span></a>
+                        <a class="mcp-next" href="../../public/mcp/use-cases.html"><i class="fa-solid fa-compass"></i><strong>Use cases</strong><span>Ready-made questions to ask first.</span></a>
+                    </div>
                 </section>
 
                 <div class="page-nav">
@@ -224,7 +308,7 @@
             <div class="toc-container sticky-top">
                 <h4>On this page</h4>
                 <nav id="toc" class="toc-nav">
-                    <a href="#overview" class="toc-link active">MCP Server</a>
+                    <a href="#overview" class="toc-link active">Overview</a>
                     <a href="#what-you-can-do" class="toc-link">What you can do</a>
                     <a href="#how-it-works" class="toc-link">How it works</a>
                     <a href="#connection-details" class="toc-link">Connection details</a>
@@ -240,5 +324,6 @@
     </div>
 
     <script src="../../script.js"></script>
+    <script src="mcp.js"></script>
 </body>
 </html>
