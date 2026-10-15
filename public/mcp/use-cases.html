@@ -96,7 +96,7 @@
 
                 <section id="example-workflows" class="content-section query-examples">
                     <h2>Example workflows: AI Visibility</h2>
-                    <p>AI Visibility is the flagship live capability today &mdash; these tools cover a full loop from &ldquo;where are we losing citations&rdquo; to &ldquo;here&rsquo;s a content outline to fix it,&rdquo; plus ChatGPT Ads plays when ads entitlement is on.</p>
+                    <p>AI Visibility is the flagship live capability today &mdash; these tools cover a full loop from &ldquo;where are we losing citations&rdquo; to &ldquo;here&rsquo;s a content outline to fix it.&rdquo;</p>
 
                     <h3>1. Full visibility snapshot for a domain</h3>
                     <blockquote class="query-examples__prompt">&ldquo;How visible is ourdomain.com in AI search right now?&rdquo;</blockquote>
@@ -118,11 +118,7 @@
                     <blockquote class="query-examples__prompt">&ldquo;Where could we get cited on sites like Reddit or G2 instead of just our own blog?&rdquo;</blockquote>
                     <p><code>get_earned_content_recommendations</code> surfaces ideas for earned/third-party media. Each recommendation is flagged <code>citation_backed</code> (tied to a real probe gap) or <code>category_inferred</code> (no direct citation evidence yet) &mdash; check which one before treating it as fact.</p>
 
-                    <h3>6. See which ChatGPT Ads to run</h3>
-                    <blockquote class="query-examples__prompt">&ldquo;Where should we run ChatGPT Ads for ourdomain.com, and which rivals are already bidding?&rdquo;</blockquote>
-                    <p><code>get_ad_recommendations</code> returns auction-gap plays (defend brand, enter auction, expand coverage, refresh creative) with your ads vs rival ads, winning competitors, and a rationale. Requires ChatGPT ads entitlement. An empty list can mean generation hasn&rsquo;t run yet. Pick a play and call <code>generate_ad_creative_outline</code> for headlines, bodies, CTAs, and a landing angle.</p>
-
-                    <h3>7. Combine the full picture in one pass</h3>
+                    <h3>6. Combine the full picture in one pass</h3>
                     <blockquote class="query-examples__prompt">&ldquo;Give me the full AI-visibility picture for ourdomain.com: how we&rsquo;re doing, why, and what to publish next.&rdquo;</blockquote>
                     <p>The assistant chains <code>get_domain_report</code> (the headline numbers) with <code>get_citation_probe_data</code> (the gap evidence) and <code>get_owned_content_recommendations</code> (what to do about it) &mdash; or you can invoke the <code>ai_visibility_analyst</code> prompt (see <a href="../../public/mcp/prompts.html">Prompts</a>) to get this as a single structured pass instead of three separate questions.</p>
                 </section>
@@ -141,8 +137,6 @@
                                 <li>Raw citation-gap evidence, including which competitors appeared instead</li>
                                 <li>The tracked buyer questions generated for a domain, grouped by topic</li>
                                 <li>Owned vs. earned content recommendations, filterable by status, priority, or channel</li>
-                                <li>ChatGPT Ads plays from auction-gap evidence, filterable by status, priority, or play type</li>
-                                <li>A ChatGPT Ads creative brief (headlines, bodies, CTAs, landing angle) for a specific play</li>
                                 <li>A ready-to-write content outline for a specific recommendation</li>
                             </ul>
                         </div>

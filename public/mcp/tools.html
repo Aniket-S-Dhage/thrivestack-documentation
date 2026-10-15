@@ -82,8 +82,8 @@
                 </header>
 
                 <section id="overview" class="content-section">
-                    <p>The ThriveStack MCP Server currently exposes <strong>25 tools</strong> and one prompt. They cover your brands, AI-search visibility and citations, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, prompt research, and content and ad recommendations.</p>
-                    <p><strong>24 of the 25 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
+                    <p>The ThriveStack MCP Server currently exposes <strong>23 tools</strong> and one prompt. They cover your brands, AI-search visibility and citations, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, prompt research, and content recommendations.</p>
+                    <p><strong>22 of the 23 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
                     <p>None of these tools take a <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="../../public/mcp/setup.html">Setup</a>.</p>
                     <p>Your AI assistant calls these automatically based on your questions. The server also provides one prompt, <code>ai_visibility_analyst</code>, a ready-made content-strategy analysis &mdash; see <a href="../../public/mcp/prompts.html">Prompts</a>. It does not expose any MCP resources.</p>
                 </section>
@@ -316,20 +316,6 @@
                         </tbody>
                     </table>
 
-                    <h3 id="tool-get-ad-recommendations"><code>get_ad_recommendations</code></h3>
-                    <p>Lists ChatGPT Ads plays for a domain: auction-gap recommendations matching the AI Visibility Recommendations &gt; Ads tab in the product.</p>
-                    <table class="params-table">
-                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-                        <tbody>
-                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch ChatGPT Ads recommendations for</td></tr>
-                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Max results per page (default 25, max 100)</td></tr>
-                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Results to skip (default 0)</td></tr>
-                            <tr><td><code>play_type</code></td><td>string</td><td>No</td><td>Filter by play type: Defend brand | Enter auction | Expand coverage | Refresh creative | Topic entry</td></tr>
-                            <tr><td><code>priority</code></td><td>string</td><td>No</td><td>Filter by priority: HIGH | MED | LOW</td></tr>
-                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Filter by status: suggested | todo | approved | dismissed (default: all active statuses, dismissed excluded)</td></tr>
-                        </tbody>
-                    </table>
-
                     <h2 id="drafting">Drafting &amp; Saving</h2>
 
                     <h3 id="tool-generate-content-outline"><code>generate_content_outline</code></h3>
@@ -339,24 +325,6 @@
                         <tbody>
                             <tr><td><code>content_type</code></td><td>string</td><td>Yes</td><td>Owned-media content type &mdash; one of: Homepage, Domain, Product, Comparison, Article, Educational, Blog, Guide, How-to, Documentation, Listicle, Wiki</td></tr>
                             <tr><td><code>title</code></td><td>string</td><td>Yes</td><td>The content recommendation's title to outline (e.g. from get_owned_content_recommendations)</td></tr>
-                        </tbody>
-                    </table>
-
-                    <h3 id="tool-generate-ad-creative-outline"><code>generate_ad_creative_outline</code></h3>
-                    <p>Generates a ChatGPT Ads creative brief for one ads play: headlines, short body lines, calls to action, landing-page angle, differentiation from rivals, and related query themes. The brief is generated on request and nothing is saved; calling it again produces a new one.</p>
-                    <table class="params-table">
-                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-                        <tbody>
-                            <tr><td><code>title</code></td><td>string</td><td>Yes</td><td>The ads play title to brief (e.g. from get_ad_recommendations)</td></tr>
-                            <tr><td><code>brand</code></td><td>string</td><td>No</td><td>Brand display name for the creative (optional)</td></tr>
-                            <tr><td><code>competitors_winning</code></td><td>string[]</td><td>No</td><td>Rivals currently winning the auction</td></tr>
-                            <tr><td><code>domain</code></td><td>string</td><td>No</td><td>Brand domain, e.g. acme.com. Optional; pass it when working across several brands so the brief is generated for the right one.</td></tr>
-                            <tr><td><code>organic_gap_linked</code></td><td>boolean</td><td>No</td><td>True if this prompt also has an organic citation gap</td></tr>
-                            <tr><td><code>our_ad_count</code></td><td>number</td><td>No</td><td>Our observed ChatGPT ad count on this prompt</td></tr>
-                            <tr><td><code>play_type</code></td><td>string</td><td>No</td><td>Play type: Defend brand | Enter auction | Expand coverage | Refresh creative | Topic entry</td></tr>
-                            <tr><td><code>rationale</code></td><td>string</td><td>No</td><td>Strategic rationale from the recommendation</td></tr>
-                            <tr><td><code>rival_ad_count</code></td><td>number</td><td>No</td><td>Rival observed ChatGPT ad count on this prompt</td></tr>
-                            <tr><td><code>topic</code></td><td>string</td><td>No</td><td>Topic cluster for the play</td></tr>
                         </tbody>
                     </table>
 
