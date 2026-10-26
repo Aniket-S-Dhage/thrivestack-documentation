@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connect Vercel to ThriveStack Citedby in about a minute and see which AI crawlers (GPTBot, ClaudeBot, PerplexityBot and more) read your site and which pages they fetch. Setup, what we collect, costs, disconnecting and troubleshooting.">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>Cited By — Connect Vercel - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .vc-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .vc-table th { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border); vertical-align: bottom; }
+        .vc-table td { padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border); vertical-align: top; }
+        .vc-table-wrap { overflow-x: auto; }
+        .vc-table-wrap + p { margin-top: 1rem; }
+        .vc-table ul, .vc-table ol { margin: 0.35rem 0 0; padding-left: 1.2rem; }
+        .vc-table ul { list-style: disc; }
+        .vc-table ol { list-style: decimal; }
+        .vc-table li { margin-bottom: 0.3rem; }
+        .vc-steps { counter-reset: vc-step; list-style: none; padding-left: 0; }
+        .vc-steps > li { position: relative; padding-left: 2.6rem; margin-bottom: 1.1rem; }
+        .vc-steps > li::before { counter-increment: vc-step; content: counter(vc-step); position: absolute; left: 0; top: 0.05rem; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: #2F54EB; color: #fff; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+        .vc-steps > li > strong:first-child { display: block; margin-bottom: 0.15rem; }
+    </style>
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../../index.html" class="logo">
+                <img src="../../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../../index.html">Get Started</a>
+                <a href="../../setup-overview.html">Setup (Unify)</a>
+                <a href="../../analyze-signals.html">Analyze Signals</a>
+                <a href="../../take-action.html">Take Action</a>
+                <a href="../../api-reference.html">API Reference</a>
+                <a href="../../public/mcp/introduction.html">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <cited-by-sidebar base-path="../../"></cited-by-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../../public/cited-by/introduction.html">Cited By</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>Connect Vercel</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Cited By · AI Crawl Attribution</span>
+                    <h1 class="doc-page-title">Connect Vercel</h1>
+                    <p class="doc-page-description">
+                        See which AI crawlers read your Vercel site and which pages they fetch. Connect in about a minute, with one click, no code changes and no environment variables.
+                    </p>
+                </header>
+
+                <section id="overview" class="content-section">
+                    <h2>What this does</h2>
+                    <p>
+                        AI assistants such as ChatGPT, Claude and Perplexity send crawlers (GPTBot, ClaudeBot, PerplexityBot and 40+ more) to read your pages.
+                        Those visits are invisible to tools like Google Analytics, because crawlers do not run JavaScript or accept cookies.
+                        They do show up in your server logs.
+                    </p>
+                    <p>
+                        <strong>Connect with Vercel</strong> sends those logs to <strong>AI Crawl Attribution</strong> in ThriveStack Citedby.
+                        You approve ThriveStack in Vercel and pick your projects, and ThriveStack creates a <a href="https://vercel.com/docs/drains" target="_blank" rel="noopener noreferrer">Vercel Log Drain</a> for you.
+                        From then on you can see, for your domain:
+                    </p>
+                    <ul>
+                        <li><strong>Which AI crawlers</strong> visit, and how often.</li>
+                        <li><strong>Which pages</strong> they read, and what your site answered (200, redirect, 404, 5xx).</li>
+                        <li><strong>Crawl problems</strong> that can cost you citations, with recommended fixes.</li>
+                    </ul>
+
+                    <figure class="doc-screenshot">
+                        <a href="vercel-listing.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-listing.png" alt="The ThriveStack Citedby listing on the Vercel Marketplace, with the Connect Account button" class="doc-screenshot__img" loading="lazy"></a>
+                        <figcaption>ThriveStack Citedby on Vercel. You can start from here or from inside ThriveStack.</figcaption>
+                    </figure>
+
+                    <h3>At a glance</h3>
+                    <div class="vc-table-wrap">
+                        <table class="vc-table">
+                            <tbody>
+                                <tr><td><strong>Time</strong></td><td>About 1 minute to connect. The first AI crawler visit usually appears within 10–15 minutes.</td></tr>
+                                <tr><td><strong>Vercel plan</strong></td><td>Pro or Enterprise (Vercel Log Drains are not available on Hobby). On Hobby, use the <a href="#other-methods">middleware option</a>.</td></tr>
+                                <tr><td><strong>You need</strong></td><td>A ThriveStack Citedby account (you can create one during setup) and a Vercel role that can add integrations to your team, usually the team Owner.</td></tr>
+                                <tr><td><strong>Changes to your project</strong></td><td>None. No code, no environment variables, no redeploy.</td></tr>
+                                <tr><td><strong>What we keep</strong></td><td>Only AI crawler requests on your domain. Everything else is dropped on arrival. <a href="#data">Details</a></td></tr>
+                                <tr><td><strong>Cost</strong></td><td>ThriveStack's AI Crawl Logs add-on (free during your trial) plus Vercel's own charge for log drain data. <a href="#costs">Details</a></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="before-you-start" class="content-section">
+                    <h2>Before you start</h2>
+                    <ul>
+                        <li>
+                            <strong>Check your Vercel plan.</strong> Log Drains need Vercel Pro or Enterprise.
+                            If your team is on Hobby, ThriveStack tells you when you connect and points you to the <a href="#other-methods">middleware option</a>, which works on any plan.
+                        </li>
+                        <li>
+                            <strong>Know which site you are tracking.</strong> ThriveStack tracks the domain saved on your brand (shown at the top of the Connect panel, for example <code>acmelabs.com</code>).
+                            The Vercel project you pick must serve that domain, either <code>acmelabs.com</code> or <code>www.acmelabs.com</code>.
+                        </li>
+                        <li>
+                            <strong>Sign in or sign up.</strong> You need a ThriveStack Citedby account. If you are new, you create it as part of setup, and your free trial starts.
+                        </li>
+                        <li>
+                            <strong>Behind Cloudflare?</strong> If Cloudflare proxies your domain in front of Vercel, use the <em>Cloudflare Worker</em> source on the same Setup page instead. It sees every request before Vercel does.
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="connect" class="content-section">
+                    <h2>Connect from ThriveStack</h2>
+                    <p>
+                        This is the most direct way. You start in ThriveStack, approve access on Vercel, and come back to finish.
+                        (If you would rather start from Vercel, see <a href="#from-vercel">Start from Vercel instead</a>.)
+                    </p>
+
+                    <ol class="vc-steps">
+                        <li>
+                            <strong>Open Setup and choose Vercel</strong>
+                            In ThriveStack Citedby, go to <strong>Attribution → Setup</strong> and click <strong>Vercel</strong> under <em>Server logs</em>.
+                            Setup is the one place where every data source for AI Crawl, Traffic and Revenue is connected.
+                            <figure class="doc-screenshot">
+                                <a href="vercel-integrations.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-integrations.png" alt="The Setup page listing server logs, website analytics and revenue sources" class="doc-screenshot__img" loading="lazy"></a>
+                                <figcaption>Setup: choose where your site runs. Click any screenshot to open it full size.</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <strong>Click Connect with Vercel</strong>
+                            The steps run across the top: <em>Connect, Verify, Activate</em>. <strong>Connect with Vercel</strong> is the first tab and the easiest method, so it is selected for you.
+                            Click the button. (To use another method, pick one of the other tabs. They are described <a href="#other-methods">below</a>.)
+                            <figure class="doc-screenshot">
+                                <a href="vercel-connect.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-connect.png" alt="Connect Vercel: the ThriveStack and Vercel logos, with a Connect with Vercel button" class="doc-screenshot__img" loading="lazy"></a>
+                                <figcaption>Connect: one button. You leave for Vercel to approve, then Vercel sends you straight back.</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <strong>Approve ThriveStack in Vercel</strong>
+                            Vercel opens and asks you to choose the team that owns your site and to approve ThriveStack Citedby.
+                            Review what it asks for (see <a href="#permissions">What access we request</a>) and approve.
+                            ThriveStack never sees your Vercel password.
+                            If you change your mind, go back: the button comes back and ThriveStack tells you the connection was cancelled and nothing was changed.
+                        </li>
+                        <li>
+                            <strong>Choose the projects to track</strong>
+                            Back in ThriveStack you see <em>Vercel is connected to ThriveStack</em>. Tick the Vercel projects whose AI crawler visits you want to see.
+                            Projects that serve your domain are marked <strong>Serves yourdomain.com</strong> and are already selected for you.
+                            Click <strong>Connect Vercel</strong>. ThriveStack now creates the log drain in your Vercel team.
+                            <figure class="doc-screenshot">
+                                <a href="vercel-projects.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-projects.png" alt="Choose the projects to track: a checklist of Vercel projects, with the one serving the domain preselected" class="doc-screenshot__img" loading="lazy"></a>
+                                <figcaption>Pick only the projects you need. Fewer projects means less data shared and a smaller Vercel bill.</figcaption>
+                            </figure>
+                            <blockquote class="note-callout">
+                                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                                <span><strong>Selected</strong> or <strong>All projects</strong>? <em>Selected</em> sends logs only from the projects you tick. <em>All projects</em> also includes every project you add to this team later. If your team has more than 8 projects, a search box appears. Wrong team? Use <strong>Use a different Vercel team</strong>.</span>
+                            </blockquote>
+                        </li>
+                        <li>
+                            <strong>Confirm it is working</strong>
+                            ThriveStack checks two things in order: first that <em>Vercel is delivering logs</em> (about a minute), then that the <em>first AI bot visit</em> arrived.
+                            Most sites see the first visit within 10–15 minutes. It can take up to 24 hours, depending on how often AI crawlers visit. <strong>Check now</strong> re-reads the status on the spot.
+                            Do not want to wait? Click <strong>Send test bot traffic</strong>. ThriveStack sends one real request to your site using the name of a known AI crawler (GPTBot), exactly as a real crawler would, and you see it arrive within a minute.
+                            <figure class="doc-screenshot">
+                                <a href="vercel-verify.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-verify.png" alt="Confirm it is working: two checks, a Check now button and a Send test bot traffic button" class="doc-screenshot__img" loading="lazy"></a>
+                                <figcaption>Verify. The test visit is a quick way to see data right away.</figcaption>
+                            </figure>
+                            <blockquote class="note-callout">
+                                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                                <span>The test visit only appears if one of the projects you selected serves your tracked domain. If it does not appear, see <a href="#troubleshooting">Troubleshooting</a>.</span>
+                            </blockquote>
+                        </li>
+                        <li>
+                            <strong>Turn on AI crawl logs</strong>
+                            Once data is flowing, the last step activates the <strong>AI Crawl Logs add-on</strong>, which unlocks the dashboards.
+                            During your free trial it costs nothing to activate, and the fee starts when the trial ends. Otherwise you pay on Stripe and come straight back.
+                            Everything collected since you connected is kept, and appears the moment you activate. <a href="#costs">Pricing details</a>
+                            <figure class="doc-screenshot">
+                                <a href="vercel-activate.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-activate.png" alt="Turn on AI crawl logs, with what you unlock and the add-on price" class="doc-screenshot__img" loading="lazy"></a>
+                                <figcaption>Activate. Your connection already works at this point.</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <strong>You are live</strong>
+                            All three steps are green and the card says <em>You're all set</em>, with when the last delivery arrived. Open <strong>See which AI crawlers visit</strong> or <strong>Drill into pages</strong> to start exploring.
+                            <figure class="doc-screenshot">
+                                <a href="vercel-live.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-live.png" alt="You are all set: AI Crawl is live, with links to the dashboards and a Disconnect Vercel section below" class="doc-screenshot__img" loading="lazy"></a>
+                                <figcaption>All steps complete. The Danger zone below is where you disconnect.</figcaption>
+                            </figure>
+                        </li>
+                    </ol>
+                </section>
+
+                <section id="from-vercel" class="content-section">
+                    <h2>Start from Vercel instead</h2>
+                    <p>
+                        You can also add ThriveStack from the Vercel Marketplace: open the <a href="https://vercel.com/marketplace/thrivestack-citedby" target="_blank" rel="noopener noreferrer">ThriveStack Citedby listing</a> and click <strong>Connect Account</strong>.
+                        The result is the same connection. What differs is the order of the steps:
+                    </p>
+                    <ol>
+                        <li><strong>Approve in Vercel.</strong> Choose your team and approve ThriveStack Citedby.</li>
+                        <li><strong>Sign in or sign up to ThriveStack.</strong> If you are new, create your account, your workspace and your brand (this is where your tracked domain comes from).
+                            Your Vercel approval is held for you, in this browser, while you do this.</li>
+                        <li>
+                            <strong>Confirm the team.</strong> ThriveStack shows the Vercel team and the ThriveStack brand you are about to connect, with <strong>Connect this team</strong> and <strong>Cancel and remove</strong>.
+                            Check both before continuing. Wrong brand? Choose Cancel, switch brands in ThriveStack, then add ThriveStack from Vercel again.
+                        </li>
+                        <li><strong>Choose the projects</strong> and click <strong>Connect Vercel</strong>, exactly as in <a href="#connect">step 4 onward above</a>.
+                            When the log drain is created, ThriveStack takes you back to Vercel to finish.</li>
+                        <li><strong>Verify and activate</strong> in ThriveStack, under <strong>Attribution → Setup</strong> (steps 5 and 6 above).</li>
+                    </ol>
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                        <span><strong>Take your time, but not too long.</strong> A Vercel approval that is not finished in ThriveStack within 2 hours is removed automatically, and you start again from step 1. <strong>Cancel and remove</strong> uninstalls ThriveStack from your Vercel team straight away, and nothing is connected.</span>
+                    </blockquote>
+                </section>
+
+                <section id="data" class="content-section">
+                    <h2>What ThriveStack collects</h2>
+                    <p>
+                        Vercel sends the request logs of the projects you chose to ThriveStack. ThriveStack keeps only requests made by <strong>AI crawlers on your domain</strong> and discards everything else immediately on arrival, before anything is stored.
+                    </p>
+                    <div class="vc-table-wrap">
+                        <table class="vc-table">
+                            <thead>
+                                <tr><th>Kept for each AI crawler visit</th><th>Never stored</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul>
+                                            <li>The page path (without the query string)</li>
+                                            <li>The host (your domain) and the HTTP method</li>
+                                            <li>The HTTP status your site returned</li>
+                                            <li>The crawler's user-agent name</li>
+                                            <li>The referrer, if one was sent</li>
+                                            <li>The time of the visit</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>Visits from regular people</li>
+                                            <li>Search engine crawlers (such as Googlebot and Bingbot) and SEO tools</li>
+                                            <li>Visitor IP addresses</li>
+                                            <li>Cookies and request bodies</li>
+                                            <li>Preview deployments and build logs</li>
+                                            <li>Traffic for hosts other than your domain and its <code>www</code> version</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        The log drain ThriveStack creates is named <code>ThriveStack AI Crawl Attribution (yourdomain.com)</code>, so you can recognize it in Vercel under <strong>Team Settings → Drains</strong>.
+                    </p>
+
+                    <h3 id="permissions">What access we request</h3>
+                    <p>
+                        When you approve ThriveStack, Vercel shows the permissions below. ThriveStack asks for nothing else.
+                        The access token Vercel issues is stored encrypted and is used only to list your projects and to create or delete the log drain.
+                    </p>
+                    <div class="vc-table-wrap">
+                        <table class="vc-table">
+                            <thead>
+                                <tr><th>Permission</th><th>Why ThriveStack needs it</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Drains (read and write)</td><td>To create the log drain, and delete it when you disconnect.</td></tr>
+                                <tr><td>Projects (read)</td><td>To show the project checklist, and to mark the project that serves your domain.</td></tr>
+                                <tr><td>Team (read)</td><td>To show which team you are connecting, and detect a Hobby plan.</td></tr>
+                                <tr><td>Integration configuration (read and write)</td><td>To keep track of the installation, and stop when you remove it from Vercel.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="costs" class="content-section">
+                    <h2>Costs</h2>
+                    <p>Two separate charges are involved. Neither depends on the number of people who visit your site.</p>
+                    <ul>
+                        <li>
+                            <strong>ThriveStack: the AI Crawl Logs add-on.</strong> It is free to activate during your free trial, and the fee starts when the trial ends.
+                            The add-on card shows the exact price before you pay. At the time of writing it is <strong>$10 per month</strong> and includes <strong>100,000 AI bot events per month</strong>.
+                            Extra events are billed in blocks of 100,000 on your next invoice.
+                        </li>
+                        <li>
+                            <strong>Vercel: log drain data.</strong> Vercel bills log drains by data volume (at the time of writing, $0.50 per GB; see <a href="https://vercel.com/docs/drains" target="_blank" rel="noopener noreferrer">Vercel's documentation</a> for current pricing).
+                            Vercel sends ThriveStack the logs of every project you select, so choose only the project that serves your domain.
+                            That keeps the Vercel bill small, and it keeps the data shared with ThriveStack small too.
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="insights" class="content-section">
+                    <h2>What you will see</h2>
+                    <p>
+                        Open <strong>Attribution → AI Crawl</strong>. The page has three tabs: <strong>Overview</strong>, <strong>Detailed Insights</strong> and <strong>Settings</strong> (billing for the AI crawl logs add-on). Connecting and disconnecting your site is done in <strong>Attribution → Setup</strong>. The screenshots below use sample data.
+                    </p>
+
+                    <h3>Overview: who visits, and when</h3>
+                    <p>Total bot visits, how many different AI bots visited, your failure rate, and a chart of visits over time by crawler.</p>
+                    <figure class="doc-screenshot">
+                        <a href="vercel-overview.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-overview.png" alt="AI Crawl Attribution overview: total bot visits, active bots, failure rate and a visits over time chart by crawler" class="doc-screenshot__img" loading="lazy"></a>
+                        <figcaption>Overview tab (sample data).</figcaption>
+                    </figure>
+
+                    <h3>Detailed Insights: which pages</h3>
+                    <p>Every URL AI crawlers fetched, with visit counts, which platforms visited, the status your site returned, retrievals and citation rate. Filter by status code or folder, or export the table.</p>
+                    <figure class="doc-screenshot">
+                        <a href="vercel-insights.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-insights.png" alt="Detailed Insights: a table of URLs visited by AI bots with visits, platforms, status, retrievals and citation rate" class="doc-screenshot__img" loading="lazy"></a>
+                        <figcaption>Detailed Insights tab (sample data).</figcaption>
+                    </figure>
+                    <p>
+                        Pages that AI crawlers keep hitting but that return errors or redirects (4xx, 5xx, 301/302) are the quickest wins. A page that cannot be read cannot be cited.
+                    </p>
+                </section>
+
+                <section id="other-methods" class="content-section">
+                    <h2>Other ways to connect Vercel</h2>
+                    <p>
+                        <strong>Connect with Vercel</strong> is the recommended method. The other three are tabs next to it, on the same Connect step, for when you cannot use it. Hover the <strong>(i)</strong> on a tab for a short note on what it needs.
+                    </p>
+                    <figure class="doc-screenshot">
+                        <a href="vercel-method.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-method.png" alt="The Connect step with four method tabs, Manual drain selected" class="doc-screenshot__img" loading="lazy"></a>
+                        <figcaption>The four methods are tabs on the Connect step. Manual drain is selected here.</figcaption>
+                    </figure>
+                    <div class="vc-table-wrap">
+                        <table class="vc-table">
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Vercel plan</th>
+                                    <th>Setup</th>
+                                    <th>You provide</th>
+                                    <th>Status codes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Connect with Vercel</strong> (recommended)</td><td>Pro or Enterprise</td><td>About 1 min</td><td>One click in Vercel</td><td>Every request</td></tr>
+                                <tr><td><strong>Automated drain</strong></td><td>Pro or Enterprise</td><td>About 2 min</td><td>A Vercel access token (used once, never stored)</td><td>Every request</td></tr>
+                                <tr><td><strong>Manual drain</strong></td><td>Pro or Enterprise</td><td>About 5 min</td><td>Two values to paste into Vercel (endpoint and secret)</td><td>Every request</td></tr>
+                                <tr><td><strong>Middleware</strong></td><td>Any plan, including Hobby</td><td>About 5 min</td><td>One file and two environment variables</td><td>Not available</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>Which should I pick?</h3>
+                    <ul>
+                        <li><strong>Pro or Enterprise:</strong> Connect with Vercel. Use an automated or manual drain only if your organization does not allow marketplace integrations, or you want to review every setting yourself.</li>
+                        <li><strong>Hobby plan:</strong> Middleware. You add one <code>middleware.js</code> file to your Next.js project, and two environment variables. It reports only AI crawler visits, never regular visitors.
+                            It runs before your page is produced, so it cannot see the real HTTP status code, and crawl-health insights based on 4xx and 5xx errors are not meaningful with it. It requires Next.js (or a framework that runs a root <code>middleware.js</code> on Vercel).</li>
+                        <li><strong>Cloudflare in front of Vercel:</strong> use the Cloudflare Worker source on the Setup page instead.</li>
+                    </ul>
+                </section>
+
+                <section id="manage" class="content-section">
+                    <h2>Change or disconnect</h2>
+
+                    <h3>Change which projects send logs</h3>
+                    <p>
+                        Disconnect (see below), then connect again and choose different projects.
+                        Because ThriveStack stays installed in your Vercel team, reconnecting takes one click.
+                    </p>
+
+                    <h3>Disconnect from ThriveStack</h3>
+                    <ol>
+                        <li>Go to <strong>Attribution → Setup</strong> and open <strong>Vercel</strong>.</li>
+                        <li>Scroll to the <strong>Danger zone</strong> at the bottom and click <strong>Disconnect Vercel…</strong>.</li>
+                        <li>Type your domain to confirm (you can copy it from the dialog, or paste it), then click <strong>Disconnect Vercel</strong>.</li>
+                    </ol>
+                    <figure class="doc-screenshot">
+                        <a href="vercel-disconnect.png" target="_blank" rel="noopener noreferrer" title="Open full size"><img src="vercel-disconnect.png" alt="Disconnect Vercel? dialog asking you to type your domain, with Cancel and Disconnect Vercel buttons" class="doc-screenshot__img" loading="lazy"></a>
+                        <figcaption>The button unlocks once the domain matches. ThriveStack stops accepting data right away and deletes the log drain in your Vercel account for you.</figcaption>
+                    </figure>
+                    <p>
+                        Your existing crawl data stays in ThriveStack. ThriveStack remains installed in Vercel so you can reconnect in one click.
+                    </p>
+
+                    <h3>Remove ThriveStack from Vercel completely</h3>
+                    <p>
+                        In Vercel, open <strong>Team Settings → Integrations</strong>, find <strong>ThriveStack Citedby</strong> and remove it.
+                        Vercel notifies ThriveStack, which stops accepting data and revokes its access.
+                        You do not need to disconnect in ThriveStack first.
+                    </p>
+                </section>
+
+                <section id="troubleshooting" class="content-section">
+                    <h2>Troubleshooting</h2>
+                    <div class="vc-table-wrap">
+                        <table class="vc-table">
+                            <thead>
+                                <tr><th>What you see</th><th>What it means and what to do</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Log Drains need Vercel Pro or Enterprise</strong></td>
+                                    <td>The Vercel team you picked is on the Hobby plan. Use the <a href="#other-methods">middleware option</a>, which gives the same AI crawler data on any plan (without status codes), or upgrade the team in Vercel.</td>
+                                </tr>
+                                <tr>
+                                    <td>Stuck on <em>Waiting for Vercel's first delivery</em></td>
+                                    <td>This usually clears within a minute of creating the drain. If it does not, in Vercel open <strong>Team Settings → Drains</strong> and confirm the ThriveStack drain is enabled and covers the project you picked. If it shows an error, remove and reconnect.</td>
+                                </tr>
+                                <tr>
+                                    <td>Vercel is delivering, but <em>Waiting for an AI bot visit</em> never completes</td>
+                                    <td>
+                                        Work through these in order:
+                                        <ol>
+                                            <li><strong>Is the project serving your domain?</strong> ThriveStack counts visits only for the brand's domain and its <code>www</code> version, and only from the projects you selected. A project that serves a different domain, or only a <code>.vercel.app</code> address, produces no hits.</li>
+                                            <li><strong>Is it production traffic?</strong> Visits to preview deployments are ignored. Test against your production domain.</li>
+                                            <li><strong>Is it an AI crawler?</strong> Search engines such as Googlebot and Bingbot are deliberately not recorded.</li>
+                                            <li>Real crawlers can take hours, or up to a day, to arrive. Use <strong>Send test bot traffic</strong> to check the connection.</li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><em>Couldn't reach yourdomain.com</em> after Send test bot traffic</td>
+                                    <td>ThriveStack could not fetch your site. Check that the domain loads in a browser, is not behind a login or a firewall rule that blocks bots, and redirects (for example to <code>www</code>) end on a page that loads.</td>
+                                </tr>
+                                <tr>
+                                    <td>The dashboards are locked or empty after verifying</td>
+                                    <td>The <strong>AI Crawl Logs add-on</strong> is not active yet. Finish the last step, <strong>Turn on AI crawl logs</strong>. Data collected since you connected is kept and appears as soon as you activate.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vercel is already connected for this domain</strong></td>
+                                    <td>This brand already has a Vercel connection. Open it with <strong>View the connection</strong>, or disconnect it first to set it up again.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ThriveStack is already connected to that Vercel team</strong></td>
+                                    <td>The team is already installed. Open <strong>Attribution → Setup → Vercel</strong> and pick a project to finish setup.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>That Vercel install link expired or was already used</strong></td>
+                                    <td>The approval was not completed within 2 hours, or the link was used already. Start the connection again from the Vercel card in ThriveStack.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vercel isn't letting ThriveStack in anymore</strong></td>
+                                    <td>ThriveStack was disabled or removed in your Vercel account. Choose <strong>Reconnect Vercel</strong> to approve it again.</td>
+                                </tr>
+                                <tr>
+                                    <td>The confirmation screen shows the wrong brand or team</td>
+                                    <td>Choose <strong>Cancel and remove</strong>. Nothing is connected. Switch to the right brand in ThriveStack, then add ThriveStack from Vercel again, or use <strong>Use a different Vercel team</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td>You did not start the connection, but you were sent to a confirmation screen</td>
+                                    <td>Choose <strong>Cancel and remove</strong>. Only continue if you clicked Add in Vercel yourself.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Still stuck? Contact <a href="mailto:support@thrivestack.ai">support@thrivestack.ai</a> or use <strong>Talk to us</strong> in the connect panel. Include your domain and, if you can, the time you connected.
+                    </p>
+                </section>
+
+                <section id="faq" class="content-section">
+                    <h2>Frequently asked questions</h2>
+                    <h3>Will this slow down my site?</h3>
+                    <p>No. Vercel sends logs to ThriveStack after the request is served, outside the path your visitors take. Your pages are not touched.</p>
+                    <h3>Do I need to change my code or redeploy?</h3>
+                    <p>No. Connect with Vercel adds no files and no environment variables to your projects.</p>
+                    <h3>Does ThriveStack see my visitors?</h3>
+                    <p>
+                        Vercel includes all requests of the selected projects in the drain, so ThriveStack's servers receive them, but visits from regular people are dropped on arrival and never stored.
+                        Only AI crawler visits on your domain are kept. See <a href="#data">What ThriveStack collects</a>.
+                    </p>
+                    <h3>Can I track more than one project?</h3>
+                    <p>Yes. Tick as many projects as you need, or choose All projects. Only requests for your tracked domain are kept.</p>
+                    <h3>Is my Vercel access token stored?</h3>
+                    <p>
+                        With <strong>Connect with Vercel</strong>, Vercel issues ThriveStack a token for the integration. It is stored encrypted and used only to list your projects and to create or delete the log drain.
+                        With the <strong>Automated drain</strong> method, the token you paste is used once and never stored.
+                    </p>
+                    <h3>How do I stop everything?</h3>
+                    <p>Disconnect in ThriveStack, or remove the integration in Vercel. Either way, data stops flowing immediately. See <a href="#manage">Change or disconnect</a>.</p>
+                </section>
+
+                <div class="page-nav">
+                    <a href="../../public/cited-by/introduction.html" class="nav-card prev-card">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="nav-label">Previous</span>
+                        <span class="nav-title">Introduction</span>
+                    </a>
+                    <a href="../../public/cited-by/prompts-bulk-import.html" class="nav-card next-card">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">Prompts · Bulk import</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="ai-crawl-attribution-vercel.html">Last updated: October 26, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#overview" class="toc-link active">What this does</a>
+                    <a href="#before-you-start" class="toc-link">Before you start</a>
+                    <a href="#connect" class="toc-link">Connect from ThriveStack</a>
+                    <a href="#from-vercel" class="toc-link">Start from Vercel instead</a>
+                    <a href="#data" class="toc-link">What ThriveStack collects</a>
+                    <a href="#costs" class="toc-link">Costs</a>
+                    <a href="#insights" class="toc-link">What you will see</a>
+                    <a href="#other-methods" class="toc-link">Other ways to connect</a>
+                    <a href="#manage" class="toc-link">Change or disconnect</a>
+                    <a href="#troubleshooting" class="toc-link">Troubleshooting</a>
+                    <a href="#faq" class="toc-link">FAQ</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+</html>
