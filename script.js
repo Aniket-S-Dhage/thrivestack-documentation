@@ -183,6 +183,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 terms: 'cited by mcp agents claude cursor connect ai visibility'
             },
             {
+                title: 'Connect Vercel (AI Crawl Attribution)',
+                url: 'public/cited-by/ai-crawl-attribution-vercel.html#overview',
+                terms: 'cited by ai crawl attribution connect vercel log drain integration marketplace ai crawlers gptbot claudebot perplexitybot bot traffic one click'
+            },
+            {
+                title: 'Connect Vercel — Steps',
+                url: 'public/cited-by/ai-crawl-attribution-vercel.html#connect',
+                terms: 'connect vercel steps approve projects verify send test bot traffic activate ai crawl logs add-on'
+            },
+            {
+                title: 'Connect Vercel — What ThriveStack collects',
+                url: 'public/cited-by/ai-crawl-attribution-vercel.html#data',
+                terms: 'vercel log drain data collected privacy permissions scopes ai crawler requests token'
+            },
+            {
+                title: 'Connect Vercel — Troubleshooting',
+                url: 'public/cited-by/ai-crawl-attribution-vercel.html#troubleshooting',
+                terms: 'vercel troubleshooting hobby plan pro enterprise no data waiting for ai bot visit domain mismatch disconnect'
+            },
+            {
                 title: 'Cited By Prompts Bulk Import',
                 url: 'public/cited-by/prompts-bulk-import.html#overview',
                 terms: 'cited by prompts bulk import csv upload template column mapping entitlement'
@@ -625,6 +645,13 @@ class CitedBySidebar extends HTMLElement {
             </div>
 
             <div class="sidebar-section">
+                <h3>AI Crawl Attribution</h3>
+                <ul>
+                    <li><a href="${prefix}public/cited-by/ai-crawl-attribution-vercel.html" class="nav-item" data-nav="crawl-vercel"><span>Connect Vercel</span></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
                 <h3>MCP</h3>
                 <ul>
                     <li><a href="${prefix}public/mcp/introduction.html" class="nav-item" data-nav="mcp-intro"><span>Introduction</span></a></li>
@@ -652,6 +679,7 @@ class CitedBySidebar extends HTMLElement {
         let active = '';
         if (inCitedBy && file === 'introduction.html') active = 'cited-intro';
         else if (inCitedBy && file === 'prompts-bulk-import.html') active = 'prompts-bulk';
+        else if (inCitedBy && file === 'ai-crawl-attribution-vercel.html') active = 'crawl-vercel';
         else if (inCitedBy && file === 'mcp.html') active = 'mcp-intro';
         else if (inMcp && file === 'introduction.html') active = 'mcp-intro';
         else if (inMcp && file === 'setup.html') active = 'mcp-setup';
