@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 title: 'Connect WordPress — Troubleshooting',
                 url: 'public/cited-by/ai-crawl-attribution-wordpress.html#troubleshooting',
-                terms: 'wordpress troubleshooting plugin fallback no readable access log connection code waiting for the plugin wp-cron send now disconnect application password'
+                terms: 'wordpress troubleshooting plugin fallback no readable access log connection code get a new code waiting for your plugin to connect listening first ai crawler visit send a test visit wp-cron send now disconnect application password'
             },
             {
                 title: 'Cited By Prompts Bulk Import',
