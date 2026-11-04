@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MCP Changelog - ThriveStack Documentation">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>MCP Changelog - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../../index.html" class="logo">
+                <img src="../../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../../index.html">Get Started</a>
+                <a href="../../setup-overview.html">Setup (Unify)</a>
+                <a href="../../analyze-signals.html">Analyze Signals</a>
+                <a href="../../take-action.html">Take Action</a>
+                <a href="../../api-reference.html">API Reference</a>
+                <a href="../../public/mcp/introduction.html" class="active">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <cited-by-sidebar base-path="../../"></cited-by-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../../public/cited-by/introduction.html">Cited By</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../../public/mcp/introduction.html">MCP</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>Changelog</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Cited By · MCP</span>
+                    <h1 class="doc-page-title">Changelog</h1>
+                    <p class="doc-page-description">
+                        What was added to or changed in the ThriveStack MCP Server, newest first.</p>
+                </header>
+
+                                <section id="overview" class="content-section">
+                    <div class="cl-stats">
+                        <div class="cl-stat"><b>23</b><span>Tools at v1</span></div>
+                        <div class="cl-stat"><b>160</b><span>Added since v1</span></div>
+                        <div class="cl-stat"><b>183</b><span>Tools now</span></div>
+                        <div class="cl-stat"><b>0</b><span>Removed</span></div>
+                    </div>
+                    <p>New tools are available on the ThriveStack MCP endpoint as soon as they are released. The directory listings (OpenAI, Claude and Cursor) pick up new tools after each platform reviews them, so a listing can show fewer tools than the endpoint.</p>
+                    <p>Tool names link to the <a href="tools.html">Tools Reference</a> when the tool is documented there. All new tools are read-only except <code>create_account_segment</code>, which creates a segment.</p>
+                </section>
+
+                <div class="cl-timeline">
+                <article class="cl-entry" id="nov-3">
+                    <div class="cl-meta"><time>Nov 3, 2026</time><span class="cl-count">Improvements</span></div>
+                    <div class="cl-main">
+                        <h2>Clearer results from existing tools</h2>
+                        <p class="cl-lead">No new tools. These changes make results easier to read and to trust.</p>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-changed">Changed</div>
+                        <ul class="cl-list">
+                            <li><code>get_traffic_attribution_overview</code>: the response now carries <code>rows_note</code>, which names any days that are in the totals but not in the rows. A partial first bucket is counted in totals only.</li>
+                            <li><a href="tools.html#tool-get-page-traffic"><code>get_page_traffic</code></a>, <code>get_ai_crawl_summary</code>, <code>get_ai_crawl_urls</code> and <code>get_ai_revenue_pages</code>: descriptions now say what is counted and what is left out. For example, page-level totals can sit a few percent below the channel-level overview, and the daily crawl chart covers only the five busiest bots.</li>
+                            <li><code>get_cited_domains</code>, <a href="tools.html#tool-get-url-report"><code>get_url_report</code></a>, <a href="tools.html#tool-get-owned-content-recommendations"><code>get_owned_content_recommendations</code></a> and <a href="tools.html#tool-get-earned-content-recommendations"><code>get_earned_content_recommendations</code></a>: a value outside an allowed list, such as an unknown sort, status or priority, now returns an error that lists the accepted values. Before, it was ignored or returned an empty list.</li>
+                            <li><a href="tools.html#tool-get-technical-recommendations"><code>get_technical_recommendations</code></a>: returns 2 pages by default (was 5), and leaves out the fixed explanation text unless <code>include_explanations</code> is true.</li>
+                            <li><a href="tools.html#tool-get-engine-visibility-trend"><code>get_engine_visibility_trend</code></a>, <a href="tools.html#tool-get-competitor-visibility"><code>get_competitor_visibility</code></a> and <code>get_prompt_visibility_trend</code>: dates are returned as <code>YYYY-MM-DD</code>, and trend granularity as <code>day</code>, <code>week</code> or <code>month</code>.</li>
+                            <li><code>get_prompt_top_brands</code> and <code>get_prompt_metrics</code>: descriptions now say which answers share of voice is measured across.</li>
+                        </ul>
+                    </div>
+                    </div>
+                </article>
+                <article class="cl-entry" id="nov-2">
+                    <div class="cl-meta"><time>Nov 2, 2026</time><span class="cl-count">2 new tools</span></div>
+                    <div class="cl-main">
+                        <h2>Page traffic and search performance</h2>
+                        <p class="cl-lead">Two tools for a page-by-page view of a site: human visits from Google Analytics and clicks from Search Console.</p>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; 2</div>
+                        <ul class="cl-tools">
+                            <li><a class="cl-name" href="tools.html#tool-get-page-traffic"><code>get_page_traffic</code></a><span class="cl-desc">Human visits per page, split into organic, direct, AI referral and other, with key events and the first and last day seen.</span></li>
+                            <li><a class="cl-name" href="tools.html#tool-get-search-performance"><code>get_search_performance</code></a><span class="cl-desc">Search Console clicks, impressions, click-through rate and position per page.</span></li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-changed">Changed</div>
+                        <ul class="cl-list">
+                            <li><a href="tools.html#tool-list-urls"><code>list_urls</code></a>: now lists the URLs known to the brand's Search Console sync, and adds AI-citation fields (<code>cited</code>, <code>citedPromptCount</code>, <code>citedBy</code>) and a <code>cited</code> filter. It no longer offers <code>url</code> as a sort column.</li>
+                            <li><a href="tools.html#tool-get-attribution-health"><code>get_attribution_health</code></a>: new <code>coverage</code> block that says what each source can tell you. Google Analytics is the only source of human visits; Cloudflare, Vercel and WordPress report AI bot requests only.</li>
+                            <li>AI crawler tools: descriptions now say that hits are requests by AI bots, not human visits.</li>
+                        </ul>
+                    </div>
+                    </div>
+                </article>
+                <article class="cl-entry" id="oct-30">
+                    <div class="cl-meta"><time>Oct 30, 2026</time><span class="cl-count">2 new tools</span></div>
+                    <div class="cl-main">
+                        <h2>AI Visibility topics and run days</h2>
+                        <p class="cl-lead">Two reads for prompt topics and probe history, plus accuracy fixes.</p>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; 2</div>
+                        <ul class="cl-tools">
+                            <li><span class="cl-name"><code>list_domain_topics</code></span><span class="cl-desc">A brand's prompt topics, selected and suggested.</span></li>
+                            <li><span class="cl-name"><code>get_source_run_days</code></span><span class="cl-desc">The days a brand's prompts were run and their cited sources recorded.</span></li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-changed">Changed</div>
+                        <ul class="cl-list">
+                            <li><code>get_probe_run</code>: no longer returns internal cost and credit fields.</li>
+                            <li><a href="tools.html#tool-get-url-report"><code>get_url_report</code></a> and <code>get_cited_domains</code>: each metric (<code>retrievals</code>, <code>retrieved_pct</code>, <code>retrieval_rate</code>, <code>citation_rate</code>) is now defined, so a rate such as 1.82 is not read as a percentage.</li>
+                            <li><a href="tools.html#tool-get-competitor-visibility"><code>get_competitor_visibility</code></a>: share of voice is now worked out from each brand's mentions, in line with the Competitors page. Each brand reports its <code>mentions</code> and the basis used.</li>
+                        </ul>
+                    </div>
+                    </div>
+                </article>
+                <article class="cl-entry" id="oct-29">
+                    <div class="cl-meta"><time>Oct 29, 2026</time><span class="cl-count">93 new tools</span></div>
+                    <div class="cl-main">
+                        <h2>Attribution, AI crawl and revenue, and tab tools</h2>
+                        <p class="cl-lead">The largest release since v1: traffic attribution, AI crawler and AI revenue reports, more AI Visibility reads, and 76 tools for the Revenue Intelligence, Marketing and Accounts tabs.</p>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; Traffic attribution &middot; 5</div>
+                        <ul class="cl-tools">
+                            <li><span class="cl-name"><code>get_traffic_attribution_overview</code></span><span class="cl-desc">Visits by channel over time, with window totals and the previous window.</span></li>
+                            <li><span class="cl-name"><code>get_traffic_attribution_sources</code></span><span class="cl-desc">Connection state of each data source behind Traffic Attribution.</span></li>
+                            <li><span class="cl-name"><code>get_agent_visit_addon</code></span><span class="cl-desc">Whether the AI crawler add-on is on, and how much of it is used.</span></li>
+                            <li><span class="cl-name"><code>get_agent_visit_recommendations</code></span><span class="cl-desc">Crawl-health fixes found from AI crawler visits.</span></li>
+                            <li><a class="cl-name" href="tools.html#tool-get-attribution-health"><code>get_attribution_health</code></a><span class="cl-desc">One-call health check of the data behind the attribution dashboards.</span></li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; AI crawl and AI revenue &middot; 5</div>
+                        <ul class="cl-tools">
+                            <li><span class="cl-name"><code>get_ai_crawl_summary</code></span><span class="cl-desc">AI crawler visits: hits, active bots, failure rate and top pages.</span></li>
+                            <li><span class="cl-name"><code>get_ai_crawl_urls</code></span><span class="cl-desc">The pages AI crawlers fetch, per URL.</span></li>
+                            <li><span class="cl-name"><code>get_ai_revenue_summary</code></span><span class="cl-desc">Headline AI revenue numbers over a window.</span></li>
+                            <li><span class="cl-name"><code>get_ai_revenue_trend</code></span><span class="cl-desc">AI sessions, conversions or revenue over time.</span></li>
+                            <li><span class="cl-name"><code>get_ai_revenue_pages</code></span><span class="cl-desc">Landing pages that receive AI-referred traffic.</span></li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; AI Visibility &middot; 7</div>
+                        <ul class="cl-tools">
+                            <li><span class="cl-name"><code>get_ai_visibility_setup_status</code></span><span class="cl-desc">Whether setup is finished and whether the trial has expired.</span></li>
+                            <li><span class="cl-name"><code>get_competitor_metrics</code></span><span class="cl-desc">Latest visibility, share of voice and average rank for competitor brands.</span></li>
+                            <li><span class="cl-name"><code>get_prompt_metrics</code></span><span class="cl-desc">Visibility, rank and share of voice per tracked question and topic over a date window.</span></li>
+                            <li><span class="cl-name"><code>get_cited_domains</code></span><span class="cl-desc">Citation metrics for every website AI answers drew on.</span></li>
+                            <li><span class="cl-name"><code>get_probe_run</code></span><span class="cl-desc">Status and progress of one AI-visibility probe run.</span></li>
+                            <li><span class="cl-name"><code>get_probe_result</code></span><span class="cl-desc">One AI engine's full answer to one tracked question.</span></li>
+                            <li><span class="cl-name"><code>get_probe_schedule</code></span><span class="cl-desc">Probe and site-audit schedules: cadence, last and next run.</span></li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; Revenue, Marketing and Accounts &middot; 76</div>
+                        <p class="cl-sub">Read-only views that match those tabs in the ThriveStack app.</p>
+<details class="cl-more"><summary>Revenue Intelligence &middot; 25 tools</summary><div class="cl-chips"><span class="cl-name"><code>get_account_payment_calendar</code></span><span class="cl-name"><code>get_account_revenue</code></span><span class="cl-name"><code>get_acv_month_drilldown</code></span><span class="cl-name"><code>get_acv_summary</code></span><span class="cl-name"><code>get_customer_lifetime_value</code></span><span class="cl-name"><code>get_missed_revenue</code></span><span class="cl-name"><code>get_mrr_movements</code></span><span class="cl-name"><code>get_net_revenue</code></span><span class="cl-name"><code>get_plan_mrr_summary</code></span><span class="cl-name"><code>get_plan_mrr_trend</code></span><span class="cl-name"><code>get_recognized_revenue_trend</code></span><span class="cl-name"><code>get_revenue_component_drilldown</code></span><span class="cl-name"><code>get_revenue_goal_progress</code></span><span class="cl-name"><code>get_revenue_goals</code></span><span class="cl-name"><code>get_revenue_kpis</code></span><span class="cl-name"><code>get_revenue_sync_status</code></span><span class="cl-name"><code>list_account_invoices</code></span><span class="cl-name"><code>list_account_subscriptions</code></span><span class="cl-name"><code>list_account_transactions</code></span><span class="cl-name"><code>list_acv_contracts</code></span><span class="cl-name"><code>list_missed_payment_customers</code></span><span class="cl-name"><code>list_monthly_transactions</code></span><span class="cl-name"><code>list_mrr_movement_customers</code></span><span class="cl-name"><code>list_revenue_account_mappings</code></span><span class="cl-name"><code>list_revenue_customer_mappings</code></span></div></details>
+<details class="cl-more"><summary>Marketing &middot; 28 tools</summary><div class="cl-chips"><span class="cl-name"><code>get_acquisition_timing</code></span><span class="cl-name"><code>get_ads_performance</code></span><span class="cl-name"><code>get_ads_traffic</code></span><span class="cl-name"><code>get_campaign_performance</code></span><span class="cl-name"><code>get_campaign_timeline</code></span><span class="cl-name"><code>get_channel_performance</code></span><span class="cl-name"><code>get_content_breakdown</code></span><span class="cl-name"><code>get_content_device_breakdown</code></span><span class="cl-name"><code>get_content_performance</code></span><span class="cl-name"><code>get_content_trend</code></span><span class="cl-name"><code>get_goal_trend</code></span><span class="cl-name"><code>get_lead_quality</code></span><span class="cl-name"><code>get_marketing_setup_status</code></span><span class="cl-name"><code>get_multi_touch_attribution</code></span><span class="cl-name"><code>get_new_signup_counts</code></span><span class="cl-name"><code>get_signup_journey_summaries</code></span><span class="cl-name"><code>get_source_performance</code></span><span class="cl-name"><code>get_top_pages</code></span><span class="cl-name"><code>get_traffic_by_utm</code></span><span class="cl-name"><code>get_user_journey_timeline</code></span><span class="cl-name"><code>get_visitor_geo</code></span><span class="cl-name"><code>get_website_traffic</code></span><span class="cl-name"><code>list_ads_traffic_entities</code></span><span class="cl-name"><code>list_goals</code></span><span class="cl-name"><code>list_leads_by_quality</code></span><span class="cl-name"><code>list_new_signups</code></span><span class="cl-name"><code>list_page_visits</code></span><span class="cl-name"><code>list_scored_leads</code></span></div></details>
+<details class="cl-more"><summary>Accounts &middot; 23 tools</summary><div class="cl-chips"><span class="cl-name"><code>get_account_acquisition</code></span><span class="cl-name"><code>get_account_activation</code></span><span class="cl-name"><code>get_account_activity</code></span><span class="cl-name"><code>get_account_api_usage</code></span><span class="cl-name"><code>get_account_data_issues</code></span><span class="cl-name"><code>get_account_engagement_trend</code></span><span class="cl-name"><code>get_account_expansion</code></span><span class="cl-name"><code>get_account_feature_usage</code></span><span class="cl-name"><code>get_account_hubspot_data</code></span><span class="cl-name"><code>get_account_list_fields</code></span><span class="cl-name"><code>get_account_overview</code></span><span class="cl-name"><code>get_account_user_engagement</code></span><span class="cl-name"><code>get_account_users</code></span><span class="cl-name"><code>get_crm_integrations</code></span><span class="cl-name"><code>get_hubspot_properties</code></span><span class="cl-name"><code>get_merged_accounts</code></span><span class="cl-name"><code>get_user_activity</code></span><span class="cl-name"><code>get_user_details</code></span><span class="cl-name"><code>list_account_exports</code></span><span class="cl-name"><code>list_account_segments</code></span><span class="cl-name"><code>list_at_risk_accounts</code></span><span class="cl-name"><code>list_crm_accounts</code></span><span class="cl-name"><code>list_users</code></span></div></details>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-changed">Changed</div>
+                        <ul class="cl-list">
+                            <li><a href="tools.html#tool-get-url-report"><code>get_url_report</code></a>: adds a date window, sorting, and filters for domain or URL type, brand and source class.</li>
+                            <li><a href="tools.html#tool-get-competitor-visibility"><code>get_competitor_visibility</code></a>: adds <code>start_date</code> and <code>end_date</code>.</li>
+                            <li><code>get_traffic_attribution_sources</code>: rows can carry an <code>issue</code> (<code>error</code>, <code>quiet</code>, <code>stale</code> or <code>disconnected</code>) that explains why a source needs attention.</li>
+                        </ul>
+                    </div>
+                    </div>
+                </article>
+                <article class="cl-entry" id="oct-27">
+                    <div class="cl-meta"><time>Oct 27, 2026</time><span class="cl-count">10 new tools</span></div>
+                    <div class="cl-main">
+                        <h2>Prompt, content audit and brand kit tools</h2>
+                        <p class="cl-lead">Prompt-level detail, content audit status and the saved brand kit, plus paging on list tools.</p>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; Prompts &middot; 6</div>
+                        <ul class="cl-tools">
+                            <li><span class="cl-name"><code>get_domain_prompt</code></span><span class="cl-desc">Detail of one tracked prompt.</span></li>
+                            <li><span class="cl-name"><code>get_prompt_chats</code></span><span class="cl-desc">The AI answers recorded for one prompt.</span></li>
+                            <li><span class="cl-name"><code>get_prompt_chat</code></span><span class="cl-desc">One recorded AI answer, with the brands it names and its citations.</span></li>
+                            <li><span class="cl-name"><code>get_prompt_sources</code></span><span class="cl-desc">The sources AI answers used for one prompt.</span></li>
+                            <li><span class="cl-name"><code>get_prompt_top_brands</code></span><span class="cl-desc">The brands AI answers name for one prompt, ranked.</span></li>
+                            <li><span class="cl-name"><code>get_prompt_visibility_trend</code></span><span class="cl-desc">One prompt's visibility over time.</span></li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; Content audit and brand &middot; 4</div>
+                        <ul class="cl-tools">
+                            <li><span class="cl-name"><code>get_content_audit_summary</code></span><span class="cl-desc">Content audit status and page-audit limits.</span></li>
+                            <li><span class="cl-name"><code>list_content_audit_pages</code></span><span class="cl-desc">The pages tracked for the content audit.</span></li>
+                            <li><span class="cl-name"><code>list_content_audit_sitemap_urls</code></span><span class="cl-desc">Sitemap URLs that can be added to the audit.</span></li>
+                            <li><span class="cl-name"><code>get_brand_kit</code></span><span class="cl-desc">The saved brand voice, rules and naming.</span></li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-changed">Changed</div>
+                        <ul class="cl-list">
+                            <li><a href="tools.html#tool-get-domain-prompts"><code>get_domain_prompts</code></a>: adds status and topic filters and paging.</li>
+                            <li><a href="tools.html#tool-get-technical-recommendations"><code>get_technical_recommendations</code></a>: adds a workflow filter and paging.</li>
+                            <li><a href="tools.html#tool-get-domain-report"><code>get_domain_report</code></a>: adds a topic filter and paging.</li>
+                            <li><a href="tools.html#tool-get-prompt-research"><code>get_prompt_research</code></a> and <a href="tools.html#tool-list-prompt-research"><code>list_prompt_research</code></a>: add paging.</li>
+                            <li><a href="tools.html#tool-get-owned-content-recommendations"><code>get_owned_content_recommendations</code></a> and <a href="tools.html#tool-get-earned-content-recommendations"><code>get_earned_content_recommendations</code></a>: descriptions now cover status and assignees.</li>
+                        </ul>
+                    </div>
+                    </div>
+                </article>
+                <article class="cl-entry" id="oct-21">
+                    <div class="cl-meta"><time>Oct 21, 2026</time><span class="cl-count">53 new tools</span></div>
+                    <div class="cl-main">
+                        <h2>Product analytics and onboarding tools</h2>
+                        <p class="cl-lead">Tools for product analytics, accounts, activation, retention, feature usage, leads and ThriveStack setup.</p>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Added &middot; 53</div>
+                        <details class="cl-more"><summary>Show all 53 tools</summary><div class="cl-chips"><span class="cl-name"><code>compare_segments</code></span><span class="cl-name"><code>create_account_segment</code></span><span class="cl-name"><code>getAbuseDetection</code></span><span class="cl-name"><code>getAcqConversion</code></span><span class="cl-name"><code>getAcquisitionAccounts</code></span><span class="cl-name"><code>getActivationRate</code></span><span class="cl-name"><code>getAdoptionRate</code></span><span class="cl-name"><code>getAvgTimeFromAcqToConv</code></span><span class="cl-name"><code>getAvgTimeFromActToConv</code></span><span class="cl-name"><code>getAvgTimeToFirstValue</code></span><span class="cl-name"><code>getDailyActiveUsers</code></span><span class="cl-name"><code>getGrossMrrAdded</code></span><span class="cl-name"><code>getHighStickiness</code></span><span class="cl-name"><code>getLowStickiness</code></span><span class="cl-name"><code>getMediumStickiness</code></span><span class="cl-name"><code>getMonthlyActiveAccounts</code></span><span class="cl-name"><code>getMonthlyActiveUsers</code></span><span class="cl-name"><code>getNetNewMrr</code></span><span class="cl-name"><code>getNewPayers</code></span><span class="cl-name"><code>getPageViews</code></span><span class="cl-name"><code>getSignup</code></span><span class="cl-name"><code>getTimeToAcquisition</code></span><span class="cl-name"><code>getTotalAccounts</code></span><span class="cl-name"><code>getTotalAccountsActivated</code></span><span class="cl-name"><code>getTotalAcquisitionAccounts</code></span><span class="cl-name"><code>getTotalCompanyMrr</code></span><span class="cl-name"><code>getTouchpointsToAcquisition</code></span><span class="cl-name"><code>getUniqueVisitors</code></span><span class="cl-name"><code>getUsersActivatedThisMonth</code></span><span class="cl-name"><code>getVisitor</code></span><span class="cl-name"><code>getWeeklyActiveUsers</code></span><span class="cl-name"><code>get_account_engagement</code></span><span class="cl-name"><code>get_account_engagement_profile</code></span><span class="cl-name"><code>get_account_pre_signup_journey</code></span><span class="cl-name"><code>get_activation_summary</code></span><span class="cl-name"><code>get_activation_trend</code></span><span class="cl-name"><code>get_campaign_revenue_ranking</code></span><span class="cl-name"><code>get_channel_revenue_attribution</code></span><span class="cl-name"><code>get_churn_expansion_signals</code></span><span class="cl-name"><code>get_company_name_from_contacts</code></span><span class="cl-name"><code>get_conversion_analytics</code></span><span class="cl-name"><code>get_event_count</code></span><span class="cl-name"><code>get_feature_adoption</code></span><span class="cl-name"><code>get_feature_conversion_drivers</code></span><span class="cl-name"><code>get_feature_usage_trend</code></span><span class="cl-name"><code>get_mau_mtu_count</code></span><span class="cl-name"><code>get_monthly_metrics_table</code></span><span class="cl-name"><code>get_plg_leads</code></span><span class="cl-name"><code>get_retention_data</code></span><span class="cl-name"><code>get_setup_status</code></span><span class="cl-name"><code>get_source_revenue_ranking</code></span><span class="cl-name"><code>list_accounts</code></span><span class="cl-name"><code>start_thrivestack_setup</code></span></div></details>
+                    </div>
+                    </div>
+                </article>
+                <article class="cl-entry" id="v1">
+                    <div class="cl-meta"><time>Oct 2026</time><span class="cl-count">23 tools</span></div>
+                    <div class="cl-main">
+                        <h2>v1: first release</h2>
+                        <p class="cl-lead">The 23 tools the ThriveStack MCP Server started with.</p>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Brands &amp; Account</div>
+                        <div class="cl-chips"><a class="cl-name" href="tools.html#tool-get-accessible-brands"><code>get_accessible_brands</code></a><a class="cl-name" href="tools.html#tool-get-brand-information"><code>get_brand_information</code></a></div>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Visibility &amp; Citations</div>
+                        <div class="cl-chips"><a class="cl-name" href="tools.html#tool-get-domain-report"><code>get_domain_report</code></a><a class="cl-name" href="tools.html#tool-get-domain-prompts"><code>get_domain_prompts</code></a><a class="cl-name" href="tools.html#tool-get-citation-probe-data"><code>get_citation_probe_data</code></a><a class="cl-name" href="tools.html#tool-get-competitor-visibility"><code>get_competitor_visibility</code></a><a class="cl-name" href="tools.html#tool-get-engine-visibility-trend"><code>get_engine_visibility_trend</code></a></div>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Sources &amp; Pages</div>
+                        <div class="cl-chips"><a class="cl-name" href="tools.html#tool-get-url-report"><code>get_url_report</code></a><a class="cl-name" href="tools.html#tool-get-source-mix-summary"><code>get_source_mix_summary</code></a><a class="cl-name" href="tools.html#tool-get-source-trend"><code>get_source_trend</code></a><a class="cl-name" href="tools.html#tool-get-competitor-source-mix"><code>get_competitor_source_mix</code></a></div>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Site &amp; Crawl Health</div>
+                        <div class="cl-chips"><a class="cl-name" href="tools.html#tool-list-urls"><code>list_urls</code></a><a class="cl-name" href="tools.html#tool-get-url-details"><code>get_url_details</code></a><a class="cl-name" href="tools.html#tool-get-url-funnel"><code>get_url_funnel</code></a><a class="cl-name" href="tools.html#tool-get-search-console-status"><code>get_search_console_status</code></a><a class="cl-name" href="tools.html#tool-get-technical-recommendations"><code>get_technical_recommendations</code></a></div>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Prompt Research</div>
+                        <div class="cl-chips"><a class="cl-name" href="tools.html#tool-list-prompt-research"><code>list_prompt_research</code></a><a class="cl-name" href="tools.html#tool-get-prompt-research"><code>get_prompt_research</code></a></div>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Recommendations</div>
+                        <div class="cl-chips"><a class="cl-name" href="tools.html#tool-get-owned-content-recommendations"><code>get_owned_content_recommendations</code></a><a class="cl-name" href="tools.html#tool-get-earned-content-recommendations"><code>get_earned_content_recommendations</code></a></div>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Drafting &amp; Saving</div>
+                        <div class="cl-chips"><a class="cl-name" href="tools.html#tool-generate-content-outline"><code>generate_content_outline</code></a><a class="cl-name" href="tools.html#tool-save-content-recommendations"><code>save_content_recommendations</code></a></div>
+                    </div>
+                    <div class="cl-group">
+                        <div class="cl-badge cl-added">Diagnostics</div>
+                        <div class="cl-chips"><a class="cl-name" href="tools.html#tool-check-connection"><code>check_connection</code></a></div>
+                    </div>
+                    </div>
+                </article>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="changelog.html">Last updated: November 4, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#overview" class="toc-link active">Overview</a>
+                    <a href="#nov-3" class="toc-link">Nov 3, 2026</a>
+                    <a href="#nov-2" class="toc-link">Nov 2, 2026</a>
+                    <a href="#oct-30" class="toc-link">Oct 30, 2026</a>
+                    <a href="#oct-29" class="toc-link">Oct 29, 2026</a>
+                    <a href="#oct-27" class="toc-link">Oct 27, 2026</a>
+                    <a href="#oct-21" class="toc-link">Oct 21, 2026</a>
+                    <a href="#v1" class="toc-link">v1</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <style>
+        .cl-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0 0 1.5rem; }
+        .cl-stat { border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 12px; padding: 16px 18px; }
+        .cl-stat b { display: block; font-size: 1.9rem; line-height: 1.1; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em; }
+        .cl-stat span { display: block; margin-top: 4px; font-size: 0.82rem; color: var(--text-muted); }
+        .cl-timeline { margin-top: 2.25rem; }
+        .cl-entry { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 0 28px; padding-bottom: 2.75rem; }
+        .cl-meta { position: sticky; top: 84px; align-self: start; text-align: right; }
+        .cl-meta time { display: block; font-weight: 600; font-size: 0.95rem; color: var(--text-primary); }
+        .cl-count { display: inline-block; margin-top: 6px; font-size: 0.74rem; font-weight: 600; color: var(--text-muted); background: var(--bg-sidebar); border: 1px solid var(--border-color); border-radius: 999px; padding: 2px 10px; }
+        .cl-main { position: relative; padding-left: 30px; border-left: 2px solid var(--border-color); min-width: 0; }
+        .cl-main::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--brand-primary); box-shadow: 0 0 0 4px var(--bg-main); }
+        .cl-main h2 { margin: 0 0 6px; font-size: 1.35rem; line-height: 1.3; border: 0; padding: 0; }
+        .cl-lead { margin: 0 0 1.25rem; color: var(--text-secondary); }
+        .cl-group { margin: 0 0 1.25rem; }
+        .cl-badge { display: inline-block; margin-bottom: 10px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; }
+        .cl-added { color: var(--color-green); background: var(--bg-green-light); }
+        .cl-changed { color: var(--brand-primary); background: rgba(59, 130, 246, 0.14); }
+        .cl-tools, .cl-list { list-style: none; margin: 0; padding: 0; }
+        .cl-tools { border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: var(--card-bg); }
+        .cl-tools li { display: grid; grid-template-columns: minmax(240px, 34%) 1fr; gap: 16px; align-items: baseline; padding: 11px 16px; border-bottom: 1px solid var(--table-row-border); }
+        .cl-tools li:last-child { border-bottom: 0; }
+        .cl-desc { color: var(--text-secondary); font-size: 0.9rem; }
+        .cl-list li { position: relative; padding: 0 0 10px 18px; color: var(--text-secondary); font-size: 0.93rem; line-height: 1.55; }
+        .cl-list li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
+        .cl-name { text-decoration: none; }
+        .cl-name code, .cl-list code, .cl-lead code { font-size: 0.82rem; }
+        a.cl-name code { color: var(--brand-primary); }
+        .cl-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .cl-chips .cl-name { border: 1px solid var(--border-color); background: var(--bg-sidebar); border-radius: 8px; padding: 3px 9px; }
+        .cl-sub { margin: 0 0 10px; color: var(--text-muted); font-size: 0.9rem; }
+        .cl-more { border: 1px solid var(--border-color); border-radius: 12px; background: var(--card-bg); margin-bottom: 10px; }
+        .cl-more summary { cursor: pointer; padding: 11px 16px; font-weight: 600; font-size: 0.92rem; color: var(--text-primary); }
+        .cl-more[open] summary { border-bottom: 1px solid var(--table-row-border); }
+        .cl-more .cl-chips { padding: 14px 16px; }
+        @media (max-width: 900px) {
+            .cl-stats { grid-template-columns: repeat(2, 1fr); }
+            .cl-entry { grid-template-columns: 1fr; }
+            .cl-meta { position: static; text-align: left; margin: 0 0 10px 32px; display: flex; gap: 10px; align-items: center; }
+            .cl-count { margin-top: 0; }
+            .cl-tools li { grid-template-columns: 1fr; gap: 4px; }
+        }
+    </style>
+
+    <script src="../../script.js"></script>
+</body>
+</html>
