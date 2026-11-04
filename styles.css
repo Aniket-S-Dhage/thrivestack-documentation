@@ -1647,6 +1647,12 @@ a:hover { color: var(--brand-primary-hover); }
     position: sticky;
     top: 84px;
 }
+/* Long "On this page" lists scroll inside the sidebar instead of running off the screen */
+.right-sidebar .sticky-top {
+    max-height: calc(100vh - 104px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
 .toc-nav {
     display: flex;
     flex-direction: column;

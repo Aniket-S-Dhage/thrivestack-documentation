@@ -84,12 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 title: 'Analyze Signals',
-                url: 'analyze-signals.html#overview',
+                url: 'analyze-signals.html#identify-high-intent-signals',
                 terms: 'analyze signals identify high-intent signals account intelligence bow-tie revenue model analyze revenue & churn churn prediction revenue analytics nrr waterfall cac payback ltv/cac expansion'
             },
             {
                 title: 'Take Action',
-                url: 'take-action.html#overview',
+                url: 'take-action.html#automate-workflow-responses',
                 terms: 'take action automate workflow responses act on signals automated workflow engine signal detected action triggered slack alert account owner'
             },
             {
@@ -129,12 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 title: 'Events Telemetry',
-                url: 'saas-growth-events.html#saas-growth-events',
+                url: 'public/product/setup/saas-growth-events.html#saas-growth-events',
                 terms: 'journey to event bow tie phases telemetry mapping'
             },
             {
                 title: 'Vibe Analytics (AI)',
-                url: 'vibe-analytics.html#vibe-analytics',
+                url: 'public/product/setup/vibe-analytics.html#vibe-analytics',
                 terms: 'vibe analytics ai telemetry spec identify group track checklist'
             },
             {
@@ -144,22 +144,22 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 title: 'MCP Setup',
-                url: 'public/mcp/setup.html#remote-server',
+                url: 'public/mcp/setup.html#server-url',
                 terms: 'thrivestack mcp setup remote server implementation claude desktop claude code cursor windsurf gemini cli lovable troubleshooting technical specifications x-api-key oauth'
             },
             {
                 title: 'MCP Use Cases',
-                url: 'public/mcp/use-cases.html#use-cases',
+                url: 'public/mcp/use-cases.html#getting-started',
                 terms: 'thrivestack mcp use cases correlated journeys marketing product revenue drill down'
             },
             {
                 title: 'MCP Prompts',
-                url: 'public/mcp/prompts.html#prompts',
+                url: 'public/mcp/prompts.html#prompts-intro',
                 terms: 'thrivestack mcp example prompts tool oriented reference get_mau_mtu_count get_event_count list_accounts get_plg_leads get_setup_status getVisitor getPageViews getSignup acquisition conversion mrr stickiness dau wau mau activation churn expansion'
             },
             {
                 title: 'MCP Tools',
-                url: 'public/mcp/tools.html#tools-core-analytics',
+                url: 'public/mcp/tools.html#overview',
                 terms: 'thrivestack mcp tools catalog reference core analytics accounts gtm setup traffic acquisition activation revenue monetization usage engagement'
             },
             {
@@ -436,35 +436,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ScrollSpy for Table of Contents
-    const sections = document.querySelectorAll('.content-section');
-    const navLinks = document.querySelectorAll('.toc-link');
+    // ScrollSpy for "On this page": follow whatever element each link points to (a section or a
+    // heading inside one), so the highlight moves even when many headings share one section.
+    const tocItems = Array.from(document.querySelectorAll('.toc-link')).map(link => {
+        let id = (link.getAttribute('href') || '').slice(1);
+        try { id = decodeURIComponent(id); } catch (e) { /* keep the raw id */ }
+        return { link, el: id ? document.getElementById(id) : null };
+    }).filter(item => item.el);
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -60% 0px',
-        threshold: 0.1
-    };
+    if (tocItems.length) {
+        const TOC_OFFSET = 120; // a heading counts as current once it passes this far below the top
+        let tocActive = null;
+        let tocTicking = false;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                // Remove active from all
-                navLinks.forEach(link => link.classList.remove('active'));
-                
-                // Add active to current
-                const activeLink = document.querySelector(`.toc-link[href="#${id}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
+        const updateToc = () => {
+            tocTicking = false;
+            const tops = tocItems.map(item => item.el.getBoundingClientRect().top);
+            let current = 0;
+            for (let i = 0; i < tocItems.length; i++) {
+                if (tops[i] <= TOC_OFFSET && (tops[current] > TOC_OFFSET || tops[i] >= tops[current])) current = i;
+            }
+            // Short last sections never reach the offset: at the very bottom, the last visible one wins.
+            const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+            if (atBottom) {
+                for (let i = tocItems.length - 1; i >= 0; i--) {
+                    if (tops[i] < window.innerHeight) { current = i; break; }
                 }
             }
-        });
-    }, observerOptions);
+            const next = tocItems[current].link;
+            if (next === tocActive) return;
+            tocActive = next;
+            tocItems.forEach(item => item.link.classList.toggle('active', item.link === next));
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+            // Long lists scroll inside the sidebar; keep the current link in view there.
+            const box = next.closest('.sticky-top');
+            if (box && box.scrollHeight > box.clientHeight) {
+                const linkRect = next.getBoundingClientRect();
+                const boxRect = box.getBoundingClientRect();
+                if (linkRect.top < boxRect.top || linkRect.bottom > boxRect.bottom) {
+                    box.scrollTop += (linkRect.top - boxRect.top) - box.clientHeight / 2;
+                }
+            }
+        };
+        // A short timer rather than requestAnimationFrame: frames pause in background tabs.
+        const requestToc = () => {
+            if (!tocTicking) { tocTicking = true; window.setTimeout(updateToc, 40); }
+        };
+        window.addEventListener('scroll', requestToc, { passive: true });
+        window.addEventListener('resize', requestToc);
+        window.addEventListener('load', requestToc);
+        updateToc();
+    }
 
     // Smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

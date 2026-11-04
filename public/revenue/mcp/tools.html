@@ -216,8 +216,8 @@
                             <tr><td><code>month</code></td><td>string</td><td>Yes</td><td>Month as "Mon YYYY", e.g. "Mar 2026".</td></tr>
                             <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
                             <tr><td><code>revenue_metric</code></td><td>string</td><td>No</td><td>Which payments to list: RECOGNIZED (default), MRR or NON_RECURRING.</td></tr>
-                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort field (default DATE).</td></tr>
-                            <tr><td><code>sort_direction</code></td><td>string</td><td>No</td><td>Sort direction (default DESC).</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort field (default DATE). One of: DATE, AMOUNT, CUSTOMER_NAME.</td></tr>
+                            <tr><td><code>sort_direction</code></td><td>string</td><td>No</td><td>Sort direction (default DESC). One of: ASC, DESC.</td></tr>
                         </tbody>
                     </table>
 
@@ -232,7 +232,7 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>mrr_types</code></td><td>string[]</td><td>No</td><td>Movement types to return; all when omitted.</td></tr>
+                            <tr><td><code>mrr_types</code></td><td>string[]</td><td>No</td><td>Movement types to return; all when omitted. Any of: NEW_MRR, EXPANSION_MRR, CHURN_MRR, CONTRACTION_MRR, REACTIVATION_MRR, NEW_REVENUE, EXPANSION_REVENUE, CHURN_REVENUE, CONTRACTION_REVENUE, REACTIVATION_REVENUE.</td></tr>
                             <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
                         </tbody>
                     </table>
@@ -349,7 +349,7 @@
                             <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
                             <tr><td><code>plan</code></td><td>string</td><td>No</td><td>Plan filter.</td></tr>
                             <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort field. One of: ACV, TCV, CUSTOMER_NAME, BOOKING_DATE, TERM_MONTHS.</td></tr>
-                            <tr><td><code>sort_direction</code></td><td>string</td><td>No</td><td>Sort direction (default DESC).</td></tr>
+                            <tr><td><code>sort_direction</code></td><td>string</td><td>No</td><td>Sort direction (default DESC). One of: ASC, DESC.</td></tr>
                         </tbody>
                     </table>
 
@@ -432,7 +432,7 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>data_sources</code></td><td>string[]</td><td>No</td><td>Sources to check; Stripe, API and QuickBooks when omitted.</td></tr>
+                            <tr><td><code>data_sources</code></td><td>string[]</td><td>No</td><td>Sources to check; Stripe, API and QuickBooks when omitted. Any of: MANUAL, API, STRIPE, CHARGEBEE, QUICKBOOKS.</td></tr>
                         </tbody>
                     </table>
 
@@ -441,7 +441,7 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>filter</code></td><td>string</td><td>No</td><td>Mapping state to list (default ALL).</td></tr>
+                            <tr><td><code>filter</code></td><td>string</td><td>No</td><td>Mapping state to list (default ALL). One of: ALL, MAPPED, UNMAPPED.</td></tr>
                             <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
                             <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
                             <tr><td><code>search</code></td><td>string</td><td>No</td><td>Search text matched against names and emails.</td></tr>
@@ -457,7 +457,7 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>filter</code></td><td>string</td><td>No</td><td>Mapping state to list (default ALL).</td></tr>
+                            <tr><td><code>filter</code></td><td>string</td><td>No</td><td>Mapping state to list (default ALL). One of: ALL, MAPPED, UNMAPPED.</td></tr>
                             <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
                             <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
                             <tr><td><code>search</code></td><td>string</td><td>No</td><td>Search text matched against names and emails.</td></tr>
@@ -536,7 +536,7 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
-                            <tr><td><code>utm_parameter</code></td><td>string</td><td>No</td><td>UTM parameter to break down by (default utm_source)</td></tr>
+                            <tr><td><code>utm_parameter</code></td><td>string</td><td>No</td><td>UTM parameter to break down by (default utm_source). One of: utm_source, utm_medium, utm_campaign, utm_term.</td></tr>
                         </tbody>
                     </table>
 
@@ -697,7 +697,7 @@
                             <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
                             <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0)</td></tr>
                             <tr><td><code>platform</code></td><td>string</td><td>No</td><td>Ad platform (default google)</td></tr>
-                            <tr><td><code>sort_dir</code></td><td>string</td><td>No</td><td>Sort direction (default desc)</td></tr>
+                            <tr><td><code>sort_dir</code></td><td>string</td><td>No</td><td>Sort direction (default desc). One of: asc, desc.</td></tr>
                             <tr><td><code>sort_key</code></td><td>string</td><td>No</td><td>Column to sort by One of: name, id, domain, date, gclid, oci, accountCreationDate, converted.</td></tr>
                             <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: this_month (last 30 days, default), this_quarter (90 days), this_6m (180 days) or this_year (365 days), rolling back from today.</td></tr>
                         </tbody>
@@ -719,7 +719,7 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>metric</code></td><td>string</td><td>No</td><td>Metric to chart (default unique_visitors)</td></tr>
+                            <tr><td><code>metric</code></td><td>string</td><td>No</td><td>Metric to chart (default unique_visitors). One of: unique_visitors, session_count, page_views, views_per_session, bounce_rate, avg_session_duration.</td></tr>
                             <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
                         </tbody>
                     </table>
@@ -729,7 +729,7 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>dimension</code></td><td>string</td><td>No</td><td>Dimension to group by (default page_path)</td></tr>
+                            <tr><td><code>dimension</code></td><td>string</td><td>No</td><td>Dimension to group by (default page_path). One of: page_url, page_path, page_title, utm_source, utm_medium, utm_campaign, country, os_name.</td></tr>
                             <tr><td><code>page_number</code></td><td>number</td><td>No</td><td>1-based page (default 1)</td></tr>
                             <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page: 5, 10, 15, 25 or 50 (default 25; other values round up)</td></tr>
                             <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
@@ -1308,7 +1308,7 @@
                             <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
                             <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
                             <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Field to sort by (default createdAt): any returned field that get_account_list_fields marks sortable, e.g. revenue_mrr, engagement_activityCount, engagement_lastActivity</td></tr>
-                            <tr><td><code>sort_order</code></td><td>string</td><td>No</td><td>Sort direction (default DESC)</td></tr>
+                            <tr><td><code>sort_order</code></td><td>string</td><td>No</td><td>Sort direction (default DESC). One of: ASC, DESC.</td></tr>
                         </tbody>
                     </table>
 
@@ -1354,7 +1354,7 @@
                             <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
                             <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
                             <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Field to sort by (default createdAt): any returned field that get_account_list_fields marks sortable, e.g. revenue_mrr, engagement_activityCount, engagement_lastActivity</td></tr>
-                            <tr><td><code>sort_order</code></td><td>string</td><td>No</td><td>Sort direction (default DESC)</td></tr>
+                            <tr><td><code>sort_order</code></td><td>string</td><td>No</td><td>Sort direction (default DESC). One of: ASC, DESC.</td></tr>
                         </tbody>
                     </table>
 
@@ -1363,7 +1363,7 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>entity</code></td><td>string</td><td>No</td><td>Which list's exports (default accounts)</td></tr>
+                            <tr><td><code>entity</code></td><td>string</td><td>No</td><td>Which list's exports (default accounts). One of: accounts, users.</td></tr>
                             <tr><td><code>limit</code></td><td>number</td><td>No</td><td>How many recent exports (default 20, max 50)</td></tr>
                         </tbody>
                     </table>
@@ -1561,7 +1561,7 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>entity</code></td><td>string</td><td>No</td><td>HubSpot object type (default companies)</td></tr>
+                            <tr><td><code>entity</code></td><td>string</td><td>No</td><td>HubSpot object type (default companies). One of: companies, contacts, deals, tickets, engagements_calls, engagements_emails, engagements_meetings, engagements_notes, engagements_tasks.</td></tr>
                         </tbody>
                     </table>
 
@@ -1571,7 +1571,7 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id (from list_crm_accounts) or a HubSpot company id</td></tr>
-                            <tr><td><code>data_type</code></td><td>string</td><td>No</td><td>Which records to return (default PROPERTIES)</td></tr>
+                            <tr><td><code>data_type</code></td><td>string</td><td>No</td><td>Which records to return (default PROPERTIES). One of: PROPERTIES, COMPANIES, DEALS, TICKETS, ENGAGEMENT_CALLS, ENGAGEMENT_MEETINGS, ENGAGEMENT_NOTES, ENGAGEMENT_TASKS.</td></tr>
                             <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
                             <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
                             <tr><td><code>search</code></td><td>string</td><td>No</td><td>PROPERTIES only: property names containing this text</td></tr>
