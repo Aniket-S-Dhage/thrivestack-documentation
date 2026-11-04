@@ -163,6 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 terms: 'thrivestack mcp tools catalog reference core analytics accounts gtm setup traffic acquisition activation revenue monetization usage engagement'
             },
             {
+                title: 'MCP Changelog',
+                url: 'public/mcp/changelog.html#overview',
+                terms: 'thrivestack mcp changelog release notes what is new added changed new tools v1 get_page_traffic get_search_performance get_attribution_health list_urls'
+            },
+            {
                 title: 'Cited By Introduction',
                 url: 'public/cited-by/introduction.html#overview',
                 terms: 'cited by ai visibility aeo geo brand mentions prompts citations competitors introduction bulk import mcp'
@@ -680,6 +685,7 @@ class CitedBySidebar extends HTMLElement {
                     <li><a href="${prefix}public/mcp/use-cases.html" class="nav-item" data-nav="mcp-use-cases"><span>Use Cases</span></a></li>
                     <li><a href="${prefix}public/mcp/prompts.html" class="nav-item" data-nav="mcp-prompts"><span>Prompts</span></a></li>
                     <li><a href="${prefix}public/mcp/tools.html" class="nav-item" data-nav="mcp-tools"><span>Tools</span></a></li>
+                    <li><a href="${prefix}public/mcp/changelog.html" class="nav-item" data-nav="mcp-changelog"><span>Changelog</span></a></li>
                 </ul>
             </div>
 
@@ -708,6 +714,7 @@ class CitedBySidebar extends HTMLElement {
         else if (inMcp && file === 'use-cases.html') active = 'mcp-use-cases';
         else if (inMcp && file === 'prompts.html') active = 'mcp-prompts';
         else if (inMcp && file === 'tools.html') active = 'mcp-tools';
+        else if (inMcp && file === 'changelog.html') active = 'mcp-changelog';
 
         if (active) {
             const link = this.querySelector(`[data-nav="${active}"]`);
