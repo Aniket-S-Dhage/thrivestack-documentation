@@ -82,8 +82,8 @@
                 </header>
 
                 <section id="overview" class="content-section">
-                    <p>This page documents <strong>37 tools</strong> of the ThriveStack MCP Server, and its one prompt. They cover your brands and brand kit, AI-search visibility and citations, the AI answers and sources behind each tracked prompt, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, page traffic and Google search performance, the content audit, prompt research, and content recommendations.</p>
-                    <p><strong>36 of the 37 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
+                    <p>This page documents <strong>39 tools</strong> of the ThriveStack MCP Server, and its one prompt. They cover your brands and brand kit, AI-search visibility and citations, the AI answers and sources behind each tracked prompt, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, page traffic and Google search performance, the content audit, prompt research, and content recommendations.</p>
+                    <p><strong>38 of the 39 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
                     <p>None of these tools take a <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="../../public/mcp/setup.html">Setup</a>.</p>
                     <p>Your AI assistant calls these automatically based on your questions. The server also provides one prompt, <code>ai_visibility_analyst</code>, a ready-made content-strategy analysis &mdash; see <a href="../../public/mcp/prompts.html">Prompts</a>. It does not expose any MCP resources.</p>
                 </section>
@@ -132,6 +132,9 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the visibility report for</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number of the question list, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Questions per page (default 15, max 50)</td></tr>
+                            <tr><td><code>topic</code></td><td>string</td><td>No</td><td>Only this topic, exactly as listed in topic_names (case-insensitive)</td></tr>
                         </tbody>
                     </table>
 
@@ -161,7 +164,26 @@
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch generated prompts for</td></tr>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch prompts for</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Prompts per page (default 50, max 200)</td></tr>
+                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Which prompts to list: active (default, tracked) | suggested | archived. One of: active, suggested, archived.</td></tr>
+                            <tr><td><code>topic</code></td><td>string</td><td>No</td><td>Only this topic, exactly as listed in topic_names (case-insensitive)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-domain-topics"><code>list_domain_topics</code></h3>
+                    <p>Lists a brand&rsquo;s prompt topics: <strong>selected</strong> topics, which have tracked (active) prompts, with how many prompts each holds, and <strong>suggested</strong> topics that are not selected yet, with their kind and how many suggested prompts they hold. Use it to answer which topics are tracked and which are only suggested. The prompts inside each topic are listed by <a href="#tool-get-domain-prompts"><code>get_domain_prompts</code></a>.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>A topic that has both tracked and suggested prompts is listed once, as selected.</li>
+                        <li>If the brand has no topics yet, the tool returns <code>has_data=false</code> with a message. That is not an error.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>selected, suggested (suggested but not selected) or all (default). One of: selected, suggested, all.</td></tr>
                         </tbody>
                     </table>
 
@@ -171,16 +193,27 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch citation probe evidence for</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Max records per page (default 20, max 25)</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Records to skip (default 0); use next_offset from the previous page</td></tr>
+                            <tr><td><code>topic</code></td><td>string</td><td>No</td><td>Only records for this topic, exactly as listed in topics (case-insensitive)</td></tr>
                         </tbody>
                     </table>
 
                     <h3 id="tool-get-competitor-visibility"><code>get_competitor_visibility</code></h3>
                     <p>Weekly AI-search visibility % (and average rank, where available) for a domain's own brand alongside its tracked competitor brands, side by side &mdash; matching the product's AI Visibility &gt; Competitors page. If competitor_domains isn't provided, the domain's saved tracked-competitor list is used automatically.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>The <code>latest</code> snapshot ranks every brand by its most recent week&rsquo;s visibility and gives each brand&rsquo;s <code>mentions</code> and <code>share_of_voice</code>: its mentions in AI answers as a fraction of all mentions across the returned brands. That is the same measure as <a href="#tool-get-prompt-metrics"><code>get_prompt_metrics</code></a> and the Competitors page.</li>
+                        <li><code>share_of_voice_basis</code> is <code>mentions</code>, or <code>visibility</code> for older weeks recorded before mention counts existed.</li>
+                        <li>If the domain has no tracked competitors and none are passed, or there is no history yet for the window, the tool returns a clear no-data result rather than an error.</li>
+                    </ul>
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch competitor visibility for</td></tr>
                             <tr><td><code>competitor_domains</code></td><td>string[]</td><td>No</td><td>Optional list of competitor domains to compare against, overriding the domain's saved tracked-competitor list. The domain itself is always included automatically.</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>End of the window, YYYY-MM-DD, inclusive</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Start of the window, YYYY-MM-DD</td></tr>
                             <tr><td><code>weeks</code></td><td>number</td><td>No</td><td>Number of weeks of history to return (default 8, clamped 1-52)</td></tr>
                         </tbody>
                     </table>
@@ -280,14 +313,32 @@
                     <h2 id="sources">Sources &amp; Pages</h2>
 
                     <h3 id="tool-get-url-report"><code>get_url_report</code></h3>
-                    <p>Per-URL retrieval and citation metrics across every source URL surfaced by a domain's most recent completed AI-visibility probe run &mdash; which specific pages are getting retrieved and cited, and how often.</p>
+                    <p>Per-URL retrieval and citation metrics for every source URL AI answers drew on for a domain&rsquo;s tracked questions: which specific pages are retrieved and cited, and how often, with each URL&rsquo;s type, domain type and source class (owned, earned or other cited). It lists source URLs from any site that AI answers cited, not only the brand&rsquo;s own pages.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Without a date window it covers the most recent completed probe run. Source metrics are computed after a run finishes; until then the tool returns <code>has_run=true, urls_computed=false</code> rather than an empty list. With <code>start_date</code>/<code>end_date</code> it covers every run in the window.</li>
+                        <li><code>retrievals</code> is how many answers cited the URL, and <code>retrieved_pct</code> is the percent of all answers that cited it.</li>
+                        <li><code>citation_rate</code> is the average number of times the URL was cited per answer that cited it. It is 1.0 or more and is <strong>not a percentage</strong>.</li>
+                        <li>Default sort is <code>retrievals</code>, highest first.</li>
+                    </ul>
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the URL report for</td></tr>
+                            <tr><td><code>brand_logic</code></td><td>string</td><td>No</td><td>Whether a source must match any (or, default) or all (and) of brands. One of: or, and.</td></tr>
+                            <tr><td><code>brands</code></td><td>string[]</td><td>No</td><td>Only sources whose answers mention these brand domains</td></tr>
+                            <tr><td><code>dir</code></td><td>string</td><td>No</td><td>Sort direction (default desc). One of: asc, desc.</td></tr>
+                            <tr><td><code>domain_types</code></td><td>string[]</td><td>No</td><td>Only sources with any of these domain types</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>End of the window, YYYY-MM-DD, inclusive</td></tr>
+                            <tr><td><code>min_brands</code></td><td>number</td><td>No</td><td>Only sources whose answers mention at least this many brands</td></tr>
                             <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
                             <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Page size (default 25, max 100)</td></tr>
                             <tr><td><code>search</code></td><td>string</td><td>No</td><td>Filter by substring match against URL, title, domain, URL type, or domain type</td></tr>
+                            <tr><td><code>sort</code></td><td>string</td><td>No</td><td>Sort column (default retrievals). One of: retrievals, retrieved_pct, retrieval_rate, citation_rate, mentions, self_mentioned, url, domain, url_type, domain_type, source_class.</td></tr>
+                            <tr><td><code>source_class</code></td><td>string</td><td>No</td><td>Only sources of this class: owned (the brand's own site), earned (third-party coverage of the brand) or other_cited. One of: owned, earned, other_cited.</td></tr>
+                            <tr><td><code>source_subtype</code></td><td>string</td><td>No</td><td>Narrow source_class to one subtype</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Start of the window, YYYY-MM-DD</td></tr>
+                            <tr><td><code>url_types</code></td><td>string[]</td><td>No</td><td>Only sources with any of these URL types</td></tr>
                         </tbody>
                     </table>
 
@@ -328,6 +379,20 @@
                             <tr><td><code>competitor_domains</code></td><td>string[]</td><td>No</td><td>Competitor domains to compare, overriding the saved tracked-competitor list. The brand itself is always included.</td></tr>
                             <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
                             <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-source-run-days"><code>get_source_run_days</code></h3>
+                    <p>The days on which a brand&rsquo;s prompts were run and their cited sources recorded: <code>first_run_day</code>, <code>last_run_day</code>, <code>total_runs</code> and every day in <code>run_days</code>. Use it to choose a <code>start_date</code> and <code>end_date</code> that contain data before calling <a href="#tool-get-source-mix-summary"><code>get_source_mix_summary</code></a>, <a href="#tool-get-source-trend"><code>get_source_trend</code></a> or <a href="#tool-get-competitor-source-mix"><code>get_competitor_source_mix</code></a>, or to explain why one of them came back empty.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>If no run has recorded sources yet, the tool returns <code>has_data=false</code> with a message. That is not an error.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>grain</code></td><td>string</td><td>No</td><td>Run days with cited domains (default) or cited URLs. One of: domain, url.</td></tr>
                         </tbody>
                     </table>
 
@@ -384,8 +449,12 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch technical recommendations for</td></tr>
+                            <tr><td><code>include_explanations</code></td><td>boolean</td><td>No</td><td>Also return what_this_checks, the fixed explanation of each check, which is the same on every page and makes the result much longer (default false)</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number of the audited pages, 1-indexed (default 1); ignored with page_url</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Audited pages per page (default 2, max 20); ignored with page_url</td></tr>
                             <tr><td><code>page_url</code></td><td>string</td><td>No</td><td>Scope page_recommendations to a single page URL. Omit to get every audited page's recommendations.</td></tr>
-                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Filter both sections to items with this status: PASS | WARN | FAIL</td></tr>
+                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Filter both sections to items with this check status: PASS | WARN | FAIL</td></tr>
+                            <tr><td><code>workflow</code></td><td>string</td><td>No</td><td>Filter both sections to items in this workflow state: suggested | todo | done</td></tr>
                         </tbody>
                     </table>
 
@@ -514,6 +583,8 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain whose prompt research to list, e.g. acme.com</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Sessions per page (default 100, max 200)</td></tr>
                         </tbody>
                     </table>
 
@@ -523,8 +594,10 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain the research belongs to, e.g. acme.com</td></tr>
-                            <tr><td><code>id</code></td><td>string</td><td>Yes</td><td>Research id from list_prompt_research</td></tr>
                             <tr><td><code>group_by</code></td><td>string</td><td>No</td><td>How to group prompts: topic (default) or persona</td></tr>
+                            <tr><td><code>id</code></td><td>string</td><td>Yes</td><td>Research id from list_prompt_research</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number of the prompts, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Prompts per page (default 100, max 200)</td></tr>
                             <tr><td><code>tracked_only</code></td><td>boolean</td><td>No</td><td>If true, return only prompts already tracked</td></tr>
                         </tbody>
                     </table>
