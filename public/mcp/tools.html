@@ -82,8 +82,8 @@
                 </header>
 
                 <section id="overview" class="content-section">
-                    <p>This page documents <strong>26 tools</strong> of the ThriveStack MCP Server, and its one prompt. They cover your brands, AI-search visibility and citations, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, page traffic and Google search performance, prompt research, and content recommendations.</p>
-                    <p><strong>25 of the 26 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
+                    <p>This page documents <strong>37 tools</strong> of the ThriveStack MCP Server, and its one prompt. They cover your brands and brand kit, AI-search visibility and citations, the AI answers and sources behind each tracked prompt, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, page traffic and Google search performance, the content audit, prompt research, and content recommendations.</p>
+                    <p><strong>36 of the 37 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
                     <p>None of these tools take a <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="../../public/mcp/setup.html">Setup</a>.</p>
                     <p>Your AI assistant calls these automatically based on your questions. The server also provides one prompt, <code>ai_visibility_analyst</code>, a ready-made content-strategy analysis &mdash; see <a href="../../public/mcp/prompts.html">Prompts</a>. It does not expose any MCP resources.</p>
                 </section>
@@ -110,6 +110,20 @@
                         </tbody>
                     </table>
 
+                    <h3 id="tool-get-brand-kit"><code>get_brand_kit</code></h3>
+                    <p>The brand kit saved for a domain, which guides how generated content should sound: <code>voice</code> (tone sliders such as formal to casual, author persona, sounds-like and not-like examples), <code>rules</code> (dos and don&rsquo;ts) and <code>naming</code> (official brand name and aliases), plus <code>version</code> and <code>updated_at</code>.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>If no kit has been saved yet, the tool returns <code>saved=false</code> with an empty kit. That is not an error; it means the brand kit has not been set up for the domain.</li>
+                        <li>The brand kit holds voice, rules and naming only. It does not include logos, colours or fonts.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the brand kit for, e.g. acme.com</td></tr>
+                        </tbody>
+                    </table>
+
                     <h2 id="visibility">Visibility &amp; Citations</h2>
 
                     <h3 id="tool-get-domain-report"><code>get_domain_report</code></h3>
@@ -118,6 +132,27 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the visibility report for</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-prompt-metrics"><code>get_prompt_metrics</code></h3>
+                    <p>A filterable visibility report over a date window: visibility, average rank and share of voice per tracked question, per topic and overall, with totals. Slice by AI engine, country and brand, and choose active or archived questions. Use it for questions like &ldquo;our visibility on Perplexity in the US over the last 30 days&rdquo;.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>sov</code> (share of voice) for a question is its share of the mentions across <em>all</em> tracked questions, not just its own answers. For the share within one prompt&rsquo;s answers, use <a href="#tool-get-prompt-top-brands"><code>get_prompt_top_brands</code></a>.</li>
+                        <li><a href="#tool-get-domain-report"><code>get_domain_report</code></a> covers only the latest run, unfiltered. To compare one AI engine or country with the overall figure, make two calls: one with <code>engines</code> or <code>countries</code> set and one without.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>brand</code></td><td>string</td><td>No</td><td>Only count answers that mention this brand domain, e.g. a competitor. The metrics stay the brand&rsquo;s own.</td></tr>
+                            <tr><td><code>countries</code></td><td>string[]</td><td>No</td><td>Only answers from these countries, as ISO-3166 alpha-2 codes, e.g. US, GB</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>End of the window, YYYY-MM-DD, inclusive</td></tr>
+                            <tr><td><code>engines</code></td><td>string[]</td><td>No</td><td>Only answers from these AI engines, e.g. chatgpt, perplexity, gemini, google-ai-overview, google-ai-mode, copilot, grok</td></tr>
+                            <tr><td><code>exclude_customer</code></td><td>boolean</td><td>No</td><td>Leave the brand itself out of share-of-voice totals</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Start of the window, YYYY-MM-DD</td></tr>
+                            <tr><td><code>status</code></td><td>string</td><td>No</td><td>Which tracked questions to include (default active). One of: active, archived.</td></tr>
                         </tbody>
                     </table>
 
@@ -157,6 +192,87 @@
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
                             <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="prompt-drilldown">Prompt Drilldown</h2>
+                    <p>These tools show the detail behind one tracked prompt: the prompt itself, the AI answers recorded for it, the sources and brands those answers used, and how its visibility moved. Take the <code>prompt_id</code> from <a href="#tool-get-domain-prompts"><code>get_domain_prompts</code></a>.</p>
+
+                    <h3 id="tool-get-domain-prompt"><code>get_domain_prompt</code></h3>
+                    <p>Returns the detail of one tracked prompt (buyer question) for a brand&rsquo;s domain. It contains no visibility results; <a href="#tool-get-domain-report"><code>get_domain_report</code></a> has those.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain the prompt belongs to</td></tr>
+                            <tr><td><code>prompt_id</code></td><td>string</td><td>Yes</td><td>Prompt id, from get_domain_prompts</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-prompt-chats"><code>get_prompt_chats</code></h3>
+                    <p>The AI answers recorded for one tracked prompt, newest first: one chat per AI engine, country and run. Each chat has <code>engine</code>, <code>model</code>, <code>country_code</code>, <code>probed_at</code>, <code>visibility</code>, <code>avg_rank</code>, <code>our_citations</code> and <code>total_citations</code>, the full <code>answer_text</code>, the brands named (<code>name</code>, <code>domain</code>, <code>rank</code>, <code>is_customer</code>) and the citations used (<code>title</code>, <code>domain</code>, <code>uri</code>).</p>
+                    <p>Answers are long, so chats come in small pages (default 5, max 10): <code>total</code>, <code>page</code> and <code>next_page</code> say where you are. <a href="#tool-get-prompt-chat"><code>get_prompt_chat</code></a> returns one chat by id.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain the prompt belongs to</td></tr>
+                            <tr><td><code>prompt_id</code></td><td>string</td><td>Yes</td><td>Prompt id, from get_domain_prompts</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Chats per page (default 5, max 10)</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-prompt-chat"><code>get_prompt_chat</code></h3>
+                    <p>One recorded AI answer: the engine, model and country, the full <code>answer_text</code>, the brands named (<code>name</code>, <code>domain</code>, <code>rank</code>, <code>is_customer</code>) and the citations used (<code>title</code>, <code>domain</code>, <code>uri</code>), with <code>visibility</code>, <code>avg_rank</code> and citation counts.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain the answer belongs to</td></tr>
+                            <tr><td><code>result_id</code></td><td>string</td><td>Yes</td><td>Chat id: result_id from get_citation_probe_data or id from get_prompt_chats</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-prompt-sources"><code>get_prompt_sources</code></h3>
+                    <p>The sources AI answers used for one tracked prompt, ranked by retrievals: cited domains (default) or individual URLs. Each row has <code>retrievals</code>, and for URLs the <code>uri</code> and <code>title</code>, <code>chats_used</code> and <code>citations</code>. Returns the top rows only (default 25, max 100); <code>total_retrievals</code> is the full count.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain the prompt belongs to</td></tr>
+                            <tr><td><code>prompt_id</code></td><td>string</td><td>Yes</td><td>Prompt id, from get_domain_prompts</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>grain</code></td><td>string</td><td>No</td><td>Rank cited domains (default) or individual cited URLs. One of: domain, url.</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Max rows (default 25, max 100)</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-prompt-top-brands"><code>get_prompt_top_brands</code></h3>
+                    <p>The brands AI answers name for one tracked prompt, ranked: each with <code>rank</code>, <code>name</code>, <code>domain</code>, <code>visibility</code>, share of voice (<code>sov</code>) and average position, plus <code>total_responses</code> behind them.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>sov</code> here is the brand&rsquo;s share of the mentions in <em>this prompt&rsquo;s</em> answers only, so it can be much higher than the <code>sov</code> of the same prompt in <a href="#tool-get-prompt-metrics"><code>get_prompt_metrics</code></a>, which is a share of the mentions across all tracked prompts.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain the prompt belongs to</td></tr>
+                            <tr><td><code>prompt_id</code></td><td>string</td><td>Yes</td><td>Prompt id, from get_domain_prompts</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-prompt-visibility-trend"><code>get_prompt_visibility_trend</code></h3>
+                    <p>One tracked prompt&rsquo;s visibility over time: the percent of its AI answers that name the brand, as a series of points (<code>date</code>, <code>visibility</code>) by day (default), week or month.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain the prompt belongs to</td></tr>
+                            <tr><td><code>prompt_id</code></td><td>string</td><td>Yes</td><td>Prompt id, from get_domain_prompts</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
+                            <tr><td><code>granularity</code></td><td>string</td><td>No</td><td>Point spacing: day (default), week or month. One of: day, week, month.</td></tr>
                             <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
                         </tbody>
                     </table>
@@ -347,6 +463,49 @@
                         </tbody>
                     </table>
 
+                    <h2 id="content-audit">Content Audit</h2>
+                    <p>These tools show which pages are tracked for the content audit, how many page audits your plan allows and how many are used, and which sitemap pages you could add.</p>
+
+                    <h3 id="tool-get-content-audit-summary"><code>get_content_audit_summary</code></h3>
+                    <p>Content audit status for a brand&rsquo;s domain: how many pages are audited, queued and active, the plan&rsquo;s page-audit limit (<code>page_audits_purchased</code>), how many are used (<code>page_audits_consumed</code>) and <code>pages_remaining</code> (limit minus used). Each page row has its SEO and AEO scores, pending actions by priority, last audit time and whether AI answers cite it. It also returns <code>sitemap_status</code> and <code>coverage_warnings</code> when present.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>pages_remaining</code> is absent when the plan figures are unavailable.</li>
+                        <li>Page rows come in pages: <code>total</code>, <code>returned</code> and <code>next_page</code> say where you are.</li>
+                        <li>Set <code>include_sitemap</code> to also list sitemap and AI-cited pages that are not in the report (<code>in_report=false</code>). Those pages are not counted in any total.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the content audit summary for</td></tr>
+                            <tr><td><code>include_sitemap</code></td><td>boolean</td><td>No</td><td>Also list sitemap and AI-cited pages not in the report (default false)</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number of the page rows, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Page rows per page (default 25, max 50)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-content-audit-pages"><code>list_content_audit_pages</code></h3>
+                    <p>The pages tracked for a brand&rsquo;s content audit: <code>url</code>, <code>label</code> and <code>source</code> (<code>auto</code> = picked by the system, <code>user</code> = added by the team). Pages come in batches: <code>total</code>, <code>returned</code> and <code>next_page</code> say where you are. Scores and action counts are in <a href="#tool-get-content-audit-summary"><code>get_content_audit_summary</code></a>.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to list content audit pages for</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Pages per batch (default 25, max 100)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-content-audit-sitemap-urls"><code>list_content_audit_sitemap_urls</code></h3>
+                    <p>Sitemap URLs found for a brand&rsquo;s domain that can be added to the content audit: <code>has_sitemap</code>, the sitemap <code>url</code>, <code>url_count</code> and the <code>urls</code> themselves. <code>urls_capped</code> is <code>true</code> when the stored list was cut short. URLs come in pages: <code>total</code>, <code>returned</code> and <code>next_page</code> say where you are.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to list sitemap URLs for</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>URLs per page (default 100, max 500)</td></tr>
+                        </tbody>
+                    </table>
+
                     <h2 id="prompt-research">Prompt Research</h2>
 
                     <h3 id="tool-list-prompt-research"><code>list_prompt_research</code></h3>
@@ -457,9 +616,11 @@
                     <a href="#response-format" class="toc-link">Response format</a>
                     <a href="#brands" class="toc-link">Brands &amp; Account</a>
                     <a href="#visibility" class="toc-link">Visibility &amp; Citations</a>
+                    <a href="#prompt-drilldown" class="toc-link">Prompt Drilldown</a>
                     <a href="#sources" class="toc-link">Sources &amp; Pages</a>
                     <a href="#site-health" class="toc-link">Site &amp; Crawl Health</a>
                     <a href="#traffic-search" class="toc-link">Traffic &amp; Search Performance</a>
+                    <a href="#content-audit" class="toc-link">Content Audit</a>
                     <a href="#prompt-research" class="toc-link">Prompt Research</a>
                     <a href="#recommendations" class="toc-link">Recommendations</a>
                     <a href="#drafting" class="toc-link">Drafting &amp; Saving</a>
