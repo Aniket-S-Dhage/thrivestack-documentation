@@ -168,6 +168,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 terms: 'thrivestack mcp changelog release notes what is new added changed new tools v1 get_page_traffic get_search_performance get_attribution_health list_urls'
             },
             {
+                title: 'Revenue Intelligence MCP Introduction',
+                url: 'public/revenue/mcp/introduction.html#overview',
+                terms: 'revenue intelligence thrivestack mcp server connect claude cursor revenue marketing product analytics accounts mrr arr read-only oauth personal access token'
+            },
+            {
+                title: 'Revenue Intelligence MCP Setup',
+                url: 'public/revenue/mcp/setup.html#server-url',
+                terms: 'revenue intelligence mcp setup connect claude desktop claude code cursor vs code windsurf gemini cli oauth personal access token verify connection troubleshooting'
+            },
+            {
+                title: 'Revenue Intelligence MCP Use Cases',
+                url: 'public/revenue/mcp/use-cases.html#example-workflows',
+                terms: 'revenue intelligence thrivestack mcp use cases mrr movement churn revenue leakage missed payments acv channels campaigns ads leads activation retention at-risk accounts'
+            },
+            {
+                title: 'Revenue Intelligence MCP Prompts',
+                url: 'public/revenue/mcp/prompts.html#prompt-library',
+                terms: 'revenue intelligence thrivestack mcp prompts monthly revenue review mrr movement leakage plan mix goal pacing channel review lead quality activation retention at-risk accounts account brief data health copy prompt'
+            },
+            {
+                title: 'Revenue Intelligence MCP Tools',
+                url: 'public/revenue/mcp/tools.html#tool-catalog',
+                terms: 'revenue intelligence thrivestack mcp tools reference get_revenue_kpis get_mrr_movements get_channel_performance get_website_traffic get_ads_performance get_lead_quality get_mau_mtu_count get_activation_summary get_retention_data list_at_risk_accounts get_account_overview create_account_segment start_thrivestack_setup'
+            },
+            {
                 title: 'Cited By Introduction',
                 url: 'public/cited-by/introduction.html#overview',
                 terms: 'cited by ai visibility aeo geo brand mentions prompts citations competitors introduction bulk import mcp'
@@ -685,7 +710,6 @@ class CitedBySidebar extends HTMLElement {
                     <li><a href="${prefix}public/mcp/use-cases.html" class="nav-item" data-nav="mcp-use-cases"><span>Use Cases</span></a></li>
                     <li><a href="${prefix}public/mcp/prompts.html" class="nav-item" data-nav="mcp-prompts"><span>Prompts</span></a></li>
                     <li><a href="${prefix}public/mcp/tools.html" class="nav-item" data-nav="mcp-tools"><span>Tools</span></a></li>
-                    <li><a href="${prefix}public/mcp/changelog.html" class="nav-item" data-nav="mcp-changelog"><span>Changelog</span></a></li>
                 </ul>
             </div>
 
@@ -714,7 +738,6 @@ class CitedBySidebar extends HTMLElement {
         else if (inMcp && file === 'use-cases.html') active = 'mcp-use-cases';
         else if (inMcp && file === 'prompts.html') active = 'mcp-prompts';
         else if (inMcp && file === 'tools.html') active = 'mcp-tools';
-        else if (inMcp && file === 'changelog.html') active = 'mcp-changelog';
 
         if (active) {
             const link = this.querySelector(`[data-nav="${active}"]`);
@@ -723,6 +746,73 @@ class CitedBySidebar extends HTMLElement {
     }
 }
 customElements.define('cited-by-sidebar', CitedBySidebar);
+
+/** Which product's docs a path belongs to. The Revenue Intelligence MCP docs live in public/revenue/mcp/. */
+function docsProductFromPath(path) {
+    const inRevenueMcp = path.includes('/revenue/mcp/');
+    return (path.includes('/cited-by/') || (path.includes('/mcp/') && !inRevenueMcp)) ? 'citedby' : 'thrivestack';
+}
+
+/** The MCP changelog covers the whole server, so it belongs to neither product. */
+function docsIsSharedMcpPage(path) {
+    return path.endsWith('/mcp/changelog.html');
+}
+
+/** The product to show for a path; the shared changelog follows the product the reader came from. */
+function docsCurrentProduct(path) {
+    if (docsIsSharedMcpPage(path)) {
+        try {
+            return sessionStorage.getItem('docs_product_ctx') === 'thrivestack' ? 'thrivestack' : 'citedby';
+        } catch (_) {
+            return 'citedby';
+        }
+    }
+    return docsProductFromPath(path);
+}
+
+/** ThriveStack (Revenue Intelligence) left nav for its MCP docs, mirroring the Cited By one above. */
+class ThriveStackMcpSidebar extends HTMLElement {
+    connectedCallback() {
+        const prefix = this.getAttribute('base-path') || '';
+        this.innerHTML = `
+            <div class="sidebar-section">
+                <h3>Revenue Intelligence</h3>
+                <ul>
+                    <li><a href="${prefix}public/revenue/setup/introduction.html" class="nav-item"><span>Introduction</span></a></li>
+                    <li><a href="${prefix}public/revenue/setup/stripe-integration.html" class="nav-item"><span>Stripe Integration</span></a></li>
+                    <li><a href="${prefix}public/revenue/setup/chargebee-integration.html" class="nav-item"><span>Chargebee Integration</span></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>MCP</h3>
+                <ul>
+                    <li><a href="${prefix}public/revenue/mcp/introduction.html" class="nav-item" data-nav="introduction.html"><span>Introduction</span></a></li>
+                    <li><a href="${prefix}public/revenue/mcp/setup.html" class="nav-item" data-nav="setup.html"><span>Setup</span></a></li>
+                    <li><a href="${prefix}public/revenue/mcp/use-cases.html" class="nav-item" data-nav="use-cases.html"><span>Use Cases</span></a></li>
+                    <li><a href="${prefix}public/revenue/mcp/prompts.html" class="nav-item" data-nav="prompts.html"><span>Prompts</span></a></li>
+                    <li><a href="${prefix}public/revenue/mcp/tools.html" class="nav-item" data-nav="tools.html"><span>Tools</span></a></li>
+                </ul>
+            </div>
+        `;
+
+        const file = (window.location.pathname || '').split('/').pop() || '';
+        const link = this.querySelector(`[data-nav="${file}"]`);
+        if (link) link.classList.add('active');
+    }
+}
+customElements.define('thrivestack-mcp-sidebar', ThriveStackMcpSidebar);
+
+/** Left nav for pages shared by both products: renders the sidebar of the product the reader came from. */
+class DocsMcpSidebar extends HTMLElement {
+    connectedCallback() {
+        const tag = docsCurrentProduct(window.location.pathname || '') === 'thrivestack' ? 'thrivestack-mcp-sidebar' : 'cited-by-sidebar';
+        const inner = document.createElement(tag);
+        inner.setAttribute('base-path', this.getAttribute('base-path') || '');
+        this.appendChild(inner);
+    }
+}
+customElements.define('docs-mcp-sidebar', DocsMcpSidebar);
 
 /**
  * Top-left docs product switcher (ThriveStack ↔ citedby), mirrors the plg-crm-ui account/product box.
@@ -738,13 +828,42 @@ function mountDocsProductSwitcher() {
     const prefix = slash >= 0 ? logoSrc.slice(0, slash + 1) : '';
 
     const path = window.location.pathname || '';
-    // MCP docs live under the Cited By product
-    const currentProduct = (path.includes('/cited-by/') || path.includes('/mcp/')) ? 'citedby' : 'thrivestack';
+    const currentProduct = docsCurrentProduct(path);
+    // Remember the product for the shared changelog page, which follows the reader's product.
+    if (!docsIsSharedMcpPage(path)) {
+        try { sessionStorage.setItem('docs_product_ctx', currentProduct); } catch (_) { /* ignore */ }
+    }
 
+    // On an MCP page, switching product lands on the other product's MCP introduction
+    // (so the dropdown flips between the two MCP sections); elsewhere it goes to the product home.
+    const inMcp = path.includes('/mcp/');
     const homes = {
-        thrivestack: `${prefix}index.html`,
-        citedby: `${prefix}public/cited-by/introduction.html`,
+        thrivestack: inMcp ? `${prefix}public/revenue/mcp/introduction.html` : `${prefix}index.html`,
+        citedby: inMcp ? `${prefix}public/mcp/introduction.html` : `${prefix}public/cited-by/introduction.html`,
     };
+
+    // The top-nav "MCP" link points at the Cited By MCP docs on every page; on ThriveStack pages
+    // it should open the ThriveStack (Revenue Intelligence) MCP docs instead.
+    if (currentProduct === 'thrivestack') {
+        document.querySelectorAll('.top-nav .nav-links a[href$="public/mcp/introduction.html"]').forEach((a) => {
+            a.setAttribute('href', a.getAttribute('href').replace('public/mcp/introduction.html', 'public/revenue/mcp/introduction.html'));
+        });
+    }
+
+    // "Changelog" sits right of "MCP" in the header on every page that has an MCP link. It is one
+    // shared page for the whole server, so it is added here rather than in each page's markup.
+    const mcpNavLink = document.querySelector('.top-nav .nav-links a[href$="mcp/introduction.html"]');
+    if (mcpNavLink && !document.querySelector('.top-nav .nav-links a[data-docs-changelog]')) {
+        const changelogLink = document.createElement('a');
+        changelogLink.textContent = 'Changelog';
+        changelogLink.dataset.docsChangelog = '1';
+        changelogLink.setAttribute('href', mcpNavLink.getAttribute('href').replace(/public\/(?:revenue\/)?mcp\/introduction\.html$/, 'public/mcp/changelog.html'));
+        mcpNavLink.after(changelogLink);
+        if (docsIsSharedMcpPage(path)) {
+            mcpNavLink.classList.remove('active');
+            changelogLink.classList.add('active');
+        }
+    }
 
     const root = document.createElement('div');
     root.className = 'docs-product-switcher';

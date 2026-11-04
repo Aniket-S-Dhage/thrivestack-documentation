@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Revenue Intelligence MCP Tools Reference - ThriveStack Documentation">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>Revenue Intelligence MCP Tools Reference - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles.css">
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../../../index.html" class="logo">
+                <img src="../../../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../../../index.html">Get Started</a>
+                <a href="../../../setup-overview.html">Setup (Unify)</a>
+                <a href="../../../analyze-signals.html">Analyze Signals</a>
+                <a href="../../../take-action.html">Take Action</a>
+                <a href="../../../api-reference.html">API Reference</a>
+                <a href="../../../public/revenue/mcp/introduction.html" class="active">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <thrivestack-mcp-sidebar base-path="../../../"></thrivestack-mcp-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="breadcrumbs">
+                    <a href="../../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../../../public/revenue/setup/introduction.html">Revenue Intelligence</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../../../public/revenue/mcp/introduction.html">MCP</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>Tools</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Revenue Intelligence · MCP</span>
+                    <h1 class="doc-page-title">Tools Reference</h1>
+                    <p class="doc-page-description">
+                        The tools of the ThriveStack MCP Server for Revenue Intelligence, with parameters and what each one does.
+                    </p>
+                </header>
+
+                <section id="overview" class="content-section">
+                    <p>This page documents <strong>129 tools</strong> of the ThriveStack MCP Server for Revenue Intelligence: 4 for setup, 29 for revenue, 33 for marketing, 35 for product analytics and 28 for accounts.</p>
+                    <p><strong>128 of the 129 tools are read-only.</strong> The only tool here that changes anything is <a href="#tool-create-account-segment"><code>create_account_segment</code></a>, which creates a saved account segment. It does not edit or delete anything else.</p>
+                    <p>None of these tools take a <code>domain</code>, <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="setup.html">Setup</a>.</p>
+                    <p>Your AI assistant calls these automatically based on your questions. The server does not ship a native MCP prompt for Revenue Intelligence; see <a href="prompts.html">Prompts</a> for copy-ready ones. It does not expose any MCP resources.</p>
+                </section>
+
+                <section id="which-tool" class="content-section">
+                    <h2>Which tool answers my question?</h2>
+                    <table class="params-table">
+                        <thead><tr><th>Question</th><th>Tools</th></tr></thead>
+                        <tbody>
+                            <tr><td>How are we doing on revenue overall?</td><td><a href="#tool-get-revenue-kpis"><code>get_revenue_kpis</code></a></td></tr>
+                            <tr><td>Why did MRR change, and which customers drove it?</td><td><a href="#tool-get-mrr-movements"><code>get_mrr_movements</code></a>, <a href="#tool-list-mrr-movement-customers"><code>list_mrr_movement_customers</code></a></td></tr>
+                            <tr><td>Are we losing revenue to failed or missing payments?</td><td><a href="#tool-get-missed-revenue"><code>get_missed_revenue</code></a>, <a href="#tool-list-missed-payment-customers"><code>list_missed_payment_customers</code></a></td></tr>
+                            <tr><td>What does one customer pay us, and are they late?</td><td><a href="#tool-list-revenue-account-mappings"><code>list_revenue_account_mappings</code></a>, <a href="#tool-get-account-revenue"><code>get_account_revenue</code></a>, <a href="#tool-get-account-payment-calendar"><code>get_account_payment_calendar</code></a></td></tr>
+                            <tr><td>Which channels and campaigns bring signups and revenue?</td><td><a href="#tool-get-channel-performance"><code>get_channel_performance</code></a>, <a href="#tool-get-multi-touch-attribution"><code>get_multi_touch_attribution</code></a>, <a href="#tool-get-campaign-revenue-ranking"><code>get_campaign_revenue_ranking</code></a></td></tr>
+                            <tr><td>How is website traffic trending?</td><td><a href="#tool-get-website-traffic"><code>get_website_traffic</code></a>, <a href="#tool-get-traffic-by-utm"><code>get_traffic_by_utm</code></a>, <a href="#tool-get-top-pages"><code>get_top_pages</code></a></td></tr>
+                            <tr><td>Are our ads paying off?</td><td><a href="#tool-get-ads-performance"><code>get_ads_performance</code></a>, <a href="#tool-get-ads-traffic"><code>get_ads_traffic</code></a></td></tr>
+                            <tr><td>How good are our new leads?</td><td><a href="#tool-get-lead-quality"><code>get_lead_quality</code></a>, <a href="#tool-list-leads-by-quality"><code>list_leads_by_quality</code></a></td></tr>
+                            <tr><td>How many active users and accounts do we have?</td><td><a href="#tool-get-mau-mtu-count"><code>get_mau_mtu_count</code></a>, <a href="#tool-getmonthlyactiveaccounts"><code>getMonthlyActiveAccounts</code></a></td></tr>
+                            <tr><td>Is activation improving, and what drives it?</td><td><a href="#tool-get-activation-summary"><code>get_activation_summary</code></a>, <a href="#tool-get-activation-trend"><code>get_activation_trend</code></a>, <a href="#tool-get-feature-conversion-drivers"><code>get_feature_conversion_drivers</code></a></td></tr>
+                            <tr><td>Who is coming back, and who is drifting away?</td><td><a href="#tool-get-retention-data"><code>get_retention_data</code></a>, <a href="#tool-get-churn-expansion-signals"><code>get_churn_expansion_signals</code></a></td></tr>
+                            <tr><td>Which accounts are at risk?</td><td><a href="#tool-list-at-risk-accounts"><code>list_at_risk_accounts</code></a>, <a href="#tool-get-account-engagement-trend"><code>get_account_engagement_trend</code></a></td></tr>
+                            <tr><td>Tell me about one account</td><td><a href="#tool-get-account-overview"><code>get_account_overview</code></a>, <a href="#tool-get-account-acquisition"><code>get_account_acquisition</code></a>, <a href="#tool-get-account-activity"><code>get_account_activity</code></a></td></tr>
+                            <tr><td>Can I trust these numbers?</td><td><a href="#tool-get-revenue-sync-status"><code>get_revenue_sync_status</code></a>, <a href="#tool-list-revenue-customer-mappings"><code>list_revenue_customer_mappings</code></a>, <a href="#tool-get-marketing-setup-status"><code>get_marketing_setup_status</code></a></td></tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="response-format" class="content-section">
+                    <h2>Response format</h2>
+                    <p>There is no single universal response envelope &mdash; each tool returns the JSON shape natural to its own data.</p>
+                    <ul>
+                        <li><strong>Money:</strong> amounts are in your brand&rsquo;s base currency, named in the <code>currency</code> field of the result. Where a tool also returns an original amount, it carries its own currency.</li>
+                        <li><strong>Windows:</strong> revenue tools with a <code>time_period</code> accept THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS, THIS_YEAR, LAST_YEAR or ALL_TIME (default LAST_6_MONTHS, complete months). Marketing and account tools take a <code>time_range</code> such as 7d, 30d or 90d. A few product tools take a month as <code>YYYY-MM</code>.</li>
+                        <li><strong>Paging:</strong> list tools take <code>limit</code> and <code>offset</code>, or <code>page</code> and <code>page_size</code>. Large results are paged, so ask for the next page when you need more rows.</li>
+                        <li><strong>Metric tools:</strong> the tools whose names start with <code>get</code> followed by a capital letter (for example <code>getMonthlyActiveUsers</code>) each return one metric. You choose a <code>template</code> for the shape: a single value, a change, or a series.</li>
+                        <li><strong>Interactive tools:</strong> a few tools work in steps, such as a ranking you can drill into. The <code>step</code> parameter says which step to run, and your assistant carries the ids from one step to the next.</li>
+                    </ul>
+                </section>
+
+                <section id="tool-catalog" class="content-section">
+                    <h2 id="setup">Setup &amp; Connection</h2>
+                    <p>Check the connection and instrument ThriveStack in your product. <code>start_thrivestack_setup</code> returns the setup prompts to run in your coding assistant.</p>
+
+                    <h3 id="tool-check-connection"><code>check_connection</code></h3>
+                    <p>Confirms the ThriveStack connection is working and your sign-in was accepted. Returns the server time.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-start-thrivestack-setup"><code>start_thrivestack_setup</code></h3>
+                    <p>Builds the setup prompts for instrumenting ThriveStack telemetry from the chosen setup type (marketing, product, or both) and the user's ThriveStack API key, so both are needed up front. Returns setup_prompts, to be run in order inside Claude Code; the prompt text is for the agent, not for display. Makes no changes to the account.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>api_key</code></td><td>string</td><td>Yes</td><td>The ThriveStack API key provided by the user.</td></tr>
+                            <tr><td><code>type</code></td><td>string</td><td>Yes</td><td>Setup type: "marketing", "product", or "both".</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-setup-status"><code>get_setup_status</code></h3>
+                    <p>Get current ThriveStack setup status and completed steps for the tenant (product/environment).</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-get-marketing-setup-status"><code>get_marketing_setup_status</code></h3>
+                    <p>Whether marketing analytics has data to report: whether marketing-site data is integrated, and whether the marketing-site and product tracking scripts are installed. Empty marketing results usually trace back to one of these being off.</p>
+                    <p>No input parameters required.</p>
+
+                    <h2 id="kpis">Revenue KPIs</h2>
+
+                    <h3 id="tool-get-revenue-kpis"><code>get_revenue_kpis</code></h3>
+                    <p>Headline revenue KPIs for the brand: MRR (current, previous month, projected), ARR, ARPA (average revenue per paying account), NRR (net revenue retention, percent), marketing CAC, non-recurring revenue, total revenue, and paying and non-paying customer counts. Each KPI has its month-over-month delta, direction and a monthly trend. Money values are in the brand's base currency (the currency field). time_period sets the trend window for MRR, non-recurring revenue and CAC.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Money values are in your brand&rsquo;s base currency (the <code>currency</code> field).</li>
+                        <li><code>time_period</code> sets the trend window for MRR, non-recurring revenue and CAC.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-net-revenue"><code>get_net_revenue</code></h3>
+                    <p>Net revenue for the brand with its monthly breakdown: gross subscription revenue, non-recurring revenue, transaction fees, balance adjustments, taxes and refunds, each with a count, plus projected values for the current month. Also says whether fees and tax are included. Amounts are in the base currency (the currency field). A component's line items for one month are listed by get_revenue_component_drilldown.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>A component&rsquo;s line items for one month are listed by <a href="#tool-get-revenue-component-drilldown"><code>get_revenue_component_drilldown</code></a>.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-revenue-component-drilldown"><code>get_revenue_component_drilldown</code></h3>
+                    <p>Line items behind one net-revenue component in one calendar month: customer, linked account (group id), amount, date, currency, description and billing source. Paged with limit and offset; pagination.totalCount gives the full count.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>component</code></td><td>string</td><td>Yes</td><td>Net-revenue component to list. One of: GROSS_SUBSCRIPTION, NON_RECURRING, TRANSACTION_FEES, BALANCE, TAXES, REFUNDS.</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                            <tr><td><code>month</code></td><td>number</td><td>Yes</td><td>Calendar month, 1-12.</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
+                            <tr><td><code>year</code></td><td>number</td><td>Yes</td><td>Calendar year, e.g. 2026.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-recognized-revenue-trend"><code>get_recognized_revenue_trend</code></h3>
+                    <p>Monthly recognized revenue for the brand (revenue spread over the service period it pays for), with the number of payments per month, in the base currency. Payments in one month are listed by list_monthly_transactions.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Payments in one month are listed by <a href="#tool-list-monthly-transactions"><code>list_monthly_transactions</code></a>.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-monthly-transactions"><code>list_monthly_transactions</code></h3>
+                    <p>Payments received in one month: customer, linked account (group id), status, amount normalized to the base currency, original amount and currency, date, and whether the account is tracked. revenue_metric picks recognized revenue, MRR or non-recurring payments. Paged with limit and offset.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>customer_name</code></td><td>string</td><td>No</td><td>Partial customer-name match.</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                            <tr><td><code>max_amount</code></td><td>number</td><td>No</td><td>Largest amount to include, base currency.</td></tr>
+                            <tr><td><code>min_amount</code></td><td>number</td><td>No</td><td>Smallest amount to include, base currency.</td></tr>
+                            <tr><td><code>month</code></td><td>string</td><td>Yes</td><td>Month as "Mon YYYY", e.g. "Mar 2026".</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
+                            <tr><td><code>revenue_metric</code></td><td>string</td><td>No</td><td>Which payments to list: RECOGNIZED (default), MRR or NON_RECURRING.</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort field (default DATE).</td></tr>
+                            <tr><td><code>sort_direction</code></td><td>string</td><td>No</td><td>Sort direction (default DESC).</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="mrr-movements">MRR Movements</h2>
+
+                    <h3 id="tool-get-mrr-movements"><code>get_mrr_movements</code></h3>
+                    <p>MRR movement trend for the brand: new, expansion, contraction, churn and reactivation MRR (and the matching revenue movements) per period, each with its value in the base currency and the number of customers. The customers behind a movement are listed by list_mrr_movement_customers.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>The customers behind a movement are listed by <a href="#tool-list-mrr-movement-customers"><code>list_mrr_movement_customers</code></a>.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>mrr_types</code></td><td>string[]</td><td>No</td><td>Movement types to return; all when omitted.</td></tr>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-mrr-movement-customers"><code>list_mrr_movement_customers</code></h3>
+                    <p>Customers behind one MRR movement type in a year, month or day: customer, linked account (group id), MRR change in the base currency, date, plan, item product, subscription and quantity change. Paged with limit and offset.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Leave out <code>day</code> to get the whole month, and <code>month</code> as well to get the whole year.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>day</code></td><td>number</td><td>No</td><td>Day of month; the whole month when omitted.</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                            <tr><td><code>month</code></td><td>number</td><td>No</td><td>Calendar month 1-12; the whole year when omitted.</td></tr>
+                            <tr><td><code>mrr_type</code></td><td>string</td><td>Yes</td><td>Movement type. One of: NEW_MRR, EXPANSION_MRR, CHURN_MRR, CONTRACTION_MRR, REACTIVATION_MRR, NEW_REVENUE, EXPANSION_REVENUE, CHURN_REVENUE, CONTRACTION_REVENUE, REACTIVATION_REVENUE.</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
+                            <tr><td><code>year</code></td><td>number</td><td>Yes</td><td>Calendar year, e.g. 2026.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="plans">Plans</h2>
+
+                    <h3 id="tool-get-plan-mrr-summary"><code>get_plan_mrr_summary</code></h3>
+                    <p>MRR by plan: for each plan its item product, billing interval, price, active customers and subscriptions, MRR and ARR, and its share of customers and MRR (percent). Amounts are in the currency field.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-plan-mrr-trend"><code>get_plan_mrr_trend</code></h3>
+                    <p>Monthly MRR, ARR, active customers and subscriptions per plan, with each plan's share of customers and MRR. Plan ids come from get_plan_mrr_summary.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Plan ids come from <a href="#tool-get-plan-mrr-summary"><code>get_plan_mrr_summary</code></a>.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>plan_ids</code></td><td>string[]</td><td>No</td><td>Plans to include; all plans when omitted.</td></tr>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="customer-value">Customer Value &amp; Revenue Leakage</h2>
+
+                    <h3 id="tool-get-customer-lifetime-value"><code>get_customer_lifetime_value</code></h3>
+                    <p>Customer lifetime value (CLV) for the brand: current, projected and previous month, with a monthly trend of CLV, ARPA, monthly churn rate, churned and paying customers. Money values are in the base currency.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-missed-revenue"><code>get_missed_revenue</code></h3>
+                    <p>Revenue leakage trend: per month the expected revenue, the revenue missed because subscribed accounts did not pay, affected and active account counts, and the number of accounts that paid the month before but not this month. The accounts behind one month are listed by list_missed_payment_customers.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>The accounts behind one month are listed by <a href="#tool-list-missed-payment-customers"><code>list_missed_payment_customers</code></a>.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-missed-payment-customers"><code>list_missed_payment_customers</code></h3>
+                    <p>Customers with an expected or invoiced payment missing in one month: customer, account, MRR at risk (base currency and native currency), due date, plan, status (past_due, retrying or failed) and days overdue, plus the total MRR at risk.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>month</code></td><td>string</td><td>Yes</td><td>Month as "Mon-YYYY", e.g. "Jan-2026".</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="acv">Contracts &amp; ACV</h2>
+
+                    <h3 id="tool-get-acv-summary"><code>get_acv_summary</code></h3>
+                    <p>Annual contract value overview: average ACV and total contract value (TCV) with deltas and monthly trends, subscription, customer, new-booking and expansion-booking counts, and ACV by plan (deal count, total, average, min and max ACV, TCV, new, expansion and renewal counts). Amounts are in the currency field.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-acv-month-drilldown"><code>get_acv_month_drilldown</code></h3>
+                    <p>ACV for one month, optionally one plan: subscription and customer counts, average and total ACV, new and expansion bookings, top plans, top customers and the subscriptions behind it.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Plan ids come from <a href="#tool-get-acv-summary"><code>get_acv_summary</code></a>.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>period_month</code></td><td>string</td><td>Yes</td><td>Month as "YYYY-MM", e.g. "2026-03".</td></tr>
+                            <tr><td><code>plan_id</code></td><td>string</td><td>No</td><td>Restrict to one plan; plan ids come from get_acv_summary.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-acv-contracts"><code>list_acv_contracts</code></h3>
+                    <p>Contracts behind ACV: customer, plan, TCV, one-time fees, recurring value, term, calculated ACV, MRR, booking type and date, current period and subscription status, plus total ACV and TCV across the filter. Paged with limit and offset.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>booking_type</code></td><td>string</td><td>No</td><td>Booking type filter (default ALL). One of: NEW, EXPANSION, RENEWAL, ALL.</td></tr>
+                            <tr><td><code>customer_name</code></td><td>string</td><td>No</td><td>Partial customer-name match.</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
+                            <tr><td><code>plan</code></td><td>string</td><td>No</td><td>Plan filter.</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort field. One of: ACV, TCV, CUSTOMER_NAME, BOOKING_DATE, TERM_MONTHS.</td></tr>
+                            <tr><td><code>sort_direction</code></td><td>string</td><td>No</td><td>Sort direction (default DESC).</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="goals">Revenue Goals</h2>
+
+                    <h3 id="tool-get-revenue-goals"><code>get_revenue_goals</code></h3>
+                    <p>Revenue goal targets the brand has set: metric (MRR, ARR, total revenue, ARPA, ACV, NRR, paying or non-paying customers), target amount, start and target dates, whether active, and who last updated it.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-get-revenue-goal-progress"><code>get_revenue_goal_progress</code></h3>
+                    <p>Progress against the goal for one metric: per month the share of the goal period used, the expected and actual value and the variance, plus the current month.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>metric</code></td><td>string</td><td>Yes</td><td>Goal metric. One of: MRR, ARR, TOTAL_REVENUE, ARPA, ANNUAL_CONTRACT_VALUE, NRR, PAYING_CUSTOMERS, NON_PAYING_CUSTOMERS.</td></tr>
+                            <tr><td><code>time_period</code></td><td>string</td><td>No</td><td>Window: THIS_MONTH, LAST_MONTH, LAST_3_MONTHS, LAST_6_MONTHS (complete months), THIS_YEAR, LAST_YEAR or ALL_TIME. Default LAST_6_MONTHS.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="account-billing">Account Billing</h2>
+                    <p>These tools show the billing detail of one account. They take that account&rsquo;s <code>customer_ids</code> (its billing customer ids, such as Stripe customer ids), which you get from <a href="#tool-list-revenue-account-mappings"><code>list_revenue_account_mappings</code></a>. Your assistant does this lookup for you when you name the account.</p>
+
+                    <h3 id="tool-get-account-revenue"><code>get_account_revenue</code></h3>
+                    <p>Revenue profile of one account from its billing customer ids: MRR, ARR, non-recurring revenue, gross revenue, payment and subscription status, next due date, payment method, billing term, last transaction date and revenue sources. Customer ids for an account come from list_revenue_account_mappings.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>customer_ids</code></td><td>string[]</td><td>Yes</td><td>The account's billing customer ids (for example Stripe customer ids).</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-payment-calendar"><code>get_account_payment_calendar</code></h3>
+                    <p>Month-by-month payment record of one account for a year: amount after deductions, tax and fee, currency, status (paid, missing, failed, pending and so on) and notes on billing periods. Shows missed or late months at a glance.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>customer_ids</code></td><td>string[]</td><td>Yes</td><td>The account's billing customer ids (for example Stripe customer ids).</td></tr>
+                            <tr><td><code>year</code></td><td>number</td><td>Yes</td><td>Calendar year, e.g. 2026.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-account-subscriptions"><code>list_account_subscriptions</code></h3>
+                    <p>Subscriptions of one account's billing customers: status, MRR, ARR, currency, dates (start, next due, past due, renewal, canceled), payment method, discount and each subscription item (plan, product, quantity, unit amount, interval, period, trial, MRR). Paged with page and page_size.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>customer_ids</code></td><td>string[]</td><td>Yes</td><td>The account's billing customer ids (for example Stripe customer ids).</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1).</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-account-invoices"><code>list_account_invoices</code></h3>
+                    <p>Invoices of one account's billing customers: status, amount, issue, due and paid dates, source, the payments against each invoice and its line items (description, type, amount, subscription, period, plan, price). Paged with page and page_size.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>customer_ids</code></td><td>string[]</td><td>Yes</td><td>The account's billing customer ids (for example Stripe customer ids).</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1).</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-account-transactions"><code>list_account_transactions</code></h3>
+                    <p>Payment transactions of one account's billing customers: date, currency, amount, tax, fee, status, payment method, type, billing period, invoice id, description and source. Paged with page and page_size.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>customer_ids</code></td><td>string[]</td><td>Yes</td><td>The account's billing customer ids (for example Stripe customer ids).</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1).</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="revenue-data-health">Revenue Data Health &amp; Mapping</h2>
+                    <p>Use these when a revenue number looks wrong or missing. They show whether your billing data is syncing and whether billing customers are linked to the product accounts they belong to.</p>
+
+                    <h3 id="tool-get-revenue-sync-status"><code>get_revenue_sync_status</code></h3>
+                    <p>Recent sync runs of the brand's billing data sources (Stripe, API, QuickBooks by default): status, sync type, start and last-update time, duration and rows synced. Explains stale or missing revenue numbers.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>data_sources</code></td><td>string[]</td><td>No</td><td>Sources to check; Stripe, API and QuickBooks when omitted.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-revenue-account-mappings"><code>list_revenue_account_mappings</code></h3>
+                    <p>Product accounts (group id, name, domain) and the billing customer each is linked to, with totals of mapped and unmapped accounts. Filter by mapping state or search. Paged with limit and offset.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filter</code></td><td>string</td><td>No</td><td>Mapping state to list (default ALL).</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>Search text matched against names and emails.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-revenue-customer-mappings"><code>list_revenue_customer_mappings</code></h3>
+                    <p>Billing customers and the product account (group id) each is linked to, with totals of mapped and unmapped customers. Filter by mapping state or search by name or email. Unmapped customers' revenue is not attributed to any account. Paged with limit and offset.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Revenue from unmapped customers is not attributed to any account.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filter</code></td><td>string</td><td>No</td><td>Mapping state to list (default ALL).</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100).</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0).</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>Search text matched against names and emails.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="headline-mrr">Headline MRR Metrics</h2>
+                    <p>Single-metric tools that return one MRR figure at a time. For most questions <a href="#tool-get-revenue-kpis"><code>get_revenue_kpis</code></a> and <a href="#tool-get-mrr-movements"><code>get_mrr_movements</code></a> give a fuller answer with a selectable window.</p>
+
+                    <h3 id="tool-gettotalcompanymrr"><code>getTotalCompanyMrr</code></h3>
+                    <p>Returns the total company MRR metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getnetnewmrr"><code>getNetNewMrr</code></h3>
+                    <p>Returns the net new MRR metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getgrossmrradded"><code>getGrossMrrAdded</code></h3>
+                    <p>Returns the gross MRR added metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getnewpayers"><code>getNewPayers</code></h3>
+                    <p>Returns the new payers metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="website-traffic">Website Traffic &amp; Visitors</h2>
+
+                    <h3 id="tool-get-website-traffic"><code>get_website_traffic</code></h3>
+                    <p>Website traffic KPIs for a rolling window: unique visitors and page views (each with a daily series and the percent change against the previous window of the same length), plus UTM coverage: total visitors, visitors who arrived with UTM tags, the tagged share in percent and its daily trend. A low tagged share means campaign attribution is missing for much of the traffic.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-traffic-by-utm"><code>get_traffic_by_utm</code></h3>
+                    <p>Daily website visits broken down by the values of one UTM parameter (for example each utm_source), over a rolling window. Each day lists the total count and a count per parameter value. Answers which sources, mediums, campaigns or terms drive traffic and how that changes day to day.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
+                            <tr><td><code>utm_parameter</code></td><td>string</td><td>No</td><td>UTM parameter to break down by (default utm_source)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-visitor-geo"><code>get_visitor_geo</code></h3>
+                    <p>Website visitors by country, split three ways: campaign traffic (visitors per country with the UTM sources that brought them), organic traffic (visitors per country with their referrers) and direct traffic (visitors per country). Each row carries a performance label. Answers where visitors come from and which regions each acquisition type reaches.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-top-pages"><code>get_top_pages</code></h3>
+                    <p>The 200 most viewed marketing-site page paths across all recorded history, each with page views and unique visitors (distinct devices). Not limited to a time window; time-bounded page metrics are covered by get_content_breakdown.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-list-page-visits"><code>list_page_visits</code></h3>
+                    <p>Individual marketing-site page visits, newest first, over a rolling window: timestamp, anonymous device and session ids, page URL, path and title, country, UTM source and session duration. count is the total number of visits. Paged with page_number and page_size (sizes 5, 10, 15, 25 or 50; default 25).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>page_number</code></td><td>number</td><td>No</td><td>1-based page (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page: 5, 10, 15, 25 or 50 (default 25; other values round up)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-new-signup-counts"><code>get_new_signup_counts</code></h3>
+                    <p>New signed-up users and new accounts in the last day, last 7 days and last 30 days, each with the percent change against the period before and whether that change is positive, plus all-time totals.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-list-new-signups"><code>list_new_signups</code></h3>
+                    <p>The users or accounts created between two dates, newest first: id, name or email, creation time, and whether the entity was first seen only through marketing identification (untracked by the product). Not paged; keep the date range short for large brands.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>end_date</code></td><td>string</td><td>Yes</td><td>Last day, YYYY-MM-DD</td></tr>
+                            <tr><td><code>entity_type</code></td><td>string</td><td>Yes</td><td>Users or Accounts</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>Yes</td><td>First day, YYYY-MM-DD</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="channels">Channels, Campaigns &amp; Sources</h2>
+                    <p>How marketing channels, campaigns and sources perform, and the revenue they bring. The revenue ranking tools are interactive: the first step lists the channels, campaigns or sources, and the second step drills into one.</p>
+
+                    <h3 id="tool-get-channel-performance"><code>get_channel_performance</code></h3>
+                    <p>Per-channel marketing performance for a calendar window: visitors, sessions, identified users and accounts per channel (channel = utm_medium, plus Direct and Organic, credited by first touch); net-new revenue per channel (monthly recurring revenue at first payment of accounts whose first payment falls in the window) with the paying-customer count; and configured marketing spend per channel with a month-by-month split, in the brand's preferred currency. Together these give cost, traffic and revenue per channel. Set include_customers to also list the paying customers behind each channel's revenue.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>include_customers</code></td><td>boolean</td><td>No</td><td>Also list each channel's paying customers: name, first paid month, payment method, currency and revenue (default false)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: this_month (default), this_quarter, this_6m or this_year. All are calendar-to-date and never reach back before January 1 of the current year.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-campaign-performance"><code>get_campaign_performance</code></h3>
+                    <p>Per-campaign (utm_campaign) performance within each channel for a calendar window: visitors, sessions, identified users and accounts per campaign alongside its channel totals, and net-new revenue per campaign (monthly recurring revenue at first payment of accounts first paying in the window, credited by first touch) with the paying-customer count. Set include_customers to also list the paying customers behind each campaign.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>include_customers</code></td><td>boolean</td><td>No</td><td>Also list each campaign's paying customers (default false)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: this_month (default), this_quarter, this_6m or this_year. All are calendar-to-date and never reach back before January 1 of the current year.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-source-performance"><code>get_source_performance</code></h3>
+                    <p>Per-source (utm_source) performance within each channel for a calendar window: visitors, sessions, identified users and accounts per source alongside its channel totals, and net-new revenue per source (monthly recurring revenue at first payment of accounts first paying in the window, credited by first touch) with the paying-customer count. Set include_customers to also list the paying customers behind each source.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>include_customers</code></td><td>boolean</td><td>No</td><td>Also list each source's paying customers (default false)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: this_month (default), this_quarter, this_6m or this_year. All are calendar-to-date and never reach back before January 1 of the current year.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-campaign-timeline"><code>get_campaign_timeline</code></h3>
+                    <p>Visit counts per UTM value per period over the last 12 months (granularity month) or the last 12 Monday-to-Sunday weeks (granularity week). Each row is one UTM value with its periods; a period is the ISO start date of the month or week. Shows which campaigns are growing, fading or seasonal.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>granularity</code></td><td>string</td><td>No</td><td>month (default, last 12 months) or week (last 12 weeks)</td></tr>
+                            <tr><td><code>utm_parameter</code></td><td>string</td><td>No</td><td>UTM parameter whose values form the rows (default utm_campaign) One of: utm_source, utm_medium, utm_campaign, utm_term.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-multi-touch-attribution"><code>get_multi_touch_attribution</code></h3>
+                    <p>Revenue attribution per channel under three models side by side: first touch, last touch and linear (credit split evenly across every touch). For each channel: the share of won revenue in percent and the attributed revenue under each model, visitors, and won accounts. Won accounts are those whose first payment falls in the window; revenue is their first-payment monthly recurring revenue. Set include_campaigns for the same numbers per campaign within each channel.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>include_campaigns</code></td><td>boolean</td><td>No</td><td>Also break attribution down by campaign within each channel (default false)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: this_month (last 30 days, default), this_quarter (90 days), this_6m (180 days) or this_year (365 days), rolling back from today.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-channel-revenue-attribution"><code>get_channel_revenue_attribution</code></h3>
+                    <p>Interactive 2-step channel revenue attribution explorer. Step 1 (step=channels): Returns channels ranked by revenue, including simple LTV proxy (= total_revenue / customer_count). Step 2 (step=breakdown): Pass channel_name. Returns campaigns + sources + customer breakdown for that channel.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>channel_name</code></td><td>string</td><td>No</td><td>Required when step=breakdown</td></tr>
+                            <tr><td><code>step</code></td><td>string</td><td>Yes</td><td>Which step to run: "channels" first, then "breakdown" using the names or ids from the first result.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-campaign-revenue-ranking"><code>get_campaign_revenue_ranking</code></h3>
+                    <p>Interactive 2-step campaign revenue explorer. Step 1 (step=campaigns): Returns campaigns ranked by revenue. Step 2 (step=customers): Pass channel_name and campaign_name to get customer breakdown.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>campaign_name</code></td><td>string</td><td>No</td><td>Required when step=customers</td></tr>
+                            <tr><td><code>channel_name</code></td><td>string</td><td>No</td><td>Required when step=customers</td></tr>
+                            <tr><td><code>step</code></td><td>string</td><td>Yes</td><td>Which step to run: "campaigns" first, then "customers" using the names or ids from the first result.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-source-revenue-ranking"><code>get_source_revenue_ranking</code></h3>
+                    <p>Interactive 2-step source revenue explorer. Step 1 (step=sources): Returns sources ranked by revenue per channel. Step 2 (step=customers): Pass channel_name and source_name to get customer breakdown.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>channel_name</code></td><td>string</td><td>No</td><td>Required when step=customers</td></tr>
+                            <tr><td><code>source_name</code></td><td>string</td><td>No</td><td>Required when step=customers</td></tr>
+                            <tr><td><code>step</code></td><td>string</td><td>Yes</td><td>Which step to run: "sources" first, then "customers" using the names or ids from the first result.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="paid-ads">Paid Ads</h2>
+
+                    <h3 id="tool-get-ads-performance"><code>get_ads_performance</code></h3>
+                    <p>Paid ads delivery per connected ad platform (Google Ads, LinkedIn Ads) and in total: impressions, clicks, spend, click-through rate and cost per click. Spend is in the ad account's currency. Covers a rolling window back from today.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: this_month (last 30 days, default), this_quarter (90 days), this_6m (180 days) or this_year (365 days), rolling back from today.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-ads-traffic"><code>get_ads_traffic</code></h3>
+                    <p>What paid ad clicks turned into: per platform and per ad campaign, the visitors who arrived from ads, the users who signed up, the accounts created and the accounts that became paying, plus platform and overall totals. Campaign rows are paged with campaign_limit and campaign_offset (default 25, max 100); totals always cover every campaign. Campaign ids from this result drill into list_ads_traffic_entities.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>campaign_limit</code></td><td>number</td><td>No</td><td>Campaign rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>campaign_offset</code></td><td>number</td><td>No</td><td>Campaign rows to skip (default 0)</td></tr>
+                            <tr><td><code>platform</code></td><td>string</td><td>No</td><td>Ad platform (default google)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: this_month (last 30 days, default), this_quarter (90 days), this_6m (180 days) or this_year (365 days), rolling back from today.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-ads-traffic-entities"><code>list_ads_traffic_entities</code></h3>
+                    <p>The individual visitors, users or accounts behind an ads traffic number, for one ad campaign or all campaigns: name, id, domain, date, Google click id, offline-conversion upload window status, account creation date, conversion status and source. entity_type picks the column: visitors, users, accounts, paidAccounts or otherAccounts (accounts not tied to a campaign). Paged with limit and offset (default 25, max 100); total gives the full count.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>campaign_id</code></td><td>string</td><td>No</td><td>Ad campaign id from get_ads_traffic, or all (default)</td></tr>
+                            <tr><td><code>entity_type</code></td><td>string</td><td>Yes</td><td>Which entities to list One of: visitors, users, accounts, paidAccounts, otherAccounts.</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>offset</code></td><td>number</td><td>No</td><td>Rows to skip (default 0)</td></tr>
+                            <tr><td><code>platform</code></td><td>string</td><td>No</td><td>Ad platform (default google)</td></tr>
+                            <tr><td><code>sort_dir</code></td><td>string</td><td>No</td><td>Sort direction (default desc)</td></tr>
+                            <tr><td><code>sort_key</code></td><td>string</td><td>No</td><td>Column to sort by One of: name, id, domain, date, gclid, oci, accountCreationDate, converted.</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: this_month (last 30 days, default), this_quarter (90 days), this_6m (180 days) or this_year (365 days), rolling back from today.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="site-content">Site Content</h2>
+
+                    <h3 id="tool-get-content-performance"><code>get_content_performance</code></h3>
+                    <p>Marketing-site engagement KPIs for a rolling window, each with its percent change against the previous window: unique visitors, sessions, page views, views per session, bounce rate (percent) and average session duration (seconds). Also page views per country (ISO country code).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-content-trend"><code>get_content_trend</code></h3>
+                    <p>Time series of one marketing-site engagement metric over a rolling window. Each point has the value and, where the metric allows it, the new-visitor and repeat-visitor counts. metric: unique_visitors, session_count, page_views, views_per_session, bounce_rate or avg_session_duration.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>metric</code></td><td>string</td><td>No</td><td>Metric to chart (default unique_visitors)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-content-breakdown"><code>get_content_breakdown</code></h3>
+                    <p>Marketing-site engagement broken down by one dimension over a rolling window: per page URL, page path, page title, UTM source, medium or campaign, country or operating system, the page views, bounce rate and average session duration, each with its change against the previous window. count is the number of distinct values. Paged with page_number and page_size (sizes 5, 10, 15, 25 or 50; default 25).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>dimension</code></td><td>string</td><td>No</td><td>Dimension to group by (default page_path)</td></tr>
+                            <tr><td><code>page_number</code></td><td>number</td><td>No</td><td>1-based page (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page: 5, 10, 15, 25 or 50 (default 25; other values round up)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-content-device-breakdown"><code>get_content_device_breakdown</code></h3>
+                    <p>Marketing-site engagement per browser, operating system or device type over a rolling window: page views, bounce rate and average session duration, each with its change against the previous window.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>dimension</code></td><td>string</td><td>No</td><td>Group by browser, os or device (default device)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window ending now: 24h, 7d, 30d (default), 60d, 90d, 3m, 6m or 12m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="goals-leads">Goals &amp; Leads</h2>
+
+                    <h3 id="tool-list-goals"><code>list_goals</code></h3>
+                    <p>The marketing goals set up for the brand, with each goal's name, assignee, metric, target, conversion rate, progress, status, completion date, visitor and event counts and the page or event filters that define a completion. Also the unique and repeat visitor totals across goals. Goal ids feed get_goal_trend.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-get-goal-trend"><code>get_goal_trend</code></h3>
+                    <p>Unique visitors and goal completions per period for one goal. Periods are days for windows up to 90d, weeks for 4w to 24w and months for 1m to 12m.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>goal_id</code></td><td>string</td><td>Yes</td><td>Goal id from list_goals</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window: 7d, 14d, 30d, 60d, 90d, 4w, 8w, 12w (default), 24w, 1m, 3m, 6m, 9m or 12m</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-lead-quality"><code>get_lead_quality</code></h3>
+                    <p>Quality mix of scored signups: all-time totals of corporate, personal-email and abusive or fake leads, and the same split (counts and percentages) per period over a window (four weekly periods for 1m, monthly periods for 3m, 6m and 12m). B2B scores accounts, B2C scores users. Also the brand's lead-quality performance goal, when set.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>business_type</code></td><td>string</td><td>No</td><td>B2B (default, accounts) or B2C (users)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Window: 1m, 3m (default), 6m or 12m</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-leads-by-quality"><code>list_leads_by_quality</code></h3>
+                    <p>Leads of one quality type created in a date range, newest first: id, email (B2C) or domain (B2B). lead_type is Corporate, Personal or Abuse/Fake. Useful to drill into a period from get_lead_quality. Paged with page and page_size (default 25, max 100); totalCount is the full count.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>business_type</code></td><td>string</td><td>No</td><td>B2B (default, accounts) or B2C (users)</td></tr>
+                            <tr><td><code>lead_type</code></td><td>string</td><td>Yes</td><td>Lead quality type One of: Corporate, Personal, Abuse/Fake.</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>1-based page (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>period_end</code></td><td>string</td><td>Yes</td><td>Day after the last day, YYYY-MM-DD (exclusive)</td></tr>
+                            <tr><td><code>period_start</code></td><td>string</td><td>Yes</td><td>First day, YYYY-MM-DD (inclusive)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-scored-leads"><code>list_scored_leads</code></h3>
+                    <p>Scored leads, newest first: id, email, lead type, quality, region, industry, job title, lead source, owner, the reason it qualified, first source and creation time. B2B lists accounts, B2C lists users. Paged with page and page_size (default 25, max 100); totalCount is the full count.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>business_type</code></td><td>string</td><td>No</td><td>B2B (default, accounts) or B2C (users)</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>1-based page (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-plg-leads"><code>get_plg_leads</code></h3>
+                    <p>Get PLG-qualified leads ready for sales outreach.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>lead_type</code></td><td>string</td><td>Yes</td><td>Lead acquisition type: identify or group</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Page size (default 50)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="signup-journeys">Signup Journeys</h2>
+
+                    <h3 id="tool-get-acquisition-timing"><code>get_acquisition_timing</code></h3>
+                    <p>How long and how many marketing touches it takes a visitor to sign up, over a rolling window: average touchpoints and average days from first visit to signup, each with its change against the previous window; a daily series of the same averages with the number and ids of users who signed up that day; and the brand's performance goals for both metrics (target and excellent, good and needs-work thresholds), when set.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Rolling window: 24h, 7d, 1m, 3m (default), 6m or 1y</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-conversion-analytics"><code>get_conversion_analytics</code></h3>
+                    <p>Returns aggregate conversion metrics and daily breakdown (touchpoints/time-to-signup). No inputs required.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-get-signup-journey-summaries"><code>get_signup_journey_summaries</code></h3>
+                    <p>Pre-signup journey summary per signed-up user: email, signup time, marketing touchpoints, days from first visit to signup, active days, page visits, sessions and whether any marketing activity was seen. Look users up by user_ids (for example from get_acquisition_timing's daily ids) or by an email search; give exactly one.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>email</code></td><td>string</td><td>No</td><td>Email or part of one to search for</td></tr>
+                            <tr><td><code>user_ids</code></td><td>string[]</td><td>No</td><td>User ids to summarise (at most 100)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-user-journey-timeline"><code>get_user_journey_timeline</code></h3>
+                    <p>One signed-up user's journey before signup, session by session: session type, device, the touchpoint and UTM tags that started it, number of visits, and each visit's time, page title and URL, location and UTM tags. Sessions are paged with session_offset and session_limit (default 3, max 10); pagination says whether more remain.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>session_limit</code></td><td>number</td><td>No</td><td>Sessions per page (default 3, max 10)</td></tr>
+                            <tr><td><code>session_offset</code></td><td>number</td><td>No</td><td>Sessions to skip (default 0; pass nextSessionOffset from the previous page)</td></tr>
+                            <tr><td><code>user_id</code></td><td>string</td><td>Yes</td><td>User id of a signed-up user</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-pre-signup-journey"><code>get_account_pre_signup_journey</code></h3>
+                    <p>Interactive 3-step pre-signup journey explorer. Step 1 (step=dates): Returns all acquisition dates with signup counts — user picks a date. Step 2 (step=users): Pass selected_date + user_ids_json. Returns per-user summary for that date — user picks a user. Step 3 (step=timeline): Pass selected_user_id. Returns full session timeline for that user. Always start with step=dates. product/environment come from tenant context automatically.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>selected_date</code></td><td>string</td><td>No</td><td>YYYY-MM-DD. Required when step=users</td></tr>
+                            <tr><td><code>selected_user_id</code></td><td>string</td><td>No</td><td>User ID. Required when step=timeline</td></tr>
+                            <tr><td><code>step</code></td><td>string</td><td>Yes</td><td>Current interaction step One of: dates, users, timeline.</td></tr>
+                            <tr><td><code>user_ids_json</code></td><td>string</td><td>No</td><td>JSON array of user IDs from step=dates. Required when step=users</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="usage">Product Usage</h2>
+
+                    <h3 id="tool-get-mau-mtu-count"><code>get_mau_mtu_count</code></h3>
+                    <p>Get Monthly Active Users (MAU) and Monthly Tracked Users (MTU) counts.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>period</code></td><td>string</td><td>Yes</td><td>Month in YYYY-MM format</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-event-count"><code>get_event_count</code></h3>
+                    <p>Get total event count for the product/environment.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>period</code></td><td>string</td><td>Yes</td><td>Time period: YYYY-MM or last_N_days (e.g. last_30_days)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getdailyactiveusers"><code>getDailyActiveUsers</code></h3>
+                    <p>Returns the daily active users metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>monthly</code> (a monthly series). Date-range parameters are accepted but ignored; the tool reports its own period.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getweeklyactiveusers"><code>getWeeklyActiveUsers</code></h3>
+                    <p>Returns the weekly active users metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getmonthlyactiveusers"><code>getMonthlyActiveUsers</code></h3>
+                    <p>Returns the monthly active users metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>monthly</code> (a monthly series). Date-range parameters are accepted but ignored; the tool reports its own period.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getmonthlyactiveaccounts"><code>getMonthlyActiveAccounts</code></h3>
+                    <p>Returns the monthly active accounts metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getpageviews"><code>getPageViews</code></h3>
+                    <p>Returns the page views count for ANY time period.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Only the monthly series is available.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getuniquevisitors"><code>getUniqueVisitors</code></h3>
+                    <p>Returns the unique visitor count for ANY time period.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Only the monthly series is available.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getvisitor"><code>getVisitor</code></h3>
+                    <p>Returns the visitor count for ANY time period.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Only the monthly series is available.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getsignup"><code>getSignup</code></h3>
+                    <p>Returns the signup count.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>monthly</code> (a monthly series). Date-range parameters are accepted but ignored; the tool reports its own period.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getabusedetection"><code>getAbuseDetection</code></h3>
+                    <p>Returns the abuse detection count.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="activation">Activation</h2>
+
+                    <h3 id="tool-get-activation-summary"><code>get_activation_summary</code></h3>
+                    <p>Get activation module summary including milestone completion rates.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>period</code></td><td>string</td><td>Yes</td><td>Time period, e.g. last_30_days</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-activation-trend"><code>get_activation_trend</code></h3>
+                    <p>Get activation trend data over time.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>period</code></td><td>string</td><td>Yes</td><td>Time period, e.g. last_30_days</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-feature-conversion-drivers"><code>get_feature_conversion_drivers</code></h3>
+                    <p>Interactive 2-step activation milestone explorer. Step 1 (step=modules): Returns activation modules and their milestones. Step 2 (step=milestone): Pass module_id and milestone_id to get converted vs dropped accounts for that milestone.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>milestone_id</code></td><td>string</td><td>No</td><td>Required when step=milestone</td></tr>
+                            <tr><td><code>module_id</code></td><td>string</td><td>No</td><td>Required when step=milestone</td></tr>
+                            <tr><td><code>step</code></td><td>string</td><td>Yes</td><td>Which step to run: "modules" first, then "milestone" using the names or ids from the first result.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getactivationrate"><code>getActivationRate</code></h3>
+                    <p>Returns the activation rate metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Only the monthly series is available.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-gettotalaccountsactivated"><code>getTotalAccountsActivated</code></h3>
+                    <p>Returns the total accounts activated metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Only the monthly series is available.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getusersactivatedthismonth"><code>getUsersActivatedThisMonth</code></h3>
+                    <p>Returns the users activated this month metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getavgtimetofirstvalue"><code>getAvgTimeToFirstValue</code></h3>
+                    <p>Returns the avg time to first value metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getavgtimefromacttoconv"><code>getAvgTimeFromActToConv</code></h3>
+                    <p>Returns the avg time from activation to conversion metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getavgtimefromacqtoconv"><code>getAvgTimeFromAcqToConv</code></h3>
+                    <p>Returns the avg time from acquisition to conversion metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="retention">Retention &amp; Stickiness</h2>
+
+                    <h3 id="tool-get-retention-data"><code>get_retention_data</code></h3>
+                    <p>Get retention cohort data showing how users return over time.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>period</code></td><td>string</td><td>Yes</td><td>Time period, e.g. last_90_days</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-churn-expansion-signals"><code>get_churn_expansion_signals</code></h3>
+                    <p>Returns portfolio-level engagement segmentation (high, medium and low stickiness counts) and an inactive-account trend series. It does not list individual at-risk accounts; those come from list_accounts.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-gethighstickiness"><code>getHighStickiness</code></h3>
+                    <p>Returns the high stickiness metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getmediumstickiness"><code>getMediumStickiness</code></h3>
+                    <p>Returns the medium stickiness metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getlowstickiness"><code>getLowStickiness</code></h3>
+                    <p>Returns the low stickiness metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getadoptionrate"><code>getAdoptionRate</code></h3>
+                    <p>Returns the adoption rate metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="features">Feature Adoption</h2>
+
+                    <h3 id="tool-get-feature-adoption"><code>get_feature_adoption</code></h3>
+                    <p>Get feature adoption timeline showing when users first used each feature.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>period</code></td><td>string</td><td>Yes</td><td>Time period, e.g. last_30_days</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-feature-usage-trend"><code>get_feature_usage_trend</code></h3>
+                    <p>Get feature usage trend data over time.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>period</code></td><td>string</td><td>Yes</td><td>Time period, e.g. last_30_days</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="funnel">Funnel &amp; Scorecard</h2>
+
+                    <h3 id="tool-get-monthly-metrics-table"><code>get_monthly_metrics_table</code></h3>
+                    <p>Returns a month-by-month scorecard covering the full PLG funnel: new visitors, repeat visitors, signups, TTA (days to signup), TPTA (touchpoints before signup), new paying accounts, and new MRR. Each cell is color-coded (green/yellow/red) relative to all months in that column — makes it easy to spot which months were strong or weak across each metric at a glance. Covers the last 12 months. No inputs required. Use this tool when the user asks to: - diagnose conversion, acquisition, or revenue health - understand why MRR or signups dropped - see a conversion scorecard or funnel overview - identify which month had the worst performance</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-getacqconversion"><code>getAcqConversion</code></h3>
+                    <p>Returns the acquisition conversion metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-getacquisitionaccounts"><code>getAcquisitionAccounts</code></h3>
+                    <p>Returns the acquisition accounts count.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-gettotalacquisitionaccounts"><code>getTotalAcquisitionAccounts</code></h3>
+                    <p>Returns the total acquisition accounts count.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-gettimetoacquisition"><code>getTimeToAcquisition</code></h3>
+                    <p>Returns the time to acquisition metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-gettouchpointstoacquisition"><code>getTouchpointsToAcquisition</code></h3>
+                    <p>Returns the touchpoints to acquisition metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>delta</code> (the change against the previous period), <code>daily</code> (a daily series), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>string</td><td>No</td><td>Additional filters</td></tr>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, delta, daily, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-gettotalaccounts"><code>getTotalAccounts</code></h3>
+                    <p>Returns the total accounts metric.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>template</code> sets the output shape: <code>value</code> (a single figure), <code>monthly</code> (a monthly series).</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>template</code></td><td>string</td><td>No</td><td>Output shape. One of: value, monthly.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="account-lists">Account Lists &amp; Segments</h2>
+
+                    <h3 id="tool-list-accounts"><code>list_accounts</code></h3>
+                    <p>List CRM accounts with optional filtering and pagination. Returns account names, IDs, domains, scores, and subscription details.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>size</code></td><td>number</td><td>No</td><td>Page size (default 20, max 100)</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Column to sort by, e.g. last_active_time</td></tr>
+                            <tr><td><code>sort_order</code></td><td>string</td><td>No</td><td>Sort order: asc or desc (default desc)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-crm-accounts"><code>list_crm_accounts</code></h3>
+                    <p>Lists the brand's accounts from the Account Intelligence list, one page at a time, with the total number of matching accounts in count. Each account row carries identity (id, name, domain, source, createdAt, owner, userCount, softDeleted, mergedAccountId = ids of accounts merged into it), revenue (status, MRR/ARR/NRR in revenue_currency, renewal and last transaction dates, delayed invoice count), expansion/contraction MRR movement this month, atRiskSegment (engagement and/or monetization), CSM and sales rep, acquisition UTMs and abuse status, engagement (active flag, last activity, status, DAU/WAU/MAU, stickiness ratios, activity count and its trend %), activation (status, date, time to value, completion %, current step, champion user) and firmographics. Filter with filters and sort with sort_by/sort_order to answer questions like 'which enterprise accounts are inactive' or 'top accounts by MRR'. Filter keys, operators and quick filters come from get_account_list_fields. Soft-deleted accounts are left out unless filters mention softDeleted or use 'or'.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>filters</code></td><td>object</td><td>No</td><td>Conditions as {"and": [...]} or {"or": [...]} (not both), each condition {"key", "operator", "value"}. key is a field key from get_account_list_fields (e.g. engagement_status, revenue_mrr, atRiskSegment, csm, enrichment_industry); operator is one that field allows (equals, not_equals, contains, not_contains, greater_than, less_than, greater_than_or_equal, less_than_or_equal); value is a string. List fields such as atRiskSegment and source match when they contain the value.</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Field to sort by (default createdAt): any returned field that get_account_list_fields marks sortable, e.g. revenue_mrr, engagement_activityCount, engagement_lastActivity</td></tr>
+                            <tr><td><code>sort_order</code></td><td>string</td><td>No</td><td>Sort direction (default DESC)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-list-fields"><code>get_account_list_fields</code></h3>
+                    <p>Describes every account-list field: key, category (Acquisition, Monetization, Engagement, ...), data type, display name and description, whether it is sortable, and its filter input type and allowed operators. These keys and operators are what list_crm_accounts filters and sort_by take. With key set to a select-type field (source, csm, sales_rep, atRiskSegment or a yes/no field), also returns that field's possible values in filter_values.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>key</code></td><td>string</td><td>No</td><td>Field key whose possible filter values to list, e.g. csm or source</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>With key: only values containing this text</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-account-segments"><code>list_account_segments</code></h3>
+                    <p>Lists the brand's saved account segments (the views in the Account Intelligence sidebar): id, name, description, type (filtered or curated), whether it is a system or the default segment, and filters, the stored filter as JSON in the same {and|or: [{key, operator, value}]} shape list_crm_accounts takes. To see a filtered segment's accounts, pass its filters to list_crm_accounts; a curated segment's accounts match the filter curatedSegment equals the segment id.</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-compare-segments"><code>compare_segments</code></h3>
+                    <p>Compare 2+ segments by identifier (segment id or system name) using account counts.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>segment_identifiers</code></td><td>string[]</td><td>Yes</td><td>Array of segment IDs or system names.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-create-account-segment"><code>create_account_segment</code></h3>
+                    <p>Create an account segment using monetization criteria described in natural language (paid/trial/free, MRR/ARR thresholds, plan).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>user_request</code></td><td>string</td><td>Yes</td><td>Natural language segment criteria, e.g. 'paid accounts with MRR &gt; $500'.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-at-risk-accounts"><code>list_at_risk_accounts</code></h3>
+                    <p>The At-Risk Accounts view: accounts at risk on engagement (activity trend of -5% or worse) or monetization (delayed invoice payments), one page at a time. Returns at_risk (count plus the page of accounts; each row's atRiskSegment says which axis), and the size of each bucket in all_at_risk, engagement_at_risk and monetization_at_risk (count = accounts now; currCount/prevCount = created this month and last month; delta = month-over-month change in %). One axis alone is covered by list_crm_accounts with an atRiskSegment equals engagement (or monetization) filter. Each account row carries identity (id, name, domain, source, createdAt, owner, userCount, softDeleted, mergedAccountId = ids of accounts merged into it), revenue (status, MRR/ARR/NRR in revenue_currency, renewal and last transaction dates, delayed invoice count), expansion/contraction MRR movement this month, atRiskSegment (engagement and/or monetization), CSM and sales rep, acquisition UTMs and abuse status, engagement (active flag, last activity, status, DAU/WAU/MAU, stickiness ratios, activity count and its trend %), activation (status, date, time to value, completion %, current step, champion user) and firmographics.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Field to sort by (default createdAt): any returned field that get_account_list_fields marks sortable, e.g. revenue_mrr, engagement_activityCount, engagement_lastActivity</td></tr>
+                            <tr><td><code>sort_order</code></td><td>string</td><td>No</td><td>Sort direction (default DESC)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-list-account-exports"><code>list_account_exports</code></h3>
+                    <p>Lists recent CSV exports of the account or user list made from the app: status (running, success, failed), row count, error message, and when each was started and completed. Download links are only available in the app.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>entity</code></td><td>string</td><td>No</td><td>Which list's exports (default accounts)</td></tr>
+                            <tr><td><code>limit</code></td><td>number</td><td>No</td><td>How many recent exports (default 20, max 50)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-merged-accounts"><code>get_merged_accounts</code></h3>
+                    <p>Returns the member accounts of a merged account group, each with its own metrics rather than the rolled-up figures shown on the list. Pass the parent id followed by the ids in its mergedAccountId field from list_crm_accounts. Each account row carries identity (id, name, domain, source, createdAt, owner, userCount, softDeleted, mergedAccountId = ids of accounts merged into it), revenue (status, MRR/ARR/NRR in revenue_currency, renewal and last transaction dates, delayed invoice count), expansion/contraction MRR movement this month, atRiskSegment (engagement and/or monetization), CSM and sales rep, acquisition UTMs and abuse status, engagement (active flag, last activity, status, DAU/WAU/MAU, stickiness ratios, activity count and its trend %), activation (status, date, time to value, completion %, current step, champion user) and firmographics.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_ids</code></td><td>string[]</td><td>Yes</td><td>Account ids of the group: parent first, then merged members (max 50)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="account-detail">Account Detail</h2>
+
+                    <h3 id="tool-get-account-overview"><code>get_account_overview</code></h3>
+                    <p>The header of an account's detail page: display name, domain, plan, last active time, account and abuse status, firmographics (industry, annual revenue, employees, founded year, location), user counts (total, active, inactive, waitlisted), subscription (plan, start and expiry dates, payment status, MRR), buyer contact, abuse rule results, the merged member records behind the account (ThriveStack, CRM and billing customer records), which data sources it has (telemetry, HubSpot, revenue), and its assigned CSM and sales rep with when each was set.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id (from list_crm_accounts), CRM record id or billing customer id</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-acquisition"><code>get_account_acquisition</code></h3>
+                    <p>How an account was acquired: the first user (id and email), the initial UTM source, medium, campaign, term and content, the number of touchpoints before signup and the days from first visit to signup. The first user's session-by-session path is in get_user_journey_timeline.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-activation"><code>get_account_activation</code></h3>
+                    <p>An account's activation progress: overall status, how it was reached, time spent versus the activation goal time and whether the goal was met; each activation journey's status, start and activation dates and time spent; and the milestone tree per journey (milestones, sub-milestones and steps, each with completed flag and completion time, key milestones marked).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-activity"><code>get_account_activity</code></h3>
+                    <p>An account's recent product activity feed, newest first: who did what (user name), event type and name, feature used, page title and path, and when. count is the total number of events in the window.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Look-back window: 7d, 1m, 3m, 6m or 1y. Default 3m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-engagement"><code>get_account_engagement</code></h3>
+                    <p>Get engagement trend for a specific account.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account identifier</td></tr>
+                            <tr><td><code>period</code></td><td>string</td><td>Yes</td><td>Time period</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-engagement-trend"><code>get_account_engagement_trend</code></h3>
+                    <p>An account's engagement health: DAU, WAU, MAU and activity count for the last 30 days against the previous 30 (current, previous, delta, % change), weekly and monthly stickiness, and the engagement status; plus the daily trend of active users and activity over the chosen window (one series per measure, each a list of date and count).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Look-back window: 7d, 1m, 3m, 6m or 1y. Default 3m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-engagement-profile"><code>get_account_engagement_profile</code></h3>
+                    <p>Interactive 2-step account engagement profile. Step 1 (step=profile): Pass account_id. Returns account details + acquisition metrics + an intervention recommendation. Step 2 (step=timeline): Pass champion_user_id (use acquisition user_id from profile when available) to view journey timeline.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>No</td><td>Account ID. Required when step=profile</td></tr>
+                            <tr><td><code>champion_user_id</code></td><td>string</td><td>No</td><td>User ID. Required when step=timeline</td></tr>
+                            <tr><td><code>step</code></td><td>string</td><td>Yes</td><td>Which step to run: "profile" first, then "timeline" using the names or ids from the first result.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-expansion"><code>get_account_expansion</code></h3>
+                    <p>An account's MRR expansion and contraction: this month's expansion and contraction summary (movement types such as upgrade or seat change, signal count, MRR movement, MRR and quantity before and after), and the history of expansion and contraction MRR movements (date, amount, currency, category), newest first, paged together.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-feature-usage"><code>get_account_feature_usage</code></h3>
+                    <p>Which product features an account uses: feature adoption (adoption rate %, features adopted vs all tracked features, with both lists), and the usage trend over the window for every feature and product page the account touched (one series per feature or page, each a list of date and count). API, CLI and agent usage is excluded here; it is covered by get_account_api_usage.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Look-back window: 7d, 1m, 3m, 6m or 1y. Default 3m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-api-usage"><code>get_account_api_usage</code></h3>
+                    <p>An account's programmatic usage (features used through the API, CLI or agents rather than the UI): the interfaces and features seen, features grouped by interface, and a daily trend of usage per feature over the window (xAxis is the date, yAxis the count).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Look-back window: 7d, 1m, 3m, 6m or 1y. Default 1m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-user-engagement"><code>get_account_user_engagement</code></h3>
+                    <p>Per-user engagement inside one account, most recently active first: for each user, the number of tracked actions and active days in the window, last active time, whether the user is linked to the account, and a daily activity count (heatMap) for the window. Use it to find an account's champions and dormant users. totalCount is the number of users with activity.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>time_range</code></td><td>string</td><td>No</td><td>Look-back window: 7d, 1m or 3m. Default 1m.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-users"><code>get_account_users</code></h3>
+                    <p>Lists the users that belong to an account, newest signup first: user id, name, email, signup time and how they were acquired (source). totalCount is the number of users on the account.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-data-issues"><code>get_account_data_issues</code></h3>
+                    <p>Tracking and data-setup problems that affect one account's numbers, grouped by lifecycle stage: each issue's title, description, whether it currently exists, severity and where to fix it. Use it when an account's metrics look missing or wrong.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id, as returned in the id field of list_crm_accounts</td></tr>
+                            <tr><td><code>stages</code></td><td>string[]</td><td>No</td><td>Stages to check (default all): Acquisition, Activation, Monetization, Engagement, Retention, Expansion</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="users">Users</h2>
+
+                    <h3 id="tool-list-users"><code>list_users</code></h3>
+                    <p>Lists end users of the brand's product who signed up within a window, one page at a time: name, id, email, company, title, role, location, country, account id and name, device, active/waitlisted/activated/invited flags, last login, signup date, sign-in count, social handles, soft-delete state and abuse status. count is the total matching users. With search, the result is under matching_users instead of users.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>Only users whose email contains this text</td></tr>
+                            <tr><td><code>signup_window</code></td><td>string</td><td>No</td><td>Only users who signed up within this window (default 12 months) One of: 24 hours, 7 days, 14 days, 30 days, 3 months, 6 months, 12 months.</td></tr>
+                            <tr><td><code>user_status</code></td><td>string</td><td>No</td><td>Only users with this status (default all) One of: Active, Inactive, Waitlist.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-user-details"><code>get_user_details</code></h3>
+                    <p>One end user's profile: name, email, avatar, title, phone, location, social handles (GitHub, LinkedIn, Twitter), status, signup date, last active time, the account they belong to (id, name, domain) and their employer (company name and domain).</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>user_id</code></td><td>string</td><td>Yes</td><td>User id, from list_users or get_account_users</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-user-activity"><code>get_user_activity</code></h3>
+                    <p>One user's product events between two times, newest first: event name (e.g. feature_used, page_visit), the feature name or page path, and the time. totalCount is the number of events in the range.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>end_time</code></td><td>number</td><td>Yes</td><td>Range end, Unix seconds</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>start_time</code></td><td>number</td><td>Yes</td><td>Range start, Unix seconds</td></tr>
+                            <tr><td><code>user_id</code></td><td>string</td><td>Yes</td><td>User id, from list_users or get_account_users</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="crm">CRM Integrations</h2>
+
+                    <h3 id="tool-get-crm-integrations"><code>get_crm_integrations</code></h3>
+                    <p>Shows which external systems feed the account and user lists: connected integrations (hubspot, google_ads, linkedin_ads) with direction (crm_to_ts = imported into ThriveStack, ts_to_crm = pushed out) and connection date; the HubSpot sync status and last update time; and the merge rules that match imported records to ThriveStack accounts and users (external source, source field, target field; null when none is set).</p>
+                    <p>No input parameters required.</p>
+
+                    <h3 id="tool-get-hubspot-properties"><code>get_hubspot_properties</code></h3>
+                    <p>For the brand's connected HubSpot portal: the portal id, its domain and whether it is a production portal, plus every property defined on one HubSpot object type (key, label, type). Use it to learn which HubSpot fields exist before reading an account's HubSpot records. Fails when no HubSpot integration is connected.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>entity</code></td><td>string</td><td>No</td><td>HubSpot object type (default companies)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-account-hubspot-data"><code>get_account_hubspot_data</code></h3>
+                    <p>Returns the HubSpot CRM records linked to one account, from the brand's HubSpot sync: the company's properties, the company record, deals, tickets, or engagements (calls, meetings, notes, tasks), one data_type per call. Each record has id, createdAt, updatedAt and a list of HubSpot properties (name, label, type, value; e.g. dealname, amount, dealstage for deals; subject, hs_ticket_priority for tickets). hubSpotCompanyId is null when the account has no linked HubSpot company. totalCount is the number of records of that type.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>account_id</code></td><td>string</td><td>Yes</td><td>Account id (from list_crm_accounts) or a HubSpot company id</td></tr>
+                            <tr><td><code>data_type</code></td><td>string</td><td>No</td><td>Which records to return (default PROPERTIES)</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, starting at 1 (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 100)</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>PROPERTIES only: property names containing this text</td></tr>
+                        </tbody>
+                    </table>
+
+                </section>
+
+                <section id="more-on-the-way" class="content-section">
+                    <h2>Changes over time</h2>
+                    <p>New tools are added from time to time, and we update this page when they go live. See the <a href="../../mcp/changelog.html">Changelog</a> for every tool added or changed, with dates.</p>
+                </section>
+
+                <div class="page-nav">
+                    <a href="prompts.html" class="nav-card prev-card">
+                        <span class="nav-label">Previous</span>
+                        <span class="nav-title">Prompts</span>
+                    </a>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="tools.html">Last updated: November 4, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#overview" class="toc-link active">Overview</a>
+                    <a href="#which-tool" class="toc-link">Which tool?</a>
+                    <a href="#response-format" class="toc-link">Response format</a>
+                    <a href="#setup" class="toc-link">Setup &amp; Connection</a>
+                    <a href="#kpis" class="toc-link">Revenue KPIs</a>
+                    <a href="#mrr-movements" class="toc-link">MRR Movements</a>
+                    <a href="#plans" class="toc-link">Plans</a>
+                    <a href="#customer-value" class="toc-link">Customer Value &amp; Revenue Leakage</a>
+                    <a href="#acv" class="toc-link">Contracts &amp; ACV</a>
+                    <a href="#goals" class="toc-link">Revenue Goals</a>
+                    <a href="#account-billing" class="toc-link">Account Billing</a>
+                    <a href="#revenue-data-health" class="toc-link">Revenue Data Health &amp; Mapping</a>
+                    <a href="#headline-mrr" class="toc-link">Headline MRR Metrics</a>
+                    <a href="#website-traffic" class="toc-link">Website Traffic &amp; Visitors</a>
+                    <a href="#channels" class="toc-link">Channels, Campaigns &amp; Sources</a>
+                    <a href="#paid-ads" class="toc-link">Paid Ads</a>
+                    <a href="#site-content" class="toc-link">Site Content</a>
+                    <a href="#goals-leads" class="toc-link">Goals &amp; Leads</a>
+                    <a href="#signup-journeys" class="toc-link">Signup Journeys</a>
+                    <a href="#usage" class="toc-link">Product Usage</a>
+                    <a href="#activation" class="toc-link">Activation</a>
+                    <a href="#retention" class="toc-link">Retention &amp; Stickiness</a>
+                    <a href="#features" class="toc-link">Feature Adoption</a>
+                    <a href="#funnel" class="toc-link">Funnel &amp; Scorecard</a>
+                    <a href="#account-lists" class="toc-link">Account Lists &amp; Segments</a>
+                    <a href="#account-detail" class="toc-link">Account Detail</a>
+                    <a href="#users" class="toc-link">Users</a>
+                    <a href="#crm" class="toc-link">CRM Integrations</a>
+                    <a href="#more-on-the-way" class="toc-link">Changes over time</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <style>
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.86rem;
+        }
+        .params-table th,
+        .params-table td {
+            border: 0;
+            border-bottom: 1px solid var(--table-row-border);
+            padding: 0.5rem 0.6rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .params-table th {
+            background: var(--bg-sidebar);
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+        /* Keep wide parameter tables inside the page on phones: scroll the table, not the page. */
+        @media (max-width: 640px) {
+            .params-table { display: block; overflow-x: auto; }
+            h3 code { overflow-wrap: anywhere; }
+        }
+    </style>
+
+    <style>
+        /* This page has ~30 sections: let the table of contents scroll inside the viewport. */
+        .right-sidebar .toc-container { max-height: calc(100vh - 100px); overflow-y: auto; }
+    </style>
+
+    <script src="../../../script.js"></script>
+</body>
+</html>

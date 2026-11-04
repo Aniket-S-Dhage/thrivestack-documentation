@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Revenue Intelligence MCP Use Cases - ThriveStack Documentation">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>Revenue Intelligence MCP Use Cases - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles.css">
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../../../index.html" class="logo">
+                <img src="../../../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../../../index.html">Get Started</a>
+                <a href="../../../setup-overview.html">Setup (Unify)</a>
+                <a href="../../../analyze-signals.html">Analyze Signals</a>
+                <a href="../../../take-action.html">Take Action</a>
+                <a href="../../../api-reference.html">API Reference</a>
+                <a href="../../../public/revenue/mcp/introduction.html" class="active">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <thrivestack-mcp-sidebar base-path="../../../"></thrivestack-mcp-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="breadcrumbs">
+                    <a href="../../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../../../public/revenue/setup/introduction.html">Revenue Intelligence</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../../../public/revenue/mcp/introduction.html">MCP</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>Use Cases</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Revenue Intelligence · MCP</span>
+                    <h1 class="doc-page-title">Use Cases</h1>
+                    <p class="doc-page-description">
+                        Example questions and workflows for the ThriveStack MCP Server. Browse by area if you need ideas on what to ask.
+                    </p>
+                </header>
+
+                <section id="getting-started" class="content-section">
+                    <p>Start by just asking a question &mdash; your AI assistant resolves your product and environment automatically from how you connected, so there&rsquo;s no project to pick first:</p>
+                    <blockquote class="note-callout">&ldquo;What are our MRR, ARR and net revenue retention right now?&rdquo;</blockquote>
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-clock" style="margin-right: 4px;"></i>
+                        Include a time range in your questions. &ldquo;Last 30 days&rdquo;, &ldquo;this year&rdquo; or &ldquo;October 2026&rdquo; gets you better results.
+                    </blockquote>
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-bolt" style="margin-right: 4px;"></i>
+                        For a structured multi-step analysis instead of one-off questions, use one of the copy-ready prompts in <a href="prompts.html">Prompts</a>.
+                    </blockquote>
+                </section>
+
+                <section id="example-workflows" class="content-section query-examples">
+                    <h2 id="workflows-revenue">Example workflows: Revenue</h2>
+                    <p>From &ldquo;how are we doing&rdquo; to &ldquo;which customers explain it&rdquo;. Each one names the tools your assistant chains, so you can see where an answer came from.</p>
+
+                    <h3>1. Revenue snapshot</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;What are our MRR, ARR, ARPA and net revenue retention right now, and how do they compare with last month?&rdquo;</blockquote>
+                    <p><code>get_revenue_kpis</code> returns the headline KPIs with each one&rsquo;s month-over-month change and a monthly trend. Money is in your base currency.</p>
+
+                    <h3>2. Why did MRR change?</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;What was our MRR movement over the last 3 months, and which customers churned last month?&rdquo;</blockquote>
+                    <p><code>get_mrr_movements</code> splits the change into new, expansion, contraction, churn and reactivation. Then <code>list_mrr_movement_customers</code> with <code>mrr_type</code> CHURN_MRR names the customers behind the churn, with the plan and the amount.</p>
+
+                    <h3>3. Find revenue leakage</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;How much revenue did we miss to failed or missing payments over the last 6 months, and who is overdue for October 2026?&rdquo;</blockquote>
+                    <p><code>get_missed_revenue</code> shows expected versus missed revenue per month. <code>list_missed_payment_customers</code> lists the customers for one month, with status (past due, retrying or failed), days overdue and the MRR at risk.</p>
+
+                    <h3>4. Review contracts and bookings</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;What is our average contract value, and which expansion contracts are the largest?&rdquo;</blockquote>
+                    <p><code>get_acv_summary</code> gives average ACV, TCV and bookings by plan. <code>list_acv_contracts</code> with <code>booking_type</code> EXPANSION and <code>sort_by</code> ACV lists the biggest deals.</p>
+
+                    <h3>5. Check progress against goals</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Are we on track for our ARR goal this year?&rdquo;</blockquote>
+                    <p><code>get_revenue_goals</code> lists the goals your team set. <code>get_revenue_goal_progress</code> compares the expected and actual value per month, with the variance.</p>
+
+                    <h3>6. Look into one customer&rsquo;s billing</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Show me what Acme Corp pays us, whether they have missed any payments this year, and their latest invoices.&rdquo;</blockquote>
+                    <p>The assistant finds Acme Corp&rsquo;s billing customer ids with <code>list_revenue_account_mappings</code>. Then <code>get_account_revenue</code> gives the revenue profile, <code>get_account_payment_calendar</code> shows paid, missing and failed months, and <code>list_account_invoices</code> lists the invoices.</p>
+
+                    <h2 id="workflows-marketing">Example workflows: Marketing</h2>
+                    <p>Where visitors, signups and revenue come from. Each one names the tools your assistant chains, so you can see where an answer came from.</p>
+
+                    <h3>7. Which channels earn their keep?</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Which channels and campaigns brought the most signups in the last 30 days, and which of them turned into revenue?&rdquo;</blockquote>
+                    <p><code>get_channel_performance</code> and <code>get_campaign_performance</code> show visitors, sessions and signups per channel and campaign. <code>get_multi_touch_attribution</code> compares revenue under first-touch, last-touch and linear models, and <code>get_campaign_revenue_ranking</code> ranks campaigns by the revenue they brought.</p>
+
+                    <h3>8. Traffic and content</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;How has our website traffic trended over the last 90 days, which UTM sources drive it, and which pages get the most views?&rdquo;</blockquote>
+                    <p><code>get_website_traffic</code> gives visitors and page views, <code>get_traffic_by_utm</code> breaks daily visits down by <code>utm_source</code>, and <code>get_top_pages</code> lists the most viewed pages.</p>
+
+                    <h3>9. Are the ads paying off?</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;How are our Google Ads and LinkedIn Ads doing, and how many visitors from ads became users?&rdquo;</blockquote>
+                    <p><code>get_ads_performance</code> shows impressions, clicks, spend, click-through rate and cost per click per ad platform. <code>get_ads_traffic</code> shows what the clicks turned into, per campaign, and <code>list_ads_traffic_entities</code> lists the visitors, users or accounts behind a number.</p>
+
+                    <h3>10. How good are our leads?</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;What share of our recent signups are corporate, personal-email or fake, and show me the corporate leads from last week.&rdquo;</blockquote>
+                    <p><code>get_lead_quality</code> gives the quality mix of scored signups. <code>list_leads_by_quality</code> lists the leads of one quality type created in a date range.</p>
+
+                    <h2 id="workflows-product-analytics">Example workflows: Product analytics</h2>
+                    <p>How people use your product, and whether they stay. Each one names the tools your assistant chains, so you can see where an answer came from.</p>
+
+                    <h3>11. Active users and accounts</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;How many monthly active users and accounts did we have in October 2026?&rdquo;</blockquote>
+                    <p><code>get_mau_mtu_count</code> takes a month as YYYY-MM and returns active and tracked users. <code>getMonthlyActiveAccounts</code> returns the active accounts metric.</p>
+
+                    <h3>12. Is activation improving?</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;How is activation trending, and which milestones best separate accounts that activate from those that drop off?&rdquo;</blockquote>
+                    <p><code>get_activation_summary</code> and <code>get_activation_trend</code> show milestone completion and the trend. <code>get_feature_conversion_drivers</code> is interactive: its first step lists activation modules and milestones, and its second step shows the converted and dropped accounts for one milestone.</p>
+
+                    <h3>13. Who is coming back?</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Show me the retention cohorts, and how many accounts are highly, moderately and barely engaged.&rdquo;</blockquote>
+                    <p><code>get_retention_data</code> returns retention cohort data. <code>get_churn_expansion_signals</code> gives the portfolio split into high, medium and low stickiness, with an inactive-account trend.</p>
+
+                    <h3>14. The whole funnel in one table</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Give me a month-by-month scorecard of the funnel.&rdquo;</blockquote>
+                    <p><code>get_monthly_metrics_table</code> returns a month-by-month scorecard of the last 12 months of the product-led growth funnel: new and repeat visitors, signups, time and touchpoints to signup, new paying accounts and new MRR. Each cell is colour-coded so strong and weak months stand out.</p>
+
+                    <h2 id="workflows-accounts">Example workflows: Accounts</h2>
+                    <p>Who your customers are and which ones need attention. Each one names the tools your assistant chains, so you can see where an answer came from.</p>
+
+                    <h3>15. Which accounts are at risk?</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Which accounts are at risk, and what changed in their usage?&rdquo;</blockquote>
+                    <p><code>list_at_risk_accounts</code> lists accounts at risk on engagement or monetization. For the ones that matter, <code>get_account_engagement_trend</code> and <code>get_account_feature_usage</code> show what changed.</p>
+
+                    <h3>16. Brief me on one account</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Tell me about Acme Corp: how they found us, who is active, and what they did this week.&rdquo;</blockquote>
+                    <p>The assistant finds the account with <code>list_crm_accounts</code>, then <code>get_account_overview</code> gives the header, <code>get_account_acquisition</code> the first user and campaign, <code>get_account_users</code> the people, and <code>get_account_activity</code> the recent activity.</p>
+
+                    <h3>17. Segment your accounts</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Create a segment of paid accounts with MRR over 1,000, then compare it with our trial accounts.&rdquo;</blockquote>
+                    <p><code>create_account_segment</code> creates a saved segment from a plain-language description. It is the only tool that writes, and your AI client may ask you to confirm before it runs. <code>compare_segments</code> then compares segments by account count.</p>
+                </section>
+
+                <section id="real-world-workflows" class="content-section query-examples">
+                    <h2>Real-world workflows</h2>
+
+                    <h3>Prepare a monthly business update</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Draft last month&rsquo;s update for the leadership team: revenue KPIs, what moved MRR, where signups came from, and which accounts are at risk.&rdquo;</blockquote>
+                    <p>The assistant chains <code>get_revenue_kpis</code> and <code>get_mrr_movements</code> for revenue, <code>get_channel_performance</code> for acquisition and <code>list_at_risk_accounts</code> for risk. Ask it to name any figure it could not find rather than estimate one.</p>
+
+                    <h3>Run a weekly collections review</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Which customers are overdue this month, ordered by MRR at risk, with how many days overdue each one is?&rdquo;</blockquote>
+                    <p><code>list_missed_payment_customers</code> returns status, days overdue and MRR at risk per customer, so the list is ready to hand to whoever follows up.</p>
+
+                    <h3>Investigate a churn spike</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Churn looked high in September. Which customers churned, on which plans, and had their usage dropped before they left?&rdquo;</blockquote>
+                    <p>Start with <code>list_mrr_movement_customers</code> for CHURN_MRR in September, then <code>get_account_engagement_trend</code> and <code>get_account_payment_calendar</code> for the larger accounts to see whether usage or payments dropped first.</p>
+
+                    <h3>Check your setup before you report</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Is our tracking and billing data connected and up to date?&rdquo;</blockquote>
+                    <p><code>get_setup_status</code> and <code>get_marketing_setup_status</code> show what is connected. <code>get_revenue_sync_status</code> shows recent billing syncs, and <code>list_revenue_customer_mappings</code> with <code>filter</code> UNMAPPED lists billing customers not linked to an account.</p>
+                </section>
+
+                <section id="tips" class="content-section">
+                    <h2>Tips</h2>
+                    <p>To make the experience smoother or more complete, take a look at the following tips:</p>
+                    <ul>
+                        <li><strong>Include dates:</strong> Always specify a time range or month (e.g. &ldquo;last 30 days&rdquo;, &ldquo;October 2026&rdquo;). Revenue tools default to the last 6 complete months.</li>
+                        <li><strong>Name the account:</strong> For customer questions, give the account&rsquo;s name. The assistant looks up the account and billing ids itself.</li>
+                        <li><strong>Ask for the currency:</strong> Amounts are in your base currency. Say so in your question if you share the result.</li>
+                        <li><strong>Start broad, then drill down:</strong> Ask for the overview first, then follow up on whatever stands out.</li>
+                    </ul>
+                </section>
+
+                <div class="page-nav">
+                    <a href="setup.html" class="nav-card prev-card">
+                        <span class="nav-label">Previous</span>
+                        <span class="nav-title">Setup</span>
+                    </a>
+                    <a href="prompts.html" class="nav-card next-card">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">Prompts</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="use-cases.html">Last updated: November 4, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#getting-started" class="toc-link active">Getting started</a>
+                    <a href="#example-workflows" class="toc-link">Example workflows</a>
+                    <a href="#workflows-revenue" class="toc-link">&nbsp;&nbsp;Revenue</a>
+                    <a href="#workflows-marketing" class="toc-link">&nbsp;&nbsp;Marketing</a>
+                    <a href="#workflows-product-analytics" class="toc-link">&nbsp;&nbsp;Product analytics</a>
+                    <a href="#workflows-accounts" class="toc-link">&nbsp;&nbsp;Accounts</a>
+                    <a href="#real-world-workflows" class="toc-link">Real-world workflows</a>
+                    <a href="#tips" class="toc-link">Tips</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../../../script.js"></script>
+</body>
+</html>
