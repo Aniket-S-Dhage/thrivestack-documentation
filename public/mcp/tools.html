@@ -82,8 +82,8 @@
                 </header>
 
                 <section id="overview" class="content-section">
-                    <p>This page documents <strong>39 tools</strong> of the ThriveStack MCP Server, and its one prompt. They cover your brands and brand kit, AI-search visibility and citations, the AI answers and sources behind each tracked prompt, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, page traffic and Google search performance, the content audit, prompt research, and content recommendations.</p>
-                    <p><strong>38 of the 39 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
+                    <p>This page documents <strong>45 tools</strong> of the ThriveStack MCP Server, and its one prompt. They cover your brands and brand kit, AI-search visibility and citations, the AI answers and sources behind each tracked prompt, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, page traffic and Google search performance, the content audit, prompt research, and content recommendations.</p>
+                    <p><strong>44 of the 45 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
                     <p>None of these tools take a <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="../../public/mcp/setup.html">Setup</a>.</p>
                     <p>Your AI assistant calls these automatically based on your questions. The server also provides one prompt, <code>ai_visibility_analyst</code>, a ready-made content-strategy analysis &mdash; see <a href="../../public/mcp/prompts.html">Prompts</a>. It does not expose any MCP resources.</p>
                 </section>
@@ -121,6 +121,15 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the brand kit for, e.g. acme.com</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-ai-visibility-setup-status"><code>get_ai_visibility_setup_status</code></h3>
+                    <p>Whether AI Visibility setup is finished for a brand (<code>configured</code>) and whether its trial has expired (<code>trial_expired</code>). Use it to tell a brand that hasn&rsquo;t been onboarded yet, or whose trial ended, apart from one that simply has no data.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
                         </tbody>
                     </table>
 
@@ -208,6 +217,21 @@
                         </tbody>
                     </table>
 
+                    <h3 id="tool-get-competitor-metrics"><code>get_competitor_metrics</code></h3>
+                    <p>Latest-snapshot visibility, share of voice and average rank for the given competitor brands, measured in this brand&rsquo;s own tracked AI answers. The week-by-week trend is in <a href="#tool-get-competitor-visibility"><code>get_competitor_visibility</code></a>; the brand&rsquo;s saved competitor list is in <a href="#tool-get-brand-information"><code>get_brand_information</code></a>.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Share of voice is mention-based: a competitor&rsquo;s mentions as a share of all brand mentions in the latest daily snapshot. It matches the <code>latest</code> snapshot of <code>get_competitor_visibility</code> when both cover the same run.</li>
+                        <li>A competitor with no mentions in the latest snapshot comes back as zeros. That means it was not named, not that data is missing.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>competitor_domains</code></td><td>string[]</td><td>Yes</td><td>Competitor domains to report on, e.g. from the competitors field of get_brand_information</td></tr>
+                        </tbody>
+                    </table>
+
                     <h3 id="tool-get-engine-visibility-trend"><code>get_engine_visibility_trend</code></h3>
                     <p>Daily AI-search visibility % for a domain's own brand, split by AI engine (ChatGPT, Perplexity, Gemini, ...), with average rank per engine where available. Each point is one day: 'values' maps engine id to visibility %, 'avg_ranks' maps engine id to average position (lower is better). Days appear only when a probe ran, so gaps between dates are normal.</p>
                     <table class="params-table">
@@ -216,6 +240,34 @@
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
                             <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>Window end, YYYY-MM-DD (inclusive). Omit for no upper bound.</td></tr>
                             <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Window start, YYYY-MM-DD (inclusive). Omit for no lower bound.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-probe-run"><code>get_probe_run</code></h3>
+                    <p>Status of one AI-visibility probe run (the scheduled pass that asks every tracked question across the AI engines): status, progress, start and finish times, and per-topic results where the run has them. Use it to check whether a run is still in progress before reading reports.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Omit <code>run_id</code> for the brand&rsquo;s latest run.</li>
+                        <li>Internal credit, cost and token fields are not returned.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>run_id</code></td><td>string</td><td>No</td><td>Probe run id, e.g. run_id from get_domain_report or get_citation_probe_data. Omit for the latest run.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-probe-schedule"><code>get_probe_schedule</code></h3>
+                    <p>The brand&rsquo;s probe and site-audit schedules: cadence, last and next run, and answers remaining. Use it to explain why data looks stale or when it will next refresh.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Returns a not-found error if the brand has no schedule.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
                         </tbody>
                     </table>
 
@@ -254,6 +306,20 @@
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain the answer belongs to</td></tr>
                             <tr><td><code>result_id</code></td><td>string</td><td>Yes</td><td>Chat id: result_id from get_citation_probe_data or id from get_prompt_chats</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-probe-result"><code>get_probe_result</code></h3>
+                    <p>One AI engine&rsquo;s full answer to one tracked question: the answer text, the brands it named with their rank, its citations, and the engine and country. Use it to read exactly what an engine said, e.g. to explain why the brand wasn&rsquo;t mentioned.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>It returns the same recorded answer as <a href="#tool-get-prompt-chat"><code>get_prompt_chat</code></a>; take the <code>result_id</code> from <a href="#tool-get-citation-probe-data"><code>get_citation_probe_data</code></a>.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>result_id</code></td><td>string</td><td>Yes</td><td>Answer id: result_id from get_citation_probe_data</td></tr>
                         </tbody>
                     </table>
 
@@ -315,6 +381,35 @@
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch the URL report for</td></tr>
+                            <tr><td><code>brand_logic</code></td><td>string</td><td>No</td><td>Whether a source must match any (or, default) or all (and) of brands. One of: or, and.</td></tr>
+                            <tr><td><code>brands</code></td><td>string[]</td><td>No</td><td>Only sources whose answers mention these brand domains</td></tr>
+                            <tr><td><code>dir</code></td><td>string</td><td>No</td><td>Sort direction (default desc). One of: asc, desc.</td></tr>
+                            <tr><td><code>domain_types</code></td><td>string[]</td><td>No</td><td>Only sources with any of these domain types</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>End of the window, YYYY-MM-DD, inclusive</td></tr>
+                            <tr><td><code>min_brands</code></td><td>number</td><td>No</td><td>Only sources whose answers mention at least this many brands</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Page size (default 25, max 100)</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>Filter by substring match against URL, title, domain, URL type, or domain type</td></tr>
+                            <tr><td><code>sort</code></td><td>string</td><td>No</td><td>Sort column (default retrievals). One of: retrievals, retrieved_pct, retrieval_rate, citation_rate, mentions, self_mentioned, url, domain, url_type, domain_type, source_class.</td></tr>
+                            <tr><td><code>source_class</code></td><td>string</td><td>No</td><td>Only sources of this class: owned (the brand's own site), earned (third-party coverage of the brand) or other_cited. One of: owned, earned, other_cited.</td></tr>
+                            <tr><td><code>source_subtype</code></td><td>string</td><td>No</td><td>Narrow source_class to one subtype</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Start of the window, YYYY-MM-DD</td></tr>
+                            <tr><td><code>url_types</code></td><td>string[]</td><td>No</td><td>Only sources with any of these URL types</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-cited-domains"><code>get_cited_domains</code></h3>
+                    <p>Per-domain retrieval and citation metrics for every website AI answers drew on for the brand&rsquo;s tracked questions, with each domain&rsquo;s type and source class (owned, earned or other cited). The domain-level twin of <a href="#tool-get-url-report"><code>get_url_report</code></a>.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Without a date window it covers the latest completed run and says so if that run&rsquo;s source metrics aren&rsquo;t computed yet (<code>urls_computed=false</code>). With <code>start_date</code>/<code>end_date</code> it covers every run in the window.</li>
+                        <li><code>retrievals</code> counts every citation of the domain; <code>retrieved_pct</code> is the percent of all answers that cited it at least once; <code>retrieval_rate</code> is its citations per answer across all answers.</li>
+                        <li><code>citation_rate</code> is its average citations per answer that cited it. It is 1.0 or more and is <strong>not a percentage</strong>.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
                             <tr><td><code>brand_logic</code></td><td>string</td><td>No</td><td>Whether a source must match any (or, default) or all (and) of brands. One of: or, and.</td></tr>
                             <tr><td><code>brands</code></td><td>string[]</td><td>No</td><td>Only sources whose answers mention these brand domains</td></tr>
                             <tr><td><code>dir</code></td><td>string</td><td>No</td><td>Sort direction (default desc). One of: asc, desc.</td></tr>
