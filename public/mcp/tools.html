@@ -77,13 +77,13 @@
                     <span class="doc-page-header-eyebrow">Cited By · MCP</span>
                     <h1 class="doc-page-title">Tools Reference</h1>
                     <p class="doc-page-description">
-                        Every tool the ThriveStack MCP Server currently exposes, with parameters and what each one does.
+                        The tools documented for the ThriveStack MCP Server, with parameters and what each one does.
                     </p>
                 </header>
 
                 <section id="overview" class="content-section">
-                    <p>The ThriveStack MCP Server currently exposes <strong>23 tools</strong> and one prompt. They cover your brands, AI-search visibility and citations, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, prompt research, and content recommendations.</p>
-                    <p><strong>22 of the 23 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
+                    <p>This page documents <strong>26 tools</strong> of the ThriveStack MCP Server, and its one prompt. They cover your brands, AI-search visibility and citations, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, page traffic and Google search performance, prompt research, and content recommendations.</p>
+                    <p><strong>25 of the 26 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
                     <p>None of these tools take a <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="../../public/mcp/setup.html">Setup</a>.</p>
                     <p>Your AI assistant calls these automatically based on your questions. The server also provides one prompt, <code>ai_visibility_analyst</code>, a ready-made content-strategy analysis &mdash; see <a href="../../public/mcp/prompts.html">Prompts</a>. It does not expose any MCP resources.</p>
                 </section>
@@ -218,20 +218,30 @@
                     <h2 id="site-health">Site &amp; Crawl Health</h2>
 
                     <h3 id="tool-list-urls"><code>list_urls</code></h3>
-                    <p>Paged table of the brand's sitemap URLs (brand from your token), one row per URL combining three sources: Google indexing (index state, coverage detail, last Google crawl), AI-crawler reach (hit count and which bots fetched it) and the content audit (status, SEO score, entity score). Filters are ANDed; values inside one array filter are ORed.</p>
+                    <p>Paged table of the brand's URLs (brand from your token), one row per URL that the brand's Search Console sync knows about: sitemap URLs plus any pages added by hand. Each row combines four sources: Google indexing (<code>indexState</code>, <code>coverageDetail</code>, <code>crawlAllowed</code>, <code>lastCrawlTime</code>), AI-crawler reach (<code>crawlHits</code> and <code>crawlBots</code>), the content audit (<code>contentStatus</code>, <code>seoScore</code>, <code>entityScore</code>, only for audited pages) and AI citations (<code>cited</code>, <code>citedPromptCount</code>, and <code>citedBy</code>, up to 10 of the citing prompts, newest first, each with <code>probed_at</code>). Filters are ANDed; a comma list inside one filter means any of.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li><code>crawlHits</code> and <code>crawlBots</code> count requests made by AI crawlers such as GPTBot and ClaudeBot. They are <strong>not</strong> human visits. Human visits come from <a href="#tool-get-page-traffic"><code>get_page_traffic</code></a>.</li>
+                        <li>The list is empty until Search Console is connected and has synced. <a href="#tool-get-search-console-status"><code>get_search_console_status</code></a> shows the connection.</li>
+                        <li>The response includes <code>columns</code>, which says which sources are set up (<code>indexed</code>, <code>crawled</code>, <code>content</code>). When one is <code>false</code>, its fields are absent because the source is not set up. That is different from a value of zero.</li>
+                        <li><code>total</code> counts every matching row. Page through them with <code>page</code> and <code>page_size</code>.</li>
+                        <li>Pages that AI answers cite on <em>any</em> site, not only the brand's own, are covered by <a href="#tool-get-url-report"><code>get_url_report</code></a>.</li>
+                    </ul>
+                    <p>This tool takes no <code>domain</code> parameter. It always reads the brand your token belongs to.</p>
                     <table class="params-table">
                         <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                         <tbody>
-                            <tr><td><code>ai_crawled</code></td><td>string</td><td>No</td><td>yes = fetched by at least one AI crawler; no = never One of: yes, no.</td></tr>
+                            <tr><td><code>ai_crawled</code></td><td>string</td><td>No</td><td>yes = fetched by at least one AI crawler; no = never. One of: yes, no.</td></tr>
+                            <tr><td><code>cited</code></td><td>string</td><td>No</td><td>yes = AI answers cited this URL in a tracked prompt; no = never cited. One of: yes, no.</td></tr>
                             <tr><td><code>content_status</code></td><td>string[]</td><td>No</td><td>Only URLs in any of these content-audit states: not_configured (not in the content report), queued (in the report, not scored yet), complete (scored), failed</td></tr>
-                            <tr><td><code>google_crawled</code></td><td>string</td><td>No</td><td>yes = Google has a last crawl time for the URL; no = not crawled yet One of: yes, no.</td></tr>
-                            <tr><td><code>in_content_report</code></td><td>string</td><td>No</td><td>yes = the URL is in the content audit report One of: yes, no.</td></tr>
-                            <tr><td><code>index_state</code></td><td>string[]</td><td>No</td><td>Only URLs in any of these Google index states</td></tr>
-                            <tr><td><code>order</code></td><td>string</td><td>No</td><td>Sort order (default asc) One of: asc, desc.</td></tr>
+                            <tr><td><code>google_crawled</code></td><td>string</td><td>No</td><td>yes = Google has a last crawl time for the URL; no = not crawled yet. One of: yes, no.</td></tr>
+                            <tr><td><code>in_content_report</code></td><td>string</td><td>No</td><td>yes = the URL is in the content audit report. One of: yes, no.</td></tr>
+                            <tr><td><code>index_state</code></td><td>string[]</td><td>No</td><td>Only URLs in any of these Google index states. Values: indexed, not_indexed, excluded, error, pending.</td></tr>
+                            <tr><td><code>order</code></td><td>string</td><td>No</td><td>Sort order (default asc); used only with sort_by. One of: asc, desc.</td></tr>
                             <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
                             <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Page size (default 25, max 100)</td></tr>
                             <tr><td><code>search</code></td><td>string</td><td>No</td><td>Substring match on URL or coverage detail</td></tr>
-                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort column (default: server order). 'crawled' sorts by AI-crawler hit count. One of: url, indexState, crawled, googleCrawled, contentStatus, seoScore, entityScore, lastCrawlTime, updatedAt.</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort column (default: server order). 'crawled' sorts by AI-crawler hit count. One of: indexState, crawled, googleCrawled, contentStatus, seoScore, entityScore, lastCrawlTime, updatedAt.</td></tr>
                         </tbody>
                     </table>
 
@@ -260,6 +270,80 @@
                             <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Domain to fetch technical recommendations for</td></tr>
                             <tr><td><code>page_url</code></td><td>string</td><td>No</td><td>Scope page_recommendations to a single page URL. Omit to get every audited page's recommendations.</td></tr>
                             <tr><td><code>status</code></td><td>string</td><td>No</td><td>Filter both sections to items with this status: PASS | WARN | FAIL</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 id="traffic-search">Traffic &amp; Search Performance</h2>
+                    <p>These tools show how much real traffic each page gets and how it performs in Google, next to the AI-crawler and citation data above. Together with <a href="#tool-list-urls"><code>list_urls</code></a> they give a page-by-page view of a site, which is what a content calendar needs.</p>
+                    <p><strong>Matching pages across tools.</strong> <code>get_page_traffic</code> and <code>get_search_performance</code> identify a page by its normalised path: host, query string and trailing slash removed, lower-case. A page therefore has the same key in both, and you can join them on it.</p>
+                    <p><strong>No data is not zero.</strong> Each tool says in <code>meta</code> whether its source is connected. If it is not, the tool has no data to report, which is different from a page with zero visits or zero clicks.</p>
+
+                    <h3 id="tool-get-page-traffic"><code>get_page_traffic</code></h3>
+                    <p>Human visits per page from the connected Google Analytics, across every channel, not only AI-referred ones. For each landing page it returns:</p>
+                    <ul>
+                        <li>sessions in the window, split into organic search, direct, AI referral and other (paid and email visits are included in these);</li>
+                        <li>key events (conversions);</li>
+                        <li>the last day with sessions in the window;</li>
+                        <li><code>first_seen</code>, the oldest day Google Analytics shows sessions for the page. This is a lower bound on when the page went live, because history starts when the connection first synced.</li>
+                    </ul>
+                    <p>A session counts on the page it started on, so this is not a page-view count. Defaults to the last 28 days. Results are sorted and paged on the server, with totals over the whole filtered set.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>Totals can sit a few percent below the traffic attribution overview. That report reads Google Analytics by channel and day, while this one reads it by landing page, so the two do not match exactly.</li>
+                        <li><code>meta</code> says whether Google Analytics is connected (<code>configured=false</code> means there is no data to report, not zero visits), whether it is still syncing, and how many sessions had no landing page or were grouped into Google's &ldquo;(other)&rdquo; row. When that happens, the page list is incomplete.</li>
+                        <li>Crawler hits from Cloudflare, Vercel or WordPress are AI-bot requests and are not part of these visits.</li>
+                    </ul>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>End of the window, YYYY-MM-DD, inclusive</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 200)</td></tr>
+                            <tr><td><code>property_id</code></td><td>string</td><td>No</td><td>Only this Google Analytics property, as listed in <code>properties</code> of a previous response. Omit to sum all connected properties.</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>Only pages whose path contains this text, case-insensitive</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort column (default sessions). One of: sessions, organic_sessions, direct_sessions, ai_sessions, other_sessions, key_events, last_seen, page.</td></tr>
+                            <tr><td><code>sort_dir</code></td><td>string</td><td>No</td><td>Sort direction (default desc, or asc when sorting by page). One of: asc, desc.</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Start of the window, YYYY-MM-DD. Give it with end_date; omit both for the last 28 days.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-search-performance"><code>get_search_performance</code></h3>
+                    <p>Google Search Console clicks and impressions per page for the brand on your token. For each page it returns clicks, impressions, CTR (a decimal, so 0.0123 means 1.23%) and average position (1 is the top of the results, weighted by impressions), summed over the window, plus totals over the whole filtered set. <code>example_url</code> shows one full URL for the page.</p>
+                    <p>Defaults to the last 28 days ending two days ago, because Search Console runs about two days behind. Results are sorted and paged on the server.</p>
+                    <p><strong>Good to know</strong></p>
+                    <ul>
+                        <li>The data comes from a daily sync. <code>meta</code> says whether Search Console is connected (<code>configured=false</code> means there is no data, not zero clicks), whether the first sync is still running (<code>syncing</code>), the oldest and newest day held (<code>data_from</code>, <code>data_through</code>), and warns when your window reaches outside them.</li>
+                        <li>Only pages that Google showed in its results have a row. A page with no row was not shown in the window.</li>
+                        <li><a href="#tool-get-search-console-status"><code>get_search_console_status</code></a> shows the connection and sync state.</li>
+                    </ul>
+                    <p>This tool takes no <code>domain</code> parameter. It always reads the brand your token belongs to.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>end_date</code></td><td>string</td><td>No</td><td>End of the window, YYYY-MM-DD, inclusive</td></tr>
+                            <tr><td><code>page</code></td><td>number</td><td>No</td><td>Page number, 1-indexed (default 1)</td></tr>
+                            <tr><td><code>page_size</code></td><td>number</td><td>No</td><td>Rows per page (default 25, max 200)</td></tr>
+                            <tr><td><code>search</code></td><td>string</td><td>No</td><td>Only pages whose path contains this text, case-insensitive</td></tr>
+                            <tr><td><code>sort_by</code></td><td>string</td><td>No</td><td>Sort column (default clicks). One of: clicks, impressions, ctr, position, page.</td></tr>
+                            <tr><td><code>sort_dir</code></td><td>string</td><td>No</td><td>Sort direction (default desc; asc for position and page). One of: asc, desc.</td></tr>
+                            <tr><td><code>start_date</code></td><td>string</td><td>No</td><td>Start of the window, YYYY-MM-DD. Give it with end_date; omit both for the last 28 days ending two days ago.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="tool-get-attribution-health"><code>get_attribution_health</code></h3>
+                    <p>A plain-language health check of the data behind the attribution dashboards, in one call. Read-only.</p>
+                    <ul>
+                        <li><strong>Sources.</strong> For Google Analytics, Cloudflare, Vercel, WordPress and revenue, it reports whether the source is connected, still syncing, working or needs attention, with when it last synced and a short reason.</li>
+                        <li><strong>AI crawler tracking.</strong> It reports whether the add-on is on, how much of it is used, and whether a crawler visit has been confirmed.</li>
+                        <li><strong>Overall.</strong> <code>overall</code> is one of working, setting_up, needs_attention, not_connected or unknown (when the sources could not be read). <code>attention</code> lists what needs a look, as plain sentences.</li>
+                        <li><strong>Coverage.</strong> <code>coverage</code> says what each source can tell you. Google Analytics is the only source of human visits. Cloudflare, Vercel and WordPress report AI bot requests only, so a connected crawler source never means visit data. Coverage is explanation only; it does not change <code>attention</code> or <code>overall</code>.</li>
+                    </ul>
+                    <p>If one part cannot be read, its entry carries an error message and the others still report.</p>
+                    <table class="params-table">
+                        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>Brand domain, e.g. acme.com</td></tr>
                         </tbody>
                     </table>
 
@@ -348,7 +432,10 @@
 
                 <section id="more-on-the-way" class="content-section">
                     <h2>Changes over time</h2>
-                    <p>This page lists exactly what is callable today. New tools are added from time to time, and we update this page when they go live.</p>
+                    <p>New tools are added from time to time, and we update this page when they go live.</p>
+                    <ul>
+                        <li><strong>November 4, 2026:</strong> added <code>get_page_traffic</code>, <code>get_search_performance</code> and <code>get_attribution_health</code>. <code>list_urls</code> now lists the URLs known to the brand's Search Console sync, adds AI-citation fields and the <code>cited</code> filter, and no longer offers <code>url</code> as a sort column.</li>
+                    </ul>
                 </section>
 
                 <footer class="content-footer">
@@ -359,7 +446,7 @@
                     </div>
                     <div class="footer-links">
                         <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
-                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="tools.html">Last updated: October 14, 2026</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="tools.html">Last updated: November 4, 2026</a>
                     </div>
                 </footer>
             </div>
@@ -375,6 +462,7 @@
                     <a href="#visibility" class="toc-link">Visibility &amp; Citations</a>
                     <a href="#sources" class="toc-link">Sources &amp; Pages</a>
                     <a href="#site-health" class="toc-link">Site &amp; Crawl Health</a>
+                    <a href="#traffic-search" class="toc-link">Traffic &amp; Search Performance</a>
                     <a href="#prompt-research" class="toc-link">Prompt Research</a>
                     <a href="#recommendations" class="toc-link">Recommendations</a>
                     <a href="#drafting" class="toc-link">Drafting &amp; Saving</a>
