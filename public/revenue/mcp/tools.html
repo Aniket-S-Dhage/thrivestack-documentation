@@ -85,7 +85,7 @@
                     <p>This page documents <strong>129 tools</strong> of the ThriveStack MCP Server for Revenue Intelligence: 4 for setup, 29 for revenue, 33 for marketing, 35 for product analytics and 28 for accounts.</p>
                     <p><strong>128 of the 129 tools are read-only.</strong> The only tool here that changes anything is <a href="#tool-create-account-segment"><code>create_account_segment</code></a>, which creates a saved account segment. It does not edit or delete anything else.</p>
                     <p>None of these tools take a <code>domain</code>, <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="setup.html">Setup</a>.</p>
-                    <p>Your AI assistant calls these automatically based on your questions. The server does not ship a native MCP prompt for Revenue Intelligence; see <a href="prompts.html">Prompts</a> for copy-ready ones. It does not expose any MCP resources.</p>
+                    <p>Your AI assistant calls these automatically based on your questions. Each section opens with an <strong>Example prompts</strong> dropdown, with a sample question for every tool in it. The server does not ship a native MCP prompt for Revenue Intelligence; see <a href="prompts.html">Prompts</a> for copy-ready ones. It does not expose any MCP resources.</p>
                 </section>
 
                 <section id="which-tool" class="content-section">
@@ -127,6 +127,22 @@
                     <h2 id="setup">Setup &amp; Connection</h2>
                     <p>Check the connection and instrument ThriveStack in your product. <code>start_thrivestack_setup</code> returns the setup prompts to run in your coding assistant.</p>
 
+                    <details class="tools-dropdown tool-examples" id="examples-setup">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">4 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-check-connection"><code>check_connection</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Is my ThriveStack connection working?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-start-thrivestack-setup"><code>start_thrivestack_setup</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Set up ThriveStack for both my marketing site and my product, using the API key &lt;YOUR_API_KEY&gt;.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-setup-status"><code>get_setup_status</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which ThriveStack setup steps are done, and what is still left?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-marketing-setup-status"><code>get_marketing_setup_status</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Is my marketing site sending data to ThriveStack yet?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-check-connection"><code>check_connection</code></h3>
                     <p>Confirms the ThriveStack connection is working and your sign-in was accepted. Returns the server time.</p>
                     <p>No input parameters required.</p>
@@ -150,6 +166,23 @@
                     <p>No input parameters required.</p>
 
                     <h2 id="kpis">Revenue KPIs</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-kpis">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">5 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-revenue-kpis"><code>get_revenue_kpis</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What are our current MRR, ARR, ARPA and net revenue retention, and how do they compare with last month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-net-revenue"><code>get_net_revenue</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Break down our net revenue by month for the last 12 months, including fees and refunds.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-revenue-component-drilldown"><code>get_revenue_component_drilldown</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which payments make up our transaction fees for March 2026?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-recognized-revenue-trend"><code>get_recognized_revenue_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show recognized revenue by month for the last year, with the number of payments.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-monthly-transactions"><code>list_monthly_transactions</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the payments over $5,000 that we received in October 2026, largest first.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-revenue-kpis"><code>get_revenue_kpis</code></h3>
                     <p>Headline revenue KPIs for the brand: MRR (current, previous month, projected), ARR, ARPA (average revenue per paying account), NRR (net revenue retention, percent), marketing CAC, non-recurring revenue, total revenue, and paying and non-paying customer counts. Each KPI has its month-over-month delta, direction and a monthly trend. Money values are in the brand's base currency (the currency field). time_period sets the trend window for MRR, non-recurring revenue and CAC.</p>
@@ -223,6 +256,20 @@
 
                     <h2 id="mrr-movements">MRR Movements</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-mrr-movements">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">2 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-mrr-movements"><code>get_mrr_movements</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show new, expansion, contraction and churn MRR by month for the last 12 months.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-mrr-movement-customers"><code>list_mrr_movement_customers</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which customers churned in September 2026, and how much MRR did we lose from each?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-mrr-movements"><code>get_mrr_movements</code></h3>
                     <p>MRR movement trend for the brand: new, expansion, contraction, churn and reactivation MRR (and the matching revenue movements) per period, each with its value in the base currency and the number of customers. The customers behind a movement are listed by list_mrr_movement_customers.</p>
                     <p><strong>Good to know</strong></p>
@@ -257,6 +304,20 @@
 
                     <h2 id="plans">Plans</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-plans">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">2 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-plan-mrr-summary"><code>get_plan_mrr_summary</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How much MRR does each plan bring in, and how many customers are on each?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-plan-mrr-trend"><code>get_plan_mrr_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How has MRR on our Pro and Enterprise plans changed month by month this year?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-plan-mrr-summary"><code>get_plan_mrr_summary</code></h3>
                     <p>MRR by plan: for each plan its item product, billing interval, price, active customers and subscriptions, MRR and ARR, and its share of customers and MRR (percent). Amounts are in the currency field.</p>
                     <table class="params-table">
@@ -281,6 +342,21 @@
                     </table>
 
                     <h2 id="customer-value">Customer Value &amp; Revenue Leakage</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-customer-value">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-customer-lifetime-value"><code>get_customer_lifetime_value</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What is our customer lifetime value now, and how has it moved over the last 6 months?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-missed-revenue"><code>get_missed_revenue</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How much revenue did we miss in the last 6 months because subscribed accounts didn&rsquo;t pay?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-missed-payment-customers"><code>list_missed_payment_customers</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which customers missed a payment in October 2026, and how much MRR is at risk?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-customer-lifetime-value"><code>get_customer_lifetime_value</code></h3>
                     <p>Customer lifetime value (CLV) for the brand: current, projected and previous month, with a monthly trend of CLV, ARPA, monthly churn rate, churned and paying customers. Money values are in the base currency.</p>
@@ -314,6 +390,21 @@
                     </table>
 
                     <h2 id="acv">Contracts &amp; ACV</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-acv">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-acv-summary"><code>get_acv_summary</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What is our average annual contract value, and is it going up or down?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-acv-month-drilldown"><code>get_acv_month_drilldown</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Break down ACV for June 2026, including new and expansion bookings.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-acv-contracts"><code>list_acv_contracts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List our new-business contracts, highest ACV first.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-acv-summary"><code>get_acv_summary</code></h3>
                     <p>Annual contract value overview: average ACV and total contract value (TCV) with deltas and monthly trends, subscription, customer, new-booking and expansion-booking counts, and ACV by plan (deal count, total, average, min and max ACV, TCV, new, expansion and renewal counts). Amounts are in the currency field.</p>
@@ -355,6 +446,20 @@
 
                     <h2 id="goals">Revenue Goals</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-goals">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">2 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-revenue-goals"><code>get_revenue_goals</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What revenue goals have we set?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-revenue-goal-progress"><code>get_revenue_goal_progress</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Are we on track for our ARR goal this year? Show expected versus actual by month.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-revenue-goals"><code>get_revenue_goals</code></h3>
                     <p>Revenue goal targets the brand has set: metric (MRR, ARR, total revenue, ARPA, ACV, NRR, paying or non-paying customers), target amount, start and target dates, whether active, and who last updated it.</p>
                     <p>No input parameters required.</p>
@@ -371,6 +476,23 @@
 
                     <h2 id="account-billing">Account Billing</h2>
                     <p>These tools show the billing detail of one account. They take that account&rsquo;s <code>customer_ids</code> (its billing customer ids, such as Stripe customer ids), which you get from <a href="#tool-list-revenue-account-mappings"><code>list_revenue_account_mappings</code></a>. Your assistant does this lookup for you when you name the account.</p>
+
+                    <details class="tools-dropdown tool-examples" id="examples-account-billing">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">5 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-revenue"><code>get_account_revenue</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How much MRR and total revenue has the account with Stripe customer cus_Q4x8Lm2 given us?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-payment-calendar"><code>get_account_payment_calendar</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show the 2026 month-by-month payment record for Stripe customer cus_Q4x8Lm2, including missed payments.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-account-subscriptions"><code>list_account_subscriptions</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the subscriptions for Stripe customer cus_Q4x8Lm2 and when each renews.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-account-invoices"><code>list_account_invoices</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show the invoices for Stripe customer cus_Q4x8Lm2 and which are still unpaid.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-account-transactions"><code>list_account_transactions</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the payment transactions for Stripe customer cus_Q4x8Lm2, with fees and payment method.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-account-revenue"><code>get_account_revenue</code></h3>
                     <p>Revenue profile of one account from its billing customer ids: MRR, ARR, non-recurring revenue, gross revenue, payment and subscription status, next due date, payment method, billing term, last transaction date and revenue sources. Customer ids for an account come from list_revenue_account_mappings.</p>
@@ -427,6 +549,21 @@
                     <h2 id="revenue-data-health">Revenue Data Health &amp; Mapping</h2>
                     <p>Use these when a revenue number looks wrong or missing. They show whether your billing data is syncing and whether billing customers are linked to the product accounts they belong to.</p>
 
+                    <details class="tools-dropdown tool-examples" id="examples-revenue-data-health">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-revenue-sync-status"><code>get_revenue_sync_status</code></a></div><div class="tool-examples__prompts"><p>&ldquo;When did our Stripe and QuickBooks data last sync, and did any run fail?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-revenue-account-mappings"><code>list_revenue_account_mappings</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which product accounts aren&rsquo;t linked to a billing customer yet?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-revenue-customer-mappings"><code>list_revenue_customer_mappings</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which billing customers aren&rsquo;t matched to a product account?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-revenue-sync-status"><code>get_revenue_sync_status</code></h3>
                     <p>Recent sync runs of the brand's billing data sources (Stripe, API, QuickBooks by default): status, sync type, start and last-update time, duration and rows synced. Explains stale or missing revenue numbers.</p>
                     <table class="params-table">
@@ -466,6 +603,22 @@
 
                     <h2 id="headline-mrr">Headline MRR Metrics</h2>
                     <p>Single-metric tools that return one MRR figure at a time. For most questions <a href="#tool-get-revenue-kpis"><code>get_revenue_kpis</code></a> and <a href="#tool-get-mrr-movements"><code>get_mrr_movements</code></a> give a fuller answer with a selectable window.</p>
+
+                    <details class="tools-dropdown tool-examples" id="examples-headline-mrr">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">4 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-gettotalcompanymrr"><code>getTotalCompanyMrr</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What is our total company MRR right now?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getnetnewmrr"><code>getNetNewMrr</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What was our net new MRR each month this year?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getgrossmrradded"><code>getGrossMrrAdded</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How much gross MRR did we add last month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getnewpayers"><code>getNewPayers</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many new paying customers did we get each month this quarter?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-gettotalcompanymrr"><code>getTotalCompanyMrr</code></h3>
                     <p>Returns the total company MRR metric.</p>
@@ -520,6 +673,25 @@
                     </table>
 
                     <h2 id="website-traffic">Website Traffic &amp; Visitors</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-website-traffic">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">7 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-website-traffic"><code>get_website_traffic</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many unique visitors and page views did the marketing site get in the last 30 days, compared with the 30 days before?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-traffic-by-utm"><code>get_traffic_by_utm</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show daily visits by utm_source for the last 30 days.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-visitor-geo"><code>get_visitor_geo</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which countries do our website visitors come from, and which campaigns bring them?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-top-pages"><code>get_top_pages</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What are our 20 most viewed marketing-site pages of all time?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-page-visits"><code>list_page_visits</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show the latest individual page visits on the marketing site from the last 7 days.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-new-signup-counts"><code>get_new_signup_counts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many new users and accounts signed up in the last day, week and month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-new-signups"><code>list_new_signups</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the new accounts created between October 1 and October 31, 2026.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-website-traffic"><code>get_website_traffic</code></h3>
                     <p>Website traffic KPIs for a rolling window: unique visitors and page views (each with a daily series and the percent change against the previous window of the same length), plus UTM coverage: total visitors, visitors who arrived with UTM tags, the tagged share in percent and its daily trend. A low tagged share means campaign attribution is missing for much of the traffic.</p>
@@ -581,6 +753,26 @@
 
                     <h2 id="channels">Channels, Campaigns &amp; Sources</h2>
                     <p>How marketing channels, campaigns and sources perform, and the revenue they bring. The revenue ranking tools are interactive: the first step lists the channels, campaigns or sources, and the second step drills into one.</p>
+
+                    <details class="tools-dropdown tool-examples" id="examples-channels">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">8 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-channel-performance"><code>get_channel_performance</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which marketing channels brought the most visitors, signups and accounts in October 2026?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-campaign-performance"><code>get_campaign_performance</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which utm_campaigns performed best in each channel last month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-source-performance"><code>get_source_performance</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How did each utm_source perform last month: visitors, signups and accounts?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-campaign-timeline"><code>get_campaign_timeline</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show weekly visits per utm_campaign for the last 12 weeks.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-multi-touch-attribution"><code>get_multi_touch_attribution</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show revenue by channel under first-touch, last-touch and linear attribution side by side.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-channel-revenue-attribution"><code>get_channel_revenue_attribution</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which marketing channels drive the most revenue?&rdquo;</p><p>&ldquo;Now show the customers behind the Organic Search channel.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-campaign-revenue-ranking"><code>get_campaign_revenue_ranking</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Rank our campaigns by revenue.&rdquo;</p><p>&ldquo;Who are the paying customers from the &ldquo;launch-2026&rdquo; campaign?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-source-revenue-ranking"><code>get_source_revenue_ranking</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Rank traffic sources by revenue within the Paid Social channel.&rdquo;</p><p>&ldquo;Show the customers that came from LinkedIn.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-channel-performance"><code>get_channel_performance</code></h3>
                     <p>Per-channel marketing performance for a calendar window: visitors, sessions, identified users and accounts per channel (channel = utm_medium, plus Direct and Organic, credited by first touch); net-new revenue per channel (monthly recurring revenue at first payment of accounts whose first payment falls in the window) with the paying-customer count; and configured marketing spend per channel with a month-by-month split, in the brand's preferred currency. Together these give cost, traffic and revenue per channel. Set include_customers to also list the paying customers behind each channel's revenue.</p>
@@ -666,6 +858,21 @@
 
                     <h2 id="paid-ads">Paid Ads</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-paid-ads">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-ads-performance"><code>get_ads_performance</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How did Google Ads and LinkedIn Ads perform last month: impressions, clicks, spend and cost per click?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-ads-traffic"><code>get_ads_traffic</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What did paid ad clicks turn into last month: visitors, signups and accounts, by campaign?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-ads-traffic-entities"><code>list_ads_traffic_entities</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which users signed up from our Google Ads campaign last month?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-ads-performance"><code>get_ads_performance</code></h3>
                     <p>Paid ads delivery per connected ad platform (Google Ads, LinkedIn Ads) and in total: impressions, clicks, spend, click-through rate and cost per click. Spend is in the ad account's currency. Covers a rolling window back from today.</p>
                     <table class="params-table">
@@ -704,6 +911,22 @@
                     </table>
 
                     <h2 id="site-content">Site Content</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-site-content">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">4 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-content-performance"><code>get_content_performance</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How is the marketing site engaging visitors over the last 30 days, compared with the previous 30?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-content-trend"><code>get_content_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show the daily bounce rate trend for the marketing site over the last 30 days.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-content-breakdown"><code>get_content_breakdown</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which pages have the highest bounce rate on the marketing site?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-content-device-breakdown"><code>get_content_device_breakdown</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How does engagement differ between desktop, mobile and tablet visitors?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-content-performance"><code>get_content_performance</code></h3>
                     <p>Marketing-site engagement KPIs for a rolling window, each with its percent change against the previous window: unique visitors, sessions, page views, views per session, bounce rate (percent) and average session duration (seconds). Also page views per country (ISO country code).</p>
@@ -747,6 +970,24 @@
                     </table>
 
                     <h2 id="goals-leads">Goals &amp; Leads</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-goals-leads">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">6 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-goals"><code>list_goals</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What marketing goals do we have, and how are they progressing?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-goal-trend"><code>get_goal_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show weekly completions for the &ldquo;Book a demo&rdquo; goal over the last 12 weeks.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-lead-quality"><code>get_lead_quality</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What share of our signups are corporate, personal-email or fake in the last 30 days?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-leads-by-quality"><code>list_leads_by_quality</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the corporate leads created in October 2026.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-scored-leads"><code>list_scored_leads</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show our most recent scored leads with their industry, job title and why they qualified.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-plg-leads"><code>get_plg_leads</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which product-led leads are ready for sales outreach?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-list-goals"><code>list_goals</code></h3>
                     <p>The marketing goals set up for the brand, with each goal's name, assignee, metric, target, conversion rate, progress, status, completion date, visitor and event counts and the page or event filters that define a completion. Also the unique and repeat visitor totals across goals. Goal ids feed get_goal_trend.</p>
@@ -810,6 +1051,23 @@
 
                     <h2 id="signup-journeys">Signup Journeys</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-signup-journeys">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">5 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-acquisition-timing"><code>get_acquisition_timing</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many marketing touches and how many days does a visitor need before signing up?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-conversion-analytics"><code>get_conversion_analytics</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Give me the overall visit-to-signup conversion numbers with the daily breakdown.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-signup-journey-summaries"><code>get_signup_journey_summaries</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show the pre-signup journey for the user priya@globex.com.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-user-journey-timeline"><code>get_user_journey_timeline</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Walk me through user usr_20418&rsquo;s sessions before signup, one session at a time.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-pre-signup-journey"><code>get_account_pre_signup_journey</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show me the signup dates for the last month and let me pick one to see how those users found us.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-acquisition-timing"><code>get_acquisition_timing</code></h3>
                     <p>How long and how many marketing touches it takes a visitor to sign up, over a rolling window: average touchpoints and average days from first visit to signup, each with its change against the previous window; a daily series of the same averages with the number and ids of users who signed up that day; and the brand's performance goals for both metrics (target and excellent, good and needs-work thresholds), when set.</p>
                     <table class="params-table">
@@ -857,6 +1115,29 @@
                     </table>
 
                     <h2 id="usage">Product Usage</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-usage">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">11 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-mau-mtu-count"><code>get_mau_mtu_count</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many monthly active and monthly tracked users do we have this month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-event-count"><code>get_event_count</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many product events did we record in the last 30 days?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getdailyactiveusers"><code>getDailyActiveUsers</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many daily active users do we have now, and how has that moved month by month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getweeklyactiveusers"><code>getWeeklyActiveUsers</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many weekly active users do we have now, compared with the previous period?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getmonthlyactiveusers"><code>getMonthlyActiveUsers</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show monthly active users month by month this year.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getmonthlyactiveaccounts"><code>getMonthlyActiveAccounts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts were active each month this year?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getpageviews"><code>getPageViews</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many page views did we get each month this year?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getuniquevisitors"><code>getUniqueVisitors</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many unique visitors did we have each month this year?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getvisitor"><code>getVisitor</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many visitors did we have each month this year?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getsignup"><code>getSignup</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many signups did we get this month compared with last month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getabusedetection"><code>getAbuseDetection</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many abuse detections did we record this month, compared with the previous period?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-mau-mtu-count"><code>get_mau_mtu_count</code></h3>
                     <p>Get Monthly Active Users (MAU) and Monthly Tracked Users (MTU) counts.</p>
@@ -998,6 +1279,27 @@
 
                     <h2 id="activation">Activation</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-activation">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">9 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-activation-summary"><code>get_activation_summary</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many users complete each activation milestone in the last 30 days?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-activation-trend"><code>get_activation_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show how our activation rate has changed over the last 90 days.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-feature-conversion-drivers"><code>get_feature_conversion_drivers</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which activation modules do we track, and what are their milestones?&rdquo;</p><p>&ldquo;For the &ldquo;Invite a teammate&rdquo; milestone, which accounts completed it and which dropped off?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getactivationrate"><code>getActivationRate</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show our activation rate month by month this year.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-gettotalaccountsactivated"><code>getTotalAccountsActivated</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts have been activated in total, month by month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getusersactivatedthismonth"><code>getUsersActivatedThisMonth</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many users activated this month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getavgtimetofirstvalue"><code>getAvgTimeToFirstValue</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How long does it take a new user to reach first value?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getavgtimefromacttoconv"><code>getAvgTimeFromActToConv</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many days pass between activation and becoming a paying customer?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getavgtimefromacqtoconv"><code>getAvgTimeFromAcqToConv</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many days pass from first touch to paid conversion?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-activation-summary"><code>get_activation_summary</code></h3>
                     <p>Get activation module summary including milestone completion rates.</p>
                     <table class="params-table">
@@ -1107,6 +1409,24 @@
 
                     <h2 id="retention">Retention &amp; Stickiness</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-retention">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">6 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-retention-data"><code>get_retention_data</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show the retention cohorts for the last 90 days: how many users come back after each period?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-churn-expansion-signals"><code>get_churn_expansion_signals</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts have high, medium and low stickiness, and are more accounts going inactive?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-gethighstickiness"><code>getHighStickiness</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts show high stickiness?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getmediumstickiness"><code>getMediumStickiness</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts show medium stickiness?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getlowstickiness"><code>getLowStickiness</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts show low stickiness, and is that count rising?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getadoptionrate"><code>getAdoptionRate</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What is our product adoption rate across accounts?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-retention-data"><code>get_retention_data</code></h3>
                     <p>Get retention cohort data showing how users return over time.</p>
                     <table class="params-table">
@@ -1178,6 +1498,20 @@
 
                     <h2 id="features">Feature Adoption</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-features">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">2 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-feature-adoption"><code>get_feature_adoption</code></a></div><div class="tool-examples__prompts"><p>&ldquo;When did users first use each feature over the last 90 days?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-feature-usage-trend"><code>get_feature_usage_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which features are used more or less over the last 90 days?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-feature-adoption"><code>get_feature_adoption</code></h3>
                     <p>Get feature adoption timeline showing when users first used each feature.</p>
                     <table class="params-table">
@@ -1197,6 +1531,25 @@
                     </table>
 
                     <h2 id="funnel">Funnel &amp; Scorecard</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-funnel">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">7 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-monthly-metrics-table"><code>get_monthly_metrics_table</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show me the month-by-month PLG funnel scorecard, from visitors to signups to paying customers.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getacqconversion"><code>getAcqConversion</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What is our visitor-to-acquisition conversion rate?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-getacquisitionaccounts"><code>getAcquisitionAccounts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts did we acquire this month?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-gettotalacquisitionaccounts"><code>getTotalAcquisitionAccounts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts have we acquired in total?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-gettimetoacquisition"><code>getTimeToAcquisition</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How long does it take, on average, to acquire an account?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-gettouchpointstoacquisition"><code>getTouchpointsToAcquisition</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many marketing touchpoints does it take to acquire an account?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-gettotalaccounts"><code>getTotalAccounts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many accounts do we have in total, and how has that grown by month?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-monthly-metrics-table"><code>get_monthly_metrics_table</code></h3>
                     <p>Returns a month-by-month scorecard covering the full PLG funnel: new visitors, repeat visitors, signups, TTA (days to signup), TPTA (touchpoints before signup), new paying accounts, and new MRR. Each cell is color-coded (green/yellow/red) relative to all months in that column — makes it easy to spot which months were strong or weak across each metric at a glance. Covers the last 12 months. No inputs required. Use this tool when the user asks to: - diagnose conversion, acquisition, or revenue health - understand why MRR or signups dropped - see a conversion scorecard or funnel overview - identify which month had the worst performance</p>
@@ -1286,6 +1639,27 @@
                     </table>
 
                     <h2 id="account-lists">Account Lists &amp; Segments</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-account-lists">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">9 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-accounts"><code>list_accounts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List my top 20 accounts by score.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-crm-accounts"><code>list_crm_accounts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show paying accounts with MRR over $1,000, biggest first.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-list-fields"><code>get_account_list_fields</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What fields can I filter or sort accounts by? Show the monetization ones.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-account-segments"><code>list_account_segments</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What account segments have we saved?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-compare-segments"><code>compare_segments</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Compare our Enterprise and Trial segments by account count.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-create-account-segment"><code>create_account_segment</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Create a segment of paying accounts on the Pro plan with MRR above $500.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-at-risk-accounts"><code>list_at_risk_accounts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which accounts are at risk, either because activity is falling or because their payment is late?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-account-exports"><code>list_account_exports</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What account exports have we run recently, and did they succeed?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-merged-accounts"><code>get_merged_accounts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which accounts are merged into the Globex group, and how does each one perform on its own?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-list-accounts"><code>list_accounts</code></h3>
                     <p>List CRM accounts with optional filtering and pagination. Returns account names, IDs, domains, scores, and subscription details.</p>
@@ -1378,6 +1752,31 @@
                     </table>
 
                     <h2 id="account-detail">Account Detail</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-account-detail">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">13 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-overview"><code>get_account_overview</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Give me an overview of the Globex account: plan, last active time, industry and status.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-acquisition"><code>get_account_acquisition</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How did Globex find us? Show the first user and the original UTM source and campaign.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-activation"><code>get_account_activation</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How far along is Globex&rsquo;s activation, and did they reach it in time?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-activity"><code>get_account_activity</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What has the Globex team done in the product in the last 7 days?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-engagement"><code>get_account_engagement</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show Globex&rsquo;s engagement trend over the last 30 days.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-engagement-trend"><code>get_account_engagement_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Is Globex more or less engaged than last month? Compare DAU, WAU and MAU for the last 30 days.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-engagement-profile"><code>get_account_engagement_profile</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Give me an engagement profile for Globex.&rdquo;</p><p>&ldquo;Who is the champion user at Globex?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-expansion"><code>get_account_expansion</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Has Globex upgraded or downgraded recently? Show their MRR expansion and contraction.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-feature-usage"><code>get_account_feature_usage</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which features does Globex use, and which has it never tried?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-api-usage"><code>get_account_api_usage</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How much of Globex&rsquo;s usage happens through the API, CLI or agents instead of the UI?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-user-engagement"><code>get_account_user_engagement</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which Globex users are most active, and who has gone quiet?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-users"><code>get_account_users</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the users at Globex, with when they signed up and how they were acquired.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-data-issues"><code>get_account_data_issues</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Are there tracking problems that make Globex&rsquo;s numbers unreliable?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-account-overview"><code>get_account_overview</code></h3>
                     <p>The header of an account's detail page: display name, domain, plan, last active time, account and abuse status, firmographics (industry, annual revenue, employees, founded year, location), user counts (total, active, inactive, waitlisted), subscription (plan, start and expiry dates, payment status, MRR), buyer contact, abuse rule results, the merged member records behind the account (ThriveStack, CRM and billing customer records), which data sources it has (telemetry, HubSpot, revenue), and its assigned CSM and sales rep with when each was set.</p>
@@ -1515,6 +1914,21 @@
 
                     <h2 id="users">Users</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-users">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-users"><code>list_users</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the users who signed up in the last 7 days, with their company and role.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-user-details"><code>get_user_details</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show me the profile for priya@globex.com.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-user-activity"><code>get_user_activity</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What did usr_20418 do in the product between November 1 and November 5, 2026?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-list-users"><code>list_users</code></h3>
                     <p>Lists end users of the brand's product who signed up within a window, one page at a time: name, id, email, company, title, role, location, country, account id and name, device, active/waitlisted/activated/invited flags, last login, signup date, sign-in count, social handles, soft-delete state and abuse status. count is the total matching users. With search, the result is under matching_users instead of users.</p>
                     <table class="params-table">
@@ -1551,6 +1965,21 @@
                     </table>
 
                     <h2 id="crm">CRM Integrations</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-crm">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-crm-integrations"><code>get_crm_integrations</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which external systems feed our account and user lists?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-hubspot-properties"><code>get_hubspot_properties</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which HubSpot company properties does ThriveStack sync?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-account-hubspot-data"><code>get_account_hubspot_data</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show the HubSpot company record and deals linked to the Globex account.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-crm-integrations"><code>get_crm_integrations</code></h3>
                     <p>Shows which external systems feed the account and user lists: connected integrations (hubspot, google_ads, linkedin_ads) with direction (crm_to_ts = imported into ThriveStack, ts_to_crm = pushed out) and connection date; the HubSpot sync status and last update time; and the merge rules that match imported records to ThriveStack accounts and users (external source, source field, target field; null when none is set).</p>
