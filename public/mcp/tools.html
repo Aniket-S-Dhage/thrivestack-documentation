@@ -85,7 +85,7 @@
                     <p>This page documents <strong>54 tools</strong> of the ThriveStack MCP Server, and its one prompt. They cover your brands and brand kit, AI-search visibility and citations, the AI answers and sources behind each tracked prompt, probe runs, the sources AI answers draw on, your site&rsquo;s crawl and indexing health, page traffic and Google search performance, traffic attribution, AI crawler visits, AI revenue, the content audit, prompt research, and content recommendations.</p>
                     <p><strong>53 of the 54 tools are read-only.</strong> The only tool that changes anything is <a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a>, which saves recommendations to your brand as <em>suggested</em> items for your team. It cannot approve, dismiss, assign or delete anything, and your AI client asks you to confirm before it runs.</p>
                     <p>None of these tools take a <code>project_id</code> or similar tenant parameter. Your product and environment are resolved automatically from how you authenticated (OAuth session or Personal Access Token) &mdash; see <a href="../../public/mcp/setup.html">Setup</a>.</p>
-                    <p>Your AI assistant calls these automatically based on your questions. The server also provides one prompt, <code>ai_visibility_analyst</code>, a ready-made content-strategy analysis &mdash; see <a href="../../public/mcp/prompts.html">Prompts</a>. It does not expose any MCP resources.</p>
+                    <p>Your AI assistant calls these automatically based on your questions. Each section opens with an <strong>Example prompts</strong> dropdown, with a sample question for every tool in it. The server also provides one prompt, <code>ai_visibility_analyst</code>, a ready-made content-strategy analysis &mdash; see <a href="../../public/mcp/prompts.html">Prompts</a>. It does not expose any MCP resources.</p>
                 </section>
 
                 <section id="response-format" class="content-section">
@@ -96,6 +96,22 @@
 
                 <section id="tool-catalog" class="content-section">
                     <h2 id="brands">Brands &amp; Account</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-brands">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">4 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-accessible-brands"><code>get_accessible_brands</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which brands can I access in ThriveStack?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-brand-information"><code>get_brand_information</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What does ThriveStack have saved about acme.com, such as its description, industry and competitors?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-ai-visibility-setup-status"><code>get_ai_visibility_setup_status</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Has AI Visibility setup finished for acme.com, or is the trial over?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-brand-kit"><code>get_brand_kit</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What tone of voice and writing rules are saved in the brand kit for acme.com?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-accessible-brands"><code>get_accessible_brands</code></h3>
                     <p>Lists the brands (products) the signed-in ThriveStack account can access, with name and domain for each. These are the brands the account can switch between, and the domains the other tools accept. The result is the same whether you connect with OAuth or a personal access token.</p>
@@ -134,6 +150,26 @@
                     </table>
 
                     <h2 id="visibility">Visibility &amp; Citations</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-visibility">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">8 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-domain-report"><code>get_domain_report</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How visible is acme.com in AI search right now, and which competitors show up alongside it?&rdquo;</p><p>&ldquo;Show the visibility report for acme.com for just the &ldquo;pricing&rdquo; topic.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-prompt-metrics"><code>get_prompt_metrics</code></a></div><div class="tool-examples__prompts"><p>&ldquo;For acme.com, show visibility, average rank and share of voice per tracked question for the last 30 days, only for ChatGPT and Perplexity.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-domain-prompts"><code>get_domain_prompts</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the buyer questions we are tracking for acme.com, grouped by topic.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-domain-topics"><code>list_domain_topics</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which prompt topics does acme.com track, and which suggested topics haven&rsquo;t we added yet?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-citation-probe-data"><code>get_citation_probe_data</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Where is acme.com losing AI citations, and which competitors are named instead?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-competitor-visibility"><code>get_competitor_visibility</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Compare acme.com&rsquo;s AI-search visibility with globex.com and initech.com week by week over the last 8 weeks.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-competitor-metrics"><code>get_competitor_metrics</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What are the latest visibility, share of voice and average rank for globex.com and initech.com in acme.com&rsquo;s AI answers?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-engine-visibility-trend"><code>get_engine_visibility_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which AI engine is driving the most visibility for acme.com, and how has each one trended this month?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-domain-report"><code>get_domain_report</code></h3>
                     <p>Returns the visibility report for a brand's most recent completed AI-visibility probe run: overall visibility and average position, competitor and mentioned brands, broken down by topic and by tracked question, with per-AI-model detail. Use it to answer how visible a brand is and who appears alongside it.</p>
@@ -256,6 +292,24 @@
                     <h2 id="prompt-drilldown">Prompt Drilldown</h2>
                     <p>These tools show the detail behind one tracked prompt: the prompt itself, the AI answers recorded for it, the sources and brands those answers used, and how its visibility moved. Take the <code>prompt_id</code> from <a href="#tool-get-domain-prompts"><code>get_domain_prompts</code></a>.</p>
 
+                    <details class="tools-dropdown tool-examples" id="examples-prompt-drilldown">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">6 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-domain-prompt"><code>get_domain_prompt</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show me the details of tracked prompt 3f9a21 for acme.com.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-prompt-chats"><code>get_prompt_chats</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What did the AI engines actually answer for prompt 3f9a21 on acme.com in the last two weeks?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-prompt-chat"><code>get_prompt_chat</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show the full answer text, brands named and citations for result r_8d41 on acme.com.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-prompt-sources"><code>get_prompt_sources</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which sites do AI answers cite most for prompt 3f9a21 on acme.com?&rdquo;</p><p>&ldquo;For the same prompt, show the individual URLs instead of domains.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-prompt-top-brands"><code>get_prompt_top_brands</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which brands do AI answers recommend for prompt 3f9a21, and where does acme.com rank among them?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-prompt-visibility-trend"><code>get_prompt_visibility_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Chart weekly visibility for prompt 3f9a21 on acme.com over the last three months.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-domain-prompt"><code>get_domain_prompt</code></h3>
                     <p>Returns the detail of one tracked prompt (buyer question) for a brand&rsquo;s domain. It contains no visibility results; <a href="#tool-get-domain-report"><code>get_domain_report</code></a> has those.</p>
                     <table class="params-table">
@@ -337,6 +391,21 @@
                 <h2 id="probes">Probe Runs</h2>
                     <p>A probe run is the scheduled pass that asks every tracked question across the AI engines. These tools show a run&rsquo;s status, one engine&rsquo;s full answer, and when the next run is due.</p>
 
+                    <details class="tools-dropdown tool-examples" id="examples-probes">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-probe-run"><code>get_probe_run</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Did the latest AI-visibility probe run for acme.com finish, and how did each topic do?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-probe-result"><code>get_probe_result</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show one engine&rsquo;s full answer for result r_8d41 on acme.com, including the brands it named and its citations.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-probe-schedule"><code>get_probe_schedule</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How often do we probe acme.com, when is the next run, and how many answers are left on our plan?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-probe-run"><code>get_probe_run</code></h3>
                     <p>Status of one AI-visibility probe run: status, progress, start and finish times, and per-topic results where the run has them. Omit <code>run_id</code> for the brand&rsquo;s latest run.</p>
                     <p>Use it to check whether a run is still in progress before reading reports such as <a href="#tool-get-domain-report"><code>get_domain_report</code></a>.</p>
@@ -370,6 +439,24 @@
                     </table>
 
                     <h2 id="sources">Sources &amp; Pages</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-sources">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">6 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-url-report"><code>get_url_report</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which specific pages do AI answers retrieve and cite most for acme.com, and are any of them ours?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-cited-domains"><code>get_cited_domains</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which websites do AI answers draw on most for acme.com&rsquo;s questions, split into our site, earned media and competitors?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-source-mix-summary"><code>get_source_mix_summary</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Where do AI answers about acme.com get their information? Give me the source mix for the last 30 days.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-source-trend"><code>get_source_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How has the use of our top 10 sources by AI answers changed over the last quarter for acme.com?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-competitor-source-mix"><code>get_competitor_source_mix</code></a></div><div class="tool-examples__prompts"><p>&ldquo;For acme.com and globex.com, what share of AI source retrievals comes from their own site versus third-party pages?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-source-run-days"><code>get_source_run_days</code></a></div><div class="tool-examples__prompts"><p>&ldquo;On which days were acme.com&rsquo;s prompts run, so I can pick a date range for a report?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-url-report"><code>get_url_report</code></h3>
                     <p>Per-URL retrieval and citation metrics for every source URL AI answers drew on for a domain&rsquo;s tracked questions: which specific pages are retrieved and cited, and how often, with each URL&rsquo;s type, domain type and source class (owned, earned or other cited). It lists source URLs from any site that AI answers cited, not only the brand&rsquo;s own pages.</p>
@@ -486,6 +573,23 @@
 
                     <h2 id="site-health">Site &amp; Crawl Health</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-site-health">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">5 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-urls"><code>list_urls</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the pages on our site that Google hasn&rsquo;t indexed yet.&rdquo;</p><p>&ldquo;Which pages are cited by AI answers but haven&rsquo;t been crawled by Google?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-url-details"><code>get_url_details</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Is https://acme.com/pricing indexed by Google, and when was it last crawled?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-url-funnel"><code>get_url_funnel</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many of our sitemap URLs has Google crawled and indexed, and how many has AI reached?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-search-console-status"><code>get_search_console_status</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Is Google Search Console connected for our brand, and when did it last sync?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-technical-recommendations"><code>get_technical_recommendations</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What technical fixes would make acme.com easier for AI crawlers to read? Show the open high-priority ones.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-list-urls"><code>list_urls</code></h3>
                     <p>Paged table of the brand's URLs (brand from your token), one row per URL that the brand's Search Console sync knows about: sitemap URLs plus any pages added by hand. Each row combines four sources: Google indexing (<code>indexState</code>, <code>coverageDetail</code>, <code>crawlAllowed</code>, <code>lastCrawlTime</code>), AI-crawler reach (<code>crawlHits</code> and <code>crawlBots</code>), the content audit (<code>contentStatus</code>, <code>seoScore</code>, <code>entityScore</code>, only for audited pages) and AI citations (<code>cited</code>, <code>citedPromptCount</code>, and <code>citedBy</code>, up to 10 of the citing prompts, newest first, each with <code>probed_at</code>). Filters are ANDed; a comma list inside one filter means any of.</p>
                     <p><strong>Good to know</strong></p>
@@ -550,6 +654,23 @@
                     <p>These tools show how much real traffic each page gets and how it performs in Google, next to the AI-crawler and citation data above. Together with <a href="#tool-list-urls"><code>list_urls</code></a> they give a page-by-page view of a site, which is what a content calendar needs.</p>
                     <p><strong>Matching pages across tools.</strong> <code>get_page_traffic</code> and <code>get_search_performance</code> identify a page by its normalised path: host, query string and trailing slash removed, lower-case. A page therefore has the same key in both, and you can join them on it.</p>
                     <p><strong>No data is not zero.</strong> Each tool says in <code>meta</code> whether its source is connected. If it is not, the tool has no data to report, which is different from a page with zero visits or zero clicks.</p>
+
+                    <details class="tools-dropdown tool-examples" id="examples-traffic-search">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">5 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-page-traffic"><code>get_page_traffic</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which pages got the most human visits last month, from all channels, not only AI?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-search-performance"><code>get_search_performance</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which pages get the most Google clicks and impressions, and what is their average position?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-attribution-health"><code>get_attribution_health</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Is my attribution data healthy? Check what is connected and what is missing for acme.com.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-traffic-attribution-overview"><code>get_traffic_attribution_overview</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show weekly traffic for acme.com by channel for the last 90 days: direct, organic, AI referrals, AI citations and AI crawler hits.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-traffic-attribution-sources"><code>get_traffic_attribution_sources</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which data sources are connected behind traffic attribution: Google Analytics, Cloudflare, Vercel, WordPress and revenue?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-page-traffic"><code>get_page_traffic</code></h3>
                     <p>Human visits per page from the connected Google Analytics, across every channel, not only AI-referred ones. For each landing page it returns:</p>
@@ -661,6 +782,22 @@
                     <p>These tools report requests made by AI bots and agents, such as GPTBot and ClaudeBot. They are <strong>not</strong> human visits; human visits come from Google Analytics (see <a href="#tool-get-page-traffic"><code>get_page_traffic</code></a> and <a href="#tool-get-traffic-attribution-overview"><code>get_traffic_attribution_overview</code></a>).</p>
                     <p>They need the AI crawler add-on and crawler tracking. While the add-on is off, the data tools answer <code>addon_required</code>.</p>
 
+                    <details class="tools-dropdown tool-examples" id="examples-ai-crawlers">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">4 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-agent-visit-addon"><code>get_agent_visit_addon</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Is the AI crawler add-on switched on for acme.com, and how much of it have we used?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-agent-visit-recommendations"><code>get_agent_visit_recommendations</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which pages do AI bots hit with errors on acme.com, and what should we fix first?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-ai-crawl-summary"><code>get_ai_crawl_summary</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many visits did AI crawlers make to acme.com in the last 30 days? Which bots and folders are the most active, and what is the failure rate?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-ai-crawl-urls"><code>get_ai_crawl_urls</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which pages does GPTBot fetch most on acme.com?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-agent-visit-addon"><code>get_agent_visit_addon</code></h3>
                     <p>Whether the AI crawler add-on is switched on for the brand and how much of it has been used.</p>
                     <p><strong>Good to know</strong></p>
@@ -733,6 +870,21 @@
                 <h2 id="ai-revenue">AI Revenue</h2>
                     <p>Sessions, conversions and revenue that come from AI sources, from the brand&rsquo;s connected Google Analytics. A <code>null</code> value means it could not be measured, which is different from zero. <code>property_id</code> narrows a result to one Google Analytics property; otherwise they are summed.</p>
 
+                    <details class="tools-dropdown tool-examples" id="examples-ai-revenue">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-ai-revenue-summary"><code>get_ai_revenue_summary</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How much revenue came from AI sources in the last 30 days, and how does revenue per session compare with organic search?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-ai-revenue-trend"><code>get_ai_revenue_trend</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Show weekly revenue from AI sources, organic search and direct traffic for the last quarter.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-ai-revenue-pages"><code>get_ai_revenue_pages</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which landing pages earn the most revenue from AI-referred visitors, and how often do AI answers cite them?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-ai-revenue-summary"><code>get_ai_revenue_summary</code></h3>
                     <p>The headline numbers of AI revenue attribution over a window: sessions from AI sources, conversions and revenue, and revenue per session for AI traffic against organic search, each with its change against the previous period of the same length.</p>
                     <p><strong>Good to know</strong></p>
@@ -800,6 +952,21 @@
                     <h2 id="content-audit">Content Audit</h2>
                     <p>These tools show which pages are tracked for the content audit, how many page audits your plan allows and how many are used, and which sitemap pages you could add.</p>
 
+                    <details class="tools-dropdown tool-examples" id="examples-content-audit">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">3 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-content-audit-summary"><code>get_content_audit_summary</code></a></div><div class="tool-examples__prompts"><p>&ldquo;How many pages of acme.com are in the content audit, and how many audits are left on our plan?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-content-audit-pages"><code>list_content_audit_pages</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which pages are being tracked in the content audit for acme.com, and who added them?&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-content-audit-sitemap-urls"><code>list_content_audit_sitemap_urls</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Which sitemap URLs on acme.com could I still add to the content audit?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-get-content-audit-summary"><code>get_content_audit_summary</code></h3>
                     <p>Content audit status for a brand&rsquo;s domain: how many pages are audited, queued and active, the plan&rsquo;s page-audit limit (<code>page_audits_purchased</code>), how many are used (<code>page_audits_consumed</code>) and <code>pages_remaining</code> (limit minus used). Each page row has its SEO and AEO scores, pending actions by priority, last audit time and whether AI answers cite it. It also returns <code>sitemap_status</code> and <code>coverage_warnings</code> when present.</p>
                     <p><strong>Good to know</strong></p>
@@ -842,6 +1009,20 @@
 
                     <h2 id="prompt-research">Prompt Research</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-prompt-research">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">2 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-list-prompt-research"><code>list_prompt_research</code></a></div><div class="tool-examples__prompts"><p>&ldquo;List the prompt research sessions we have run for acme.com.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-prompt-research"><code>get_prompt_research</code></a></div><div class="tool-examples__prompts"><p>&ldquo;From research session 12, show the non-branded, high-intent prompts grouped by topic, and mark which ones we already track.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-list-prompt-research"><code>list_prompt_research</code></h3>
                     <p>Lists a brand's prompt research sessions: each is a run that discovers the questions buyers ask AI about the brand's category, from which the user picks prompts to track.</p>
                     <table class="params-table">
@@ -868,6 +1049,20 @@
                     </table>
 
                     <h2 id="recommendations">Recommendations</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-recommendations">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">2 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-owned-content-recommendations"><code>get_owned_content_recommendations</code></a></div><div class="tool-examples__prompts"><p>&ldquo;What should we publish on our own site this week to close the biggest AI citation gaps? Show the high-priority ones.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-get-earned-content-recommendations"><code>get_earned_content_recommendations</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Where could we get cited on third-party sites like Reddit or G2 instead of only our own blog?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-get-owned-content-recommendations"><code>get_owned_content_recommendations</code></h3>
                     <p>Lists content recommendations for the brand's own site (channel_type onsite): content to publish on your blog or site to close the AI-citation gaps found in probing. Each item includes severity_tier, gap_score, our_citations and total_citations, and competitors_winning as evidence.</p>
@@ -899,6 +1094,20 @@
 
                     <h2 id="drafting">Drafting &amp; Saving</h2>
 
+                    <details class="tools-dropdown tool-examples" id="examples-drafting">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">2 tools</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-generate-content-outline"><code>generate_content_outline</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Draft an outline for the blog post &ldquo;Best CRM for startups&rdquo;, with an answer-first summary and FAQs.&rdquo;</p></div></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-save-content-recommendations"><code>save_content_recommendations</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Save these three article ideas to acme.com&rsquo;s recommendations list as suggestions for the team.&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
+
                     <h3 id="tool-generate-content-outline"><code>generate_content_outline</code></h3>
                     <p>Generates a content outline (structure only, not finished copy) for one owned-media content recommendation: headings, an answer-first opening summary, FAQ questions, and suggested schema markup types. The outline is generated on request and nothing is saved; calling it again produces a new one.</p>
                     <table class="params-table">
@@ -921,6 +1130,19 @@
                     </table>
 
                     <h2 id="diagnostics">Diagnostics</h2>
+
+                    <details class="tools-dropdown tool-examples" id="examples-diagnostics">
+                        <summary class="tools-dropdown__summary">
+                            <span>Example prompts<span class="tool-examples__count">1 tool</span></span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <div class="query-examples__tool-grid">
+                                <div class="query-examples__tool-grid-header"><span>Tool</span><span>Example prompt</span></div>
+                                <div class="query-examples__tool-pair"><div class="query-examples__tool-name"><a href="#tool-check-connection"><code>check_connection</code></a></div><div class="tool-examples__prompts"><p>&ldquo;Is my ThriveStack connection working?&rdquo;</p></div></div>
+                            </div>
+                        </div>
+                    </details>
 
                     <h3 id="tool-check-connection"><code>check_connection</code></h3>
                     <p>Confirms the ThriveStack connection is working and your sign-in was accepted. Returns the server time.</p>

@@ -2464,3 +2464,34 @@ blockquote.note-callout i {
         grid-template-columns: 1fr;
     }
 }
+
+/* Example prompts dropdown at the top of each section of the MCP tools pages */
+.tool-examples {
+    margin: 1rem 0 1.75rem;
+}
+
+.tool-examples__count {
+    margin-left: 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.tool-examples .tools-dropdown__content {
+    padding-top: 0.5rem;
+}
+
+.tool-examples .query-examples__tool-name a {
+    text-decoration: none;
+}
+
+.tool-examples .tool-examples__prompts p {
+    margin: 0 0 0.45rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.55;
+}
+
+.tool-examples .tool-examples__prompts p:last-child {
+    margin-bottom: 0;
+}
