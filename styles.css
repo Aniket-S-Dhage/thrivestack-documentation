@@ -2467,11 +2467,11 @@ blockquote.note-callout i {
 
 /* Example prompts dropdown at the top of each section of the MCP tools pages */
 .tool-examples {
-    margin: 1rem 0 1.75rem;
+    margin: 0.75rem 0 1.5rem;
 }
 
 .tool-examples__count {
-    margin-left: 0.65rem;
+    margin-left: 0.15rem;
     font-size: 0.8rem;
     font-weight: 500;
     color: var(--text-muted);
@@ -2494,4 +2494,83 @@ blockquote.note-callout i {
 
 .tool-examples .tool-examples__prompts p:last-child {
     margin-bottom: 0;
+}
+
+/* Single-column layout on phones: the Tool / Example prompt header no longer lines up with anything */
+@media (max-width: 640px) {
+    .tool-examples .query-examples__tool-grid-header {
+        display: none;
+    }
+
+    .tool-examples .query-examples__tool-pair {
+        gap: 0.4rem;
+    }
+}
+
+/* Tool entries: clear space above each tool heading so entries do not run together */
+.content-section h3[id^="tool-"] {
+    margin-top: 2rem;
+}
+
+/* Plain lists inside a content section: keep bullets inside the text column and
+   give the block below them the same gap a paragraph would have */
+.content-section > ul:not([class]),
+.content-section > ol:not([class]) {
+    padding-left: 1.25rem;
+    margin: 0 0 1.5rem;
+}
+
+.content-section > ul:not([class]) > li,
+.content-section > ol:not([class]) > li {
+    margin: 0.2rem 0;
+}
+
+.content-section > ul:not([class]):last-child,
+.content-section > ol:not([class]):last-child {
+    margin-bottom: 0;
+}
+
+/* A bold label paragraph (for example "Good to know") sits close to the list it introduces */
+.content-section > p:has(> strong:only-child):has(+ ul:not([class])) {
+    margin-bottom: 0.5rem;
+}
+
+/* Phones: let wide parameter tables scroll sideways and let long inline names wrap,
+   so the page itself never scrolls sideways */
+@media (max-width: 768px) {
+    .params-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .main-content :not(pre) > code {
+        overflow-wrap: anywhere;
+    }
+
+    .main-content p,
+    .main-content li {
+        overflow-wrap: break-word;
+    }
+
+    .main-content table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .main-content pre {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .breadcrumbs {
+        flex-wrap: wrap;
+    }
+
+    .ai-comparison {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1rem;
+    }
 }
