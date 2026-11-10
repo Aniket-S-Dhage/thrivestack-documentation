@@ -868,6 +868,7 @@ function mountDocsShell() {
         ${docsRenderProducts(product)}
         <div class="docs-nav__rule"></div>
         <div class="docs-nav__tree">${docsRenderNodes(DOCS_TREES[product], state, '')}</div>
+        <a class="docs-nav__signin" href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" target="_blank" rel="noopener noreferrer">Sign in</a>
     </nav>`;
     sidebar.dataset.docsNav = '1';
     docsApplyHeaderLogo(product);

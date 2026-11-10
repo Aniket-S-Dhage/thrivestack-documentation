@@ -368,6 +368,13 @@
             line-height: 1.6;
             padding-left: 36px;
         }
+    
+        /* Phones: stack the boxes instead of letting them run off the screen */
+        @media (max-width: 640px) {
+            .mini-diagram { flex-direction: column; align-items: stretch; }
+            .mini-box { min-width: 0; width: 100%; flex: 1 1 auto; }
+            .mini-box-header { flex-wrap: wrap; }
+        }
     </style>
     <script
         src="https://cdn.app.thrivestack.ai/latest/script.js"
