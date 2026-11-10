@@ -1,3 +1,6 @@
 .DS_Store
 *.log
 .claude
+
+# Generated at deploy time by scripts/build-legacy-redirects.js (redirects for the old /public/ URLs)
+/public/

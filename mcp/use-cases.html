@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MCP Use Cases - ThriveStack Documentation">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>MCP Use Cases - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../index.html">Get Started</a>
+                <a href="../setup-overview.html">Setup (Unify)</a>
+                <a href="../analyze-signals.html">Analyze Signals</a>
+                <a href="../take-action.html">Take Action</a>
+                <a href="../api-reference.html">API Reference</a>
+                <a href="introduction.html" class="active">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <cited-by-sidebar base-path="../../"></cited-by-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="breadcrumbs">
+                    <a href="../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../cited-by/introduction.html">Cited By</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="introduction.html">MCP</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>Use Cases</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Cited By · MCP</span>
+                    <h1 class="doc-page-title">Use Cases</h1>
+                    <p class="doc-page-description">
+                        Example prompts and workflows for the ThriveStack MCP Server. Browse by type if you need ideas on what to ask.
+                    </p>
+                </header>
+
+                <section id="getting-started" class="content-section">
+                    <p>Start by just asking a question &mdash; your AI assistant resolves your product and environment automatically from how you connected, so there&rsquo;s no project to pick first:</p>
+                    <blockquote class="note-callout">&ldquo;How visible is ourdomain.com in AI search right now?&rdquo;</blockquote>
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-clock" style="margin-right: 4px;"></i>
+                        Include a time range in your questions. &ldquo;Last 30 days&rdquo;, &ldquo;this month&rdquo;, or &ldquo;past week&rdquo; gets you better results.
+                    </blockquote>
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-bolt" style="margin-right: 4px;"></i>
+                        For a structured AI-visibility pass instead of one-off questions, invoke the <code>ai_visibility_analyst</code> prompt (see <a href="prompts.html">Prompts</a>).
+                    </blockquote>
+                </section>
+
+                <section id="example-workflows" class="content-section query-examples">
+                    <h2>Example workflows: AI Visibility</h2>
+                    <p>AI Visibility is the flagship live capability today &mdash; these tools cover a full loop from &ldquo;where are we losing citations&rdquo; to &ldquo;here&rsquo;s a content outline to fix it.&rdquo;</p>
+
+                    <h3>1. Full visibility snapshot for a domain</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;How visible is ourdomain.com in AI search right now?&rdquo;</blockquote>
+                    <p><code>get_domain_report</code> returns overall visibility and average position for the domain&rsquo;s latest completed probe run, broken down by topic and by individual tracked question, with per-AI-model detail underneath each. If the domain hasn&rsquo;t been probed yet, you get a clear empty result, not an error.</p>
+
+                    <h3>2. Citation gap deep-dive</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Where are we losing AI citations for ourdomain.com, and which competitors are showing up instead?&rdquo;</blockquote>
+                    <p><code>get_citation_probe_data</code> returns the raw evidence behind the gaps: every tracked buyer question, your citation count vs. total, and which competitor brands appeared in your place. Use this when you want the underlying evidence rather than <code>get_domain_report</code>&rsquo;s rollup.</p>
+
+                    <h3>3. See what buyer questions you&rsquo;re tracked on</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;What buyer questions is ourdomain.com being evaluated on?&rdquo;</blockquote>
+                    <p><code>get_domain_prompts</code> lists the tracked buyer questions ThriveStack has generated for the domain, grouped by topic &mdash; useful context before interpreting a citation gap or requesting content recommendations.</p>
+
+                    <h3>4. Turn a gap into a content plan</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;What content should we publish this week to close our biggest AI citation gaps?&rdquo;</blockquote>
+                    <p><code>get_owned_content_recommendations</code> returns gap-scored, prioritized recommendations (severity tier, gap score, citations vs. total, competitors winning) for your own site. Pick the top one and call <code>generate_content_outline</code> to get headings, an answer-first summary, FAQ questions, and schema markup suggestions &mdash; ready to hand to a writer.</p>
+
+                    <h3>5. Find third-party outreach opportunities</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Where could we get cited on sites like Reddit or G2 instead of just our own blog?&rdquo;</blockquote>
+                    <p><code>get_earned_content_recommendations</code> surfaces ideas for earned/third-party media. Each recommendation is flagged <code>citation_backed</code> (tied to a real probe gap) or <code>category_inferred</code> (no direct citation evidence yet) &mdash; check which one before treating it as fact.</p>
+
+                    <h3>6. Combine the full picture in one pass</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Give me the full AI-visibility picture for ourdomain.com: how we&rsquo;re doing, why, and what to publish next.&rdquo;</blockquote>
+                    <p>The assistant chains <code>get_domain_report</code> (the headline numbers) with <code>get_citation_probe_data</code> (the gap evidence) and <code>get_owned_content_recommendations</code> (what to do about it) &mdash; or you can invoke the <code>ai_visibility_analyst</code> prompt (see <a href="prompts.html">Prompts</a>) to get this as a single structured pass instead of three separate questions.</p>
+                </section>
+
+                <section id="more-ideas" class="content-section">
+                    <h2>More ideas</h2>
+
+                    <details class="tools-dropdown" id="more-ideas-ai-visibility" open>
+                        <summary class="tools-dropdown__summary">
+                            <span>AI visibility</span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <ul>
+                                <li>Full visibility report for a domain&rsquo;s latest probe run, with per-model detail</li>
+                                <li>Raw citation-gap evidence, including which competitors appeared instead</li>
+                                <li>The tracked buyer questions generated for a domain, grouped by topic</li>
+                                <li>Owned vs. earned content recommendations, filterable by status, priority, or channel</li>
+                                <li>A ready-to-write content outline for a specific recommendation</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details class="tools-dropdown" id="more-ideas-brands">
+                        <summary class="tools-dropdown__summary">
+                            <span>Brands</span>
+                            <i class="fa-solid fa-chevron-down tools-dropdown__chevron"></i>
+                        </summary>
+                        <div class="tools-dropdown__content">
+                            <ul>
+                                <li>Which brands/products your account can access</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <blockquote class="note-callout">
+                        <i class="fa-solid fa-circle-info" style="margin-right: 4px;"></i>
+                        See <a href="tools.html">Tools</a> for everything available today, including the site-health, source and prompt-research tools.
+                    </blockquote>
+                </section>
+
+                <section id="real-world-workflows" class="content-section query-examples">
+                    <h2>Real-world workflows</h2>
+
+                    <h3>Turn an AI-visibility gap into a content plan</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;What content should we publish this week to close our biggest AI citation gaps?&rdquo;</blockquote>
+                    <p><code>get_owned_content_recommendations</code> returns gap-scored, prioritized recommendations with the evidence behind each; pick the top one and call <code>generate_content_outline</code> to get headings, an answer-first summary, FAQ questions, and schema markup suggestions to hand to a writer.</p>
+
+                    <h3>Prep for a competitive review</h3>
+                    <blockquote class="query-examples__prompt">&ldquo;Before our QBR: how does ourdomain.com&rsquo;s AI visibility compare to last quarter, and which competitors are winning the questions we&rsquo;re losing?&rdquo;</blockquote>
+                    <p><code>get_domain_report</code> gives the headline numbers, <code>get_citation_probe_data</code> names the specific competitor brands appearing in place of yours on each losing question &mdash; concrete talking points instead of a single visibility percentage.</p>
+                </section>
+
+                <section id="tips" class="content-section">
+                    <h2>Tips</h2>
+                    <p>To make the experience smoother or more complete, take a look at the following tips:</p>
+                    <ul>
+                        <li><strong>Include dates:</strong> Always specify a time range or month (e.g. &ldquo;last 7 days&rdquo;, &ldquo;October 2026&rdquo;).</li>
+                        <li><strong>Let the assistant discover your schema automatically:</strong> For anything referencing your own event or feature names, the assistant figures out your real event taxonomy before querying &mdash; you don&rsquo;t need to know exact event names.</li>
+                        <li><strong>Start broad, then drill down:</strong> Ask for the overview first, then follow up on whatever stands out.</li>
+                    </ul>
+                </section>
+
+                <div class="page-nav">
+                    <a href="setup.html" class="nav-card prev-card">
+                        <span class="nav-label">Previous</span>
+                        <span class="nav-title">Setup</span>
+                    </a>
+                    <a href="prompts.html" class="nav-card next-card">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">Prompts</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="use-cases.html">Last updated: October 14, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#getting-started" class="toc-link active">Getting started</a>
+                    <a href="#example-workflows" class="toc-link">Example workflows</a>
+                    <a href="#more-ideas" class="toc-link">More ideas</a>
+                    <a href="#real-world-workflows" class="toc-link">Real-world workflows</a>
+                    <a href="#tips" class="toc-link">Tips</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

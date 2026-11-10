@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connect Claude, Cursor and other MCP-compatible AI tools to your ThriveStack data: revenue, marketing, product usage and accounts, in plain language.">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>Revenue Intelligence MCP Introduction - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../mcp/mcp.css">
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../../index.html" class="logo">
+                <img src="../../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../../index.html">Get Started</a>
+                <a href="../../setup-overview.html">Setup (Unify)</a>
+                <a href="../../analyze-signals.html">Analyze Signals</a>
+                <a href="../../take-action.html">Take Action</a>
+                <a href="../../api-reference.html">API Reference</a>
+                <a href="introduction.html" class="active">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <thrivestack-mcp-sidebar base-path="../../../"></thrivestack-mcp-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper mcp-doc">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../setup/introduction.html">Revenue Intelligence</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>MCP</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Revenue Intelligence · MCP</span>
+                    <h1 class="doc-page-title">MCP Server</h1>
+                    <p class="doc-page-description">
+                        Connect Claude, Cursor and other MCP-compatible AI tools to your ThriveStack data. Ask questions in plain language and get answers from the same numbers your dashboard shows.
+                    </p>
+                </header>
+
+                <section id="overview" class="content-section">
+                    <h2>Overview</h2>
+                    <p class="lede">
+                        Add one URL to your AI tool, sign in once, and ask about your business. Your assistant answers from your live ThriveStack data: revenue, marketing performance, product usage and accounts, in the same numbers your dashboard shows.
+                    </p>
+
+                    <div class="mcp-url-card">
+                        <div class="mcp-url-label">Server URL</div>
+                        <div class="mcp-url-row">
+                            <code>https://api.app.thrivestack.ai/mcp</code>
+                            <button type="button" class="mcp-btn" data-copy="https://api.app.thrivestack.ai/mcp"><i class="fa-regular fa-copy"></i> Copy</button>
+                        </div>
+                        <div class="mcp-chips">
+                            <span class="mcp-chip"><i class="fa-solid fa-bolt"></i> Streamable HTTP</span>
+                            <span class="mcp-chip"><i class="fa-solid fa-shield-halved"></i> OAuth 2.1</span>
+                            <span class="mcp-chip"><i class="fa-solid fa-key"></i> Personal Access Token</span>
+                        </div>
+                    </div>
+
+                    <div class="mcp-cta">
+                        <a class="mcp-btn primary" href="setup.html">Set up your client <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="mcp-btn" href="tools.html">Browse the tools</a>
+                    </div>
+                </section>
+
+                <section id="what-you-can-do" class="content-section">
+                    <h2>What you can do</h2>
+                    <p class="section-sub">Works with Claude, Claude Code, Cursor, VS Code, Windsurf, Gemini CLI and any other MCP-compatible tool.</p>
+                    <div class="mcp-feature-grid">
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                            <h3>Track revenue</h3>
+                            <p>MRR, ARR, net revenue, plans, contracts, customer lifetime value and goals, plus what moved MRR and which customers drove it.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon purple"><i class="fa-solid fa-bullseye"></i></div>
+                            <h3>Understand marketing</h3>
+                            <p>Traffic, channels, campaigns, sources, paid ads, site content and lead quality, with the revenue each channel brings.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon green"><i class="fa-solid fa-chart-simple"></i></div>
+                            <h3>Follow product usage</h3>
+                            <p>Active users and accounts, activation, retention, stickiness and feature adoption, month by month.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon orange"><i class="fa-solid fa-building"></i></div>
+                            <h3>Review accounts</h3>
+                            <p>Account lists and segments, at-risk accounts, and the full detail of any account: engagement, billing, users and CRM data.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <h3>Catch leakage and risk</h3>
+                            <p>Revenue missed to failed payments, accounts drifting away, and the customers behind a churn spike.</p>
+                        </div>
+                        <div class="mcp-feature">
+                            <div class="mcp-feature-icon purple"><i class="fa-solid fa-plug-circle-check"></i></div>
+                            <h3>Check setup and data health</h3>
+                            <p>See whether tracking and billing are connected, whether syncs are running, and whether billing customers match product accounts.</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1.25rem;">You can also create a saved account segment from a plain-language description. See <a href="tools.html">Tools</a> for the full list.</p>
+                </section>
+
+                <section id="how-it-works" class="content-section">
+                    <h2>How it works</h2>
+                    <ol class="mcp-steps">
+                        <li class="mcp-step">
+                            <h3>Connect</h3>
+                            <p>Add the server URL to your AI tool. The <a href="setup.html">setup guide</a> covers each platform.</p>
+                        </li>
+                        <li class="mcp-step">
+                            <h3>Sign in</h3>
+                            <p>Authorize with your ThriveStack account using OAuth. Clients without OAuth support use a Personal Access Token instead. You only do this once.</p>
+                        </li>
+                        <li class="mcp-step">
+                            <h3>Ask a question</h3>
+                            <p>Ask in plain language. For example:</p>
+                            <div class="mcp-prompts">
+                                <div class="mcp-prompt"><i class="fa-regular fa-comment"></i><span>&ldquo;What was our MRR movement last month, and which customers drove the churn?&rdquo;</span></div>
+                                <div class="mcp-prompt"><i class="fa-regular fa-comment"></i><span>&ldquo;Which channels brought the most signups in the last 30 days, and which turned into revenue?&rdquo;</span></div>
+                                <div class="mcp-prompt"><i class="fa-regular fa-comment"></i><span>&ldquo;Which accounts are at risk, and what changed in their usage?&rdquo;</span></div>
+                            </div>
+                            <p style="margin-top: 0.9rem;">Browse <a href="prompts.html">Prompts</a> and <a href="use-cases.html">Use Cases</a> for more ideas.</p>
+                        </li>
+                    </ol>
+                </section>
+
+                <section id="where-numbers-come-from" class="content-section">
+                    <h2>Where the numbers come from</h2>
+                    <p>The tools read the same figures as the ThriveStack app, so an answer from your assistant matches what your dashboard shows.</p>
+                    <div class="mcp-kv">
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Product and marketing</div>
+                            <div class="mcp-kv-val">The events and visits ThriveStack collects from your product and your marketing site. See <a href="../../data-collection.html">Data Collection</a>.</div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Revenue</div>
+                            <div class="mcp-kv-val">The billing data you connect: Stripe, Chargebee, QuickBooks, the ThriveStack API or manually added data. See <a href="../setup/stripe-integration.html">Stripe</a> and <a href="../setup/chargebee-integration.html">Chargebee</a> setup.</div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Accounts</div>
+                            <div class="mcp-kv-val">Product accounts, linked to billing customers and to your CRM, such as HubSpot.</div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Currency</div>
+                            <div class="mcp-kv-val">Money values are in your brand&rsquo;s base currency, named in the <code>currency</code> field of each result.</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;">If a number looks stale or missing, ask your assistant to check the setup status, the billing sync status and the customer mapping. <a href="tools.html#setup">Setup &amp; Connection</a> and <a href="tools.html#revenue-data-health">Revenue Data Health</a> have the tools for that.</p>
+                </section>
+
+                <section id="connection-details" class="content-section">
+                    <h2>Connection details</h2>
+                    <p>Your tool may ask for these details:</p>
+                    <div class="mcp-kv">
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Server URL</div>
+                            <div class="mcp-kv-val"><code>https://api.app.thrivestack.ai/mcp</code></div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Transport</div>
+                            <div class="mcp-kv-val">Streamable HTTP</div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Authentication</div>
+                            <div class="mcp-kv-val">OAuth 2.1, or a Personal Access Token sent as an <code>Authorization: Bearer</code> header</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="authentication" class="content-section">
+                    <h2>Authentication</h2>
+                    <p>Two options, depending on what your client supports:</p>
+                    <div class="mcp-auth-grid">
+                        <div class="mcp-auth is-recommended">
+                            <div class="mcp-auth-head">
+                                <h3>OAuth</h3>
+                                <span class="mcp-badge">Recommended</span>
+                            </div>
+                            <p>Your AI tool opens a ThriveStack consent page in your browser. Sign in and allow access. Your session persists across conversations.</p>
+                            <div class="best-for"><strong>Best for:</strong> Claude, Claude Code, Cursor, VS Code and other clients that support MCP OAuth.</div>
+                        </div>
+                        <div class="mcp-auth">
+                            <div class="mcp-auth-head">
+                                <h3>Personal Access Token</h3>
+                                <span class="mcp-badge muted">Alternative</span>
+                            </div>
+                            <p>Create a token under <a href="https://app.thrivestack.ai/analyze/ai-visibility/agents/mcp/tokens" target="_blank" rel="noopener noreferrer">Personal Access Tokens</a> in the ThriveStack dashboard, then send it as an <code>Authorization: Bearer</code> header.</p>
+                            <div class="best-for"><strong>Best for:</strong> clients without OAuth support (such as Windsurf and Gemini CLI), headless setups and CI.</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1.1rem;">With either method, requests respect the same permissions as your dashboard session, and your product and environment are resolved automatically. See the <a href="setup.html">setup guide</a> for client-specific steps.</p>
+                </section>
+
+                <section id="access" class="content-section">
+                    <h2>Read and write access</h2>
+                    <div class="mcp-callout ok">
+                        <i class="fa-solid fa-eye"></i>
+                        <div class="mcp-callout-body"><p><strong>Read-only by default.</strong> Every tool only reads your data, with one exception.</p></div>
+                    </div>
+                    <div class="mcp-callout">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <div class="mcp-callout-body">
+                            <p><strong>One tool can write: <code>create_account_segment</code>.</strong> It creates a saved account segment from a plain-language description, such as paid, trial or free accounts, an MRR or ARR threshold, or a plan. It does not edit or delete existing segments, accounts or billing data, and your AI client may ask you to confirm before it runs.</p>
+                        </div>
+                    </div>
+                    <p>See <a href="tools.html">Tools</a> for the full list.</p>
+                </section>
+
+                <section id="ai-visibility" class="content-section">
+                    <h2>AI Visibility tools</h2>
+                    <p>The same server also has tools for AI Visibility (Cited By): how AI search engines mention and cite your brand, competitors, sources and content recommendations. They use the same connection. See the <a href="../../mcp/introduction.html">Cited By MCP docs</a>.</p>
+                </section>
+
+                <section id="supported-platforms" class="content-section">
+                    <h2>Supported platforms</h2>
+                    <p>The ThriveStack MCP server works with any client that supports the Model Context Protocol. Choose your tool for step-by-step setup.</p>
+                    <div class="mcp-client-grid">
+                        <a class="mcp-client" href="setup.html#client-claude">
+                            <span class="mcp-logo"><img src="../../mcp/clients/claude.png" alt="" width="38" height="38" loading="lazy"></span>
+                            <span><span class="mcp-client-name">Claude</span><span class="mcp-client-meta">Desktop and web &middot; OAuth</span></span>
+                        </a>
+                        <a class="mcp-client" href="setup.html#client-claude-code">
+                            <span class="mcp-logo"><img src="../../mcp/clients/claude.png" alt="" width="38" height="38" loading="lazy"></span>
+                            <span><span class="mcp-client-name">Claude Code</span><span class="mcp-client-meta">CLI &middot; OAuth or token</span></span>
+                        </a>
+                        <a class="mcp-client" href="setup.html#client-cursor">
+                            <span class="mcp-logo"><img src="../../mcp/clients/cursor.png" alt="" width="38" height="38" loading="lazy"></span>
+                            <span><span class="mcp-client-name">Cursor</span><span class="mcp-client-meta">OAuth or token</span></span>
+                        </a>
+                        <a class="mcp-client" href="setup.html#client-vscode">
+                            <span class="mcp-logo"><img src="../../mcp/clients/vscode.png" alt="" width="38" height="38" loading="lazy"></span>
+                            <span><span class="mcp-client-name">VS Code</span><span class="mcp-client-meta">GitHub Copilot &middot; OAuth or token</span></span>
+                        </a>
+                        <a class="mcp-client" href="setup.html#client-windsurf">
+                            <span class="mcp-logo"><i class="fa-solid fa-wind"></i></span>
+                            <span><span class="mcp-client-name">Windsurf</span><span class="mcp-client-meta">Personal Access Token</span></span>
+                        </a>
+                        <a class="mcp-client" href="setup.html#client-gemini-cli">
+                            <span class="mcp-logo"><i class="fa-solid fa-terminal"></i></span>
+                            <span><span class="mcp-client-name">Gemini CLI</span><span class="mcp-client-meta">Personal Access Token</span></span>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="requirements" class="content-section">
+                    <h2>Requirements</h2>
+                    <div class="mcp-kv">
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Account</div>
+                            <div class="mcp-kv-val">A ThriveStack account with API access</div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">Data</div>
+                            <div class="mcp-kv-val">ThriveStack tracking installed in your product or site. Revenue tools also need a billing source, such as <a href="../setup/stripe-integration.html">Stripe</a> or <a href="../setup/chargebee-integration.html">Chargebee</a>.</div>
+                        </div>
+                        <div class="mcp-kv-row">
+                            <div class="mcp-kv-key">AI tool</div>
+                            <div class="mcp-kv-val">An MCP-compatible AI tool</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="support" class="content-section">
+                    <h2>Support</h2>
+                    <p>Questions, or stuck? Email <a href="mailto:support@thrivestack.ai">support@thrivestack.ai</a>.</p>
+                    <div class="mcp-next-grid">
+                        <a class="mcp-next" href="tools.html"><i class="fa-solid fa-toolbox"></i><strong>Tools</strong><span>Everything the server can do.</span></a>
+                        <a class="mcp-next" href="prompts.html"><i class="fa-solid fa-terminal"></i><strong>Prompts</strong><span>Copy-ready analyses.</span></a>
+                        <a class="mcp-next" href="use-cases.html"><i class="fa-solid fa-compass"></i><strong>Use cases</strong><span>Ready-made questions to ask first.</span></a>
+                    </div>
+                </section>
+
+                <div class="page-nav">
+                    <a href="setup.html" class="nav-card next-card">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">Setup</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="introduction.html">Last updated: November 4, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#overview" class="toc-link active">Overview</a>
+                    <a href="#what-you-can-do" class="toc-link">What you can do</a>
+                    <a href="#how-it-works" class="toc-link">How it works</a>
+                    <a href="#where-numbers-come-from" class="toc-link">Where the numbers come from</a>
+                    <a href="#connection-details" class="toc-link">Connection details</a>
+                    <a href="#authentication" class="toc-link">Authentication</a>
+                    <a href="#access" class="toc-link">Read and write access</a>
+                    <a href="#ai-visibility" class="toc-link">AI Visibility tools</a>
+                    <a href="#supported-platforms" class="toc-link">Supported platforms</a>
+                    <a href="#requirements" class="toc-link">Requirements</a>
+                    <a href="#support" class="toc-link">Support</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../../script.js"></script>
+    <script src="../../mcp/mcp.js"></script>
+</body>
+</html>

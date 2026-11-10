@@ -20,7 +20,8 @@ const STOPWORDS = new Set([
     "problem", "details", "example", "documentation", "overview", "step", "go", "thrivestack"
 ]);
 
-const EXCLUDED_DIRS = new Set([".git", ".github", "node_modules"]);
+// public/ only ever holds the generated redirect pages for the old /public/ URLs (build-legacy-redirects.js).
+const EXCLUDED_DIRS = new Set([".git", ".github", "node_modules", "public"]);
 
 function walkHtmlFiles(dir, files = []) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -58,14 +59,14 @@ function slugifyIdPart(value) {
 function inferSection(pageUrl) {
     const page = pageUrl.split("#")[0];
     if (page === "index.html") return "Getting Started";
-    if (page === "api-reference.html" || page.startsWith("public/api/")) return "API";
-    if (page.startsWith("public/mcp/")) return "MCP";
-    if (page.startsWith("public/cited-by/")) return "Cited By";
-    if (page.startsWith("public/product/")) return "Product";
-    if (page.startsWith("public/marketing/")) return "Marketing";
-    if (page.startsWith("public/revenue/")) return "Revenue";
-    if (page.startsWith("public/customer-success/")) return "Customer Success";
-    if (page.startsWith("public/crm-sync/")) return "CRM Sync";
+    if (page === "api-reference.html" || page.startsWith("api/")) return "API";
+    if (page.startsWith("mcp/")) return "MCP";
+    if (page.startsWith("cited-by/")) return "Cited By";
+    if (page.startsWith("product/")) return "Product";
+    if (page.startsWith("marketing/")) return "Marketing";
+    if (page.startsWith("revenue/")) return "Revenue";
+    if (page.startsWith("customer-success/")) return "Customer Success";
+    if (page.startsWith("crm-sync/")) return "CRM Sync";
     if (page.startsWith("setup/")) return "Documentation";
     if (page === "setup-overview.html") return "Setup (Unify)";
     if (page.startsWith("analyze-")) return "Analyze";

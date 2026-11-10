@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MCP Prompts - ThriveStack Documentation">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>MCP Prompts - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../index.html" class="logo">
+                <img src="../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../index.html">Get Started</a>
+                <a href="../setup-overview.html">Setup (Unify)</a>
+                <a href="../analyze-signals.html">Analyze Signals</a>
+                <a href="../take-action.html">Take Action</a>
+                <a href="../api-reference.html">API Reference</a>
+                <a href="introduction.html" class="active">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <cited-by-sidebar base-path="../../"></cited-by-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="breadcrumbs">
+                    <a href="../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../cited-by/introduction.html">Cited By</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="introduction.html">MCP</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>Prompts</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Cited By · MCP</span>
+                    <h1 class="doc-page-title">Prompts</h1>
+                    <p class="doc-page-description">
+                        ThriveStack ships native MCP prompts &mdash; system-prompt-style personas and setup wizards you invoke directly from your AI tool&rsquo;s prompt picker.
+                    </p>
+                </header>
+
+                <section id="prompts-intro" class="content-section">
+                    <blockquote class="note-callout">Prompts are a built-in MCP primitive. Instead of describing how you want the assistant to behave every time, you invoke a single named prompt and it takes on that persona or runs that workflow for the rest of the conversation.</blockquote>
+                    <blockquote class="note-callout">Prompts are versioned with the ThriveStack MCP server. When we ship a new one, it appears in your client automatically. No install.</blockquote>
+                    <blockquote class="note-callout">None of the current prompts take arguments &mdash; invoke them as-is, no project or brand selection needed up front.</blockquote>
+                </section>
+
+                <section id="how-to-invoke" class="content-section">
+                    <h2>How to invoke a prompt</h2>
+                    <p>The command surface depends on your client.</p>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 12px">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Client</th>
+                                <th style="text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">How to invoke</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Claude (Desktop, Web, Code)</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Type <code>/</code> in the message input and pick the prompt from the list</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Cursor</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Type <code>@</code> in the chat and pick the prompt</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Other MCP clients</td>
+                                <td style="padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--table-row-border);">Check your client&rsquo;s documentation for prompt support</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>If prompts don&rsquo;t show up after connecting, remove and re-add the ThriveStack integration to refresh the tool and prompt list.</p>
+                </section>
+
+                <section id="available-prompts" class="content-section">
+                    <h2>Available prompts</h2>
+                    <p><code>ai_visibility_analyst</code> is the flagship prompt today, matching the AI-Visibility-focused tool rollout (see <a href="tools.html">Tools</a>). Two setup wizards are also available for instrumenting new marketing sites or products.</p>
+
+                    <h3 id="prompt-ai-visibility-analyst"><code>ai_visibility_analyst</code></h3>
+                    <p><strong>AI Visibility content strategist.</strong> Reads citation-gap probe evidence (<code>get_citation_probe_data</code>, <code>get_domain_report</code>) and source-domain metrics, then works through a structured process:</p>
+                    <ol>
+                        <li>Pulls the domain&rsquo;s latest visibility report and raw citation-gap evidence</li>
+                        <li>Classifies each gap into a tier &mdash; <strong>Silent</strong> (never mentioned), <strong>Mentioned-not-cited</strong> (brand comes up but no source is cited), or <strong>Losing share</strong> (cited less often than competitors)</li>
+                        <li>Pulls owned and earned content recommendations for the gaps that matter most</li>
+                        <li>Optionally drafts a content outline for the top recommendation via <code>generate_content_outline</code></li>
+                    </ol>
+                    <p>No arguments.</p>
+                    <p><strong>Use when:</strong> you want a structured pass at &ldquo;why aren&rsquo;t AI engines citing us for this topic, and what should we publish to fix it&rdquo;, rather than pulling the raw probe data and recommendations yourself one tool at a time.</p>
+                    <blockquote class="query-examples__prompt">&ldquo;Run the AI visibility analyst for ourdomain.com&rdquo;</blockquote>
+                    <p>Follow up with a specific competitor, topic, or content type to drill in &mdash; the assistant still has every AI Visibility tool available after the prompt runs.</p>
+
+                    <h3 id="prompt-marketing-setup-wizard"><code>thrivestack_marketing_setup_wizard</code></h3>
+                    <p><strong>Marketing telemetry installation wizard.</strong> Returns a wizard prompt meant to be pasted into Claude Code inside your marketing website repo, walking it through instrumenting the site with ThriveStack visitor tracking.</p>
+                    <p>No arguments.</p>
+                    <p><strong>Use when:</strong> you&rsquo;re setting up ThriveStack tracking on a marketing site for the first time.</p>
+
+                    <h3 id="prompt-product-setup-wizard"><code>thrivestack_product_setup_wizard</code></h3>
+                    <p><strong>Product telemetry installation wizard.</strong> Returns a wizard prompt meant to be pasted into Claude Code inside your application repo, walking it through instrumenting your web app with ThriveStack product telemetry.</p>
+                    <p>No arguments.</p>
+                    <p><strong>Use when:</strong> you&rsquo;re setting up ThriveStack tracking on your product for the first time.</p>
+                </section>
+
+                <section id="combining-prompts" class="content-section query-examples">
+                    <h2>Combining prompts with free-form questions</h2>
+                    <p>Prompts are a starting point. After invoking one, follow up with questions in plain language &mdash; your AI assistant still has access to every tool, so you can drill into any number, account, or domain the prompt surfaced.</p>
+                    <blockquote class="query-examples__prompt">&ldquo;Run the AI visibility analyst for ourdomain.com, then show me the raw citation evidence for the gaps it flagged&rdquo;</blockquote>
+                    <blockquote class="query-examples__prompt">&ldquo;Now check the same gaps for [competitor]&rsquo;s domain&rdquo;</blockquote>
+                    <p>The prompt itself only reads data. All ThriveStack MCP tools are read-only except <code>save_content_recommendations</code>, which saves content recommendations to your brand as <em>suggested</em> items and asks you to confirm first.</p>
+                </section>
+
+                <div class="page-nav">
+                    <a href="use-cases.html" class="nav-card prev-card">
+                        <span class="nav-label">Previous</span>
+                        <span class="nav-title">Use Cases</span>
+                    </a>
+                    <a href="tools.html" class="nav-card next-card">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">Tools</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="prompts.html">Last updated: October 14, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#prompts-intro" class="toc-link active">Overview</a>
+                    <a href="#how-to-invoke" class="toc-link">How to invoke a prompt</a>
+                    <a href="#available-prompts" class="toc-link">Available prompts</a>
+                    <a href="#combining-prompts" class="toc-link">Combining with free-form questions</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <style>
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.86rem;
+        }
+        .params-table th,
+        .params-table td {
+            border: 0;
+            border-bottom: 1px solid var(--table-row-border);
+            padding: 0.5rem 0.6rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .params-table th {
+            background: var(--bg-sidebar);
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+    </style>
+
+    <script src="../script.js"></script>
+</body>
+</html>

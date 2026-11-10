@@ -234,7 +234,7 @@ After verification is complete, print the following:
 Step 2 verified. Your onboarding events are now flowing into ThriveStack.
 
 Now go build your activation flows in ThriveStack:
-→ https://docs.thrivestack.ai/public/product/setup/advanced-ai-instrumentation.html
+→ https://docs.thrivestack.ai/product/setup/advanced-ai-instrumentation.html
 
 Next steps:
 - View your events: https://app.thrivestack.ai/analyze/events

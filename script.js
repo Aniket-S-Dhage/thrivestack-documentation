@@ -129,147 +129,147 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 title: 'Events Telemetry',
-                url: 'public/product/setup/saas-growth-events.html#saas-growth-events',
+                url: 'product/setup/saas-growth-events.html#saas-growth-events',
                 terms: 'journey to event bow tie phases telemetry mapping'
             },
             {
                 title: 'Vibe Analytics (AI)',
-                url: 'public/product/setup/vibe-analytics.html#vibe-analytics',
+                url: 'product/setup/vibe-analytics.html#vibe-analytics',
                 terms: 'vibe analytics ai telemetry spec identify group track checklist'
             },
             {
                 title: 'MCP Introduction',
-                url: 'public/mcp/introduction.html#overview',
+                url: 'mcp/introduction.html#overview',
                 terms: 'thrivestack mcp model context protocol introduction what is mcp remote server'
             },
             {
                 title: 'MCP Setup',
-                url: 'public/mcp/setup.html#server-url',
+                url: 'mcp/setup.html#server-url',
                 terms: 'thrivestack mcp setup remote server implementation claude desktop claude code cursor windsurf gemini cli lovable troubleshooting technical specifications x-api-key oauth'
             },
             {
                 title: 'MCP Use Cases',
-                url: 'public/mcp/use-cases.html#getting-started',
+                url: 'mcp/use-cases.html#getting-started',
                 terms: 'thrivestack mcp use cases correlated journeys marketing product revenue drill down'
             },
             {
                 title: 'MCP Prompts',
-                url: 'public/mcp/prompts.html#prompts-intro',
+                url: 'mcp/prompts.html#prompts-intro',
                 terms: 'thrivestack mcp example prompts tool oriented reference get_mau_mtu_count get_event_count list_accounts get_plg_leads get_setup_status getVisitor getPageViews getSignup acquisition conversion mrr stickiness dau wau mau activation churn expansion'
             },
             {
                 title: 'MCP Tools',
-                url: 'public/mcp/tools.html#overview',
+                url: 'mcp/tools.html#overview',
                 terms: 'thrivestack mcp tools catalog reference core analytics accounts gtm setup traffic acquisition activation revenue monetization usage engagement'
             },
             {
                 title: 'MCP Changelog',
-                url: 'public/mcp/changelog.html#overview',
+                url: 'mcp/changelog.html#overview',
                 terms: 'thrivestack mcp changelog release notes what is new added changed new tools v1 get_page_traffic get_search_performance get_attribution_health list_urls'
             },
             {
                 title: 'Revenue Intelligence MCP Introduction',
-                url: 'public/revenue/mcp/introduction.html#overview',
+                url: 'revenue/mcp/introduction.html#overview',
                 terms: 'revenue intelligence thrivestack mcp server connect claude cursor revenue marketing product analytics accounts mrr arr read-only oauth personal access token'
             },
             {
                 title: 'Revenue Intelligence MCP Setup',
-                url: 'public/revenue/mcp/setup.html#server-url',
+                url: 'revenue/mcp/setup.html#server-url',
                 terms: 'revenue intelligence mcp setup connect claude desktop claude code cursor vs code windsurf gemini cli oauth personal access token verify connection troubleshooting'
             },
             {
                 title: 'Revenue Intelligence MCP Use Cases',
-                url: 'public/revenue/mcp/use-cases.html#example-workflows',
+                url: 'revenue/mcp/use-cases.html#example-workflows',
                 terms: 'revenue intelligence thrivestack mcp use cases mrr movement churn revenue leakage missed payments acv channels campaigns ads leads activation retention at-risk accounts'
             },
             {
                 title: 'Revenue Intelligence MCP Prompts',
-                url: 'public/revenue/mcp/prompts.html#prompt-library',
+                url: 'revenue/mcp/prompts.html#prompt-library',
                 terms: 'revenue intelligence thrivestack mcp prompts monthly revenue review mrr movement leakage plan mix goal pacing channel review lead quality activation retention at-risk accounts account brief data health copy prompt'
             },
             {
                 title: 'Revenue Intelligence MCP Tools',
-                url: 'public/revenue/mcp/tools.html#tool-catalog',
+                url: 'revenue/mcp/tools.html#tool-catalog',
                 terms: 'revenue intelligence thrivestack mcp tools reference get_revenue_kpis get_mrr_movements get_channel_performance get_website_traffic get_ads_performance get_lead_quality get_mau_mtu_count get_activation_summary get_retention_data list_at_risk_accounts get_account_overview create_account_segment start_thrivestack_setup'
             },
             {
                 title: 'Cited By Introduction',
-                url: 'public/cited-by/introduction.html#overview',
+                url: 'cited-by/introduction.html#overview',
                 terms: 'cited by ai visibility aeo geo brand mentions prompts citations competitors introduction bulk import mcp'
             },
             {
                 title: 'Cited By — What you can do',
-                url: 'public/cited-by/introduction.html#what-you-can-do',
+                url: 'cited-by/introduction.html#what-you-can-do',
                 terms: 'cited by track prompts citations competitors bulk import mcp agents'
             },
             {
                 title: 'Cited By — Get started',
-                url: 'public/cited-by/introduction.html#get-started',
+                url: 'cited-by/introduction.html#get-started',
                 terms: 'cited by get started ai visibility prompts bulk upload mcp personal access token'
             },
             {
                 title: 'Cited By MCP',
-                url: 'public/cited-by/mcp.html',
+                url: 'cited-by/mcp.html',
                 terms: 'cited by mcp agents claude cursor connect ai visibility'
             },
             {
                 title: 'Connect Vercel (AI Crawl Attribution)',
-                url: 'public/cited-by/ai-crawl-attribution-vercel.html#overview',
+                url: 'cited-by/ai-crawl-attribution-vercel.html#overview',
                 terms: 'cited by ai crawl attribution connect vercel log drain integration marketplace ai crawlers gptbot claudebot perplexitybot bot traffic one click'
             },
             {
                 title: 'Connect Vercel — Steps',
-                url: 'public/cited-by/ai-crawl-attribution-vercel.html#connect',
+                url: 'cited-by/ai-crawl-attribution-vercel.html#connect',
                 terms: 'connect vercel steps approve projects verify send test bot traffic activate ai crawl logs add-on'
             },
             {
                 title: 'Connect Vercel — What ThriveStack collects',
-                url: 'public/cited-by/ai-crawl-attribution-vercel.html#data',
+                url: 'cited-by/ai-crawl-attribution-vercel.html#data',
                 terms: 'vercel log drain data collected privacy permissions scopes ai crawler requests token'
             },
             {
                 title: 'Connect Vercel — Troubleshooting',
-                url: 'public/cited-by/ai-crawl-attribution-vercel.html#troubleshooting',
+                url: 'cited-by/ai-crawl-attribution-vercel.html#troubleshooting',
                 terms: 'vercel troubleshooting hobby plan pro enterprise no data waiting for ai bot visit domain mismatch disconnect'
             },
             {
                 title: 'Connect WordPress (AI Crawl Attribution)',
-                url: 'public/cited-by/ai-crawl-attribution-wordpress.html#overview',
+                url: 'cited-by/ai-crawl-attribution-wordpress.html#overview',
                 terms: 'cited by ai crawl attribution connect wordpress plugin thrivestack ai crawler tracker server logs access log cache ai crawlers gptbot claudebot perplexitybot bot traffic'
             },
             {
                 title: 'Connect WordPress — Steps',
-                url: 'public/cited-by/ai-crawl-attribution-wordpress.html#connect',
+                url: 'cited-by/ai-crawl-attribution-wordpress.html#connect',
                 terms: 'connect wordpress steps download plugin upload install connection code test connection send now verify activate ai crawl logs add-on connect automatically application password one click'
             },
             {
                 title: 'Connect WordPress — What ThriveStack collects',
-                url: 'public/cited-by/ai-crawl-attribution-wordpress.html#data',
+                url: 'cited-by/ai-crawl-attribution-wordpress.html#data',
                 terms: 'wordpress plugin data collected privacy access log ai crawler requests application password not stored fallback mode'
             },
             {
                 title: 'Connect WordPress — Troubleshooting',
-                url: 'public/cited-by/ai-crawl-attribution-wordpress.html#troubleshooting',
+                url: 'cited-by/ai-crawl-attribution-wordpress.html#troubleshooting',
                 terms: 'wordpress troubleshooting plugin fallback no readable access log connection code get a new code waiting for your plugin to connect listening first ai crawler visit send a test visit wp-cron send now disconnect application password'
             },
             {
                 title: 'Cited By Prompts Bulk Import',
-                url: 'public/cited-by/prompts-bulk-import.html#overview',
+                url: 'cited-by/prompts-bulk-import.html#overview',
                 terms: 'cited by prompts bulk import csv upload template column mapping entitlement'
             },
             {
                 title: 'Bulk Import — Match Columns',
-                url: 'public/cited-by/prompts-bulk-import.html#match-columns',
+                url: 'cited-by/prompts-bulk-import.html#match-columns',
                 terms: 'bulk import match columns mapper prompt topic dont import aliases query'
             },
             {
                 title: 'Bulk Import — Plan Limits',
-                url: 'public/cited-by/prompts-bulk-import.html#plan-limits',
+                url: 'cited-by/prompts-bulk-import.html#plan-limits',
                 terms: 'bulk import plan limit entitlement upgrade add-on remaining slots'
             },
             {
                 title: 'Bulk Import — Troubleshooting',
-                url: 'public/cited-by/prompts-bulk-import.html#troubleshooting',
+                url: 'cited-by/prompts-bulk-import.html#troubleshooting',
                 terms: 'bulk import troubleshooting empty duplicate headers csv'
             },
             {
@@ -279,72 +279,72 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 title: 'Identify Endpoint',
-                url: 'public/api/identify.html#identify',
+                url: 'api/identify.html#identify',
                 terms: 'identify user traits email name user_id context group_id device_id session_id'
             },
             {
                 title: 'Group Endpoint',
-                url: 'public/api/group.html#group',
+                url: 'api/group.html#group',
                 terms: 'group account traits group_id user_id account_name account_domain group_type'
             },
             {
                 title: 'Track Endpoint',
-                url: 'public/api/track.html#track',
+                url: 'api/track.html#track',
                 terms: 'track event signed_up account_created feature_used invite_sent page_visit onboarding event_name properties'
             },
             {
                 title: 'GetAccounts',
-                url: 'public/api/get-accounts.html#get-accounts',
+                url: 'api/get-accounts.html#get-accounts',
                 terms: 'get accounts list graphql growth intelligence filters sort pagination segmentation acquisition activation monetization engagement expansion firmographics mrr arr dau mau churn healthy at risk account fields accountFieldByGraphQLKey public-api-events abuseRuleResult registry filterable sortable'
             },
             {
                 title: 'GetAccountById',
-                url: 'public/api/get-account-by-id.html#get-account-by-id',
+                url: 'api/get-account-by-id.html#get-account-by-id',
                 terms: 'get account by id graphql growth intelligence acquisition activation monetization engagement firmographics mrr arr dau mau single account profile'
             },
             {
                 title: 'GetUsers',
-                url: 'public/api/get-users.html#get-users',
+                url: 'api/get-users.html#get-users',
                 terms: 'get users list graphql growth intelligence filters sort pagination user segment cohort acquisition engagement demographics sign ins abuse status utm'
             },
             {
                 title: 'GetUserById',
-                url: 'public/api/get-user-by-id.html#get-user-by-id',
+                url: 'api/get-user-by-id.html#get-user-by-id',
                 terms: 'get user by id graphql growth intelligence acquisition engagement demographics employment title role signin'
             },
             {
                 title: 'GetAccountEnrichment',
-                url: 'public/api/get-account-enrichment.html#get-account-enrichment',
+                url: 'api/get-account-enrichment.html#get-account-enrichment',
                 terms: 'get account enrichment graphql domain firmographic industry employees revenue technology stack social linkedin twitter'
             },
             {
                 title: 'GetUserEnrichment',
-                url: 'public/api/get-user-enrichment.html#get-user-enrichment',
+                url: 'api/get-user-enrichment.html#get-user-enrichment',
                 terms: 'get user enrichment graphql email job title role seniority company linkedin social profiles location personalize onboarding'
             },
             {
                 title: 'Transactions API',
-                url: 'public/api/transactions.html#transactions',
+                url: 'api/transactions.html#transactions',
                 terms: 'transactions revenue billing crud create list get update delete payment amount currency status charge refund credit'
             },
             {
                 title: 'Invoices API',
-                url: 'public/api/invoices.html#invoices',
+                url: 'api/invoices.html#invoices',
                 terms: 'invoices billing revenue crud create list get update void due_date line_items total draft open paid'
             },
             {
                 title: 'Subscriptions API',
-                url: 'public/api/subscriptions.html#subscriptions',
+                url: 'api/subscriptions.html#subscriptions',
                 terms: 'subscriptions billing recurring revenue crud create list get update cancel plan interval status trial active past_due'
             },
             {
                 title: 'Exceptional Use Cases',
-                url: 'public/revenue/setup/exceptional-use-cases.html#exceptional-use-cases',
+                url: 'revenue/setup/exceptional-use-cases.html#exceptional-use-cases',
                 terms: 'exceptional use cases chargebee stripe payment gateway marketplace platform fee revenue billing connect transactions api'
             },
             {
                 title: 'Goal Conversion',
-                url: 'public/marketing/setup/goal-conversion.html#create-goal',
+                url: 'marketing/setup/goal-conversion.html#create-goal',
                 terms: 'goal conversion create goal event tracking pin dashboard goal completions unique visitors repeat visitors target date event filter ts-demo-booked verification pinned goals unified dashboard conversion rate signup demo request page visits'
             }
         ];
@@ -589,7 +589,7 @@ class ReadyToScalePromo extends HTMLElement {
 }
 customElements.define('ready-to-scale-promo', ReadyToScalePromo);
 
-/** Which product's docs a path belongs to. The Revenue Intelligence MCP docs live in public/revenue/mcp/. */
+/** Which product's docs a path belongs to. The Revenue Intelligence MCP docs live in revenue/mcp/. */
 function docsProductFromPath(path) {
     const inRevenueMcp = path.includes('/revenue/mcp/');
     return (path.includes('/cited-by/') || (path.includes('/mcp/') && !inRevenueMcp)) ? 'citedby' : 'thrivestack';
@@ -625,7 +625,7 @@ const DOCS_BASE_URL = new URL('./', (document.currentScript && document.currentS
 
 const DOCS_PRODUCTS = [
     { id: 'thrivestack', label: 'ThriveStack', sub: 'Growth intelligence', home: 'index.html' },
-    { id: 'citedby', label: 'Cited By', sub: 'AI visibility', home: 'public/cited-by/introduction.html' },
+    { id: 'citedby', label: 'Cited By', sub: 'AI visibility', home: 'cited-by/introduction.html' },
 ];
 
 /**
@@ -656,22 +656,22 @@ const docsLeaf = (title, href, badge) => ({ title, href, badge });
 const docsGroup = (title, children) => ({ title, children });
 
 const DOCS_REVENUE_MCP_PAGES = [
-    docsLeaf('Introduction', 'public/revenue/mcp/introduction.html'),
-    docsLeaf('Setup', 'public/revenue/mcp/setup.html'),
-    docsLeaf('Use Cases', 'public/revenue/mcp/use-cases.html'),
-    docsLeaf('Prompts', 'public/revenue/mcp/prompts.html'),
-    docsLeaf('Tools', 'public/revenue/mcp/tools.html'),
+    docsLeaf('Introduction', 'revenue/mcp/introduction.html'),
+    docsLeaf('Setup', 'revenue/mcp/setup.html'),
+    docsLeaf('Use Cases', 'revenue/mcp/use-cases.html'),
+    docsLeaf('Prompts', 'revenue/mcp/prompts.html'),
+    docsLeaf('Tools', 'revenue/mcp/tools.html'),
 ];
 const DOCS_CITEDBY_MCP_PAGES = [
-    docsLeaf('Introduction', 'public/mcp/introduction.html'),
-    docsLeaf('Setup', 'public/mcp/setup.html'),
-    docsLeaf('Use Cases', 'public/mcp/use-cases.html'),
-    docsLeaf('Prompts', 'public/mcp/prompts.html'),
-    docsLeaf('Tools', 'public/mcp/tools.html'),
+    docsLeaf('Introduction', 'mcp/introduction.html'),
+    docsLeaf('Setup', 'mcp/setup.html'),
+    docsLeaf('Use Cases', 'mcp/use-cases.html'),
+    docsLeaf('Prompts', 'mcp/prompts.html'),
+    docsLeaf('Tools', 'mcp/tools.html'),
 ];
 
 /** Each product's tree has its own MCP group: that product's MCP pages plus the shared changelog. */
-const docsMcpGroup = (pages) => docsGroup('MCP', [...pages, docsLeaf('Changelog', 'public/mcp/changelog.html')]);
+const docsMcpGroup = (pages) => docsGroup('MCP', [...pages, docsLeaf('Changelog', 'mcp/changelog.html')]);
 
 const DOCS_TREES = {
     thrivestack: [
@@ -688,39 +688,39 @@ const DOCS_TREES = {
             docsLeaf('Setup (Unify) Overview', 'setup-overview.html'),
             docsLeaf('Data Collection', 'data-collection.html'),
             docsGroup('Marketing Intelligence', [
-                docsLeaf('Setup with AI (LLM)', 'public/marketing/setup/setup-with-ai.html', '2 mins'),
-                docsLeaf('Setup Manually', 'public/marketing/setup/setup-manually.html', '10 mins'),
-                docsLeaf('Implement with Prompt', 'public/marketing/setup/implement-with-prompt-marketing.html'),
-                docsLeaf('Goal Conversion', 'public/marketing/setup/goal-conversion.html'),
-                docsLeaf('Google Ads', 'public/marketing/setup/google-ads.html'),
+                docsLeaf('Setup with AI (LLM)', 'marketing/setup/setup-with-ai.html', '2 mins'),
+                docsLeaf('Setup Manually', 'marketing/setup/setup-manually.html', '10 mins'),
+                docsLeaf('Implement with Prompt', 'marketing/setup/implement-with-prompt-marketing.html'),
+                docsLeaf('Goal Conversion', 'marketing/setup/goal-conversion.html'),
+                docsLeaf('Google Ads', 'marketing/setup/google-ads.html'),
             ]),
             docsGroup('Product Intelligence', [
-                docsLeaf('Introduction', 'public/product/setup/introduction.html'),
-                docsLeaf('Setup with AI', 'public/product/setup/setup-with-ai.html', '2 mins'),
-                docsLeaf('Multi-Repo & Split Flows', 'public/product/setup/multi-repo-setup.html'),
-                docsLeaf('Setup Manually', 'public/product/setup/setup-manually.html', '~1hr'),
-                docsLeaf('Understand Events Telemetry', 'public/product/setup/saas-growth-events.html'),
-                docsLeaf('Environments and API Keys', 'public/product/setup/environment-correlation.html'),
-                docsLeaf('Advanced AI Instrumentation', 'public/product/setup/advanced-ai-instrumentation.html', 'Beta'),
-                docsLeaf('Track API, CLI & Agent Usage', 'public/product/setup/api-cli-instrumentation.html'),
+                docsLeaf('Introduction', 'product/setup/introduction.html'),
+                docsLeaf('Setup with AI', 'product/setup/setup-with-ai.html', '2 mins'),
+                docsLeaf('Multi-Repo & Split Flows', 'product/setup/multi-repo-setup.html'),
+                docsLeaf('Setup Manually', 'product/setup/setup-manually.html', '~1hr'),
+                docsLeaf('Understand Events Telemetry', 'product/setup/saas-growth-events.html'),
+                docsLeaf('Environments and API Keys', 'product/setup/environment-correlation.html'),
+                docsLeaf('Advanced AI Instrumentation', 'product/setup/advanced-ai-instrumentation.html', 'Beta'),
+                docsLeaf('Track API, CLI & Agent Usage', 'product/setup/api-cli-instrumentation.html'),
             ]),
             docsGroup('Revenue Intelligence', [
-                docsLeaf('Introduction', 'public/revenue/setup/introduction.html'),
-                docsLeaf('Setup with AI (LLM)', 'public/revenue/setup/setup-with-ai.html', '2 mins'),
-                docsLeaf('Setup Manually', 'public/revenue/setup/setup-manually.html', '~1hr'),
-                docsLeaf('Chargebee Integration', 'public/revenue/setup/chargebee-integration.html'),
-                docsLeaf('Stripe Integration', 'public/revenue/setup/stripe-integration.html'),
-                docsLeaf('Why Correlation Matters', 'public/revenue/setup/why-correlation.html'),
-                docsLeaf('Exceptional Use Cases', 'public/revenue/setup/exceptional-use-cases.html'),
+                docsLeaf('Introduction', 'revenue/setup/introduction.html'),
+                docsLeaf('Setup with AI (LLM)', 'revenue/setup/setup-with-ai.html', '2 mins'),
+                docsLeaf('Setup Manually', 'revenue/setup/setup-manually.html', '~1hr'),
+                docsLeaf('Chargebee Integration', 'revenue/setup/chargebee-integration.html'),
+                docsLeaf('Stripe Integration', 'revenue/setup/stripe-integration.html'),
+                docsLeaf('Why Correlation Matters', 'revenue/setup/why-correlation.html'),
+                docsLeaf('Exceptional Use Cases', 'revenue/setup/exceptional-use-cases.html'),
             ]),
             docsGroup('CRM Sync', [
-                docsLeaf('HubSpot Overview', 'public/crm-sync/introduction.html'),
-                docsLeaf('HubSpot → ThriveStack', 'public/crm-sync/hubspot-inbound.html'),
-                docsLeaf('ThriveStack → HubSpot', 'public/crm-sync/hubspot-outbound.html'),
+                docsLeaf('HubSpot Overview', 'crm-sync/introduction.html'),
+                docsLeaf('HubSpot → ThriveStack', 'crm-sync/hubspot-inbound.html'),
+                docsLeaf('ThriveStack → HubSpot', 'crm-sync/hubspot-outbound.html'),
             ]),
             docsGroup('Customer Success', [
-                docsLeaf('Introduction', 'public/customer-success/introduction.html'),
-                docsLeaf('Setup Health Scores', 'public/customer-success/setup-health-scores.html'),
+                docsLeaf('Introduction', 'customer-success/introduction.html'),
+                docsLeaf('Setup Health Scores', 'customer-success/setup-health-scores.html'),
             ]),
         ]),
         docsLeaf('Analyze Signals', 'analyze-signals.html'),
@@ -731,38 +731,38 @@ const DOCS_TREES = {
         docsGroup('API Reference', [
             docsLeaf('Overview', 'api-reference.html'),
             docsGroup('Telemetry', [
-                docsLeaf('Identify', 'public/api/identify.html'),
-                docsLeaf('Group', 'public/api/group.html'),
-                docsLeaf('Track', 'public/api/track.html'),
+                docsLeaf('Identify', 'api/identify.html'),
+                docsLeaf('Group', 'api/group.html'),
+                docsLeaf('Track', 'api/track.html'),
             ]),
             docsGroup('Revenue Intelligence', [
-                docsLeaf('Subscriptions', 'public/api/subscriptions.html'),
-                docsLeaf('Subscription Items', 'public/api/subscription-items.html'),
-                docsLeaf('Invoices', 'public/api/invoices.html'),
-                docsLeaf('Transactions', 'public/api/transactions.html'),
+                docsLeaf('Subscriptions', 'api/subscriptions.html'),
+                docsLeaf('Subscription Items', 'api/subscription-items.html'),
+                docsLeaf('Invoices', 'api/invoices.html'),
+                docsLeaf('Transactions', 'api/transactions.html'),
             ]),
             docsGroup('Growth Intelligence', [
-                docsLeaf('GetSegments', 'public/api/get-segments.html'),
-                docsLeaf('GetAccounts', 'public/api/get-accounts.html'),
-                docsLeaf('GetAccountById', 'public/api/get-account-by-id.html'),
-                docsLeaf('GetUsers', 'public/api/get-users.html'),
-                docsLeaf('GetUserById', 'public/api/get-user-by-id.html'),
-                docsLeaf('GetAccountEnrichment', 'public/api/get-account-enrichment.html'),
-                docsLeaf('GetUserEnrichment', 'public/api/get-user-enrichment.html'),
+                docsLeaf('GetSegments', 'api/get-segments.html'),
+                docsLeaf('GetAccounts', 'api/get-accounts.html'),
+                docsLeaf('GetAccountById', 'api/get-account-by-id.html'),
+                docsLeaf('GetUsers', 'api/get-users.html'),
+                docsLeaf('GetUserById', 'api/get-user-by-id.html'),
+                docsLeaf('GetAccountEnrichment', 'api/get-account-enrichment.html'),
+                docsLeaf('GetUserEnrichment', 'api/get-user-enrichment.html'),
             ]),
         ]),
         docsMcpGroup(DOCS_REVENUE_MCP_PAGES),
         docsLeaf('Startup Cohort Discount', 'startup-cohort-discount.html'),
     ],
     citedby: [
-        docsLeaf('Introduction', 'public/cited-by/introduction.html'),
+        docsLeaf('Introduction', 'cited-by/introduction.html'),
         docsGroup('AI Crawl Attribution', [
-            docsLeaf('Connect Vercel', 'public/cited-by/ai-crawl-attribution-vercel.html'),
-            docsLeaf('Connect WordPress', 'public/cited-by/ai-crawl-attribution-wordpress.html'),
+            docsLeaf('Connect Vercel', 'cited-by/ai-crawl-attribution-vercel.html'),
+            docsLeaf('Connect WordPress', 'cited-by/ai-crawl-attribution-wordpress.html'),
         ]),
         docsMcpGroup(DOCS_CITEDBY_MCP_PAGES),
         docsGroup('Prompts', [
-            docsLeaf('Bulk import', 'public/cited-by/prompts-bulk-import.html'),
+            docsLeaf('Bulk import', 'cited-by/prompts-bulk-import.html'),
         ]),
     ],
 };
