@@ -415,164 +415,102 @@ a:hover { color: var(--brand-primary-hover); }
     line-height: 1;
 }
 
-/* Top-left docs product switcher (ThriveStack ↔ citedby)
-   Trigger logo matches original .logo-img (32px) — dropdown sizing is independent. */
-.docs-product-switcher {
-    position: relative;
-    flex-shrink: 0;
+/* Docs navigation sidebar: product block + collapsible tree (built in script.js, mountDocsShell).
+   The header links live here now, so the header hides them once the sidebar is mounted. */
+.docs-nav-on .nav-center { display: none; }
+.docs-nav-on .mobile-menu-btn { display: none; }
+.docs-nav-on .left-sidebar { padding: 1.5rem 1rem; }
+
+.docs-nav { display: flex; flex-direction: column; }
+.docs-nav__caption {
+    margin: 0 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
 }
-.docs-product-switcher__trigger {
-    display: inline-flex;
+.docs-nav__product {
+    display: flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 4px 8px;
-    border-radius: 8px;
+    gap: 0.65rem;
+    padding: 0.55rem 0.65rem;
+    margin-bottom: 0.4rem;
     border: 1px solid var(--border-color);
-    background: var(--nav-hover-bg);
+    border-radius: 10px;
+    background: var(--card-bg);
     color: var(--text-primary);
-    cursor: pointer;
-    font: inherit;
-    line-height: 1;
-    box-sizing: border-box;
     transition: background 0.15s ease, border-color 0.15s ease;
 }
-[data-theme="dark"] .docs-product-switcher__trigger {
-    background: #05070c;
-    border-color: #3a4558;
+.docs-nav__product:hover { background: var(--card-hover-bg); border-color: var(--text-muted); }
+.docs-nav__product.is-current {
+    border-color: var(--brand-primary);
+    background: rgba(59, 130, 246, 0.1);
 }
-[data-theme="dark"] .docs-product-switcher__trigger:hover,
-[data-theme="dark"] .docs-product-switcher.is-open .docs-product-switcher__trigger {
-    background: #02040a;
-    border-color: #4b5568;
-}
-.docs-product-switcher__trigger:hover,
-.docs-product-switcher.is-open .docs-product-switcher__trigger {
-    background: var(--card-hover-bg);
-}
-/* Brand mark: same 32px height as .logo-img; width follows the mark (no empty gap) */
-.docs-product-switcher__trigger .docs-product-switcher__brand {
-    display: inline-flex;
+.docs-nav__product-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.docs-logo { display: block; width: auto; }
+.docs-logo--dark { display: none; }
+[data-theme="dark"] .docs-logo--light { display: none; }
+[data-theme="dark"] .docs-logo--dark { display: block; }
+.docs-nav .docs-logo { height: 26px; align-self: flex-start; }
+.docs-nav .docs-logo--citedby { height: 16px; margin: 5px 0; }
+.docs-header-logo { height: 32px; }
+.docs-header-logo.docs-logo--citedby { height: 22px; }
+@media (max-width: 768px) { .docs-header-logo.docs-logo--citedby { height: 17px; } }
+.docs-nav__product-text small { font-size: 0.75rem; color: var(--text-muted); }
+.docs-nav__product-mark { margin-left: auto; font-size: 0.75rem; color: var(--text-muted); }
+.docs-nav__product.is-current .docs-nav__product-mark { color: var(--brand-primary); }
+.docs-nav__rule { height: 1px; margin: 1rem 0 0.75rem; background: var(--border-color); }
+
+.docs-nav__tree, .docs-nav__group, .docs-nav__panel { display: flex; flex-direction: column; gap: 2px; }
+.docs-nav__link,
+.docs-nav__toggle {
+    display: flex;
     align-items: center;
-    justify-content: flex-start;
-    height: 32px;
-    flex-shrink: 0;
-}
-.docs-product-switcher__trigger .docs-product-switcher__logo {
-    height: 32px;
-    width: auto;
-    display: block;
-    object-fit: contain;
-}
-.docs-product-switcher__trigger .docs-product-switcher__citedby {
-    display: inline-flex;
-    align-items: center;
-    height: 32px;
-    /* Match ThriveStack logo height (32px) — fills the box like the wordmark image */
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: -0.045em;
-    line-height: 32px;
-    color: var(--text-primary);
-    white-space: nowrap;
-}
-.docs-product-switcher__citedby .by {
-    font-weight: 500;
-    color: var(--text-muted);
-}
-.docs-product-switcher__chevron {
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    flex-shrink: 0;
-    transition: transform 0.15s ease;
-}
-.docs-product-switcher.is-open .docs-product-switcher__chevron {
-    transform: rotate(180deg);
-}
-.docs-product-switcher__menu {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    z-index: 60;
-    min-width: 240px;
-    padding: 0.35rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border-color);
-    background: var(--card-bg);
-    box-shadow: var(--shadow-md);
-}
-[data-theme="dark"] .docs-product-switcher__menu {
-    background: #05070c;
-    border-color: #3a4558;
-}
-.docs-product-switcher__option {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    column-gap: 0.5rem;
-    align-items: center;
+    gap: 0.5rem;
     width: 100%;
-    padding: 0.65rem 0.7rem;
-    border: none;
-    border-radius: 0.5rem;
-    background: transparent;
-    color: var(--text-primary);
-    text-align: left;
-    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    border: 0;
+    border-radius: 6px;
+    background: none;
     font: inherit;
-    transition: background 0.12s ease;
+    font-size: 0.9rem;
+    text-align: left;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
 }
-.docs-product-switcher__option:hover {
-    background: var(--nav-hover-bg);
-}
-[data-theme="dark"] .docs-product-switcher__option:hover {
-    background: #121826;
-}
-.docs-product-switcher__option.is-active {
-    background: rgba(99, 102, 241, 0.12);
-}
-.docs-product-switcher__option .docs-product-switcher__brand {
-    grid-column: 1;
-    grid-row: 1;
-    display: inline-flex;
-    align-items: center;
-    height: auto;
-    width: auto;
-}
-.docs-product-switcher__option .docs-product-switcher__meta {
-    grid-column: 1;
-    grid-row: 2;
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    margin-top: 0.15rem;
-    padding-left: 0.05rem;
-}
-.docs-product-switcher__option .docs-product-switcher__check {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    font-size: 0.75rem;
+.docs-nav__toggle { font-weight: 600; color: var(--text-primary); }
+.docs-nav__panel .docs-nav__toggle { font-weight: 500; color: var(--text-secondary); }
+.docs-nav__link:hover,
+.docs-nav__toggle:hover { background: var(--nav-hover-bg); color: var(--text-primary); }
+.docs-nav__link.is-active {
+    background: rgba(59, 130, 246, 0.1);
     color: var(--brand-primary);
-    opacity: 0;
+    font-weight: 500;
 }
-.docs-product-switcher__option.is-active .docs-product-switcher__check {
-    opacity: 1;
+.docs-nav__link:focus-visible,
+.docs-nav__toggle:focus-visible,
+.docs-nav__product:focus-visible { outline: 2px solid var(--brand-primary); outline-offset: 1px; }
+.docs-nav__chev { margin-left: auto; font-size: 0.65rem; color: var(--text-muted); transition: transform 0.15s ease; }
+.docs-nav__toggle[aria-expanded="true"] .docs-nav__chev { transform: rotate(90deg); }
+.docs-nav__panel {
+    margin: 2px 0 6px 0.55rem;
+    padding-left: 0.4rem;
+    border-left: 1px solid var(--border-color);
 }
-/* Dropdown marks stay compact — independent of top-left logo size */
-.docs-product-switcher__option .docs-product-switcher__logo {
-    height: 22px;
-    width: auto;
-    display: block;
+.docs-nav__panel[hidden] { display: none; }
+
+.docs-nav__link .time-badge { margin-left: auto; }
+.time-badge--beta { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+
+.docs-nav-scrim {
+    position: fixed;
+    inset: 64px 0 0 0;
+    z-index: 44;
+    background: rgba(0, 0, 0, 0.5);
 }
-.docs-product-switcher__option .docs-product-switcher__citedby {
-    display: inline-flex;
-    align-items: center;
-    height: auto;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    color: var(--text-primary);
-    white-space: nowrap;
-}
+.docs-nav-scrim[hidden] { display: none; }
 
 .resizer {
     width: 4px;
@@ -1939,6 +1877,25 @@ a:hover { color: var(--brand-primary-hover); }
 }
 @media (max-width: 768px) {
     .left-sidebar { display: none; }
+    /* With the generated nav the sidebar becomes a drawer opened by the header hamburger. */
+    .docs-nav-on .left-sidebar {
+        display: block;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        bottom: 0;
+        height: auto;
+        width: min(320px, 86vw) !important;
+        z-index: 45;
+        transform: translateX(-100%);
+        visibility: hidden;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+    }
+    .docs-nav-open .left-sidebar { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    .docs-nav-on .resizer { display: none; }
+    .docs-nav-on .mobile-menu-btn { display: block; }
+    .docs-nav-open { overflow: hidden; }
     .main-content { padding: 2rem; }
     .search-bar input { width: 40px; padding: 0; opacity: 0; }
     .search-bar i { pointer-events: none; z-index: 10; padding: 0.5rem; }

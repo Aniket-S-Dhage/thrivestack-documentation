@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    mountDocsProductSwitcher();
+    mountDocsShell();
 
     // Code tab switching (.tab-btn / .tab-pane pattern used in API reference pages)
     document.querySelectorAll('.code-tabs').forEach(function(tabGroup) {
@@ -589,186 +589,6 @@ class ReadyToScalePromo extends HTMLElement {
 }
 customElements.define('ready-to-scale-promo', ReadyToScalePromo);
 
-class SetupSidebar extends HTMLElement {
-    connectedCallback() {
-        const prefix = this.getAttribute('base-path') || '';
-        this.innerHTML = `
-            <div class="sidebar-section">
-                <h3>Overview</h3>
-                <ul>
-                    <li><a href="${prefix}setup-overview.html" class="nav-item"><span>Setup (Unify) Overview</span></a></li>
-                    <li><a href="${prefix}data-collection.html" class="nav-item"><span>Data Collection</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>Marketing Intelligence</h3>
-                <ul>
-                    <li><a href="${prefix}public/marketing/setup/setup-with-ai.html" class="nav-item"><span>Setup with AI (LLM)</span><span class="time-badge">2 mins</span></a></li>
-                    <li><a href="#" class="nav-item"><span>Setup Manually</span><span class="time-badge">10 mins</span></a></li>
-                    <li><a href="${prefix}public/marketing/setup/implement-with-prompt-marketing.html" class="nav-item"><span>Implement with Prompt</span></a></li>
-                    <li><a href="${prefix}public/marketing/setup/goal-conversion.html" class="nav-item"><span>Goal Conversion</span></a></li>
-                    <li><a href="${prefix}public/marketing/setup/google-ads.html" class="nav-item"><span>Google Ads</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>Product Intelligence</h3>
-                <ul>
-                    <li><a href="${prefix}public/product/setup/introduction.html" class="nav-item"><span>Introduction</span></a></li>
-                    <li><a href="${prefix}public/product/setup/setup-with-ai.html" class="nav-item"><span>Setup with AI</span><span class="time-badge">2 mins</span></a></li>
-                    <li><a href="${prefix}public/product/setup/multi-repo-setup.html" class="nav-item"><span>Multi-Repo &amp; Split Flows</span></a></li>
-                    <li><a href="${prefix}public/product/setup/setup-manually.html" class="nav-item"><span>Setup Manually</span><span class="time-badge">~1hr</span></a></li>
-                    <li><a href="${prefix}public/product/setup/saas-growth-events.html" class="nav-item"><span>Understand Events Telemetry</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/why-correlation.html" class="nav-item"><span>Why Correlation Matters</span></a></li>
-                    <li><a href="${prefix}public/product/setup/environment-correlation.html" class="nav-item"><span>Environments and API Keys</span></a></li>
-                    <li><a href="${prefix}public/product/setup/advanced-ai-instrumentation.html" class="nav-item"><span>Advanced AI Instrumentation</span><span class="time-badge" style="background:rgba(99,102,241,0.15);color:#818cf8;">Beta</span></a></li>
-                    <li><a href="${prefix}public/product/setup/api-cli-instrumentation.html" class="nav-item"><span>Track API, CLI &amp; Agent Usage</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>Revenue Intelligence</h3>
-                <ul>
-                    <li><a href="${prefix}public/revenue/setup/introduction.html" class="nav-item"><span>Introduction</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/setup-with-ai.html" class="nav-item"><span>Setup with AI (LLM)</span><span class="time-badge">2 mins</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/setup-manually.html" class="nav-item"><span>Setup Manually</span><span class="time-badge">~1hr</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/chargebee-integration.html" class="nav-item"><span>Chargebee Integration</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/stripe-integration.html" class="nav-item"><span>Stripe Integration</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/why-correlation.html" class="nav-item"><span>Why Correlation Matters</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/exceptional-use-cases.html" class="nav-item"><span>Exceptional Use Cases</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>CRM Sync</h3>
-                <ul>
-                    <li><a href="${prefix}public/crm-sync/introduction.html" class="nav-item"><span>HubSpot Overview</span></a></li>
-                    <li><a href="${prefix}public/crm-sync/hubspot-inbound.html" class="nav-item"><span>HubSpot → ThriveStack</span></a></li>
-                    <li><a href="${prefix}public/crm-sync/hubspot-outbound.html" class="nav-item"><span>ThriveStack → HubSpot</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>Customer Success</h3>
-                <ul>
-                    <li><a href="${prefix}public/customer-success/introduction.html" class="nav-item"><span>Introduction</span></a></li>
-                    <li><a href="${prefix}public/customer-success/setup-health-scores.html" class="nav-item"><span>Setup Health Scores</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>Billing</h3>
-                <ul>
-                    <li><a href="${prefix}startup-cohort-discount.html" class="nav-item"><span>Startup Cohort Discount</span></a></li>
-                </ul>
-            </div>
-        `;
-        
-        // Handle Active State
-        let currentPath = window.location.pathname;
-        if (currentPath.endsWith('/')) {
-            currentPath += 'index.html';
-        }
-        
-        const links = this.querySelectorAll('a.nav-item');
-        const currentFile = currentPath.split('/').pop();
-        const isMarketing = currentPath.includes('marketing');
-        const isProduct = currentPath.includes('product');
-        const isRevenue = currentPath.includes('revenue');
-        const isCRM = currentPath.includes('crm-sync');
-        const isCS = currentPath.includes('customer-success');
-
-        links.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && href !== '#') {
-                const hrefPath = href.split('/').pop();
-                
-                if (hrefPath === currentFile) {
-                    if (hrefPath === 'setup-with-ai.html' || hrefPath === 'setup-manually.html') {
-                        if (isMarketing && href.includes('marketing')) link.classList.add('active');
-                        else if (isProduct && href.includes('product')) link.classList.add('active');
-                        else if (isRevenue && href.includes('revenue')) link.classList.add('active');
-                    } else if (hrefPath === 'introduction.html') {
-                        if (isProduct && href.includes('product')) link.classList.add('active');
-                        else if (isRevenue && href.includes('revenue')) link.classList.add('active');
-                        else if (isCRM && href.includes('crm-sync')) link.classList.add('active');
-                        else if (isCS && href.includes('customer-success')) link.classList.add('active');
-                    } else {
-                        link.classList.add('active');
-                    }
-                }
-            }
-        });
-    }
-}
-customElements.define('setup-sidebar', SetupSidebar);
-
-/** Unified Cited By left nav (includes MCP docs under the Cited By product). */
-class CitedBySidebar extends HTMLElement {
-    connectedCallback() {
-        const prefix = this.getAttribute('base-path') || '';
-        this.innerHTML = `
-            <div class="sidebar-section">
-                <h3>Cited By</h3>
-                <ul>
-                    <li><a href="${prefix}public/cited-by/introduction.html" class="nav-item" data-nav="cited-intro"><span>Introduction</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>AI Crawl Attribution</h3>
-                <ul>
-                    <li><a href="${prefix}public/cited-by/ai-crawl-attribution-vercel.html" class="nav-item" data-nav="crawl-vercel"><span>Connect Vercel</span></a></li>
-                    <li><a href="${prefix}public/cited-by/ai-crawl-attribution-wordpress.html" class="nav-item" data-nav="crawl-wordpress"><span>Connect WordPress</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>MCP</h3>
-                <ul>
-                    <li><a href="${prefix}public/mcp/introduction.html" class="nav-item" data-nav="mcp-intro"><span>Introduction</span></a></li>
-                    <li><a href="${prefix}public/mcp/setup.html" class="nav-item" data-nav="mcp-setup"><span>Setup</span></a></li>
-                    <li><a href="${prefix}public/mcp/use-cases.html" class="nav-item" data-nav="mcp-use-cases"><span>Use Cases</span></a></li>
-                    <li><a href="${prefix}public/mcp/prompts.html" class="nav-item" data-nav="mcp-prompts"><span>Prompts</span></a></li>
-                    <li><a href="${prefix}public/mcp/tools.html" class="nav-item" data-nav="mcp-tools"><span>Tools</span></a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3>Prompts</h3>
-                <ul>
-                    <li><a href="${prefix}public/cited-by/prompts-bulk-import.html" class="nav-item" data-nav="prompts-bulk"><span>Bulk import</span></a></li>
-                </ul>
-            </div>
-        `;
-
-        let currentPath = window.location.pathname || '';
-        if (currentPath.endsWith('/')) currentPath += 'index.html';
-        const file = currentPath.split('/').pop() || '';
-        const inCitedBy = currentPath.includes('/cited-by/');
-        const inMcp = currentPath.includes('/mcp/');
-
-        let active = '';
-        if (inCitedBy && file === 'introduction.html') active = 'cited-intro';
-        else if (inCitedBy && file === 'prompts-bulk-import.html') active = 'prompts-bulk';
-        else if (inCitedBy && file === 'ai-crawl-attribution-vercel.html') active = 'crawl-vercel';
-        else if (inCitedBy && file === 'ai-crawl-attribution-wordpress.html') active = 'crawl-wordpress';
-        else if (inCitedBy && file === 'mcp.html') active = 'mcp-intro';
-        else if (inMcp && file === 'introduction.html') active = 'mcp-intro';
-        else if (inMcp && file === 'setup.html') active = 'mcp-setup';
-        else if (inMcp && file === 'use-cases.html') active = 'mcp-use-cases';
-        else if (inMcp && file === 'prompts.html') active = 'mcp-prompts';
-        else if (inMcp && file === 'tools.html') active = 'mcp-tools';
-
-        if (active) {
-            const link = this.querySelector(`[data-nav="${active}"]`);
-            if (link) link.classList.add('active');
-        }
-    }
-}
-customElements.define('cited-by-sidebar', CitedBySidebar);
-
 /** Which product's docs a path belongs to. The Revenue Intelligence MCP docs live in public/revenue/mcp/. */
 function docsProductFromPath(path) {
     const inRevenueMcp = path.includes('/revenue/mcp/');
@@ -792,177 +612,279 @@ function docsCurrentProduct(path) {
     return docsProductFromPath(path);
 }
 
-/** ThriveStack (Revenue Intelligence) left nav for its MCP docs, mirroring the Cited By one above. */
-class ThriveStackMcpSidebar extends HTMLElement {
-    connectedCallback() {
-        const prefix = this.getAttribute('base-path') || '';
-        this.innerHTML = `
-            <div class="sidebar-section">
-                <h3>Revenue Intelligence</h3>
-                <ul>
-                    <li><a href="${prefix}public/revenue/setup/introduction.html" class="nav-item"><span>Introduction</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/stripe-integration.html" class="nav-item"><span>Stripe Integration</span></a></li>
-                    <li><a href="${prefix}public/revenue/setup/chargebee-integration.html" class="nav-item"><span>Chargebee Integration</span></a></li>
-                </ul>
-            </div>
+/* ──────────────────────────────────────────────────────────────────────────
+ * Docs navigation: one generated sidebar for every page.
+ *
+ * Every page loads this script, so the sidebar is built here from DOCS_TREES instead of being
+ * copied into each HTML file. To add or move a page, edit the tree below: the product block, the
+ * collapsible groups, the active-page highlight and the mobile drawer all follow from it.
+ * ────────────────────────────────────────────────────────────────────────── */
 
-            <div class="sidebar-section">
-                <h3>MCP</h3>
-                <ul>
-                    <li><a href="${prefix}public/revenue/mcp/introduction.html" class="nav-item" data-nav="introduction.html"><span>Introduction</span></a></li>
-                    <li><a href="${prefix}public/revenue/mcp/setup.html" class="nav-item" data-nav="setup.html"><span>Setup</span></a></li>
-                    <li><a href="${prefix}public/revenue/mcp/use-cases.html" class="nav-item" data-nav="use-cases.html"><span>Use Cases</span></a></li>
-                    <li><a href="${prefix}public/revenue/mcp/prompts.html" class="nav-item" data-nav="prompts.html"><span>Prompts</span></a></li>
-                    <li><a href="${prefix}public/revenue/mcp/tools.html" class="nav-item" data-nav="tools.html"><span>Tools</span></a></li>
-                </ul>
-            </div>
-        `;
+/** Folder script.js is served from. Every nav href resolves against it, so nested pages need no ../ prefixes. */
+const DOCS_BASE_URL = new URL('./', (document.currentScript && document.currentScript.src) || window.location.href).href;
 
-        const file = (window.location.pathname || '').split('/').pop() || '';
-        const link = this.querySelector(`[data-nav="${file}"]`);
-        if (link) link.classList.add('active');
-    }
-}
-customElements.define('thrivestack-mcp-sidebar', ThriveStackMcpSidebar);
-
-/** Left nav for pages shared by both products: renders the sidebar of the product the reader came from. */
-class DocsMcpSidebar extends HTMLElement {
-    connectedCallback() {
-        const tag = docsCurrentProduct(window.location.pathname || '') === 'thrivestack' ? 'thrivestack-mcp-sidebar' : 'cited-by-sidebar';
-        const inner = document.createElement(tag);
-        inner.setAttribute('base-path', this.getAttribute('base-path') || '');
-        this.appendChild(inner);
-    }
-}
-customElements.define('docs-mcp-sidebar', DocsMcpSidebar);
+const DOCS_PRODUCTS = [
+    { id: 'thrivestack', label: 'ThriveStack', sub: 'Growth intelligence', home: 'index.html' },
+    { id: 'citedby', label: 'Cited By', sub: 'AI visibility', home: 'public/cited-by/introduction.html' },
+];
 
 /**
- * Top-left docs product switcher (ThriveStack ↔ citedby), mirrors the plg-crm-ui account/product box.
- * Replaces `.top-nav a.logo` on every page that loads this script.
+ * The brand marks themselves: logo.png (the ThriveStack wordmark, readable on both themes) and the
+ * "ThriveStack citedby" lockup, the same artwork the product's sidebar shows. The lockup comes in two
+ * colourways, citedby-logo.png for light and citedby-logo-dark.png for dark; CSS shows the one that
+ * matches the theme. Each product row is its logo plus a one-line descriptor.
  */
-function mountDocsProductSwitcher() {
-    const logoLink = document.querySelector('.top-nav .nav-left > a.logo');
-    if (!logoLink || logoLink.dataset.productSwitcher === '1') return;
+function docsProductLogo(product, extraClass = '') {
+    const image = (file, variant) => {
+        const src = docsEsc(new URL(file, DOCS_BASE_URL).href);
+        return `<img class="docs-logo docs-logo--${product.id}${variant ? ` docs-logo--${variant}` : ''}${extraClass ? ` ${extraClass}` : ''}" src="${src}" alt="${docsEsc(product.label)}" draggable="false">`;
+    };
+    return product.id === 'citedby' ? image('citedby-logo.png', 'light') + image('citedby-logo-dark.png', 'dark') : image('logo.png', '');
+}
 
-    const logoImg = logoLink.querySelector('img');
-    const logoSrc = logoImg ? logoImg.getAttribute('src') : 'logo.png';
-    const slash = logoSrc.lastIndexOf('/');
-    const prefix = slash >= 0 ? logoSrc.slice(0, slash + 1) : '';
+/** The header logo (and its link) follow the product the reader is in. */
+function docsApplyHeaderLogo(productId) {
+    const link = document.querySelector('.top-nav .nav-left > a.logo');
+    const product = DOCS_PRODUCTS.find((p) => p.id === productId);
+    if (!link || !product) return;
+    link.setAttribute('href', new URL(product.home, DOCS_BASE_URL).href);
+    link.innerHTML = docsProductLogo(product, 'docs-header-logo');
+}
+const docsProductLabel = (product) => `<span class="docs-nav__product-text">${docsProductLogo(product)}<small>${docsEsc(product.sub)}</small></span>`;
+
+const docsLeaf = (title, href, badge) => ({ title, href, badge });
+const docsGroup = (title, children) => ({ title, children });
+
+const DOCS_REVENUE_MCP_PAGES = [
+    docsLeaf('Introduction', 'public/revenue/mcp/introduction.html'),
+    docsLeaf('Setup', 'public/revenue/mcp/setup.html'),
+    docsLeaf('Use Cases', 'public/revenue/mcp/use-cases.html'),
+    docsLeaf('Prompts', 'public/revenue/mcp/prompts.html'),
+    docsLeaf('Tools', 'public/revenue/mcp/tools.html'),
+];
+const DOCS_CITEDBY_MCP_PAGES = [
+    docsLeaf('Introduction', 'public/mcp/introduction.html'),
+    docsLeaf('Setup', 'public/mcp/setup.html'),
+    docsLeaf('Use Cases', 'public/mcp/use-cases.html'),
+    docsLeaf('Prompts', 'public/mcp/prompts.html'),
+    docsLeaf('Tools', 'public/mcp/tools.html'),
+];
+
+/** Each product's tree has its own MCP group: that product's MCP pages plus the shared changelog. */
+const docsMcpGroup = (pages) => docsGroup('MCP', [...pages, docsLeaf('Changelog', 'public/mcp/changelog.html')]);
+
+const DOCS_TREES = {
+    thrivestack: [
+        docsGroup('Get Started', [
+            docsLeaf('Overview', 'index.html'),
+            docsLeaf('Connect Your Stack', 'connect-your-stack.html'),
+            docsLeaf('Analyze Correlated Signals', 'analyze-correlated-signals.html'),
+            docsLeaf('Drive Revenue Playbooks', 'drive-revenue-playbooks.html'),
+            docsLeaf('Accelerate Free-to-Paid', 'accelerate-free-to-paid.html'),
+            docsLeaf('Spot Expansion Signals', 'spot-expansion-signals.html'),
+            docsLeaf('Stop Churn Early', 'stop-churn-early.html'),
+        ]),
+        docsGroup('Setup', [
+            docsLeaf('Setup (Unify) Overview', 'setup-overview.html'),
+            docsLeaf('Data Collection', 'data-collection.html'),
+            docsGroup('Marketing Intelligence', [
+                docsLeaf('Setup with AI (LLM)', 'public/marketing/setup/setup-with-ai.html', '2 mins'),
+                docsLeaf('Setup Manually', 'public/marketing/setup/setup-manually.html', '10 mins'),
+                docsLeaf('Implement with Prompt', 'public/marketing/setup/implement-with-prompt-marketing.html'),
+                docsLeaf('Goal Conversion', 'public/marketing/setup/goal-conversion.html'),
+                docsLeaf('Google Ads', 'public/marketing/setup/google-ads.html'),
+            ]),
+            docsGroup('Product Intelligence', [
+                docsLeaf('Introduction', 'public/product/setup/introduction.html'),
+                docsLeaf('Setup with AI', 'public/product/setup/setup-with-ai.html', '2 mins'),
+                docsLeaf('Multi-Repo & Split Flows', 'public/product/setup/multi-repo-setup.html'),
+                docsLeaf('Setup Manually', 'public/product/setup/setup-manually.html', '~1hr'),
+                docsLeaf('Understand Events Telemetry', 'public/product/setup/saas-growth-events.html'),
+                docsLeaf('Environments and API Keys', 'public/product/setup/environment-correlation.html'),
+                docsLeaf('Advanced AI Instrumentation', 'public/product/setup/advanced-ai-instrumentation.html', 'Beta'),
+                docsLeaf('Track API, CLI & Agent Usage', 'public/product/setup/api-cli-instrumentation.html'),
+            ]),
+            docsGroup('Revenue Intelligence', [
+                docsLeaf('Introduction', 'public/revenue/setup/introduction.html'),
+                docsLeaf('Setup with AI (LLM)', 'public/revenue/setup/setup-with-ai.html', '2 mins'),
+                docsLeaf('Setup Manually', 'public/revenue/setup/setup-manually.html', '~1hr'),
+                docsLeaf('Chargebee Integration', 'public/revenue/setup/chargebee-integration.html'),
+                docsLeaf('Stripe Integration', 'public/revenue/setup/stripe-integration.html'),
+                docsLeaf('Why Correlation Matters', 'public/revenue/setup/why-correlation.html'),
+                docsLeaf('Exceptional Use Cases', 'public/revenue/setup/exceptional-use-cases.html'),
+            ]),
+            docsGroup('CRM Sync', [
+                docsLeaf('HubSpot Overview', 'public/crm-sync/introduction.html'),
+                docsLeaf('HubSpot → ThriveStack', 'public/crm-sync/hubspot-inbound.html'),
+                docsLeaf('ThriveStack → HubSpot', 'public/crm-sync/hubspot-outbound.html'),
+            ]),
+            docsGroup('Customer Success', [
+                docsLeaf('Introduction', 'public/customer-success/introduction.html'),
+                docsLeaf('Setup Health Scores', 'public/customer-success/setup-health-scores.html'),
+            ]),
+        ]),
+        docsLeaf('Analyze Signals', 'analyze-signals.html'),
+        docsGroup('Take Action', [
+            docsLeaf('Overview', 'take-action.html'),
+            docsLeaf('Account Intelligence', 'account-intelligence.html'),
+        ]),
+        docsGroup('API Reference', [
+            docsLeaf('Overview', 'api-reference.html'),
+            docsGroup('Telemetry', [
+                docsLeaf('Identify', 'public/api/identify.html'),
+                docsLeaf('Group', 'public/api/group.html'),
+                docsLeaf('Track', 'public/api/track.html'),
+            ]),
+            docsGroup('Revenue Intelligence', [
+                docsLeaf('Subscriptions', 'public/api/subscriptions.html'),
+                docsLeaf('Subscription Items', 'public/api/subscription-items.html'),
+                docsLeaf('Invoices', 'public/api/invoices.html'),
+                docsLeaf('Transactions', 'public/api/transactions.html'),
+            ]),
+            docsGroup('Growth Intelligence', [
+                docsLeaf('GetSegments', 'public/api/get-segments.html'),
+                docsLeaf('GetAccounts', 'public/api/get-accounts.html'),
+                docsLeaf('GetAccountById', 'public/api/get-account-by-id.html'),
+                docsLeaf('GetUsers', 'public/api/get-users.html'),
+                docsLeaf('GetUserById', 'public/api/get-user-by-id.html'),
+                docsLeaf('GetAccountEnrichment', 'public/api/get-account-enrichment.html'),
+                docsLeaf('GetUserEnrichment', 'public/api/get-user-enrichment.html'),
+            ]),
+        ]),
+        docsMcpGroup(DOCS_REVENUE_MCP_PAGES),
+        docsLeaf('Startup Cohort Discount', 'startup-cohort-discount.html'),
+    ],
+    citedby: [
+        docsLeaf('Introduction', 'public/cited-by/introduction.html'),
+        docsGroup('AI Crawl Attribution', [
+            docsLeaf('Connect Vercel', 'public/cited-by/ai-crawl-attribution-vercel.html'),
+            docsLeaf('Connect WordPress', 'public/cited-by/ai-crawl-attribution-wordpress.html'),
+        ]),
+        docsMcpGroup(DOCS_CITEDBY_MCP_PAGES),
+        docsGroup('Prompts', [
+            docsLeaf('Bulk import', 'public/cited-by/prompts-bulk-import.html'),
+        ]),
+    ],
+};
+
+const DOCS_NAV_STORE_KEY = 'docs_nav_state';
+
+const docsEsc = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const docsSlug = (value) => String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+/** A directory URL is served by its index.html, so compare paths with that filled in. */
+const docsNormalizePath = (path) => (path.endsWith('/') ? `${path}index.html` : path);
+const docsLeafPath = (leaf) => new URL(leaf.href, DOCS_BASE_URL).pathname;
+
+function docsHasActive(node, activePath) {
+    return node.children ? node.children.some((child) => docsHasActive(child, activePath)) : docsLeafPath(node) === activePath;
+}
+
+/** Open/closed choices the reader made by hand, as { groupId: boolean }. The group holding the current page always opens. */
+function docsReadNavState() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(DOCS_NAV_STORE_KEY) || '{}');
+        return saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {};
+    } catch (_) {
+        return {};
+    }
+}
+
+function docsWriteNavState(saved) {
+    try {
+        localStorage.setItem(DOCS_NAV_STORE_KEY, JSON.stringify(saved));
+    } catch (_) { /* storage unavailable: the nav still works, it just forgets */ }
+}
+
+function docsRenderLeaf(leaf, activePath) {
+    const url = new URL(leaf.href, DOCS_BASE_URL);
+    const active = url.pathname === activePath;
+    const badge = leaf.badge ? `<span class="time-badge${leaf.badge === 'Beta' ? ' time-badge--beta' : ''}">${docsEsc(leaf.badge)}</span>` : '';
+    return `<a class="docs-nav__link${active ? ' is-active' : ''}" href="${docsEsc(url.href)}"${active ? ' aria-current="page"' : ''}><span>${docsEsc(leaf.title)}</span>${badge}</a>`;
+}
+
+function docsRenderNodes(nodes, state, parentId) {
+    return nodes.map((node) => {
+        if (!node.children) return docsRenderLeaf(node, state.activePath);
+        const id = parentId ? `${parentId}/${node.title}` : node.title;
+        const open = docsHasActive(node, state.activePath) || state.saved[id] === true;
+        const panelId = `docs-nav-panel-${docsSlug(id)}`;
+        return `<div class="docs-nav__group">
+            <button type="button" class="docs-nav__toggle" data-group="${docsEsc(id)}" aria-expanded="${open}" aria-controls="${panelId}"><span>${docsEsc(node.title)}</span><i class="fa-solid fa-chevron-right docs-nav__chev" aria-hidden="true"></i></button>
+            <div class="docs-nav__panel" id="${panelId}"${open ? '' : ' hidden'}>${docsRenderNodes(node.children, state, id)}</div>
+        </div>`;
+    }).join('');
+}
+
+function docsRenderProducts(currentId) {
+    const rows = DOCS_PRODUCTS.map((product) => {
+        const current = product.id === currentId;
+        return `<a class="docs-nav__product${current ? ' is-current' : ''}" href="${docsEsc(new URL(product.home, DOCS_BASE_URL).href)}"${current ? ' aria-current="true"' : ''}>
+            ${docsProductLabel(product)}
+            <i class="fa-solid ${current ? 'fa-check' : 'fa-arrow-right'} docs-nav__product-mark" aria-hidden="true"></i>
+        </a>`;
+    }).join('');
+    return `<div class="docs-nav__products"><p class="docs-nav__caption">Products</p>${rows}</div>`;
+}
+
+/** Hamburger opens the sidebar as a drawer on narrow screens, where it is otherwise hidden. */
+function docsBindMobileDrawer() {
+    const button = document.querySelector('.mobile-menu-btn');
+    if (!button) return;
+
+    const scrim = document.createElement('div');
+    scrim.className = 'docs-nav-scrim';
+    scrim.hidden = true;
+    document.body.appendChild(scrim);
+
+    button.setAttribute('aria-controls', 'sidebar');
+    const setOpen = (open) => {
+        document.body.classList.toggle('docs-nav-open', open);
+        scrim.hidden = !open;
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    };
+    setOpen(false);
+
+    button.addEventListener('click', () => setOpen(!document.body.classList.contains('docs-nav-open')));
+    scrim.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+}
+
+function mountDocsShell() {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar || sidebar.dataset.docsNav === '1') return;
 
     const path = window.location.pathname || '';
-    const currentProduct = docsCurrentProduct(path);
+    const product = docsCurrentProduct(path);
     // Remember the product for the shared changelog page, which follows the reader's product.
     if (!docsIsSharedMcpPage(path)) {
-        try { sessionStorage.setItem('docs_product_ctx', currentProduct); } catch (_) { /* ignore */ }
+        try { sessionStorage.setItem('docs_product_ctx', product); } catch (_) { /* ignore */ }
     }
 
-    // On an MCP page, switching product lands on the other product's MCP introduction
-    // (so the dropdown flips between the two MCP sections); elsewhere it goes to the product home.
-    const inMcp = path.includes('/mcp/');
-    const homes = {
-        thrivestack: inMcp ? `${prefix}public/revenue/mcp/introduction.html` : `${prefix}index.html`,
-        citedby: inMcp ? `${prefix}public/mcp/introduction.html` : `${prefix}public/cited-by/introduction.html`,
-    };
+    const state = { activePath: docsNormalizePath(path), saved: docsReadNavState() };
+    sidebar.innerHTML = `<nav class="docs-nav" aria-label="Documentation">
+        ${docsRenderProducts(product)}
+        <div class="docs-nav__rule"></div>
+        <div class="docs-nav__tree">${docsRenderNodes(DOCS_TREES[product], state, '')}</div>
+    </nav>`;
+    sidebar.dataset.docsNav = '1';
+    docsApplyHeaderLogo(product);
+    // The header links now live in the sidebar, so the header keeps only logo, search, theme and sign-in.
+    document.documentElement.classList.add('docs-nav-on');
 
-    // The top-nav "MCP" link points at the Cited By MCP docs on every page; on ThriveStack pages
-    // it should open the ThriveStack (Revenue Intelligence) MCP docs instead.
-    if (currentProduct === 'thrivestack') {
-        document.querySelectorAll('.top-nav .nav-links a[href$="public/mcp/introduction.html"]').forEach((a) => {
-            a.setAttribute('href', a.getAttribute('href').replace('public/mcp/introduction.html', 'public/revenue/mcp/introduction.html'));
-        });
-    }
-
-    // "Changelog" sits right of "MCP" in the header on every page that has an MCP link. It is one
-    // shared page for the whole server, so it is added here rather than in each page's markup.
-    const mcpNavLink = document.querySelector('.top-nav .nav-links a[href$="mcp/introduction.html"]');
-    if (mcpNavLink && !document.querySelector('.top-nav .nav-links a[data-docs-changelog]')) {
-        const changelogLink = document.createElement('a');
-        changelogLink.textContent = 'Changelog';
-        changelogLink.dataset.docsChangelog = '1';
-        changelogLink.setAttribute('href', mcpNavLink.getAttribute('href').replace(/public\/(?:revenue\/)?mcp\/introduction\.html$/, 'public/mcp/changelog.html'));
-        mcpNavLink.after(changelogLink);
-        if (docsIsSharedMcpPage(path)) {
-            mcpNavLink.classList.remove('active');
-            changelogLink.classList.add('active');
-        }
-    }
-
-    const root = document.createElement('div');
-    root.className = 'docs-product-switcher';
-    root.dataset.product = currentProduct;
-    root.dataset.productSwitcher = '1';
-
-    // logo.png is the full ThriveStack wordmark — use it as the brand mark (no extra text).
-    const thrivestackBrandHtml = `
-        <span class="docs-product-switcher__brand docs-product-switcher__brand--ts" aria-label="ThriveStack">
-            <img src="${logoSrc}" alt="ThriveStack" class="docs-product-switcher__logo" draggable="false">
-        </span>`;
-
-    const citedbyBrandHtml = `
-        <span class="docs-product-switcher__brand docs-product-switcher__brand--citedby" aria-label="citedby">
-            <span class="docs-product-switcher__citedby">cited<span class="by">by</span></span>
-        </span>`;
-
-    const triggerBrand = currentProduct === 'citedby' ? citedbyBrandHtml : thrivestackBrandHtml;
-    const triggerAria = currentProduct === 'citedby' ? 'citedby documentation' : 'ThriveStack documentation';
-
-    root.innerHTML = `
-        <button type="button" class="docs-product-switcher__trigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Switch documentation product. Current: ${triggerAria}">
-            ${triggerBrand}
-            <i class="fa-solid fa-chevron-down docs-product-switcher__chevron" aria-hidden="true"></i>
-        </button>
-        <div class="docs-product-switcher__menu" role="listbox" hidden>
-            <button type="button" class="docs-product-switcher__option${currentProduct === 'thrivestack' ? ' is-active' : ''}" role="option" data-product="thrivestack" aria-selected="${currentProduct === 'thrivestack'}">
-                ${thrivestackBrandHtml}
-                <span class="docs-product-switcher__meta">Growth Intelligence</span>
-                <i class="fa-solid fa-check docs-product-switcher__check" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="docs-product-switcher__option${currentProduct === 'citedby' ? ' is-active' : ''}" role="option" data-product="citedby" aria-selected="${currentProduct === 'citedby'}">
-                ${citedbyBrandHtml}
-                <span class="docs-product-switcher__meta">AI Visibility</span>
-                <i class="fa-solid fa-check docs-product-switcher__check" aria-hidden="true"></i>
-            </button>
-        </div>
-    `;
-
-    logoLink.replaceWith(root);
-
-    const trigger = root.querySelector('.docs-product-switcher__trigger');
-    const menu = root.querySelector('.docs-product-switcher__menu');
-
-    const setOpen = (open) => {
-        menu.hidden = !open;
-        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        root.classList.toggle('is-open', open);
-    };
-
-    trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setOpen(menu.hidden);
+    sidebar.addEventListener('click', (e) => {
+        const toggle = e.target.closest('.docs-nav__toggle');
+        if (!toggle) return;
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        toggle.setAttribute('aria-expanded', String(open));
+        document.getElementById(toggle.getAttribute('aria-controls')).hidden = !open;
+        docsWriteNavState({ ...docsReadNavState(), [toggle.dataset.group]: open });
     });
 
-    root.querySelectorAll('.docs-product-switcher__option').forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const product = btn.getAttribute('data-product');
-            if (!product || product === currentProduct) {
-                setOpen(false);
-                return;
-            }
-            try {
-                localStorage.setItem('docs_product', product);
-            } catch (_) { /* ignore */ }
-            window.location.href = homes[product];
-        });
-    });
+    docsBindMobileDrawer();
 
-    document.addEventListener('mousedown', (e) => {
-        if (!root.contains(e.target)) setOpen(false);
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') setOpen(false);
-    });
+    const active = sidebar.querySelector('.docs-nav__link.is-active');
+    if (active) sidebar.scrollTop = Math.max(0, active.offsetTop - sidebar.clientHeight / 3);
 }

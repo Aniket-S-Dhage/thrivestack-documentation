@@ -38,6 +38,10 @@ Every HTML page follows the same layout:
 - CSS custom properties with `[data-theme="dark"]` selector
 - `localStorage` key: `theme` (values: `'light'` | `'dark'`), defaults to `'dark'`
 
+### Navigation (left sidebar)
+
+The left sidebar is **generated**, not copied into each page: `mountDocsShell()` in `script.js` fills `#sidebar` from the `DOCS_TREES` site map (a product block, collapsible groups, active-page highlight, mobile drawer). The header's section links were removed; they live in this tree. To add, move or rename a page, edit `DOCS_TREES` (hrefs are relative to the repo root). The sidebar has a Products block (ThriveStack, Cited By) above one tree for the current product; each product's tree has its own `MCP` group (`docsMcpGroup()`): that product's MCP pages plus the shared changelog. Product rows use the real logos (`logo.png`, and the Cited By lockup the product's sidebar shows in two colourways: `citedby-logo.png` for light, `citedby-logo-dark.png` for dark), see `docsProductLogo()`. The header logo also switches to the product the reader is in (`docsApplyHeaderLogo()`). The `<aside id="sidebar">` / `<setup-sidebar>` markup in each page is only a mount point and gets replaced. Pages without `#sidebar` (e.g. `demo.html`) are left alone.
+
 ### Search Index
 
 `script.js` contains a hardcoded `docsIndex` array for cross-page search. When adding new pages or sections, update this array to include the new page's title, URL, and keyword terms.
