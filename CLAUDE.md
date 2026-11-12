@@ -18,8 +18,8 @@ ThriveStack Documentation is a **static HTML documentation site** — no build s
 ### File Structure
 
 - **Root HTML pages** — the 13 main documentation pages (e.g., `index.html`, `analyze-signals.html`)
-- **`public/product/setup/`** — product instrumentation sub-pages
-- **`public/marketing/setup/`** — marketing instrumentation sub-pages
+- **`product/setup/`** — product instrumentation sub-pages
+- **`marketing/setup/`** — marketing instrumentation sub-pages
 - **`ai-setup/`** — LLM telemetry wizard prompts and rules (`prompt.txt`, `llms.txt`)
 - **`styles.css`** — all styling (~41KB), uses CSS custom properties for light/dark themes
 - **`script.js`** — all client-side interactivity (~12KB): theme toggle, search, ToC ScrollSpy, sidebar resize, feedback widget
@@ -38,6 +38,10 @@ Every HTML page follows the same layout:
 - CSS custom properties with `[data-theme="dark"]` selector
 - `localStorage` key: `theme` (values: `'light'` | `'dark'`), defaults to `'dark'`
 
+### Navigation (left sidebar)
+
+The left sidebar is **generated**, not copied into each page: `mountDocsShell()` in `script.js` fills `#sidebar` from the `DOCS_TREES` site map (a product block, collapsible groups, active-page highlight, mobile drawer). The header's section links were removed; they live in this tree. To add, move or rename a page, edit `DOCS_TREES` (hrefs are relative to the repo root). The sidebar has a Products block (ThriveStack, Cited By) above one tree for the current product; each product's tree has its own `MCP` group (`docsMcpGroup()`): that product's MCP pages plus the shared changelog. Product rows use the real logos (`logo.png`, and the Cited By lockup the product's sidebar shows in two colourways: `citedby-logo.png` for light, `citedby-logo-dark.png` for dark), see `docsProductLogo()`. The header logo also switches to the product the reader is in (`docsApplyHeaderLogo()`). The `<aside id="sidebar">` / `<setup-sidebar>` markup in each page is only a mount point and gets replaced. Pages without `#sidebar` (e.g. `demo.html`) are left alone.
+
 ### Search Index
 
 `script.js` contains a hardcoded `docsIndex` array for cross-page search. When adding new pages or sections, update this array to include the new page's title, URL, and keyword terms.
@@ -48,7 +52,11 @@ Every HTML page follows the same layout:
 
 ### Relative Paths
 
-Pages nested under `public/` use relative paths (`../../`, `../../../`) to reference shared assets (`styles.css`, `script.js`, `logo.png`). Maintain this convention when creating nested pages.
+Pages in subfolders (e.g. `mcp/`, `revenue/mcp/`) use relative paths (`../`, `../../`) to reference shared assets (`styles.css`, `script.js`, `logo.png`). Maintain this convention when creating nested pages.
+
+### URLs
+
+The repo layout is the URL layout: `mcp/introduction.html` is served at `/mcp/introduction.html`. Pages used to live in a `public/` folder, which put `/public/` in every URL; they were moved to the root. The old `/public/...` URLs still work: `scripts/build-legacy-redirects.js` (run by CI before the S3 sync) writes a redirect page at each one into a git-ignored `public/` folder. Do not create a `public/` folder in the repo, and link to pages by their clean path.
 
 ## Utility Scripts
 
@@ -62,4 +70,4 @@ Run these with Node (`node update.js`) or Python (`python replace.py`) directly 
 
 ## AI Telemetry Integration
 
-The `ai-setup/` and `public/*/setup/` directories contain LLM-readable instrumentation guides (`llms.txt`) and wizard prompts (`prompt.txt`). These teach LLMs how to instrument codebases with ThriveStack telemetry. The `{{THRIVESTACK_API_KEY}}` placeholder in prompt files is intentional — it's filled in by the calling application.
+The `ai-setup/` and `*/setup/` directories contain LLM-readable instrumentation guides (`llms.txt`) and wizard prompts (`prompt.txt`). These teach LLMs how to instrument codebases with ThriveStack telemetry. The `{{THRIVESTACK_API_KEY}}` placeholder in prompt files is intentional — it's filled in by the calling application.

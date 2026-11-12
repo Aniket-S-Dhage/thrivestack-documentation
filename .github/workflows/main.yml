@@ -23,6 +23,9 @@ jobs:
     - name: Build search index from HTML
       run: node scripts/build-search-index.js
 
+    - name: Redirect the old /public/ URLs
+      run: node scripts/build-legacy-redirects.js
+
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v1.7.0
       with:

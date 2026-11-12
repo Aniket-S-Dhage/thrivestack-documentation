@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Revenue Intelligence MCP Prompts - ThriveStack Documentation">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <title>Revenue Intelligence MCP Prompts - ThriveStack</title>
+    <link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67c7d3efa9780ed6d5c6927e/67dd93e9c092f56ea4b02827_256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../mcp/mcp.css">
+    <script
+        src="https://cdn.app.thrivestack.ai/latest/script.js"
+        api-key="i1rPJo38lB6hR2qZC5iNNz0xcGRuBYIKRVYfTBdpJyY="
+        source="marketing">
+    </script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../../index.html" class="logo">
+                <img src="../../logo.png" alt="ThriveStack" class="logo-img">
+                <span class="logo-text"></span>
+            </a>
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search documentation... (Ctrl+K)">
+            </div>
+        </div>
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="../../index.html">Get Started</a>
+                <a href="../../setup-overview.html">Setup (Unify)</a>
+                <a href="../../analyze-signals.html">Analyze Signals</a>
+                <a href="../../take-action.html">Take Action</a>
+                <a href="../../api-reference.html">API Reference</a>
+                <a href="introduction.html" class="active">MCP</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://app.thrivestack.ai/auth/customer-analytics/sign-up" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="layout-container">
+        <aside class="left-sidebar" id="sidebar">
+            <thrivestack-mcp-sidebar base-path="../../../"></thrivestack-mcp-sidebar>
+        </aside>
+        <div class="resizer" id="sidebar-resizer"></div>
+
+        <main class="main-content">
+            <div class="content-wrapper mcp-doc">
+                <div class="breadcrumbs">
+                    <a href="../../index.html">Documentation</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="../setup/introduction.html">Revenue Intelligence</a> <i class="fa-solid fa-chevron-right"></i>
+                    <a href="introduction.html">MCP</a> <i class="fa-solid fa-chevron-right"></i>
+                    <span>Prompts</span>
+                </div>
+                <header class="doc-page-header">
+                    <span class="doc-page-header-eyebrow">Revenue Intelligence · MCP</span>
+                    <h1 class="doc-page-title">Prompts</h1>
+                    <p class="doc-page-description">
+                        Copy-ready prompts for the ThriveStack MCP Server: complete analyses you can paste into your AI tool and run in one step.
+                    </p>
+                </header>
+
+                <section id="prompts-intro" class="content-section">
+                    <blockquote class="note-callout">MCP prompts are named workflows your AI tool can list and run. The ThriveStack MCP server does not ship a built-in prompt for Revenue Intelligence today, so this page gives you copy-ready prompts instead. Paste one into any connected AI tool and it runs the whole analysis.</blockquote>
+                    <blockquote class="note-callout">The only built-in ThriveStack MCP prompt is <code>ai_visibility_analyst</code>, for AI search visibility. See the <a href="../../mcp/prompts.html">Cited By prompts</a>.</blockquote>
+                    <blockquote class="note-callout">Every tool these prompts use is read-only, so running them never changes your data.</blockquote>
+                </section>
+
+                <section id="how-to-use" class="content-section">
+                    <h2>How to use these prompts</h2>
+                    <ol>
+                        <li>Connect your AI tool to ThriveStack. See <a href="setup.html">Setup</a>.</li>
+                        <li>Copy a prompt below and replace anything in <code>[square brackets]</code>, such as the month or the account name.</li>
+                        <li>Paste it into a new conversation. The assistant calls the tools in order and answers from your live data.</li>
+                        <li>Follow up in plain language. After a prompt runs, every tool is still available, so you can ask about any number it surfaced.</li>
+                    </ol>
+                    <p>To reuse a prompt without pasting it each time, save it where your client keeps reusable instructions: a Project&rsquo;s instructions in Claude, a custom slash command in Claude Code, or a rule in Cursor.</p>
+                </section>
+
+                <section id="prompt-library" class="content-section">
+                    <h2>Prompt library</h2>
+                    <p>Each prompt names the tools it needs, so you can see where every number comes from.</p>
+
+                    <h3 id="area-revenue" class="prompt-area">Revenue</h3>
+
+                    <h4 id="prompt-monthly-review">Monthly revenue review</h4>
+                    <p><strong>Use when:</strong> You need the numbers for a leadership or investor update.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-revenue-kpis"><code>get_revenue_kpis</code></a>, <a href="tools.html#tool-get-mrr-movements"><code>get_mrr_movements</code></a>, <a href="tools.html#tool-get-missed-revenue"><code>get_missed_revenue</code></a>, <a href="tools.html#tool-get-revenue-goals"><code>get_revenue_goals</code></a>, <a href="tools.html#tool-get-revenue-goal-progress"><code>get_revenue_goal_progress</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Act as my revenue analyst. Prepare the monthly revenue review for [month and year].
+
+1. Call get_revenue_kpis and report MRR, ARR, ARPA, net revenue retention, CAC and customer counts, each with its change from the previous month.
+2. Call get_mrr_movements for the same period and explain what moved MRR: new, expansion, contraction, churn and reactivation.
+3. Call get_missed_revenue and report any revenue missed to failed or missing payments.
+4. Call get_revenue_goals, then get_revenue_goal_progress for each active goal, and say whether we are ahead or behind.
+
+Format: a one-paragraph summary first, then a table of KPIs, then three bullets on risks and one on what to do next.
+Rules: state the currency once. Use only numbers the tools returned. If a figure is missing, say so rather than estimating.</code></pre>
+                    </div>
+
+                    <h4 id="prompt-mrr-movement">MRR movement explainer</h4>
+                    <p><strong>Use when:</strong> MRR went up or down and you want to know who and why.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-mrr-movements"><code>get_mrr_movements</code></a>, <a href="tools.html#tool-list-mrr-movement-customers"><code>list_mrr_movement_customers</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Explain the change in MRR over [time window, e.g. the last 3 months].
+
+1. Call get_mrr_movements and show new, expansion, contraction, churn and reactivation MRR per month.
+2. For the two largest movements in the most recent month, call list_mrr_movement_customers and name the top 5 customers behind each, with plan and amount.
+3. Say in two sentences what drove the net change.
+
+Rules: do not guess reasons for churn. Only describe what the data shows, such as plan, amount and date.</code></pre>
+                    </div>
+
+                    <h4 id="prompt-revenue-leakage">Revenue leakage hunt</h4>
+                    <p><strong>Use when:</strong> You suspect revenue is slipping through failed or missing payments.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-missed-revenue"><code>get_missed_revenue</code></a>, <a href="tools.html#tool-list-missed-payment-customers"><code>list_missed_payment_customers</code></a>, <a href="tools.html#tool-list-revenue-account-mappings"><code>list_revenue_account_mappings</code></a>, <a href="tools.html#tool-get-account-payment-calendar"><code>get_account_payment_calendar</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Find revenue we are losing to missed payments.
+
+1. Call get_missed_revenue for the last 6 months and show expected versus missed revenue per month.
+2. For the most recent month, call list_missed_payment_customers and list the customers ordered by MRR at risk, with status and days overdue.
+3. For the 3 largest, find their billing customer ids with list_revenue_account_mappings, then call get_account_payment_calendar for this year and tell me whether this is a one-off or a pattern.
+
+Format: a short summary with the total MRR at risk, then the table.
+Rules: do not contact or change anything. This is a read-only review.</code></pre>
+                    </div>
+
+                    <h4 id="prompt-plan-mix">Plan and pricing mix review</h4>
+                    <p><strong>Use when:</strong> You are reviewing pricing, packaging or which plan to focus on.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-plan-mrr-summary"><code>get_plan_mrr_summary</code></a>, <a href="tools.html#tool-get-plan-mrr-trend"><code>get_plan_mrr_trend</code></a>, <a href="tools.html#tool-get-acv-summary"><code>get_acv_summary</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Review our plan mix.
+
+1. Call get_plan_mrr_summary and show each plan's customers, MRR, ARR and share of customers and MRR.
+2. Call get_plan_mrr_trend for the three plans with the most MRR and show how each moved over the last 6 months.
+3. Call get_acv_summary and compare average contract value across plans.
+
+Then tell me: which plan carries our revenue, which is growing fastest, and which has many customers but little MRR.
+Rules: separate what the data shows from your own interpretation, and label each.</code></pre>
+                    </div>
+
+                    <h4 id="prompt-goal-pacing">Goal pacing check</h4>
+                    <p><strong>Use when:</strong> You want to know whether you will hit the revenue targets you set.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-revenue-goals"><code>get_revenue_goals</code></a>, <a href="tools.html#tool-get-revenue-goal-progress"><code>get_revenue_goal_progress</code></a>, <a href="tools.html#tool-get-revenue-kpis"><code>get_revenue_kpis</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Check whether we are on track for our revenue goals.
+
+1. Call get_revenue_goals and list each active goal with its target and dates.
+2. For each, call get_revenue_goal_progress and report expected versus actual for the current month and the variance.
+3. Call get_revenue_kpis to confirm the current value of each metric.
+
+Then rank the goals from most behind to most ahead, and say in one sentence what would close the biggest gap.
+Rules: if there are no active goals, say so and suggest which metric to set one for.</code></pre>
+                    </div>
+
+                    <h3 id="area-marketing" class="prompt-area">Marketing</h3>
+
+                    <h4 id="prompt-channel-review">Channel and campaign review</h4>
+                    <p><strong>Use when:</strong> You are deciding where to put next month's marketing budget.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-channel-performance"><code>get_channel_performance</code></a>, <a href="tools.html#tool-get-campaign-performance"><code>get_campaign_performance</code></a>, <a href="tools.html#tool-get-multi-touch-attribution"><code>get_multi_touch_attribution</code></a>, <a href="tools.html#tool-get-campaign-revenue-ranking"><code>get_campaign_revenue_ranking</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Review our marketing channels for the last 30 days.
+
+1. Call get_channel_performance and show visitors, sessions, identified users and accounts per channel.
+2. Call get_multi_touch_attribution and compare the revenue each channel gets under first-touch, last-touch and linear attribution.
+3. Call get_campaign_performance for the top 2 channels and name the best and worst campaigns.
+4. Call get_campaign_revenue_ranking for the best channel and list the campaigns ranked by revenue.
+
+Format: a table of channels, then three recommendations on where to spend more or less.
+Rules: use only returned numbers, and flag any channel where the attribution models disagree strongly.</code></pre>
+                    </div>
+
+                    <h4 id="prompt-lead-quality">Lead quality check</h4>
+                    <p><strong>Use when:</strong> You want to know whether recent signups are worth following up.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-new-signup-counts"><code>get_new_signup_counts</code></a>, <a href="tools.html#tool-get-lead-quality"><code>get_lead_quality</code></a>, <a href="tools.html#tool-list-leads-by-quality"><code>list_leads_by_quality</code></a>, <a href="tools.html#tool-get-acquisition-timing"><code>get_acquisition_timing</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Check the quality of our recent signups.
+
+1. Call get_new_signup_counts and report new users and accounts for the last day, 7 days and 30 days with their change.
+2. Call get_lead_quality for the last month and give the mix of corporate, personal-email and abusive or fake leads.
+3. Call list_leads_by_quality for corporate leads from the last 7 days and list the 10 newest.
+4. Call get_acquisition_timing and tell me how many touches and days a visitor takes to sign up.
+
+End with whether quality is improving, and which source to look at first.
+Rules: do not email or contact any lead.</code></pre>
+                    </div>
+
+                    <h3 id="area-product-analytics" class="prompt-area">Product analytics</h3>
+
+                    <h4 id="prompt-activation-retention">Activation and retention review</h4>
+                    <p><strong>Use when:</strong> You want to know whether new users reach value and whether they stay.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-activation-summary"><code>get_activation_summary</code></a>, <a href="tools.html#tool-get-activation-trend"><code>get_activation_trend</code></a>, <a href="tools.html#tool-get-feature-conversion-drivers"><code>get_feature_conversion_drivers</code></a>, <a href="tools.html#tool-get-retention-data"><code>get_retention_data</code></a>, <a href="tools.html#tool-get-churn-expansion-signals"><code>get_churn_expansion_signals</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Review activation and retention for [month and year].
+
+1. Call get_activation_summary and get_activation_trend and report milestone completion and the trend.
+2. Call get_feature_conversion_drivers (step modules), pick the activation module with the weakest milestone, then call it again (step milestone) and compare converted and dropped accounts.
+3. Call get_retention_data and describe how cohorts return over time.
+4. Call get_churn_expansion_signals and report the high, medium and low stickiness split.
+
+Format: findings first, then the one milestone I should work on and why.
+Rules: separate what the data shows from your own interpretation.</code></pre>
+                    </div>
+
+                    <h4 id="prompt-funnel-scorecard">Funnel scorecard</h4>
+                    <p><strong>Use when:</strong> You want one view of the funnel from visitors to payers.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-monthly-metrics-table"><code>get_monthly_metrics_table</code></a>, <a href="tools.html#tool-get-mau-mtu-count"><code>get_mau_mtu_count</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Build a funnel scorecard for the last 12 months.
+
+1. Call get_monthly_metrics_table (it takes no inputs) and show it as a table, month by month.
+2. Call get_mau_mtu_count for the most recent complete month (as YYYY-MM) and add active and tracked users.
+3. Point out the month-to-month step with the biggest drop and the one with the biggest gain.
+
+Rules: do not smooth or round away a drop. Say which figures are missing, if any.</code></pre>
+                    </div>
+
+                    <h3 id="area-accounts" class="prompt-area">Accounts</h3>
+
+                    <h4 id="prompt-at-risk-accounts">At-risk account review</h4>
+                    <p><strong>Use when:</strong> You are preparing the customer success team's weekly list.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-list-at-risk-accounts"><code>list_at_risk_accounts</code></a>, <a href="tools.html#tool-get-account-overview"><code>get_account_overview</code></a>, <a href="tools.html#tool-get-account-engagement-trend"><code>get_account_engagement_trend</code></a>, <a href="tools.html#tool-get-account-feature-usage"><code>get_account_feature_usage</code></a>, <a href="tools.html#tool-get-account-payment-calendar"><code>get_account_payment_calendar</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Prepare our weekly at-risk account review.
+
+1. Call list_at_risk_accounts and take the 5 accounts with the most at stake.
+2. For each, call get_account_overview and get_account_engagement_trend, and say whether the risk is engagement, monetization or both.
+3. For each, call get_account_feature_usage and say which features they use and how widely.
+4. For accounts at risk on monetization, find their billing customer ids and check get_account_payment_calendar for missed payments.
+
+Format: one short paragraph per account, ending with a suggested next step.
+Rules: this is read-only. Do not message anyone.</code></pre>
+                    </div>
+
+                    <h4 id="prompt-account-brief">Account brief</h4>
+                    <p><strong>Use when:</strong> You are preparing for a call, a renewal or a handover for one account.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-list-crm-accounts"><code>list_crm_accounts</code></a>, <a href="tools.html#tool-get-account-overview"><code>get_account_overview</code></a>, <a href="tools.html#tool-get-account-acquisition"><code>get_account_acquisition</code></a>, <a href="tools.html#tool-get-account-users"><code>get_account_users</code></a>, <a href="tools.html#tool-get-account-activity"><code>get_account_activity</code></a>, <a href="tools.html#tool-get-account-revenue"><code>get_account_revenue</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Give me a brief on [account name].
+
+1. Find the account with list_crm_accounts. If there is more than one match, ask me which one.
+2. Call get_account_overview, then get_account_acquisition to see how they found us.
+3. Call get_account_users and get_account_activity for the last 30 days: who is active and what they do.
+4. Find the account's billing customer ids with list_revenue_account_mappings and call get_account_revenue for MRR, plan and payment status.
+
+Format: six bullets I can read in under a minute, then anything I should follow up on.
+Rules: if the account has no linked billing customer, say so and skip step 4.</code></pre>
+                    </div>
+
+                    <h3 id="area-setup" class="prompt-area">Setup</h3>
+
+                    <h4 id="prompt-data-health">Data health check</h4>
+                    <p><strong>Use when:</strong> A number looks wrong, or you want to be sure before sharing a report.</p>
+                    <p><strong>Uses:</strong> <a href="tools.html#tool-get-setup-status"><code>get_setup_status</code></a>, <a href="tools.html#tool-get-marketing-setup-status"><code>get_marketing_setup_status</code></a>, <a href="tools.html#tool-get-revenue-sync-status"><code>get_revenue_sync_status</code></a>, <a href="tools.html#tool-list-revenue-customer-mappings"><code>list_revenue_customer_mappings</code></a>, <a href="tools.html#tool-list-revenue-account-mappings"><code>list_revenue_account_mappings</code></a></p>
+                    <div class="mcp-code">
+                        <div class="mcp-code-head"><span class="mcp-code-lang">Prompt</span><button type="button" class="mcp-btn"><i class="fa-regular fa-copy"></i> Copy</button></div>
+                        <pre><code>Check whether our ThriveStack data can be trusted.
+
+1. Call get_setup_status and get_marketing_setup_status and report what is connected and what is missing.
+2. Call get_revenue_sync_status and report the latest sync per source, with status and time. Flag anything failed or stale.
+3. Call list_revenue_customer_mappings with filter UNMAPPED and report how many billing customers are not linked to an account, and the biggest few.
+4. Call list_revenue_account_mappings with filter UNMAPPED and report how many product accounts have no billing customer.
+
+End with a verdict: safe to report, safe with caveats (list them), or not yet.
+Rules: do not fix or change anything.</code></pre>
+                    </div>
+                </section>
+
+                <section id="write-your-own" class="content-section">
+                    <h2>Write your own</h2>
+                    <p>A good prompt has the same few parts:</p>
+                    <ul>
+                        <li><strong>A period:</strong> &ldquo;last 30 days&rdquo; or &ldquo;October 2026&rdquo;. Revenue tools default to the last 6 complete months.</li>
+                        <li><strong>The steps, in order:</strong> name the tool or the question for each step, then say what to do with the result.</li>
+                        <li><strong>An output format:</strong> a table, a short summary, or a list ordered by amount.</li>
+                        <li><strong>Guardrails:</strong> ask it to use only returned numbers, to say when data is missing, and to separate what the data shows from its own interpretation.</li>
+                    </ul>
+                    <p>For ideas on what to ask, see <a href="use-cases.html">Use Cases</a>.</p>
+                </section>
+
+                <div class="page-nav">
+                    <a href="use-cases.html" class="nav-card prev-card">
+                        <span class="nav-label">Previous</span>
+                        <span class="nav-title">Use Cases</span>
+                    </a>
+                    <a href="tools.html" class="nav-card next-card">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">Tools</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <footer class="content-footer">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-btns">
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-up"></i> Yes</button>
+                        <button class="btn-icon"><i class="fa-regular fa-thumbs-down"></i> No</button>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Thrivestack-public/thrivestack-documentation" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                        <a class="last-updated" href="#" tabindex="-1" aria-disabled="true" data-file="prompts.html">Last updated: November 4, 2026</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="toc-container sticky-top">
+                <h4>On this page</h4>
+                <nav id="toc" class="toc-nav">
+                    <a href="#prompts-intro" class="toc-link active">Overview</a>
+                    <a href="#how-to-use" class="toc-link">How to use these prompts</a>
+                    <a href="#prompt-library" class="toc-link">Prompt library</a>
+                    <a href="#area-revenue" class="toc-link">&nbsp;&nbsp;Revenue</a>
+                    <a href="#area-marketing" class="toc-link">&nbsp;&nbsp;Marketing</a>
+                    <a href="#area-product-analytics" class="toc-link">&nbsp;&nbsp;Product analytics</a>
+                    <a href="#area-accounts" class="toc-link">&nbsp;&nbsp;Accounts</a>
+                    <a href="#area-setup" class="toc-link">&nbsp;&nbsp;Setup</a>
+                    <a href="#write-your-own" class="toc-link">Write your own</a>
+                </nav>
+                <ready-to-scale-promo></ready-to-scale-promo>
+            </div>
+        </aside>
+    </div>
+
+    <style>
+        /* Prompts are long single lines of prose: wrap them instead of scrolling sideways. */
+        .mcp-code pre, .mcp-code pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+        .mcp-doc h3.prompt-area { margin-top: 2.25rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border-color); }
+    </style>
+
+    <script src="../../script.js"></script>
+    <script src="../../mcp/mcp.js"></script>
+</body>
+</html>

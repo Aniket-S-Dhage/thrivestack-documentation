@@ -45,7 +45,7 @@ Deprecated entries are **hidden in app search** (`UnifiedView` filters `!e.depre
 {
   "id": "public-product-setup-stripe-integration",
   "title": "Stripe Integration",
-  "url": "public/revenue/setup/stripe-integration.html",
+  "url": "revenue/setup/stripe-integration.html",
   "section": "Revenue",
   "description": "Connect Stripe for billing and revenue sync.",
   "keywords": [
@@ -65,7 +65,7 @@ Deprecated entries are **hidden in app search** (`UnifiedView` filters `!e.depre
 
 | Field | Required | Notes |
 |-------|----------|--------|
-| `id` | Yes | Stable unique id. Convention: path + slug, kebab-case, e.g. `public-api-identify-identify` for `public/api/identify.html#identify` |
+| `id` | Yes | Stable unique id. Convention: path + slug, kebab-case, e.g. `public-api-identify-identify` for `api/identify.html#identify` |
 | `title` | Yes | **Page row:** page `h1`. **Section row (`#`):** parent page title (what search shows as the main label) |
 | `url` | Yes | Relative to docs root. Section anchors: `page.html#section-id` |
 | `section` | Yes | Group label in the index: `API`, `Product`, `Marketing`, `Revenue`, `Analyze`, `Take Action`, `CRM Sync`, `Customer Success`, `Discounts`, `Documentation`, etc. |
@@ -89,7 +89,7 @@ Top-level index metadata (update when you ship a batch of changes):
 ```json
 {
   "title": "Group",
-  "url": "public/api/group.html#authentication",
+  "url": "api/group.html#authentication",
   "description": "Authentication",
   "section": "API",
   "keywords": ["group", "authentication", "api_key", "..."]
@@ -111,7 +111,7 @@ This script walks all HTML files, builds page and section rows, validates the re
 ## Page-level vs section-level entries
 
 - **Page-level** — one row per HTML file, `url` with no hash:  
-  `public/marketing/setup/google-ads.html`
+  `marketing/setup/google-ads.html`
 - **Section-level** — one row per major `content-section` (or doc sidebar anchor), `url` with hash:  
   `analyze-signals.html#identify-high-intent-signals`
 

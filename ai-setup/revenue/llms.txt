@@ -748,7 +748,7 @@ DELETE https://api.app.thrivestack.ai/revenue/subscriptions
 { "subscription_id": "<your subscription ID>" }
 ```
 
-Full field reference: https://docs.thrivestack.ai/public/api/subscriptions.html
+Full field reference: https://docs.thrivestack.ai/api/subscriptions.html
 
 ---
 
@@ -791,7 +791,7 @@ DELETE https://api.app.thrivestack.ai/revenue/subscription-items
 { "subscription_item_id": "<your item ID>" }
 ```
 
-Full field reference: https://docs.thrivestack.ai/public/api/subscription-items.html
+Full field reference: https://docs.thrivestack.ai/api/subscription-items.html
 
 ---
 
@@ -812,7 +812,7 @@ POST https://api.app.thrivestack.ai/revenue/invoices
 }
 ```
 
-Full field reference: https://docs.thrivestack.ai/public/api/invoices.html
+Full field reference: https://docs.thrivestack.ai/api/invoices.html
 
 ---
 
@@ -833,7 +833,7 @@ POST https://api.app.thrivestack.ai/revenue/transactions
 }
 ```
 
-Full field reference: https://docs.thrivestack.ai/public/api/transactions.html
+Full field reference: https://docs.thrivestack.ai/api/transactions.html
 
 ---
 
@@ -891,7 +891,7 @@ your native interactive question format:
   level — you would only see billing data without the full picture.
 
   Would you like me to set up product telemetry now?
-  → https://docs.thrivestack.ai/public/product/setup/setup-with-ai.html"
+  → https://docs.thrivestack.ai/product/setup/setup-with-ai.html"
 
   Options:
   - Yes — set up product telemetry now
@@ -950,9 +950,9 @@ revenue data being dropped or attributed incorrectly.**
 
 - Start Stripe / Chargebee connection: https://app.thrivestack.ai/analyze/onboarding/revenue-analytics?step=1
 - API Keys (Revenue APIs scope): https://app.thrivestack.ai/analyze/settings/api-keys
-- Subscriptions API: https://docs.thrivestack.ai/public/api/subscriptions.html
-- Subscription Items API: https://docs.thrivestack.ai/public/api/subscription-items.html
-- Invoices API: https://docs.thrivestack.ai/public/api/invoices.html
-- Transactions API: https://docs.thrivestack.ai/public/api/transactions.html
+- Subscriptions API: https://docs.thrivestack.ai/api/subscriptions.html
+- Subscription Items API: https://docs.thrivestack.ai/api/subscription-items.html
+- Invoices API: https://docs.thrivestack.ai/api/invoices.html
+- Transactions API: https://docs.thrivestack.ai/api/transactions.html
 - Full documentation: https://docs.thrivestack.ai
 - Support: https://thrivestack.ai/support

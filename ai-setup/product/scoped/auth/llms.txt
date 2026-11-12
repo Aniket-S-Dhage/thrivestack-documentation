@@ -792,7 +792,7 @@ Next steps:
 - Run diagnostics: https://app.thrivestack.ai/analyze/diagnostics-report
 
 When ready, continue with Step 2 — Onboarding Events:
-→ https://docs.thrivestack.ai/public/product/setup/advanced-ai-instrumentation.html
+→ https://docs.thrivestack.ai/product/setup/advanced-ai-instrumentation.html
 ```
 
 ---

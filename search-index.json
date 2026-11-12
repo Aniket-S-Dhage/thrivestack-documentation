@@ -750,7 +750,7 @@
     {
       "id": "public-api-endpoint-template-Endpoint-Name",
       "title": "Endpoint Name",
-      "url": "public/api/endpoint-template.html",
+      "url": "api/endpoint-template.html",
       "section": "API",
       "description": "Short description of what this endpoint does.",
       "keywords": [
@@ -766,7 +766,7 @@
     {
       "id": "public-api-endpoint-template-endpoint-name-Request",
       "title": "Endpoint Name",
-      "url": "public/api/endpoint-template.html#endpoint-name",
+      "url": "api/endpoint-template.html#endpoint-name",
       "section": "API",
       "description": "Request",
       "keywords": [
@@ -781,7 +781,7 @@
     {
       "id": "public-api-get-account-by-id-GetAccountById",
       "title": "GetAccountById",
-      "url": "public/api/get-account-by-id.html",
+      "url": "api/get-account-by-id.html",
       "section": "API",
       "description": "Fetch a complete account profile by its unique ID. Returns acquisition, activation, monetization, engagement, and firmographic data — everything ThriveStack has learned about the account.",
       "keywords": [
@@ -801,7 +801,7 @@
     {
       "id": "public-api-get-account-by-id-authentication-Authentication",
       "title": "GetAccountById",
-      "url": "public/api/get-account-by-id.html#authentication",
+      "url": "api/get-account-by-id.html#authentication",
       "section": "API",
       "description": "Authentication",
       "keywords": [
@@ -821,7 +821,7 @@
     {
       "id": "public-api-get-account-by-id-example-Example",
       "title": "GetAccountById",
-      "url": "public/api/get-account-by-id.html#example",
+      "url": "api/get-account-by-id.html#example",
       "section": "API",
       "description": "Example",
       "keywords": [
@@ -838,7 +838,7 @@
     {
       "id": "public-api-get-account-by-id-example-response-Example-response",
       "title": "GetAccountById",
-      "url": "public/api/get-account-by-id.html#example-response",
+      "url": "api/get-account-by-id.html#example-response",
       "section": "API",
       "description": "Example response",
       "keywords": [
@@ -855,7 +855,7 @@
     {
       "id": "public-api-get-account-by-id-get-account-by-id-Endpoint",
       "title": "GetAccountById",
-      "url": "public/api/get-account-by-id.html#get-account-by-id",
+      "url": "api/get-account-by-id.html#get-account-by-id",
       "section": "API",
       "description": "Fetch a complete account profile by its unique ID. Returns acquisition, activation, monetization, engagement, and firmographic data — everything ThriveStack has learned about the account.",
       "keywords": [
@@ -875,7 +875,7 @@
     {
       "id": "public-api-get-account-by-id-graphql-query-GraphQL-query",
       "title": "GetAccountById",
-      "url": "public/api/get-account-by-id.html#graphql-query",
+      "url": "api/get-account-by-id.html#graphql-query",
       "section": "API",
       "description": "GraphQL query",
       "keywords": [
@@ -893,7 +893,7 @@
     {
       "id": "public-api-get-account-by-id-input-Input",
       "title": "GetAccountById",
-      "url": "public/api/get-account-by-id.html#input",
+      "url": "api/get-account-by-id.html#input",
       "section": "API",
       "description": "Input",
       "keywords": [
@@ -910,7 +910,7 @@
     {
       "id": "public-api-get-account-by-id-response-fields-Response-fields",
       "title": "GetAccountById",
-      "url": "public/api/get-account-by-id.html#response-fields",
+      "url": "api/get-account-by-id.html#response-fields",
       "section": "API",
       "description": "Response fields",
       "keywords": [
@@ -928,7 +928,7 @@
     {
       "id": "public-api-get-account-enrichment-GetAccountEnrichment",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html",
+      "url": "api/get-account-enrichment.html",
       "section": "API",
       "description": "Enrich a company by domain. Returns firmographic data, technology stack, industry classification, social profiles, and business metrics — sourced from third-party enrichment providers. Use this to customize onboarding flows or personalize your product based on a customer's organization attributes.",
       "keywords": [
@@ -945,7 +945,7 @@
     {
       "id": "public-api-get-account-enrichment-authentication-Authentication",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html#authentication",
+      "url": "api/get-account-enrichment.html#authentication",
       "section": "API",
       "description": "Authentication",
       "keywords": [
@@ -962,7 +962,7 @@
     {
       "id": "public-api-get-account-enrichment-endpoint-Endpoint",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html#endpoint",
+      "url": "api/get-account-enrichment.html#endpoint",
       "section": "API",
       "description": "Endpoint",
       "keywords": [
@@ -979,7 +979,7 @@
     {
       "id": "public-api-get-account-enrichment-example-Example",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html#example",
+      "url": "api/get-account-enrichment.html#example",
       "section": "API",
       "description": "Example",
       "keywords": [
@@ -994,7 +994,7 @@
     {
       "id": "public-api-get-account-enrichment-example-response-Example-response",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html#example-response",
+      "url": "api/get-account-enrichment.html#example-response",
       "section": "API",
       "description": "Example response",
       "keywords": [
@@ -1010,7 +1010,7 @@
     {
       "id": "public-api-get-account-enrichment-get-account-enrichment-Success-rates",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html#get-account-enrichment",
+      "url": "api/get-account-enrichment.html#get-account-enrichment",
       "section": "API",
       "description": "Enrich a company by domain. Returns firmographic data, technology stack, industry classification, social profiles, and business metrics — sourced from third-party enrichment providers. Use this to customize onboarding flows or personalize your product based on a customer's organization attributes.",
       "keywords": [
@@ -1029,7 +1029,7 @@
     {
       "id": "public-api-get-account-enrichment-graphql-query-GraphQL-query",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html#graphql-query",
+      "url": "api/get-account-enrichment.html#graphql-query",
       "section": "API",
       "description": "GraphQL query",
       "keywords": [
@@ -1045,7 +1045,7 @@
     {
       "id": "public-api-get-account-enrichment-input-Input",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html#input",
+      "url": "api/get-account-enrichment.html#input",
       "section": "API",
       "description": "Input",
       "keywords": [
@@ -1060,7 +1060,7 @@
     {
       "id": "public-api-get-account-enrichment-response-fields-Response-fields",
       "title": "GetAccountEnrichment",
-      "url": "public/api/get-account-enrichment.html#response-fields",
+      "url": "api/get-account-enrichment.html#response-fields",
       "section": "API",
       "description": "Response fields",
       "keywords": [
@@ -1077,7 +1077,7 @@
     {
       "id": "public-api-get-accounts-GetAccounts",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html",
+      "url": "api/get-accounts.html",
       "section": "API",
       "description": "Fetch a paginated, filtered, and sorted list of accounts enriched with acquisition, activation, monetization, engagement, expansion, and firmographic data — to power customer-health dashboards, segment automations, and CRM exports.",
       "keywords": [
@@ -1098,7 +1098,7 @@
     {
       "id": "public-api-get-accounts-account-fields-Account-fields",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#account-fields",
+      "url": "api/get-accounts.html#account-fields",
       "section": "API",
       "description": "Account fields",
       "keywords": [
@@ -1120,7 +1120,7 @@
     {
       "id": "public-api-get-accounts-curl-example-cURL",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#curl-example",
+      "url": "api/get-accounts.html#curl-example",
       "section": "API",
       "description": "cURL",
       "keywords": [
@@ -1138,7 +1138,7 @@
     {
       "id": "public-api-get-accounts-example-request-Example-request",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#example-request",
+      "url": "api/get-accounts.html#example-request",
       "section": "API",
       "description": "Example request",
       "keywords": [
@@ -1155,7 +1155,7 @@
     {
       "id": "public-api-get-accounts-example-response-Example-response",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#example-response",
+      "url": "api/get-accounts.html#example-response",
       "section": "API",
       "description": "Example response",
       "keywords": [
@@ -1173,7 +1173,7 @@
     {
       "id": "public-api-get-accounts-get-accounts-API-details",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#get-accounts",
+      "url": "api/get-accounts.html#get-accounts",
       "section": "API",
       "description": "Fetch a paginated, filtered, and sorted list of accounts enriched with acquisition, activation, monetization, engagement, expansion, and firmographic data — to power customer-health dashboards, segment automations, and CRM exports.",
       "keywords": [
@@ -1193,7 +1193,7 @@
     {
       "id": "public-api-get-accounts-input-Input-GetAccountsRequest",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#input",
+      "url": "api/get-accounts.html#input",
       "section": "API",
       "description": "Input fields in detail",
       "keywords": [
@@ -1211,7 +1211,7 @@
     {
       "id": "public-api-get-accounts-request-What-you-send",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#request",
+      "url": "api/get-accounts.html#request",
       "section": "API",
       "description": "What you send",
       "keywords": [
@@ -1228,7 +1228,7 @@
     {
       "id": "public-api-get-accounts-response-What-you-get",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#response",
+      "url": "api/get-accounts.html#response",
       "section": "API",
       "description": "What you get",
       "keywords": [
@@ -1245,7 +1245,7 @@
     {
       "id": "public-api-get-accounts-tips-Tips-best-practices",
       "title": "GetAccounts",
-      "url": "public/api/get-accounts.html#tips",
+      "url": "api/get-accounts.html#tips",
       "section": "API",
       "description": "Tips &amp; best practices",
       "keywords": [
@@ -1264,7 +1264,7 @@
     {
       "id": "public-api-get-segments-GetSegments",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html",
+      "url": "api/get-segments.html",
       "section": "API",
       "description": "List the saved segments for your product and environment. Use a segment's id or systemName with the segmentId input on GetAccounts or GetUsers to apply its saved filters.",
       "keywords": [
@@ -1286,7 +1286,7 @@
     {
       "id": "public-api-get-segments-curl-example-cURL",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html#curl-example",
+      "url": "api/get-segments.html#curl-example",
       "section": "API",
       "description": "cURL",
       "keywords": [
@@ -1303,7 +1303,7 @@
     {
       "id": "public-api-get-segments-example-request-Example-request",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html#example-request",
+      "url": "api/get-segments.html#example-request",
       "section": "API",
       "description": "Example request",
       "keywords": [
@@ -1320,7 +1320,7 @@
     {
       "id": "public-api-get-segments-example-response-Example-response",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html#example-response",
+      "url": "api/get-segments.html#example-response",
       "section": "API",
       "description": "Example response",
       "keywords": [
@@ -1337,7 +1337,7 @@
     {
       "id": "public-api-get-segments-get-segments-API-details",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html#get-segments",
+      "url": "api/get-segments.html#get-segments",
       "section": "API",
       "description": "List the saved segments for your product and environment. Use a segment's id or systemName with the segmentId input on GetAccounts or GetUsers to apply its saved filters.",
       "keywords": [
@@ -1352,7 +1352,7 @@
     {
       "id": "public-api-get-segments-request-What-you-send",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html#request",
+      "url": "api/get-segments.html#request",
       "section": "API",
       "description": "What you send",
       "keywords": [
@@ -1369,7 +1369,7 @@
     {
       "id": "public-api-get-segments-response-What-you-get",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html#response",
+      "url": "api/get-segments.html#response",
       "section": "API",
       "description": "What you get",
       "keywords": [
@@ -1386,7 +1386,7 @@
     {
       "id": "public-api-get-segments-segment-fields-Segment-fields",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html#segment-fields",
+      "url": "api/get-segments.html#segment-fields",
       "section": "API",
       "description": "Segment fields",
       "keywords": [
@@ -1404,7 +1404,7 @@
     {
       "id": "public-api-get-segments-tips-Tips-and-best-practices",
       "title": "GetSegments",
-      "url": "public/api/get-segments.html#tips",
+      "url": "api/get-segments.html#tips",
       "section": "API",
       "description": "Tips and best practices",
       "keywords": [
@@ -1422,7 +1422,7 @@
     {
       "id": "public-api-get-user-by-id-GetUserById",
       "title": "GetUserById",
-      "url": "public/api/get-user-by-id.html",
+      "url": "api/get-user-by-id.html",
       "section": "API",
       "description": "Fetch a complete user profile by their unique ID. Returns acquisition signals, engagement metrics, and demographic information — the full picture ThriveStack has on a single user. For a paginated, filterable list of users , use GetUsers .",
       "keywords": [
@@ -1441,7 +1441,7 @@
     {
       "id": "public-api-get-user-by-id-authentication-Authentication",
       "title": "GetUserById",
-      "url": "public/api/get-user-by-id.html#authentication",
+      "url": "api/get-user-by-id.html#authentication",
       "section": "API",
       "description": "Authentication",
       "keywords": [
@@ -1461,7 +1461,7 @@
     {
       "id": "public-api-get-user-by-id-example-Example",
       "title": "GetUserById",
-      "url": "public/api/get-user-by-id.html#example",
+      "url": "api/get-user-by-id.html#example",
       "section": "API",
       "description": "Example",
       "keywords": [
@@ -1478,7 +1478,7 @@
     {
       "id": "public-api-get-user-by-id-example-response-Example-response",
       "title": "GetUserById",
-      "url": "public/api/get-user-by-id.html#example-response",
+      "url": "api/get-user-by-id.html#example-response",
       "section": "API",
       "description": "Example response",
       "keywords": [
@@ -1493,7 +1493,7 @@
     {
       "id": "public-api-get-user-by-id-get-user-by-id-Endpoint",
       "title": "GetUserById",
-      "url": "public/api/get-user-by-id.html#get-user-by-id",
+      "url": "api/get-user-by-id.html#get-user-by-id",
       "section": "API",
       "description": "Fetch a complete user profile by their unique ID. Returns acquisition signals, engagement metrics, and demographic information — the full picture ThriveStack has on a single user. For a paginated, filterable list of users , use GetUsers .",
       "keywords": [
@@ -1513,7 +1513,7 @@
     {
       "id": "public-api-get-user-by-id-graphql-query-GraphQL-query",
       "title": "GetUserById",
-      "url": "public/api/get-user-by-id.html#graphql-query",
+      "url": "api/get-user-by-id.html#graphql-query",
       "section": "API",
       "description": "GraphQL query",
       "keywords": [
@@ -1531,7 +1531,7 @@
     {
       "id": "public-api-get-user-by-id-input-Input",
       "title": "GetUserById",
-      "url": "public/api/get-user-by-id.html#input",
+      "url": "api/get-user-by-id.html#input",
       "section": "API",
       "description": "Input",
       "keywords": [
@@ -1548,7 +1548,7 @@
     {
       "id": "public-api-get-user-by-id-response-fields-Response-fields",
       "title": "GetUserById",
-      "url": "public/api/get-user-by-id.html#response-fields",
+      "url": "api/get-user-by-id.html#response-fields",
       "section": "API",
       "description": "Response fields",
       "keywords": [
@@ -1565,7 +1565,7 @@
     {
       "id": "public-api-get-user-enrichment-GetUserEnrichment",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html",
+      "url": "api/get-user-enrichment.html",
       "section": "API",
       "description": "Enrich a person by email address. Returns professional title, role, seniority, company details, LinkedIn and social profiles, and location — sourced from third-party enrichment providers. Use this to implement personalized onboarding experiences based on a user's job function and seniority.",
       "keywords": [
@@ -1584,7 +1584,7 @@
     {
       "id": "public-api-get-user-enrichment-authentication-Authentication",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html#authentication",
+      "url": "api/get-user-enrichment.html#authentication",
       "section": "API",
       "description": "Authentication",
       "keywords": [
@@ -1601,7 +1601,7 @@
     {
       "id": "public-api-get-user-enrichment-endpoint-Endpoint",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html#endpoint",
+      "url": "api/get-user-enrichment.html#endpoint",
       "section": "API",
       "description": "Endpoint",
       "keywords": [
@@ -1618,7 +1618,7 @@
     {
       "id": "public-api-get-user-enrichment-example-Example",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html#example",
+      "url": "api/get-user-enrichment.html#example",
       "section": "API",
       "description": "Example",
       "keywords": [
@@ -1633,7 +1633,7 @@
     {
       "id": "public-api-get-user-enrichment-example-response-Example-response",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html#example-response",
+      "url": "api/get-user-enrichment.html#example-response",
       "section": "API",
       "description": "Example response",
       "keywords": [
@@ -1649,7 +1649,7 @@
     {
       "id": "public-api-get-user-enrichment-get-user-enrichment-Success-rates",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html#get-user-enrichment",
+      "url": "api/get-user-enrichment.html#get-user-enrichment",
       "section": "API",
       "description": "Enrich a person by email address. Returns professional title, role, seniority, company details, LinkedIn and social profiles, and location — sourced from third-party enrichment providers. Use this to implement personalized onboarding experiences based on a user's job function and seniority.",
       "keywords": [
@@ -1668,7 +1668,7 @@
     {
       "id": "public-api-get-user-enrichment-graphql-query-GraphQL-query",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html#graphql-query",
+      "url": "api/get-user-enrichment.html#graphql-query",
       "section": "API",
       "description": "GraphQL query",
       "keywords": [
@@ -1684,7 +1684,7 @@
     {
       "id": "public-api-get-user-enrichment-input-Input",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html#input",
+      "url": "api/get-user-enrichment.html#input",
       "section": "API",
       "description": "Input",
       "keywords": [
@@ -1699,7 +1699,7 @@
     {
       "id": "public-api-get-user-enrichment-response-fields-Response-fields",
       "title": "GetUserEnrichment",
-      "url": "public/api/get-user-enrichment.html#response-fields",
+      "url": "api/get-user-enrichment.html#response-fields",
       "section": "API",
       "description": "Response fields",
       "keywords": [
@@ -1718,7 +1718,7 @@
     {
       "id": "public-api-get-users-GetUsers",
       "title": "GetUsers",
-      "url": "public/api/get-users.html",
+      "url": "api/get-users.html",
       "section": "API",
       "description": "Fetch a paginated, filtered, and sorted list of users enriched with acquisition, engagement, and demographic data — to segment your user base, build cohorts, and power user-level personalization.",
       "keywords": [
@@ -1739,7 +1739,7 @@
     {
       "id": "public-api-get-users-curl-example-cURL",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#curl-example",
+      "url": "api/get-users.html#curl-example",
       "section": "API",
       "description": "cURL",
       "keywords": [
@@ -1757,7 +1757,7 @@
     {
       "id": "public-api-get-users-example-request-Example-request",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#example-request",
+      "url": "api/get-users.html#example-request",
       "section": "API",
       "description": "Example request",
       "keywords": [
@@ -1774,7 +1774,7 @@
     {
       "id": "public-api-get-users-example-response-Example-response",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#example-response",
+      "url": "api/get-users.html#example-response",
       "section": "API",
       "description": "Example response",
       "keywords": [
@@ -1790,7 +1790,7 @@
     {
       "id": "public-api-get-users-get-users-API-details",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#get-users",
+      "url": "api/get-users.html#get-users",
       "section": "API",
       "description": "Fetch a paginated, filtered, and sorted list of users enriched with acquisition, engagement, and demographic data — to segment your user base, build cohorts, and power user-level personalization.",
       "keywords": [
@@ -1810,7 +1810,7 @@
     {
       "id": "public-api-get-users-input-Input-GetUsersRequest",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#input",
+      "url": "api/get-users.html#input",
       "section": "API",
       "description": "Input fields in detail",
       "keywords": [
@@ -1828,7 +1828,7 @@
     {
       "id": "public-api-get-users-request-What-you-send",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#request",
+      "url": "api/get-users.html#request",
       "section": "API",
       "description": "What you send",
       "keywords": [
@@ -1845,7 +1845,7 @@
     {
       "id": "public-api-get-users-response-What-you-get",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#response",
+      "url": "api/get-users.html#response",
       "section": "API",
       "description": "What you get",
       "keywords": [
@@ -1862,7 +1862,7 @@
     {
       "id": "public-api-get-users-tips-Tips-and-best-practices",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#tips",
+      "url": "api/get-users.html#tips",
       "section": "API",
       "description": "Tips and best practices",
       "keywords": [
@@ -1881,7 +1881,7 @@
     {
       "id": "public-api-get-users-user-fields-User-fields",
       "title": "GetUsers",
-      "url": "public/api/get-users.html#user-fields",
+      "url": "api/get-users.html#user-fields",
       "section": "API",
       "description": "User fields",
       "keywords": [
@@ -1904,7 +1904,7 @@
     {
       "id": "public-api-group-Group",
       "title": "Group",
-      "url": "public/api/group.html",
+      "url": "api/group.html",
       "section": "API",
       "description": "The Group call associates a user with an account — a company, organization, workspace, or team. It lets you capture account-level traits and link user activity to account-level signals in ThriveStack.",
       "keywords": [
@@ -1925,7 +1925,7 @@
     {
       "id": "public-api-group-authentication-Authentication",
       "title": "Group",
-      "url": "public/api/group.html#authentication",
+      "url": "api/group.html#authentication",
       "section": "API",
       "description": "Authentication",
       "keywords": [
@@ -1943,7 +1943,7 @@
     {
       "id": "public-api-group-endpoint-Endpoint",
       "title": "Group",
-      "url": "public/api/group.html#endpoint",
+      "url": "api/group.html#endpoint",
       "section": "API",
       "description": "Endpoint",
       "keywords": [
@@ -1958,7 +1958,7 @@
     {
       "id": "public-api-group-example-Example",
       "title": "Group",
-      "url": "public/api/group.html#example",
+      "url": "api/group.html#example",
       "section": "API",
       "description": "Example",
       "keywords": [
@@ -1978,7 +1978,7 @@
     {
       "id": "public-api-group-group-When-to-call",
       "title": "Group",
-      "url": "public/api/group.html#group",
+      "url": "api/group.html#group",
       "section": "API",
       "description": "The Group call associates a user with an account — a company, organization, workspace, or team. It lets you capture account-level traits and link user activity to account-level signals in ThriveStack.",
       "keywords": [
@@ -1998,7 +1998,7 @@
     {
       "id": "public-api-group-request-body-Request-body",
       "title": "Group",
-      "url": "public/api/group.html#request-body",
+      "url": "api/group.html#request-body",
       "section": "API",
       "description": "Request body",
       "keywords": [
@@ -2022,7 +2022,7 @@
     {
       "id": "public-api-group-reserved-traits-Reserved-traits",
       "title": "Group",
-      "url": "public/api/group.html#reserved-traits",
+      "url": "api/group.html#reserved-traits",
       "section": "API",
       "description": "Reserved traits",
       "keywords": [
@@ -2043,7 +2043,7 @@
     {
       "id": "public-api-group-response-Response",
       "title": "Group",
-      "url": "public/api/group.html#response",
+      "url": "api/group.html#response",
       "section": "API",
       "description": "Response",
       "keywords": [
@@ -2058,7 +2058,7 @@
     {
       "id": "public-api-identify-Identify",
       "title": "Identify",
-      "url": "public/api/identify.html",
+      "url": "api/identify.html",
       "section": "API",
       "description": "The Identify call lets you associate actions with a specific user and capture descriptive traits about them — such as their email, name, and account membership. It is the foundation of user-level analytics in ThriveStack.",
       "keywords": [
@@ -2082,7 +2082,7 @@
     {
       "id": "public-api-identify-authentication-Authentication",
       "title": "Identify",
-      "url": "public/api/identify.html#authentication",
+      "url": "api/identify.html#authentication",
       "section": "API",
       "description": "Authentication",
       "keywords": [
@@ -2100,7 +2100,7 @@
     {
       "id": "public-api-identify-endpoint-Endpoint",
       "title": "Identify",
-      "url": "public/api/identify.html#endpoint",
+      "url": "api/identify.html#endpoint",
       "section": "API",
       "description": "Endpoint",
       "keywords": [
@@ -2115,7 +2115,7 @@
     {
       "id": "public-api-identify-example-Example",
       "title": "Identify",
-      "url": "public/api/identify.html#example",
+      "url": "api/identify.html#example",
       "section": "API",
       "description": "Example",
       "keywords": [
@@ -2134,7 +2134,7 @@
     {
       "id": "public-api-identify-identify-When-to-call",
       "title": "Identify",
-      "url": "public/api/identify.html#identify",
+      "url": "api/identify.html#identify",
       "section": "API",
       "description": "The Identify call lets you associate actions with a specific user and capture descriptive traits about them — such as their email, name, and account membership. It is the foundation of user-level analytics in ThriveStack.",
       "keywords": [
@@ -2154,7 +2154,7 @@
     {
       "id": "public-api-identify-request-body-Request-body",
       "title": "Identify",
-      "url": "public/api/identify.html#request-body",
+      "url": "api/identify.html#request-body",
       "section": "API",
       "description": "Request body",
       "keywords": [
@@ -2178,7 +2178,7 @@
     {
       "id": "public-api-identify-reserved-traits-Reserved-traits",
       "title": "Identify",
-      "url": "public/api/identify.html#reserved-traits",
+      "url": "api/identify.html#reserved-traits",
       "section": "API",
       "description": "Reserved traits",
       "keywords": [
@@ -2202,7 +2202,7 @@
     {
       "id": "public-api-identify-response-Response",
       "title": "Identify",
-      "url": "public/api/identify.html#response",
+      "url": "api/identify.html#response",
       "section": "API",
       "description": "Response",
       "keywords": [
@@ -2217,7 +2217,7 @@
     {
       "id": "public-api-invoices-Invoices",
       "title": "Invoices",
-      "url": "public/api/invoices.html",
+      "url": "api/invoices.html",
       "section": "API",
       "description": "The Invoices API lets you create, update, and delete billing invoices in ThriveStack. Invoices are linked to customers and can be associated with subscriptions and transactions for full revenue tracking.",
       "keywords": [
@@ -2240,7 +2240,7 @@
     {
       "id": "public-api-invoices-delete-invoice-Delete-an-invoice",
       "title": "Invoices",
-      "url": "public/api/invoices.html#delete-invoice",
+      "url": "api/invoices.html#delete-invoice",
       "section": "API",
       "description": "Delete an invoice",
       "keywords": [
@@ -2254,7 +2254,7 @@
     {
       "id": "public-api-invoices-error-codes-Error-codes",
       "title": "Invoices",
-      "url": "public/api/invoices.html#error-codes",
+      "url": "api/invoices.html#error-codes",
       "section": "API",
       "description": "Error codes",
       "keywords": [
@@ -2271,7 +2271,7 @@
     {
       "id": "public-api-invoices-invoices-Create-an-invoice",
       "title": "Invoices",
-      "url": "public/api/invoices.html#invoices",
+      "url": "api/invoices.html#invoices",
       "section": "API",
       "description": "The Invoices API lets you create, update, and delete billing invoices in ThriveStack. Invoices are linked to customers and can be associated with subscriptions and transactions for full revenue tracking.",
       "keywords": [
@@ -2294,7 +2294,7 @@
     {
       "id": "public-api-invoices-update-invoice-Update-an-invoice",
       "title": "Invoices",
-      "url": "public/api/invoices.html#update-invoice",
+      "url": "api/invoices.html#update-invoice",
       "section": "API",
       "description": "Update an invoice",
       "keywords": [
@@ -2314,7 +2314,7 @@
     {
       "id": "public-api-subscription-items-Subscription-Items",
       "title": "Subscription Items",
-      "url": "public/api/subscription-items.html",
+      "url": "api/subscription-items.html",
       "section": "API",
       "description": "The Subscription Items API lets you create, update, and delete individual line items within a subscription in ThriveStack. Subscription items represent the specific plans and prices attached to a subscription, enabling granular MRR tracking across products, tiers, and billing intervals.",
       "keywords": [
@@ -2334,7 +2334,7 @@
     {
       "id": "public-api-subscription-items-delete-subscription-item-Delete-a-subscription-ite",
       "title": "Subscription Items",
-      "url": "public/api/subscription-items.html#delete-subscription-item",
+      "url": "api/subscription-items.html#delete-subscription-item",
       "section": "API",
       "description": "Delete a subscription item",
       "keywords": [
@@ -2350,7 +2350,7 @@
     {
       "id": "public-api-subscription-items-error-codes-Error-codes",
       "title": "Subscription Items",
-      "url": "public/api/subscription-items.html#error-codes",
+      "url": "api/subscription-items.html#error-codes",
       "section": "API",
       "description": "Error codes",
       "keywords": [
@@ -2369,7 +2369,7 @@
     {
       "id": "public-api-subscription-items-subscription-items-Create-a-subscription-item",
       "title": "Subscription Items",
-      "url": "public/api/subscription-items.html#subscription-items",
+      "url": "api/subscription-items.html#subscription-items",
       "section": "API",
       "description": "The Subscription Items API lets you create, update, and delete individual line items within a subscription in ThriveStack. Subscription items represent the specific plans and prices attached to a subscription, enabling granular MRR tracking across products, tiers, and billing intervals.",
       "keywords": [
@@ -2389,7 +2389,7 @@
     {
       "id": "public-api-subscription-items-update-subscription-item-Update-a-subscription-ite",
       "title": "Subscription Items",
-      "url": "public/api/subscription-items.html#update-subscription-item",
+      "url": "api/subscription-items.html#update-subscription-item",
       "section": "API",
       "description": "Update a subscription item",
       "keywords": [
@@ -2406,7 +2406,7 @@
     {
       "id": "public-api-subscriptions-Subscriptions",
       "title": "Subscriptions",
-      "url": "public/api/subscriptions.html",
+      "url": "api/subscriptions.html",
       "section": "API",
       "description": "The Subscriptions API lets you create, update, and delete recurring billing subscriptions in ThriveStack. Subscriptions drive MRR tracking, churn detection, and renewal signals across your customer base.",
       "keywords": [
@@ -2425,7 +2425,7 @@
     {
       "id": "public-api-subscriptions-delete-subscription-Delete-a-subscription",
       "title": "Subscriptions",
-      "url": "public/api/subscriptions.html#delete-subscription",
+      "url": "api/subscriptions.html#delete-subscription",
       "section": "API",
       "description": "Delete a subscription",
       "keywords": [
@@ -2440,7 +2440,7 @@
     {
       "id": "public-api-subscriptions-error-codes-Error-codes",
       "title": "Subscriptions",
-      "url": "public/api/subscriptions.html#error-codes",
+      "url": "api/subscriptions.html#error-codes",
       "section": "API",
       "description": "Error codes",
       "keywords": [
@@ -2457,7 +2457,7 @@
     {
       "id": "public-api-subscriptions-subscriptions-Create-a-subscription",
       "title": "Subscriptions",
-      "url": "public/api/subscriptions.html#subscriptions",
+      "url": "api/subscriptions.html#subscriptions",
       "section": "API",
       "description": "The Subscriptions API lets you create, update, and delete recurring billing subscriptions in ThriveStack. Subscriptions drive MRR tracking, churn detection, and renewal signals across your customer base.",
       "keywords": [
@@ -2475,7 +2475,7 @@
     {
       "id": "public-api-subscriptions-update-subscription-Update-a-subscription",
       "title": "Subscriptions",
-      "url": "public/api/subscriptions.html#update-subscription",
+      "url": "api/subscriptions.html#update-subscription",
       "section": "API",
       "description": "Update a subscription",
       "keywords": [
@@ -2492,7 +2492,7 @@
     {
       "id": "public-api-track-Track",
       "title": "Track",
-      "url": "public/api/track.html",
+      "url": "api/track.html",
       "section": "API",
       "description": "The Track call records actions users perform in your product. It is the primary mechanism for capturing behavioral data — from lifecycle events like sign-up and account creation, to feature engagement, onboarding steps, page visits, and viral actions.",
       "keywords": [
@@ -2516,7 +2516,7 @@
     {
       "id": "public-api-track-authentication-Authentication",
       "title": "Track",
-      "url": "public/api/track.html#authentication",
+      "url": "api/track.html#authentication",
       "section": "API",
       "description": "Authentication",
       "keywords": [
@@ -2534,7 +2534,7 @@
     {
       "id": "public-api-track-endpoint-Endpoint",
       "title": "Track",
-      "url": "public/api/track.html#endpoint",
+      "url": "api/track.html#endpoint",
       "section": "API",
       "description": "Endpoint",
       "keywords": [
@@ -2549,7 +2549,7 @@
     {
       "id": "public-api-track-event-naming-Event-naming-conventions",
       "title": "Track",
-      "url": "public/api/track.html#event-naming",
+      "url": "api/track.html#event-naming",
       "section": "API",
       "description": "Event naming conventions",
       "keywords": [
@@ -2577,7 +2577,7 @@
     {
       "id": "public-api-track-examples-Examples",
       "title": "Track",
-      "url": "public/api/track.html#examples",
+      "url": "api/track.html#examples",
       "section": "API",
       "description": "Examples",
       "keywords": [
@@ -2598,7 +2598,7 @@
     {
       "id": "public-api-track-request-body-Request-body",
       "title": "Track",
-      "url": "public/api/track.html#request-body",
+      "url": "api/track.html#request-body",
       "section": "API",
       "description": "Request body",
       "keywords": [
@@ -2624,7 +2624,7 @@
     {
       "id": "public-api-track-reserved-properties-Reserved-properties",
       "title": "Track",
-      "url": "public/api/track.html#reserved-properties",
+      "url": "api/track.html#reserved-properties",
       "section": "API",
       "description": "Reserved properties",
       "keywords": [
@@ -2651,7 +2651,7 @@
     {
       "id": "public-api-track-response-Response",
       "title": "Track",
-      "url": "public/api/track.html#response",
+      "url": "api/track.html#response",
       "section": "API",
       "description": "Response",
       "keywords": [
@@ -2666,7 +2666,7 @@
     {
       "id": "public-api-track-standard-events-Standard-events",
       "title": "Track",
-      "url": "public/api/track.html#standard-events",
+      "url": "api/track.html#standard-events",
       "section": "API",
       "description": "Standard events",
       "keywords": [
@@ -2696,7 +2696,7 @@
     {
       "id": "public-api-track-track-When-to-call",
       "title": "Track",
-      "url": "public/api/track.html#track",
+      "url": "api/track.html#track",
       "section": "API",
       "description": "The Track call records actions users perform in your product. It is the primary mechanism for capturing behavioral data — from lifecycle events like sign-up and account creation, to feature engagement, onboarding steps, page visits, and viral actions.",
       "keywords": [
@@ -2718,7 +2718,7 @@
     {
       "id": "public-api-transactions-Transactions",
       "title": "Transactions",
-      "url": "public/api/transactions.html",
+      "url": "api/transactions.html",
       "section": "API",
       "description": "The Transactions API lets you create, update, and delete payment transaction records in ThriveStack. Transactions represent individual payment events — charges or refunds — tied to customers and invoices.",
       "keywords": [
@@ -2736,7 +2736,7 @@
     {
       "id": "public-api-transactions-delete-transaction-Delete-a-transaction",
       "title": "Transactions",
-      "url": "public/api/transactions.html#delete-transaction",
+      "url": "api/transactions.html#delete-transaction",
       "section": "API",
       "description": "Delete a transaction",
       "keywords": [
@@ -2750,7 +2750,7 @@
     {
       "id": "public-api-transactions-error-codes-Error-codes",
       "title": "Transactions",
-      "url": "public/api/transactions.html#error-codes",
+      "url": "api/transactions.html#error-codes",
       "section": "API",
       "description": "Error codes",
       "keywords": [
@@ -2767,7 +2767,7 @@
     {
       "id": "public-api-transactions-transactions-Create-a-transaction",
       "title": "Transactions",
-      "url": "public/api/transactions.html#transactions",
+      "url": "api/transactions.html#transactions",
       "section": "API",
       "description": "The Transactions API lets you create, update, and delete payment transaction records in ThriveStack. Transactions represent individual payment events — charges or refunds — tied to customers and invoices.",
       "keywords": [
@@ -2784,7 +2784,7 @@
     {
       "id": "public-api-transactions-update-transaction-Update-a-transaction",
       "title": "Transactions",
-      "url": "public/api/transactions.html#update-transaction",
+      "url": "api/transactions.html#update-transaction",
       "section": "API",
       "description": "Update a transaction",
       "keywords": [
@@ -2800,7 +2800,7 @@
     {
       "id": "public-crm-sync-hubspot-inbound-HubSpot-ThriveStack",
       "title": "HubSpot → ThriveStack",
-      "url": "public/crm-sync/hubspot-inbound.html",
+      "url": "crm-sync/hubspot-inbound.html",
       "section": "CRM Sync",
       "description": "Import companies, contacts, deals, tickets and engagement history from HubSpot. Every account in ThriveStack shows its CRM context alongside product usage.",
       "keywords": [
@@ -2819,7 +2819,7 @@
     {
       "id": "public-crm-sync-hubspot-outbound-ThriveStack-HubSpot",
       "title": "ThriveStack → HubSpot",
-      "url": "public/crm-sync/hubspot-outbound.html",
+      "url": "crm-sync/hubspot-outbound.html",
       "section": "CRM Sync",
       "description": "Push MRR, activation status and engagement signals from ThriveStack into HubSpot company properties — so your sales and CS teams always have live product data inside HubSpot.",
       "keywords": [
@@ -2837,7 +2837,7 @@
     {
       "id": "public-crm-sync-introduction-HubSpot",
       "title": "HubSpot",
-      "url": "public/crm-sync/introduction.html",
+      "url": "crm-sync/introduction.html",
       "section": "CRM Sync",
       "description": "Connect ThriveStack with HubSpot to unify your product usage data and CRM records in one place.",
       "keywords": [
@@ -2857,7 +2857,7 @@
     {
       "id": "public-customer-success-introduction-Introduction",
       "title": "Introduction",
-      "url": "public/customer-success/introduction.html",
+      "url": "customer-success/introduction.html",
       "section": "Customer Success",
       "description": "Start here to configure customer health and success workflows.",
       "keywords": [
@@ -2878,7 +2878,7 @@
     {
       "id": "public-customer-success-setup-health-scores-Setup-Health-Scores",
       "title": "Setup Health Scores",
-      "url": "public/customer-success/setup-health-scores.html",
+      "url": "customer-success/setup-health-scores.html",
       "section": "Customer Success",
       "description": "Customer success setup guides and health scoring docs.",
       "keywords": [
@@ -2901,7 +2901,7 @@
     {
       "id": "public-marketing-setup-goal-conversion-Goal-Conversion",
       "title": "Goal Conversion",
-      "url": "public/marketing/setup/goal-conversion.html",
+      "url": "marketing/setup/goal-conversion.html",
       "section": "Marketing",
       "description": "Track how often key business goals — signups, demo requests, page visits — are achieved. Follow these steps to create a goal, wire up event tracking, and pin it to your Unified Dashboard.",
       "keywords": [
@@ -2919,7 +2919,7 @@
     {
       "id": "public-marketing-setup-google-ads-Google-Ads",
       "title": "Google Ads",
-      "url": "public/marketing/setup/google-ads.html",
+      "url": "marketing/setup/google-ads.html",
       "section": "Marketing",
       "description": "Close the loop between ad spend and revenue. ThriveStack connects Google Ads click data with real signups and payments — then feeds that signal back to Google to optimize your campaigns automatically.",
       "keywords": [
@@ -2940,7 +2940,7 @@
     {
       "id": "public-marketing-setup-implement-with-prompt-marketing-Implement-with-Prompt",
       "title": "Implement with Prompt",
-      "url": "public/marketing/setup/implement-with-prompt-marketing.html",
+      "url": "marketing/setup/implement-with-prompt-marketing.html",
       "section": "Marketing",
       "description": "Use an AI coding assistant to instrument your marketing site or docs with ThriveStack visitor tracking in minutes.",
       "keywords": [
@@ -2959,7 +2959,7 @@
     {
       "id": "public-marketing-setup-implement-with-prompt-marketing-implement-with-prompt-mar",
       "title": "Implement with Prompt",
-      "url": "public/marketing/setup/implement-with-prompt-marketing.html#implement-with-prompt-marketing",
+      "url": "marketing/setup/implement-with-prompt-marketing.html#implement-with-prompt-marketing",
       "section": "Marketing",
       "description": "Use an AI coding assistant to instrument your marketing site or docs with ThriveStack visitor tracking in minutes.",
       "keywords": [
@@ -2980,7 +2980,7 @@
     {
       "id": "public-marketing-setup-introduction-Introduction",
       "title": "Introduction",
-      "url": "public/marketing/setup/introduction.html",
+      "url": "marketing/setup/introduction.html",
       "section": "Marketing",
       "description": "Start here to set up marketing signal collection and attribution.",
       "keywords": [
@@ -2997,7 +2997,7 @@
     {
       "id": "public-marketing-setup-marketing-analytics-Marketing-Analytics",
       "title": "Marketing Analytics",
-      "url": "public/marketing/setup/marketing-analytics.html",
+      "url": "marketing/setup/marketing-analytics.html",
       "section": "Marketing",
       "description": "This guide gives you the full picture of setting up Marketing Intelligence — so you can answer which channels drive signups, how leads convert, and how marketing touches correlate with product usage and revenue.",
       "keywords": [
@@ -3016,7 +3016,7 @@
     {
       "id": "public-marketing-setup-setup-manually-Setup-Manually",
       "title": "Setup Manually",
-      "url": "public/marketing/setup/setup-manually.html",
+      "url": "marketing/setup/setup-manually.html",
       "section": "Marketing",
       "description": "Add one script tag to your marketing site and ThriveStack immediately starts tracking all visitors, page views, and UTM campaigns — no events to define, no further instrumentation needed.",
       "keywords": [
@@ -3036,7 +3036,7 @@
     {
       "id": "public-marketing-setup-setup-with-ai-Setup-with-AI-Coding-Assistants",
       "title": "Setup with AI Coding Assistants",
-      "url": "public/marketing/setup/setup-with-ai.html",
+      "url": "marketing/setup/setup-with-ai.html",
       "section": "Marketing",
       "description": "Use an AI coding assistant to instrument your marketing site with ThriveStack in minutes — one script tag, and your site auto-tracks all visitors, page views, and UTM campaigns.",
       "keywords": [
@@ -3055,7 +3055,7 @@
     {
       "id": "public-marketing-setup-setup-with-ai-implement-with-prompt-marketing-How-does-it",
       "title": "Setup with AI Coding Assistants",
-      "url": "public/marketing/setup/setup-with-ai.html#implement-with-prompt-marketing",
+      "url": "marketing/setup/setup-with-ai.html#implement-with-prompt-marketing",
       "section": "Marketing",
       "description": "How does it work?",
       "keywords": [
@@ -3074,7 +3074,7 @@
     {
       "id": "public-mcp-introduction-Introduction",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html",
+      "url": "mcp/introduction.html",
       "section": "MCP",
       "description": "Connect AI assistants like Claude, Cursor, and other MCP-compatible tools directly to your ThriveStack data. Ask questions in plain language and get answers from the same telemetry your dashboard shows.",
       "keywords": [
@@ -3096,7 +3096,7 @@
     {
       "id": "public-mcp-introduction-access-Read-and-write-access",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#access",
+      "url": "mcp/introduction.html#access",
       "section": "MCP",
       "description": "Read and write access",
       "keywords": [
@@ -3113,7 +3113,7 @@
     {
       "id": "public-mcp-introduction-authentication-Authentication",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#authentication",
+      "url": "mcp/introduction.html#authentication",
       "section": "MCP",
       "description": "Authentication",
       "keywords": [
@@ -3128,7 +3128,7 @@
     {
       "id": "public-mcp-introduction-connection-details-Connection-details",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#connection-details",
+      "url": "mcp/introduction.html#connection-details",
       "section": "MCP",
       "description": "Connection details",
       "keywords": [
@@ -3144,7 +3144,7 @@
     {
       "id": "public-mcp-introduction-get-started-Get-started",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#get-started",
+      "url": "mcp/introduction.html#get-started",
       "section": "MCP",
       "description": "Get started",
       "keywords": [
@@ -3161,7 +3161,7 @@
     {
       "id": "public-mcp-introduction-how-it-works-How-it-works",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#how-it-works",
+      "url": "mcp/introduction.html#how-it-works",
       "section": "MCP",
       "description": "How it works",
       "keywords": [
@@ -3177,7 +3177,7 @@
     {
       "id": "public-mcp-introduction-overview-What-is-ThriveStack-MCP",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#overview",
+      "url": "mcp/introduction.html#overview",
       "section": "MCP",
       "description": "MCP Server",
       "keywords": [
@@ -3191,7 +3191,7 @@
     {
       "id": "public-mcp-introduction-requirements-Requirements",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#requirements",
+      "url": "mcp/introduction.html#requirements",
       "section": "MCP",
       "description": "Requirements",
       "keywords": [
@@ -3206,7 +3206,7 @@
     {
       "id": "public-mcp-introduction-support-Support",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#support",
+      "url": "mcp/introduction.html#support",
       "section": "MCP",
       "description": "Support",
       "keywords": [
@@ -3221,7 +3221,7 @@
     {
       "id": "public-mcp-introduction-supported-platforms-Supported-platforms",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#supported-platforms",
+      "url": "mcp/introduction.html#supported-platforms",
       "section": "MCP",
       "description": "Supported platforms",
       "keywords": [
@@ -3238,7 +3238,7 @@
     {
       "id": "public-mcp-introduction-what-you-can-do-What-you-can-do",
       "title": "Introduction",
-      "url": "public/mcp/introduction.html#what-you-can-do",
+      "url": "mcp/introduction.html#what-you-can-do",
       "section": "MCP",
       "description": "What you can do",
       "keywords": [
@@ -3253,7 +3253,7 @@
     {
       "id": "public-mcp-prompts-Prompts",
       "title": "Prompts",
-      "url": "public/mcp/prompts.html",
+      "url": "mcp/prompts.html",
       "section": "MCP",
       "description": "ThriveStack ships native MCP prompts &mdash; system-prompt-style personas and setup wizards you invoke directly from your AI tool&rsquo;s prompt picker.",
       "keywords": [
@@ -3275,7 +3275,7 @@
     {
       "id": "public-mcp-prompts-available-prompts-Available-prompts",
       "title": "Prompts",
-      "url": "public/mcp/prompts.html#available-prompts",
+      "url": "mcp/prompts.html#available-prompts",
       "section": "MCP",
       "description": "Available prompts",
       "keywords": [
@@ -3291,7 +3291,7 @@
     {
       "id": "public-mcp-prompts-combining-prompts-Combining-prompts-with-free-form-questions",
       "title": "Prompts",
-      "url": "public/mcp/prompts.html#combining-prompts",
+      "url": "mcp/prompts.html#combining-prompts",
       "section": "MCP",
       "description": "Combining prompts with free-form questions",
       "keywords": [
@@ -3309,7 +3309,7 @@
     {
       "id": "public-mcp-prompts-how-to-invoke-How-to-invoke-a-prompt",
       "title": "Prompts",
-      "url": "public/mcp/prompts.html#how-to-invoke",
+      "url": "mcp/prompts.html#how-to-invoke",
       "section": "MCP",
       "description": "How to invoke a prompt",
       "keywords": [
@@ -3326,7 +3326,7 @@
     {
       "id": "public-mcp-prompts-prompts-prompts",
       "title": "Prompts",
-      "url": "public/mcp/prompts.html#prompts",
+      "url": "mcp/prompts.html#prompts",
       "section": "MCP",
       "description": "Example questions for individual tools, one prompt per tool — unlike Use Cases , these don&rsquo;t require a multi-step drill-down. Ask your AI client any of these once the ThriveStack MCP server is connected.",
       "keywords": [
@@ -3340,7 +3340,7 @@
     {
       "id": "public-mcp-prompts-prompts-intro-prompts-intro",
       "title": "Prompts",
-      "url": "public/mcp/prompts.html#prompts-intro",
+      "url": "mcp/prompts.html#prompts-intro",
       "section": "MCP",
       "description": "prompts-intro",
       "keywords": [
@@ -3355,7 +3355,7 @@
     {
       "id": "public-mcp-setup-Setup",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html",
+      "url": "mcp/setup.html",
       "section": "MCP",
       "description": "Step-by-step instructions for connecting the ThriveStack MCP server to Claude, Cursor, and other AI tools. Stuck? Email support@thrivestack.ai .",
       "keywords": [
@@ -3377,7 +3377,7 @@
     {
       "id": "public-mcp-setup-authentication-options-Authentication-options",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#authentication-options",
+      "url": "mcp/setup.html#authentication-options",
       "section": "MCP",
       "description": "Authentication options",
       "keywords": [
@@ -3395,7 +3395,7 @@
     {
       "id": "public-mcp-setup-create-api-key-Create-an-x-api-key",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#create-api-key",
+      "url": "mcp/setup.html#create-api-key",
       "section": "MCP",
       "description": "Create an x-api-key",
       "keywords": [
@@ -3412,7 +3412,7 @@
     {
       "id": "public-mcp-setup-create-pat-Create-a-Personal-Access-Token",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#create-pat",
+      "url": "mcp/setup.html#create-pat",
       "section": "MCP",
       "description": "Create a Personal Access Token",
       "keywords": [
@@ -3431,7 +3431,7 @@
     {
       "id": "public-mcp-setup-implementation-Implementation-instructions",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#implementation",
+      "url": "mcp/setup.html#implementation",
       "section": "MCP",
       "description": "Implementation instructions",
       "keywords": [
@@ -3447,7 +3447,7 @@
     {
       "id": "public-mcp-setup-plugins-Plugins-coming-soon",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#plugins",
+      "url": "mcp/setup.html#plugins",
       "section": "MCP",
       "description": "Plugins (coming soon)",
       "keywords": [
@@ -3464,7 +3464,7 @@
     {
       "id": "public-mcp-setup-remote-server-Remote-server",
       "title": "Setup",
-      "url": "public/mcp/setup.html#remote-server",
+      "url": "mcp/setup.html#remote-server",
       "section": "MCP",
       "description": "Remote server",
       "keywords": [
@@ -3481,7 +3481,7 @@
     {
       "id": "public-mcp-setup-server-url-Server-URL",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#server-url",
+      "url": "mcp/setup.html#server-url",
       "section": "MCP",
       "description": "Server URL",
       "keywords": [
@@ -3499,7 +3499,7 @@
     {
       "id": "public-mcp-setup-technical-specs-Technical-specifications",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#technical-specs",
+      "url": "mcp/setup.html#technical-specs",
       "section": "MCP",
       "description": "Technical specifications",
       "keywords": [
@@ -3516,7 +3516,7 @@
     {
       "id": "public-mcp-setup-troubleshooting-Troubleshooting",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#troubleshooting",
+      "url": "mcp/setup.html#troubleshooting",
       "section": "MCP",
       "description": "Troubleshooting",
       "keywords": [
@@ -3531,7 +3531,7 @@
     {
       "id": "public-mcp-setup-verify-Verify-your-connection",
       "title": "Setup Guide",
-      "url": "public/mcp/setup.html#verify",
+      "url": "mcp/setup.html#verify",
       "section": "MCP",
       "description": "Verify your connection",
       "keywords": [
@@ -3548,7 +3548,7 @@
     {
       "id": "public-mcp-tools-Tools",
       "title": "Tools Reference",
-      "url": "public/mcp/tools.html",
+      "url": "mcp/tools.html",
       "section": "MCP",
       "description": "Every tool the ThriveStack MCP Server currently exposes, with parameters and what each one does.",
       "keywords": [
@@ -3570,7 +3570,7 @@
     {
       "id": "public-mcp-tools-more-on-the-way-More-on-the-way",
       "title": "Tools Reference",
-      "url": "public/mcp/tools.html#more-on-the-way",
+      "url": "mcp/tools.html#more-on-the-way",
       "section": "MCP",
       "description": "More on the way",
       "keywords": [
@@ -3588,7 +3588,7 @@
     {
       "id": "public-mcp-tools-overview-overview",
       "title": "Tools Reference",
-      "url": "public/mcp/tools.html#overview",
+      "url": "mcp/tools.html#overview",
       "section": "MCP",
       "description": "overview",
       "keywords": [
@@ -3603,7 +3603,7 @@
     {
       "id": "public-mcp-tools-read-tools-Read-tools",
       "title": "Tools Reference",
-      "url": "public/mcp/tools.html#read-tools",
+      "url": "mcp/tools.html#read-tools",
       "section": "MCP",
       "description": "Read tools",
       "keywords": [
@@ -3620,7 +3620,7 @@
     {
       "id": "public-mcp-tools-report-filters-Report-filters-and-dimensions",
       "title": "Tools Reference",
-      "url": "public/mcp/tools.html#report-filters",
+      "url": "mcp/tools.html#report-filters",
       "section": "MCP",
       "description": "Report filters and dimensions",
       "keywords": [
@@ -3639,7 +3639,7 @@
     {
       "id": "public-mcp-tools-response-format-Response-format",
       "title": "Tools Reference",
-      "url": "public/mcp/tools.html#response-format",
+      "url": "mcp/tools.html#response-format",
       "section": "MCP",
       "description": "Response format",
       "keywords": [
@@ -3657,7 +3657,7 @@
     {
       "id": "public-mcp-tools-tool-catalog-Primary-entry-point",
       "title": "Tools Reference",
-      "url": "public/mcp/tools.html#tool-catalog",
+      "url": "mcp/tools.html#tool-catalog",
       "section": "MCP",
       "description": "Primary entry point",
       "keywords": [
@@ -3676,7 +3676,7 @@
     {
       "id": "public-mcp-tools-tools-accounts-Accounts",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-accounts",
+      "url": "mcp/tools.html#tools-accounts",
       "section": "MCP",
       "description": "Accounts",
       "keywords": [
@@ -3692,7 +3692,7 @@
     {
       "id": "public-mcp-tools-tools-acquisition-Acquisition-quality",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-acquisition",
+      "url": "mcp/tools.html#tools-acquisition",
       "section": "MCP",
       "description": "Acquisition quality",
       "keywords": [
@@ -3709,7 +3709,7 @@
     {
       "id": "public-mcp-tools-tools-activation-Activation-amp-accounts",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-activation",
+      "url": "mcp/tools.html#tools-activation",
       "section": "MCP",
       "description": "Activation &amp; accounts",
       "keywords": [
@@ -3727,7 +3727,7 @@
     {
       "id": "public-mcp-tools-tools-core-analytics-Core-analytics",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-core-analytics",
+      "url": "mcp/tools.html#tools-core-analytics",
       "section": "MCP",
       "description": "Core analytics",
       "keywords": [
@@ -3744,7 +3744,7 @@
     {
       "id": "public-mcp-tools-tools-gtm-GTM",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-gtm",
+      "url": "mcp/tools.html#tools-gtm",
       "section": "MCP",
       "description": "GTM",
       "keywords": [
@@ -3760,7 +3760,7 @@
     {
       "id": "public-mcp-tools-tools-revenue-Revenue-amp-monetization",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-revenue",
+      "url": "mcp/tools.html#tools-revenue",
       "section": "MCP",
       "description": "Revenue &amp; monetization",
       "keywords": [
@@ -3778,7 +3778,7 @@
     {
       "id": "public-mcp-tools-tools-setup-Setup",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-setup",
+      "url": "mcp/tools.html#tools-setup",
       "section": "MCP",
       "description": "Setup",
       "keywords": [
@@ -3794,7 +3794,7 @@
     {
       "id": "public-mcp-tools-tools-traffic-Traffic-amp-marketing-surface",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-traffic",
+      "url": "mcp/tools.html#tools-traffic",
       "section": "MCP",
       "description": "Traffic &amp; marketing surface",
       "keywords": [
@@ -3813,7 +3813,7 @@
     {
       "id": "public-mcp-tools-tools-usage-Usage-amp-engagement",
       "title": "Tools",
-      "url": "public/mcp/tools.html#tools-usage",
+      "url": "mcp/tools.html#tools-usage",
       "section": "MCP",
       "description": "Usage &amp; engagement",
       "keywords": [
@@ -3831,7 +3831,7 @@
     {
       "id": "public-mcp-tools-write-tools-Write-tools",
       "title": "Tools Reference",
-      "url": "public/mcp/tools.html#write-tools",
+      "url": "mcp/tools.html#write-tools",
       "section": "MCP",
       "description": "Write tools",
       "keywords": [
@@ -3848,7 +3848,7 @@
     {
       "id": "public-mcp-use-cases-Use-Cases",
       "title": "Use Cases",
-      "url": "public/mcp/use-cases.html",
+      "url": "mcp/use-cases.html",
       "section": "MCP",
       "description": "Example prompts and workflows for the ThriveStack MCP Server. Browse by type if you need ideas on what to ask.",
       "keywords": [
@@ -3870,7 +3870,7 @@
     {
       "id": "public-mcp-use-cases-edit-project-setup-Edit-your-project-setup",
       "title": "Use Cases",
-      "url": "public/mcp/use-cases.html#edit-project-setup",
+      "url": "mcp/use-cases.html#edit-project-setup",
       "section": "MCP",
       "description": "Edit your project setup",
       "keywords": [
@@ -3890,7 +3890,7 @@
     {
       "id": "public-mcp-use-cases-example-workflows-Example-workflows",
       "title": "Use Cases",
-      "url": "public/mcp/use-cases.html#example-workflows",
+      "url": "mcp/use-cases.html#example-workflows",
       "section": "MCP",
       "description": "Example workflows: AI Visibility",
       "keywords": [
@@ -3908,7 +3908,7 @@
     {
       "id": "public-mcp-use-cases-getting-started-getting-started",
       "title": "Use Cases",
-      "url": "public/mcp/use-cases.html#getting-started",
+      "url": "mcp/use-cases.html#getting-started",
       "section": "MCP",
       "description": "getting-started",
       "keywords": [
@@ -3925,7 +3925,7 @@
     {
       "id": "public-mcp-use-cases-more-ideas-More-ideas",
       "title": "Use Cases",
-      "url": "public/mcp/use-cases.html#more-ideas",
+      "url": "mcp/use-cases.html#more-ideas",
       "section": "MCP",
       "description": "More ideas",
       "keywords": [
@@ -3944,7 +3944,7 @@
     {
       "id": "public-mcp-use-cases-real-world-workflows-Real-world-workflows",
       "title": "Use Cases",
-      "url": "public/mcp/use-cases.html#real-world-workflows",
+      "url": "mcp/use-cases.html#real-world-workflows",
       "section": "MCP",
       "description": "Real-world workflows",
       "keywords": [
@@ -3963,7 +3963,7 @@
     {
       "id": "public-mcp-use-cases-tips-Tips",
       "title": "Use Cases",
-      "url": "public/mcp/use-cases.html#tips",
+      "url": "mcp/use-cases.html#tips",
       "section": "MCP",
       "description": "Tips",
       "keywords": [
@@ -3980,7 +3980,7 @@
     {
       "id": "public-mcp-use-cases-use-cases-use-cases",
       "title": "Use Cases",
-      "url": "public/mcp/use-cases.html#use-cases",
+      "url": "mcp/use-cases.html#use-cases",
       "section": "MCP",
       "description": "Correlated, multi-step journeys across Marketing, Product, and Revenue — ask a broad question, then let your AI client drill down conversationally. These combine several tools in sequence, unlike the single-tool examples on the Prompts page.",
       "keywords": [
@@ -3996,7 +3996,7 @@
     {
       "id": "public-product-setup-advanced-ai-instrumentation-Advanced-AI-Instrumentation",
       "title": "Advanced AI Instrumentation",
-      "url": "public/product/setup/advanced-ai-instrumentation.html",
+      "url": "product/setup/advanced-ai-instrumentation.html",
       "section": "Product",
       "description": "Instrument your product in three focused sessions instead of one large prompt. Each session is smaller, faster, and easier to verify before moving on.",
       "keywords": [
@@ -4014,7 +4014,7 @@
     {
       "id": "public-product-setup-advanced-ai-instrumentation-advanced-ai-instrumentation-Use",
       "title": "Advanced AI Instrumentation",
-      "url": "public/product/setup/advanced-ai-instrumentation.html#advanced-ai-instrumentation",
+      "url": "product/setup/advanced-ai-instrumentation.html#advanced-ai-instrumentation",
       "section": "Product",
       "description": "Instrument your product in three focused sessions instead of one large prompt. Each session is smaller, faster, and easier to verify before moving on.",
       "keywords": [
@@ -4033,7 +4033,7 @@
     {
       "id": "public-product-setup-api-cli-instrumentation-Track-API-CLI-Agent-Usage",
       "title": "Track API, CLI &amp; Agent Usage",
-      "url": "public/product/setup/api-cli-instrumentation.html",
+      "url": "product/setup/api-cli-instrumentation.html",
       "section": "Product",
       "description": "Understand how customers engage with your API, CLI, and AI agents — not just whether they work, but how they're actually being used.",
       "keywords": [
@@ -4050,7 +4050,7 @@
     {
       "id": "public-product-setup-environment-correlation-Environments-and-API-Keys",
       "title": "Environments and API Keys",
-      "url": "public/product/setup/environment-correlation.html",
+      "url": "product/setup/environment-correlation.html",
       "section": "Product",
       "description": "You can create as many environments as you need — one per deployment stage. For correlation to work, your marketing site and product app must both use the API key from the same environment.",
       "keywords": [
@@ -4069,7 +4069,7 @@
     {
       "id": "public-product-setup-environment-correlation-environment-correlation-Your-enviro",
       "title": "Environments and API Keys",
-      "url": "public/product/setup/environment-correlation.html#environment-correlation",
+      "url": "product/setup/environment-correlation.html#environment-correlation",
       "section": "Product",
       "description": "You can create as many environments as you need — one per deployment stage. For correlation to work, your marketing site and product app must both use the API key from the same environment.",
       "keywords": [
@@ -4088,7 +4088,7 @@
     {
       "id": "public-product-setup-introduction-Introduction",
       "title": "Introduction",
-      "url": "public/product/setup/introduction.html",
+      "url": "product/setup/introduction.html",
       "section": "Product",
       "description": "Start here to instrument product telemetry and growth events.",
       "keywords": [
@@ -4105,7 +4105,7 @@
     {
       "id": "public-product-setup-multi-repo-setup-Setup-Across-Multiple-Places",
       "title": "Setup Across Multiple Places",
-      "url": "public/product/setup/multi-repo-setup.html",
+      "url": "product/setup/multi-repo-setup.html",
       "section": "Product",
       "description": "User journeys span more than one file. Signup, invite, login, and feature usage each live in a different part of your codebase — here's how the prompt covers all of them.",
       "keywords": [
@@ -4123,7 +4123,7 @@
     {
       "id": "public-product-setup-multi-repo-setup-multi-repo-setup-Where-events-live-in-your",
       "title": "Setup Across Multiple Places",
-      "url": "public/product/setup/multi-repo-setup.html#multi-repo-setup",
+      "url": "product/setup/multi-repo-setup.html#multi-repo-setup",
       "section": "Product",
       "description": "User journeys span more than one file. Signup, invite, login, and feature usage each live in a different part of your codebase — here's how the prompt covers all of them.",
       "keywords": [
@@ -4140,7 +4140,7 @@
     {
       "id": "public-product-setup-product-analytics-Product-Analytics",
       "title": "Product Analytics",
-      "url": "public/product/setup/product-analytics.html",
+      "url": "product/setup/product-analytics.html",
       "section": "Product",
       "description": "Product Analytics is set up across four sessions. Each session has a clear owner, a scheduled date, and a defined set of deliverables.",
       "keywords": [
@@ -4161,7 +4161,7 @@
     {
       "id": "public-product-setup-saas-growth-events-Events-Telemetry",
       "title": "Events Telemetry",
-      "url": "public/product/setup/saas-growth-events.html",
+      "url": "product/setup/saas-growth-events.html",
       "section": "Product",
       "description": "Mapping of customer journey phases to telemetry events.",
       "keywords": [
@@ -4179,7 +4179,7 @@
     {
       "id": "public-product-setup-saas-growth-events-saas-growth-events-Events-Telemetry",
       "title": "Events Telemetry",
-      "url": "public/product/setup/saas-growth-events.html#saas-growth-events",
+      "url": "product/setup/saas-growth-events.html#saas-growth-events",
       "section": "Product",
       "description": "Mapping of customer journey phases to telemetry events.",
       "keywords": [
@@ -4196,7 +4196,7 @@
     {
       "id": "public-product-setup-setup-manually-Setup-Manually",
       "title": "Setup Manually",
-      "url": "public/product/setup/setup-manually.html",
+      "url": "product/setup/setup-manually.html",
       "section": "Product",
       "description": "Manual setup guide for Product Intelligence. This page is intentionally left empty for now.",
       "keywords": [
@@ -4215,7 +4215,7 @@
     {
       "id": "public-product-setup-setup-manually-setup-manually-product-Setup-Manually",
       "title": "Setup Manually",
-      "url": "public/product/setup/setup-manually.html#setup-manually-product",
+      "url": "product/setup/setup-manually.html#setup-manually-product",
       "section": "Product",
       "description": "Manual setup guide for Product Intelligence. This page is intentionally left empty for now.",
       "keywords": [
@@ -4232,7 +4232,7 @@
     {
       "id": "public-product-setup-setup-with-ai-backend-Setup-with-AI-Coding-Assistants-Backe",
       "title": "Setup with AI Coding Assistants (Backend)",
-      "url": "public/product/setup/setup-with-ai-backend.html",
+      "url": "product/setup/setup-with-ai-backend.html",
       "section": "Product",
       "description": "Use an AI coding assistant to instrument your backend or API server with ThriveStack product telemetry via HTTP — no browser SDK required.",
       "keywords": [
@@ -4251,7 +4251,7 @@
     {
       "id": "public-product-setup-setup-with-ai-backend-implement-with-prompt-backend-Step-1-",
       "title": "Setup with AI Coding Assistants (Backend)",
-      "url": "public/product/setup/setup-with-ai-backend.html#implement-with-prompt-backend",
+      "url": "product/setup/setup-with-ai-backend.html#implement-with-prompt-backend",
       "section": "Product",
       "description": "Step 1: Get your API key",
       "keywords": [
@@ -4270,7 +4270,7 @@
     {
       "id": "public-product-setup-setup-with-ai-Setup-with-AI-Coding-Assistants",
       "title": "Setup with AI Coding Assistants",
-      "url": "public/product/setup/setup-with-ai.html",
+      "url": "product/setup/setup-with-ai.html",
       "section": "Product",
       "description": "Use an AI coding assistant to instrument your app with ThriveStack product telemetry in minutes.",
       "keywords": [
@@ -4289,7 +4289,7 @@
     {
       "id": "public-product-setup-setup-with-ai-implement-with-prompt-product-How-does-it-wor",
       "title": "Setup with AI Coding Assistants",
-      "url": "public/product/setup/setup-with-ai.html#implement-with-prompt-product",
+      "url": "product/setup/setup-with-ai.html#implement-with-prompt-product",
       "section": "Product",
       "description": "How does it work?",
       "keywords": [
@@ -4308,7 +4308,7 @@
     {
       "id": "public-product-setup-thrivestack-mcp-server-Configure-ThriveStack-MCP-Server",
       "title": "Configure ThriveStack MCP Server",
-      "url": "public/product/setup/thrivestack-mcp-server.html",
+      "url": "product/setup/thrivestack-mcp-server.html",
       "section": "Product",
       "description": "Configure ThriveStack MCP Server - ThriveStack Documentation",
       "keywords": [
@@ -4327,7 +4327,7 @@
     {
       "id": "public-product-setup-thrivestack-mcp-server-capabilities-Available-tools-and-cap",
       "title": "Configure ThriveStack MCP Server",
-      "url": "public/product/setup/thrivestack-mcp-server.html#capabilities",
+      "url": "product/setup/thrivestack-mcp-server.html#capabilities",
       "section": "Product",
       "description": "Available tools and capabilities",
       "keywords": [
@@ -4344,7 +4344,7 @@
     {
       "id": "public-product-setup-thrivestack-mcp-server-implementation-Implementation-instru",
       "title": "Configure ThriveStack MCP Server",
-      "url": "public/product/setup/thrivestack-mcp-server.html#implementation",
+      "url": "product/setup/thrivestack-mcp-server.html#implementation",
       "section": "Product",
       "description": "Implementation instructions",
       "keywords": [
@@ -4363,7 +4363,7 @@
     {
       "id": "public-product-setup-thrivestack-mcp-server-overview-Configure-ThriveStack-MCP-Server",
       "title": "Configure ThriveStack MCP Server",
-      "url": "public/product/setup/thrivestack-mcp-server.html#overview",
+      "url": "product/setup/thrivestack-mcp-server.html#overview",
       "section": "Product",
       "description": "Configure ThriveStack MCP Server - ThriveStack Documentation",
       "keywords": [
@@ -4381,7 +4381,7 @@
     {
       "id": "public-product-setup-thrivestack-mcp-server-plugins-Plugins-coming-soon-",
       "title": "Configure ThriveStack MCP Server",
-      "url": "public/product/setup/thrivestack-mcp-server.html#plugins",
+      "url": "product/setup/thrivestack-mcp-server.html#plugins",
       "section": "Product",
       "description": "Plugins (coming soon)",
       "keywords": [
@@ -4397,7 +4397,7 @@
     {
       "id": "public-product-setup-thrivestack-mcp-server-remote-server-Remote-server",
       "title": "Configure ThriveStack MCP Server",
-      "url": "public/product/setup/thrivestack-mcp-server.html#remote-server",
+      "url": "product/setup/thrivestack-mcp-server.html#remote-server",
       "section": "Product",
       "description": "Remote server",
       "keywords": [
@@ -4414,7 +4414,7 @@
     {
       "id": "public-product-setup-thrivestack-mcp-server-technical-specs-Technical-specificat",
       "title": "Configure ThriveStack MCP Server",
-      "url": "public/product/setup/thrivestack-mcp-server.html#technical-specs",
+      "url": "product/setup/thrivestack-mcp-server.html#technical-specs",
       "section": "Product",
       "description": "Technical specifications",
       "keywords": [
@@ -4433,7 +4433,7 @@
     {
       "id": "public-product-setup-thrivestack-mcp-server-troubleshooting-Troubleshooting",
       "title": "Configure ThriveStack MCP Server",
-      "url": "public/product/setup/thrivestack-mcp-server.html#troubleshooting",
+      "url": "product/setup/thrivestack-mcp-server.html#troubleshooting",
       "section": "Product",
       "description": "Troubleshooting",
       "keywords": [
@@ -4452,7 +4452,7 @@
     {
       "id": "public-product-setup-vibe-analytics-Vibe-Analytics-AI-",
       "title": "Vibe Analytics (AI)",
-      "url": "public/product/setup/vibe-analytics.html",
+      "url": "product/setup/vibe-analytics.html",
       "section": "Product",
       "description": "Self-contained technical specification for AI-driven telemetry instrumentation.",
       "keywords": [
@@ -4471,7 +4471,7 @@
     {
       "id": "public-product-setup-vibe-analytics-vibe-analytics-1-CORE-MISSION",
       "title": "Vibe Analytics (AI)",
-      "url": "public/product/setup/vibe-analytics.html#vibe-analytics",
+      "url": "product/setup/vibe-analytics.html#vibe-analytics",
       "section": "Product",
       "description": "Self-contained technical specification for AI-driven telemetry instrumentation.",
       "keywords": [
@@ -4489,7 +4489,7 @@
     {
       "id": "public-revenue-setup-chargebee-integration-Chargebee-Integration",
       "title": "Chargebee Integration",
-      "url": "public/revenue/setup/chargebee-integration.html",
+      "url": "revenue/setup/chargebee-integration.html",
       "section": "Revenue",
       "description": "Follow these steps to connect and configure your Chargebee account with ThriveStack Revenue Intelligence.",
       "keywords": [
@@ -4505,7 +4505,7 @@
     {
       "id": "public-revenue-setup-chargebee-integration-chargebee-integration-1-Set-up-the-Ch",
       "title": "Chargebee Integration",
-      "url": "public/revenue/setup/chargebee-integration.html#chargebee-integration",
+      "url": "revenue/setup/chargebee-integration.html#chargebee-integration",
       "section": "Revenue",
       "description": "Follow these steps to connect and configure your Chargebee account with ThriveStack Revenue Intelligence.",
       "keywords": [
@@ -4524,7 +4524,7 @@
     {
       "id": "public-revenue-setup-exceptional-use-cases-Exceptional-Use-Cases",
       "title": "Exceptional Use Cases",
-      "url": "public/revenue/setup/exceptional-use-cases.html",
+      "url": "revenue/setup/exceptional-use-cases.html",
       "section": "Revenue",
       "description": "Not every billing setup is straightforward. These are the common non-standard revenue flows and how ThriveStack handles each one.",
       "keywords": [
@@ -4544,7 +4544,7 @@
     {
       "id": "public-revenue-setup-exceptional-use-cases-exceptional-use-cases-Chargebee-subsc",
       "title": "Exceptional Use Cases",
-      "url": "public/revenue/setup/exceptional-use-cases.html#exceptional-use-cases",
+      "url": "revenue/setup/exceptional-use-cases.html#exceptional-use-cases",
       "section": "Revenue",
       "description": "Not every billing setup is straightforward. These are the common non-standard revenue flows and how ThriveStack handles each one.",
       "keywords": [
@@ -4563,7 +4563,7 @@
     {
       "id": "public-revenue-setup-introduction-Introduction",
       "title": "Introduction",
-      "url": "public/revenue/setup/introduction.html",
+      "url": "revenue/setup/introduction.html",
       "section": "Revenue",
       "description": "Start here to connect billing signals for revenue analytics.",
       "keywords": [
@@ -4580,7 +4580,7 @@
     {
       "id": "public-revenue-setup-setup-manually-Setup-Manually",
       "title": "Setup Manually",
-      "url": "public/revenue/setup/setup-manually.html",
+      "url": "revenue/setup/setup-manually.html",
       "section": "Revenue",
       "description": "Connect your billing data to ThriveStack Revenue Intelligence without an AI assistant — by adding a group_id to your billing provider or calling the ThriveStack Revenue APIs directly.",
       "keywords": [
@@ -4598,7 +4598,7 @@
     {
       "id": "public-revenue-setup-setup-manually-setup-revenue-manually-Choose-your-billing-s",
       "title": "Setup Manually",
-      "url": "public/revenue/setup/setup-manually.html#setup-revenue-manually",
+      "url": "revenue/setup/setup-manually.html#setup-revenue-manually",
       "section": "Revenue",
       "description": "Choose your billing setup",
       "keywords": [
@@ -4618,7 +4618,7 @@
     {
       "id": "public-revenue-setup-setup-with-ai-Setup-with-AI-Coding-Assistants",
       "title": "Setup with AI Coding Assistants",
-      "url": "public/revenue/setup/setup-with-ai.html",
+      "url": "revenue/setup/setup-with-ai.html",
       "section": "Revenue",
       "description": "Use an AI coding assistant to connect your billing data with ThriveStack revenue intelligence in minutes — get MRR, ARR, churn, and expansion analytics at the account level.",
       "keywords": [
@@ -4637,7 +4637,7 @@
     {
       "id": "public-revenue-setup-setup-with-ai-implement-with-prompt-revenue-How-does-it-wor",
       "title": "Setup with AI Coding Assistants",
-      "url": "public/revenue/setup/setup-with-ai.html#implement-with-prompt-revenue",
+      "url": "revenue/setup/setup-with-ai.html#implement-with-prompt-revenue",
       "section": "Revenue",
       "description": "How does it work?",
       "keywords": [
@@ -4656,7 +4656,7 @@
     {
       "id": "public-revenue-setup-stripe-integration-Stripe-Integration",
       "title": "Stripe Integration",
-      "url": "public/revenue/setup/stripe-integration.html",
+      "url": "revenue/setup/stripe-integration.html",
       "section": "Revenue",
       "description": "Follow these steps to configure your Stripe integration with ThriveStack Revenue Intelligence.",
       "keywords": [
@@ -4673,7 +4673,7 @@
     {
       "id": "public-revenue-setup-stripe-integration-stripe-integration-1-Set-up-the-Stripe-c",
       "title": "Stripe Integration",
-      "url": "public/revenue/setup/stripe-integration.html#stripe-integration",
+      "url": "revenue/setup/stripe-integration.html#stripe-integration",
       "section": "Revenue",
       "description": "Follow these steps to configure your Stripe integration with ThriveStack Revenue Intelligence.",
       "keywords": [
@@ -4692,7 +4692,7 @@
     {
       "id": "public-revenue-setup-why-correlation-Why-Correlation-Matters",
       "title": "Why Correlation Matters",
-      "url": "public/revenue/setup/why-correlation.html",
+      "url": "revenue/setup/why-correlation.html",
       "section": "Revenue",
       "description": "How a single shared key connects your product usage data with your billing data — unlocking churn signals, expansion signals, and the full bow-tie revenue model.",
       "keywords": [
@@ -4711,7 +4711,7 @@
     {
       "id": "public-revenue-setup-why-correlation-why-correlation-The-problem-with-disconnect",
       "title": "Why Correlation Matters",
-      "url": "public/revenue/setup/why-correlation.html#why-correlation",
+      "url": "revenue/setup/why-correlation.html#why-correlation",
       "section": "Revenue",
       "description": "How a single shared key connects your product usage data with your billing data — unlocking churn signals, expansion signals, and the full bow-tie revenue model.",
       "keywords": [
